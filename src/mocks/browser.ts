@@ -2,12 +2,13 @@ import { setupWorker } from 'msw/browser'
 
 import { createMockWalletProvider } from './wallet/provider'
 import { ensureSeeded } from './db/seed'
+import { healthHandlers } from './handlers/health'
 import { dropConnections, realtimeHandlers } from './realtime/server'
 import { startScheduler, triggerPriceChange, triggerStockChange } from './realtime/scheduler'
 import { isTestMode, mockConfig } from './scenarios/config'
 
 // Handlers de cada recurso da API entram aqui conforme os fluxos forem implementados (um arquivo por recurso em handlers/).
-const resourceHandlers: Parameters<typeof setupWorker>[0][] = []
+const resourceHandlers: Parameters<typeof setupWorker>[0][] = [...healthHandlers]
 
 const worker = setupWorker(...realtimeHandlers, ...resourceHandlers)
 
