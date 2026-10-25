@@ -131,6 +131,17 @@ export function emitToNftSubscribers<E extends keyof NftRealtimeEvents>(
   }
 }
 
+// Uniões dos NFTs inscritos em todas as conexões abertas (sem repetição).
+export function getSubscribedNftIds(): string[] {
+  const ids = new Set<string>()
+  for (const state of connections.values()) {
+    for (const id of state.subscriptions.nftIds) {
+      ids.add(id)
+    }
+  }
+  return [...ids]
+}
+
 export function emitOrderUpdated(
   orderId: string,
   payload: Omit<OrderUpdatedPayload, 'orderId'>,
