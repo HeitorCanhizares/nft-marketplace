@@ -183,6 +183,15 @@ function toEth(cents: number): string {
   return (cents / 100).toFixed(2)
 }
 
+// Média sempre alcançável com notas inteiras de 1 a 5: sorteia a soma S de `count` notas entre
+// ceil(3.5 * count) e 5 * count, e a média é S / count.
+function buildRating(rand: Rand): { average: number; count: number } {
+  const count = int(rand, 0, 25)
+  if (count === 0) return { average: 0, count: 0 }
+  const sum = int(rand, Math.ceil(3.5 * count), 5 * count)
+  return { average: Number((sum / count).toFixed(1)), count }
+}
+
 function buildNft(rand: Rand, plan: Plan): SeedEntry {
   const tokenNumber = String(plan.number).padStart(3, '0')
   const id = `${plan.name.toLowerCase().replace(/ /g, '-')}-${tokenNumber}`
@@ -223,7 +232,7 @@ function buildNft(rand: Rand, plan: Plan): SeedEntry {
   }))
 
   const attributes = shuffle(rand, ATTRIBUTES).slice(0, 3)
-  const rating = plan.rating ?? { average: int(rand, 35, 50) / 10, count: int(rand, 0, 25) }
+  const rating = plan.rating ?? buildRating(rand)
 
   const nft: NftDetail = {
     id,
