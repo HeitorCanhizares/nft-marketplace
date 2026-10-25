@@ -79,16 +79,40 @@ function forget(client: Client): void {
   connections.delete(client)
 }
 
-function handleConnection(connection: WebSocketHandlerConnection): void {
+// Durante a janela de recusa a conexão fica sem handshake, como um servidor fora do ar.
+// Fechar com close() faria o socket.io-client parar até o timeout, então só adiamos o attach.
+function deferUntilWindowEnds(connection: WebSocketHandlerConnection): void {
   const { client } = connection
-  if (client.url.pathname !== SOCKET_IO_PATH) {
+  let timer: ReturnType<typeof setTimeout> | undefined
+  const schedule = (): void => {
+    timer = setTimeout(
+      () => {
+        if (Date.now() < rejectNewUntil) {
+          schedule()
+          return
+        }
+        attach(connection)
+      },
+      Math.max(0, rejectNewUntil - Date.now()),
+    )
+  }
+  client.addEventListener('close', () => clearTimeout(timer))
+  schedule()
+}
+
+function handleConnection(connection: WebSocketHandlerConnection): void {
+  if (connection.client.url.pathname !== SOCKET_IO_PATH) {
     return
   }
   if (Date.now() < rejectNewUntil) {
-    client.close()
+    deferUntilWindowEnds(connection)
     return
   }
+  attach(connection)
+}
 
+function attach(connection: WebSocketHandlerConnection): void {
+  const { client } = connection
   const io = toSocketIo(connection)
   const state: ConnectionState = {
     io,
