@@ -16,7 +16,7 @@ Configurar o ESLint 9 (flat config) com TypeScript, hooks do React, react-refres
 - Template `react-ts` do Vite (pasta temporária do 00-002) como referência de sintaxe
 
 ## Instruções
-1. `npm install -D eslint @eslint/js typescript-eslint globals eslint-plugin-react-hooks eslint-plugin-react-refresh eslint-plugin-jsx-a11y`.
+1. **ESLint 9** (aprovado pelo usuário; o `eslint-plugin-jsx-a11y` não suporta a 10): `npm install -D eslint@^9 @eslint/js@^9 typescript-eslint globals eslint-plugin-react-hooks eslint-plugin-react-refresh eslint-plugin-jsx-a11y`.
 2. `eslint.config.js` (flat config, ESM) com:
    - `ignores`: `dist`, `src/routeTree.gen.ts`, `playwright-report`, `test-results`, `.lighthouseci`, `public/mockServiceWorker.js`.
    - Arquivos `**/*.{ts,tsx}`: `@eslint/js` recomendado, `typescript-eslint` recomendado, `react-hooks` (flat recomendado), `react-refresh` (config Vite) e `jsx-a11y` (flat recomendado).
