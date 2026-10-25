@@ -124,6 +124,20 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - **Tailwind CSS v4**.
 - **ESLint 9** (com `jsx-a11y`) e **Prettier** (com o plugin do Tailwind), como propostos nos blocos 00-013 e 00-014.
 - Dependências implícitas da stack aprovadas.
+- Biblioteca base do shadcn: **Radix UI**; preset de estilo **Nova** (`shadcn init -t vite -b radix -p nova`). O visual final segue os tokens do Figma (fase 01), não o preset.
+- Dependências trazidas pela CLI do shadcn e aceitas: `radix-ui`, `cn` (do shadcn, no lugar de `clsx` + `tailwind-merge`) e `shadcn`. A fonte **Geist** que a CLI adicionou foi **removida** (a fonte do projeto é a do Figma, A8).
+- **TypeScript fixado em 6.0.x** (6.0.3), porque o `typescript-eslint` só aceita versões abaixo de 6.1 (o npm tinha instalado a 7.0.2 no bloco 00-002).
+- `@hookform/resolvers` na versão exata **5.2.2** (versões mais novas dão `ERESOLVE`).
+- **MSW 2.x**, porque o `@mswjs/socket.io-binding` não aceita a 3.
+- **ESLint 9** mantido apesar do aviso de fim de suporte, porque o `jsx-a11y` ainda não aceita a 10.
+- `.gitattributes` com **fim de linha LF** (no Windows, o CRLF quebrava o `format:check`).
+
+### Fase 00 concluída (2026-10-25)
+- Tag **`fase-00-setup`** no commit `b273ec4`, aprovada pelo usuário. Sem remoto.
+- Validada num clone limpo: lint, format, typecheck, build, Playwright (desktop e mobile) e LHCI passando.
+- Pendências herdadas:
+  - **Fase 02:** confirmar que o modo `test` carrega o `.env.test`; decidir se o tempo real fica desligado nos testes.
+  - **Fase 13:** tratar as 16 vulnerabilidades do `npm audit` trazidas pelo `@lhci/cli` (ferramenta de desenvolvimento).
 
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
@@ -152,4 +166,4 @@ Nenhum ponto de arquitetura em aberto. Pendências:
 - ~~Validar as fases~~ ✅. Próximo passo: o **Sonnet** detalha a fase 00 em blocos.
 - Confirmar tokens e fonte no Figma quando o limite do plano renovar.
 - ~~Confirmar `lucide-react`~~ ✅ confirmado (ver "Setup").
-- Valores propostos pelo Sonnet nos blocos da fase 00 aguardam revisão do usuário: `.env.test`, LHCI, `routeTree.gen.ts` versionado, placeholder da `/` e favicon provisório.
+- ~~Valores propostos nos blocos da fase 00~~ ✅ aprovados com a fase.
