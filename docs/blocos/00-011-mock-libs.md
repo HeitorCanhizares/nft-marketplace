@@ -16,7 +16,7 @@ Instalar o que a fase 02 usará para a API simulada, a persistência e o tempo r
 
 ## Instruções
 1. `npm install socket.io-client idb`.
-2. `npm install -D msw @mswjs/socket.io-binding`.
+2. `npm install -D msw@^2.15 @mswjs/socket.io-binding`. **MSW fixado na 2.x** por decisão do usuário em 2026-10-25: o binding só aceita `msw ^2.10.2` e a 3.x deixa o peer inválido.
 3. Conferir os `peerDependencies` de `@mswjs/socket.io-binding`. Se exigir pacote que **não** está na lista aprovada (ex.: `@mswjs/interceptors`) ou versão de `msw` diferente da instalada, **parar e perguntar ao usuário**.
 4. **Não** rodar `npx msw init` (gerar `public/mockServiceWorker.js` é da fase 02) e não criar nada em `src/mocks/`.
 5. Commit: `git add package.json package-lock.json` e `git commit -m "00-011: instala MSW, Socket.IO e idb"`.
