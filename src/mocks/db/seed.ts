@@ -1,3 +1,4 @@
+import { STORAGE_KEYS, storage } from '../../lib/storage'
 import { isTestMode, mockConfig } from '../scenarios/config'
 import { SEED_IMAGE_URLS } from '../seed/nfts'
 import { buildSeedData, SEED_VERSION } from '../seed'
@@ -21,8 +22,11 @@ type WritableStore = 'collections' | 'users' | 'wallets' | 'nfts' | 'reviews' | 
 export async function ensureSeeded(): Promise<SeedSummary> {
   const expected = effectiveSeedVersion()
   const current = await metaStore.get(SEED_VERSION_KEY)
+  // O reset por variável vale uma vez por sessão da aba: um reload da mesma aba preserva os dados.
+  const resetByEnv =
+    mockConfig.seedReset && storage.session.get(STORAGE_KEYS.mockSeedResetDone) === null
 
-  if (!mockConfig.seedReset && current?.value === expected) {
+  if (!resetByEnv && current?.value === expected) {
     return { seeded: false, counts: {} }
   }
 
@@ -48,6 +52,9 @@ export async function ensureSeeded(): Promise<SeedSummary> {
   await write('reviews', data.reviews)
   await write('favorites', data.favorites)
   await metaStore.put({ key: SEED_VERSION_KEY, value: expected })
+  if (resetByEnv) {
+    storage.session.set(STORAGE_KEYS.mockSeedResetDone, '1')
+  }
 
   if (!isTestMode) {
     console.info(`[mock] seed v${SEED_VERSION} gravado: ${JSON.stringify(counts)}`)

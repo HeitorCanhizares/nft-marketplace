@@ -4,6 +4,7 @@ export const STORAGE_KEYS = {
   mockScenarios: 'kurio:mock:scenarios',
   checkout: 'kurio:checkout',
   checkoutDraft: 'kurio:checkout-draft',
+  mockSeedResetDone: 'kurio:mock:seed-reset-done',
 } as const
 
 export interface KeyValueStorage {
