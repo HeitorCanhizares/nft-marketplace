@@ -16,14 +16,13 @@ Trazer para o projeto as imagens-base dos NFTs usadas no Figma.
 - Autorização do usuário: chamadas ao Figma para baixar as imagens (2026-10-25)
 
 ## Instruções
-1. O Sonnet identifica no Figma (frame `2:2`, grade do catálogo e hero) as imagens distintas dos NFTs (esperado: macaco de jaqueta verde e óculos, gorila de capuz roxo e chapéu, gorila preto de blazer bege, macaco laranja com fones) e as baixa com a ferramenta de assets do Figma, no menor número de chamadas possível.
-2. Salvar em `src/assets/nfts/` com nomes descritivos (`ape-green-jacket.png`...), formato como vier do Figma. A conversão para WebP/AVIF é da fase 13 (Lighthouse), e fica registrada lá.
-3. Incluir também as imagens dos 2 cards de promoção e dos 4 posts do "Diário da Cunhagem" que aparecem em `desktop-inicio.png`, em `src/assets/content/`.
-4. Também registrar `alt` descritivo em PT-BR de cada imagem num comentário do bloco 02-014 (o texto vai para o seed).
-Commit: `git add src/assets/nfts` e `git commit -m "02-013: imagens dos NFTs do Figma"`.
+1. O Sonnet baixou do Figma (frame `2:2`, uma chamada `download_assets`) as **4 imagens-base** dos NFTs: macaco de jaqueta verde e óculos, macaco laranja com fones, gorila de capuz roxo e chapéu, gorila preto de blazer bege. Os cards de promoção e os posts do "Diário da Cunhagem" no Figma reutilizam as mesmas 4 imagens, então **não há** `src/assets/content/`.
+2. Originais PNG de 1254 px (≈ 2 MB cada) foram redimensionados para 800 px e salvos em **WebP** (qualidade 80, 33–47 KB): `ape-green-jacket.webp`, `ape-orange-headphones.webp`, `gorilla-purple-hoodie.webp`, `gorilla-black-blazer.webp` em `src/assets/nfts/`. (Desvio do plano original de manter o formato do Figma: o WebP já atende a meta de imagens do Lighthouse da fase 13.)
+3. `alt` em PT-BR para o seed (02-014/02-015): "Macaco de óculos escuros e jaqueta verde", "Macaco laranja com fones de ouvido verdes", "Gorila cinza de capuz roxo e chapéu verde", "Gorila preto de blazer bege e gola verde".
+Commit: `git add src/assets/nfts docs/blocos/02-013-seed-images.md` e `git commit -m "02-013: imagens dos NFTs do Figma"`.
 
 ## Critérios de aceite
-- [ ] 4 a 6 imagens distintas, cada uma < 400 KB.
+- [ ] 4 imagens distintas, cada uma < 400 KB.
 - [ ] Nenhuma imagem inventada ou gerada; só as do Figma.
 
 ## Verificação (Sonnet)
