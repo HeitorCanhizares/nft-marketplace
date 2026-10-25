@@ -2,6 +2,18 @@ import { setupWorker } from 'msw/browser'
 
 import { createMockWalletProvider } from './wallet/provider'
 import { ensureSeeded } from './db/seed'
+import { hashPassword, verifyPassword } from './db/password'
+import {
+  cartsStore,
+  favoritesStore,
+  metaStore,
+  nftsStore,
+  ordersStore,
+  reviewsStore,
+  sessionsStore,
+  usersStore,
+  walletsStore,
+} from './db/stores'
 import { healthHandlers } from './handlers/health'
 import { dropConnections, realtimeHandlers } from './realtime/server'
 import { startScheduler, triggerPriceChange, triggerStockChange } from './realtime/scheduler'
@@ -24,6 +36,21 @@ export interface KurioMockTestApi {
   triggerPriceChange: typeof triggerPriceChange
   triggerStockChange: typeof triggerStockChange
   dropConnections: typeof dropConnections
+  stores: {
+    nftsStore: typeof nftsStore
+    usersStore: typeof usersStore
+    sessionsStore: typeof sessionsStore
+    walletsStore: typeof walletsStore
+    ordersStore: typeof ordersStore
+    favoritesStore: typeof favoritesStore
+    reviewsStore: typeof reviewsStore
+    metaStore: typeof metaStore
+    cartsStore: typeof cartsStore
+  }
+  password: {
+    hashPassword: typeof hashPassword
+    verifyPassword: typeof verifyPassword
+  }
 }
 
 declare global {
@@ -51,6 +78,18 @@ export async function startMocking(): Promise<void> {
       triggerPriceChange,
       triggerStockChange,
       dropConnections,
+      stores: {
+        nftsStore,
+        usersStore,
+        sessionsStore,
+        walletsStore,
+        ordersStore,
+        favoritesStore,
+        reviewsStore,
+        metaStore,
+        cartsStore,
+      },
+      password: { hashPassword, verifyPassword },
     }
   }
 
