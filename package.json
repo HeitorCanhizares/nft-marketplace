@@ -11,6 +11,7 @@
     "build": "tsc -b && vite build",
     "build:test": "tsc -b && vite build --mode test",
     "preview": "vite preview",
+    "test:e2e": "playwright test",
     "typecheck": "tsc -b"
   },
   "dependencies": {
