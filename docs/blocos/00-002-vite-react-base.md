@@ -26,7 +26,7 @@ Criar a base do projeto (manifesto npm, configuração do Vite com alias `@/` e 
    - `typecheck`: `tsc -b`
 4. Instalar (versões estáveis mais recentes, com `^`):
    - `npm install react react-dom`
-   - `npm install -D vite @vitejs/plugin-react typescript @types/react @types/react-dom @types/node`
+   - `npm install -D vite @vitejs/plugin-react typescript@~6.0 @types/react @types/react-dom @types/node` (TypeScript fixado em 6.0.x por decisão do usuário em 2026-10-25: o typescript-eslint só aceita < 6.1)
 5. Criar `vite.config.ts` com `defineConfig`, o plugin `@vitejs/plugin-react` e `resolve.alias` `'@'` → `src`, resolvido com `fileURLToPath(new URL('./src', import.meta.url))` (projeto é ESM; não usar `__dirname`).
 6. Criar `index.html`: `<html lang="pt-BR">`, `<meta charset>`, `<meta name="viewport" content="width=device-width, initial-scale=1.0">`, `<title>Kurio</title>`, `<meta name="description" content="Kurio, marketplace de NFTs.">`, `<link rel="icon" href="data:,">` (evita 404 de favicon até o ícone real da fase 01), `<div id="root"></div>` e `<script type="module" src="/src/main.tsx">`.
 7. Commit: `git add package.json package-lock.json vite.config.ts index.html` e `git commit -m "00-002: Vite + React base"`.
