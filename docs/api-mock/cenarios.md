@@ -20,6 +20,7 @@ Definidas em `.env` / `.env.development` / `.env.test`. Todas com prefixo `VITE_
 | `VITE_MOCK_PAYMENT_DECLINE_RATE` | `0` | Probabilidade de pagamento recusado |
 | `VITE_MOCK_REALTIME` | `enabled` | Liga os eventos simulados de tempo real |
 | `VITE_MOCK_SCENARIOS` | vazio | Lista de cenários forçados, separados por vírgula (tabela abaixo) |
+| `VITE_SOCKET_URL` | vazio (mesma origem, caminho `/socket.io`) | URL do Socket.IO usada pelo cliente (`services/realtime`, fase 03). Opcional; não é variável do mock. |
 | `VITE_MOCK_SEED_RESET` | `false` | Apaga o banco do mock e recria a partir do seed ao iniciar |
 
 Falhas aleatórias (`ERROR_RATE`, `NETWORK_ERROR_RATE`) **nunca** atingem `GET /auth/session` na inicialização, para o app sempre conseguir abrir. Em `.env.test` todas as taxas aleatórias são `0`: os testes usam só cenários forçados, para serem determinísticos.
@@ -54,7 +55,7 @@ Decisão A6: em dev e teste, `localStorage['kurio:mock:scenarios']` sobrescreve 
 
 ### Carteira simulada (não é HTTP)
 
-Simulador em `src/mocks/wallet/`, usado pelo app por `src/services/wallet/` (decisão de 2026-10-25). Imita um provedor de carteira (MetaMask, WalletConnect, Coinbase Wallet): `connect(provider, network)`, `disconnect()`, `switchNetwork(network)` e eventos `accountsChanged`, `chainChanged`, `disconnect`.
+Simulador em `src/mocks/wallet/`, usado pelo app por `src/services/wallet/` (decisão de 2026-10-25). Imita um provedor de carteira (MetaMask, WalletConnect, Coinbase Wallet): `connect(provider, network)`, `disconnect()`, `switchNetwork(network)` e eventos `accountsChanged`, `chainChanged`, `disconnect`, com payloads no estilo **EIP-1193** (ex.: `accountsChanged` recebe a lista de endereços), definidos em `src/types/wallet.ts` (bloco 02-002).
 
 | Requisito | Cenário forçado | Comportamento | O que o front deve mostrar |
 |---|---|---|---|

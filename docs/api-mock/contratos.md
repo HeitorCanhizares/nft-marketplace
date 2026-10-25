@@ -160,6 +160,30 @@ type Order = {
   explorerUrl?: string       // simulado: formato do explorador da rede com o txHash fictício
 }
 
+// Tipos da Início e das avaliações (bloco 02-001, aprovados pelo usuário)
+type Review = { id: string; nftId: string; author: string; rating: 1 | 2 | 3 | 4 | 5; body: string; createdAt: string }
+
+type Promo = {
+  id: string
+  title: string
+  text: string
+  ctaLabel: string           // "Explorar"
+  image: { src: string; alt: string }   // os cards de promo têm imagem no Figma
+  query: { tab?: 'all' | 'new' | 'trending'; collection?: string; network?: Network; sort?: string }
+                             // "Lançamentos gênesis" → tab 'new'; "Arte digital selecionada" → collection
+}
+
+type Post = {
+  id: string
+  date: string
+  readingMinutes: number
+  title: string
+  summary: string
+  image: { src: string; alt: string }   // os cards do blog têm imagem no Figma
+}
+
+type HomeResponse = { hero: NftSummary[]; featured: NftSummary; promos: Promo[]; posts: Post[] }
+
 type User = {
   id: string
   displayName: string
@@ -283,6 +307,6 @@ A mudança é emitida no tempo real (`order:updated`) e também aparece no `GET`
 | `PUT /wallets/primary` | campos de `Wallet` sem `id`/`slot` | `Wallet` (cria ou atualiza) | `422 VALIDATION_ERROR` (ex.: endereço fora do formato `0x` + 40 hex) |
 | `PUT /wallets/secondary` | campos de `Wallet` sem `id`/`slot` | `Wallet` (cria ou atualiza) | `422 VALIDATION_ERROR` |
 | `DELETE /wallets/secondary` | — | `204` | `404` se não existir |
-| `POST /wallets/swap` | — | `{ primary: Wallet, secondary: Wallet }` | `409` se faltar uma das duas |
+| `POST /wallets/swap` | — | `{ primary: Wallet, secondary: Wallet }` | `404 NOT_FOUND` se faltar uma das duas |
 
 "Igual à carteira principal" é feito no front (copia os dados da principal para o formulário); o servidor só recebe uma carteira comum.

@@ -145,6 +145,12 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - Tabs sem linha sob a lista e Pagination com 40 px aceitos como estão.
 - Pendências para as próximas fases em [design/componentes.md](design/componentes.md) (posição do toast, setas do carrossel).
 
+### Fase 02 — decisões do usuário (2026-10-25)
+- **Tipos de domínio** (`src/types/`) e **`lib/storage.ts`** antecipados da fase 03 para a 02; schemas zod continuam na 03.
+- **Seed com 283 NFTs**, imagens vindas do Figma, contagens escaladas a partir do Figma: Arte digital 39, Fotografia 14, Música 77, Arte 3D 46, Colecionáveis 27, Generativa 20, Jogos 23, Assinaturas 16, Utilidade 21; redes Ethereum 119, Polygon 78, Solana 86.
+- Nos testes, o **tempo real fica ligado, sem oscilação aleatória** de preço e estoque (desligada quando `MODE === 'test'`, sem variável nova).
+- Blocos da fase 02 aprovados com os pontos propostos pelo Sonnet: tipos `Review`, `Promo`, `Post` e `HomeResponse` com campos mínimos (bloco 02-001); endpoint técnico **`GET /api/health`**; senhas fictícias de teste em texto só em `tests/e2e/fixtures.ts`; imagens no formato do Figma (conversão para WebP na fase 13).
+
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
 - 00 Setup → 01 Design base → 02 Mock base → 03 App base → 04 Layout e estados → 05 Login/Cadastro → 06 Início → 07 Detalhes → 08 Carrinho → 09 Perfil → 10 Carteiras → 11 Pagamento → 12 Confirmação → 13 Final.
