@@ -15,7 +15,7 @@ Criar o conteúdo editorial e as avaliações de cada NFT.
 - docs/fluxos/inicio.md, docs/fluxos/detalhes-nft.md
 
 ## Instruções
-1. `SEED_POSTS` (4 posts: data, tempo de leitura, título e resumo em PT-BR, como no "Diário da Cunhagem") e `SEED_PROMOS` (2: "Lançamentos gênesis..." e "Arte digital selecionada...", cada uma com `query` que leva ao catálogo filtrado por coleção ou ordenação).
+1. `SEED_POSTS` (4 posts: data, tempo de leitura, título e resumo em PT-BR, como no "Diário da Cunhagem") e `SEED_PROMOS` (2: "Lançamentos gênesis..." com `query.tab = 'new'` e "Arte digital selecionada..." com `query.collection` da coleção Arte digital). Cada post e cada promo tem `image` (`src` e `alt` em PT-BR) com as imagens do 02-013.
 2. `buildSeedReviews(nfts: NftDetail[]): Review[]` determinístico: para cada NFT gera exatamente `rating.count` avaliações com nota coerente com `rating.average` (média arredondada igual), autor fictício e texto curto em PT-BR, `createdAt` espalhado. Sem dado pessoal real.
 Rodar `npm run format:check && npm run lint && npm run typecheck && npm run build` → exit 0. Commit: `git add src/mocks/seed/content.ts` e `git commit -m "02-015: posts, promoções e avaliações"`. Não rodar `npm run format` global; usar `npx prettier --write` só nos arquivos do bloco.
 

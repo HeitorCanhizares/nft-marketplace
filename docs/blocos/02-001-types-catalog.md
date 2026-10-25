@@ -18,8 +18,8 @@ Criar os tipos TypeScript do catálogo, exatamente como em contratos.md.
 1. Exportar de `src/types/nft.ts`: `Network`, `WalletProvider` (compartilhado; reexportado por `wallet.ts` se necessário, mas **definido aqui**), `NftSummary`, `Edition`, `NftDetail`, `Paginated<T>` (`items, page, pageSize, total, totalPages`) e `CatalogFacets` (`collections`, `networks`: `{ id, name, count }[]`, `priceRange: { min, max }`).
 2. Acrescentar os tipos que o contrato cita mas não define (**propostos**; o usuário os confirma na revisão da fase):
    - `Review`: `{ id; nftId; author: string; rating: 1|2|3|4|5; body: string; createdAt: string }`.
-   - `Promo`: `{ id; title; text; ctaLabel: string; query: { collection?: string; network?: Network; sort?: string } }` (promo leva ao catálogo filtrado).
-   - `Post`: `{ id; date: string; readingMinutes: number; title; summary }`.
+   - `Promo`: `{ id; title; text; ctaLabel: string; image: { src: string; alt: string }; query: { collection?: string; network?: Network; tab?: 'all' | 'new' | 'trending'; sort?: string } }` (promo leva ao catálogo filtrado; "Lançamentos gênesis" leva à aba Novos lançamentos).
+   - `Post`: `{ id; date: string; readingMinutes: number; title; summary; image: { src: string; alt: string } }`.
    - `HomeResponse`: `{ hero: NftSummary[]; featured: NftSummary; promos: Promo[]; posts: Post[] }`.
 3. Valores em ETH são `string`; nenhum campo monetário como `number`.
 Rodar `npm run format:check && npm run lint && npm run typecheck && npm run build` → exit 0. Commit: `git add src/types/nft.ts` e `git commit -m "02-001: tipos do catálogo"`. Não rodar `npm run format` global; usar `npx prettier --write` só nos arquivos do bloco.

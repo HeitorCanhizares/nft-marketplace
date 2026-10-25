@@ -59,7 +59,8 @@ export type Promo = {
   title: string
   text: string
   ctaLabel: string
-  query: { collection?: string; network?: Network; sort?: string }
+  image: { src: string; alt: string }
+  query: { collection?: string; network?: Network; tab?: 'all' | 'new' | 'trending'; sort?: string }
 }
 
 export type Post = {
@@ -68,6 +69,7 @@ export type Post = {
   readingMinutes: number
   title: string
   summary: string
+  image: { src: string; alt: string }
 }
 
 export type HomeResponse = {
