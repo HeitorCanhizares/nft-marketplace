@@ -9,6 +9,7 @@ Popular o IndexedDB na primeira execução, quando a versão do seed mudar ou co
 
 ## Arquivos
 - criar: `src/mocks/db/seed.ts`, `src/mocks/seed/index.ts`
+- alterar: `src/mocks/db/db.ts` (tipo `NftRecord`); `src/mocks/db/stores.ts` (tipo da store `nfts`) — com isso o bloco toca 4 arquivos, exceção aprovada por ser só um tipo
 
 ## Referências
 - docs/api-mock/persistencia.md (versão do seed na store `meta`)
@@ -16,6 +17,7 @@ Popular o IndexedDB na primeira execução, quando a versão do seed mudar ou co
 ## Instruções
 1. `seed/index.ts`: `SEED_VERSION` (número) e `buildSeedData()` que junta coleções, usuários, carteiras, NFTs, avaliações, favoritos do usuário de teste (`SEED_FAVORITE_IDS`) e posts/promos (estes últimos ficam em memória para o `GET /home`, não no banco).
 2. `db/seed.ts`: `ensureSeeded()`: a versão efetiva é `${SEED_VERSION}:${assinatura das SEED_IMAGE_URLS}` (as URLs das imagens mudam de hash a cada build; sem isso o banco persistido ficaria com `image.src` quebrado após um novo build). Lê `meta['seedVersion']`; se não existir, for diferente da versão efetiva ou `mockConfig.seedReset` for `true`, apaga o banco (`deleteMockDb`), recria e grava tudo **numa única transação por store**; grava `meta.seedVersion`. Caso contrário, não faz nada (preserva dados do usuário entre refreshes).
+2a. `createdAt` não faz parte de `NftDetail` (contrato); o seed o exporta à parte em `SEED_NFT_CREATED_AT` (02-014). Neste bloco, definir `NftRecord = NftDetail & { createdAt: string }` em `src/mocks/db/db.ts` (a store `nfts` passa a guardar `NftRecord`; ajustar `stores.ts` para o novo tipo) e gravar cada NFT com seu `createdAt`. Os handlers de fluxo removem o campo ao responder.
 3. Retornar um resumo `{ seeded: boolean, counts: Record<string, number> }` e logar uma linha em `console.info` (só fora de `MODE === 'test'`).
 Rodar `npm run format:check && npm run lint && npm run typecheck && npm run build` → exit 0. Commit: `git add src/mocks/db/seed.ts src/mocks/seed/index.ts` e `git commit -m "02-016: carregador do seed"`. Não rodar `npm run format` global; usar `npx prettier --write` só nos arquivos do bloco.
 
