@@ -1,5 +1,5 @@
 import type { Quote } from '../../types/cart'
-import type { NftDetail, Review } from '../../types/nft'
+import type { Review } from '../../types/nft'
 import {
   getDb,
   type AvatarRecord,
@@ -8,6 +8,7 @@ import {
   type IdempotencyRecord,
   type MetaRecord,
   type MockDbSchema,
+  type NftRecord,
   type OrderRecord,
   type SessionRecord,
   type UserRecord,
@@ -19,7 +20,7 @@ export type CollectionRecord = MockDbSchema['collections']['value']
 export const nftsStore = {
   get: async (id: string) => (await getDb()).get('nfts', id),
   getAll: async () => (await getDb()).getAll('nfts'),
-  put: async (nft: NftDetail) => {
+  put: async (nft: NftRecord) => {
     await (await getDb()).put('nfts', nft)
   },
   delete: async (id: string) => {

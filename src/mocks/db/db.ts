@@ -7,6 +7,11 @@ import type { User, Wallet } from '../../types/user'
 const DB_NAME = 'kurio-mock-db'
 const DB_VERSION = 1
 
+// createdAt fica fora de NftDetail (contrato); os handlers removem o campo ao responder.
+export type NftRecord = NftDetail & {
+  createdAt: string
+}
+
 export type UserRecord = User & {
   passwordHash: string
   passwordSalt: string
@@ -55,7 +60,7 @@ export type MetaRecord = {
 export interface MockDbSchema extends DBSchema {
   nfts: {
     key: string
-    value: NftDetail
+    value: NftRecord
   }
   collections: {
     key: string
