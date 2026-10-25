@@ -10,9 +10,19 @@ Legenda das telas: **IN** Início · **DE** Detalhes · **CA** Carrinho · **PG*
 
 Instalados pelo CLI do shadcn e estilizados com os [tokens](tokens.md). Não contêm regra de negócio.
 
+**Convenção de estados (descoberta no bloco 01-007):** o preset Nova gera seletores como `data-checked:`, que o Radix não emite. Para estilizar estados do Radix, use `data-[state=checked]`, `data-[state=open]` e similares. O 01-007 usou `aria-checked:`, que também funciona; padronizar em `data-[state=…]` quando o arquivo for tocado de novo. O mesmo vale para `data-open:` / `data-closed:` (corrigidos no `select.tsx`).
+
+**Pendências herdadas da fase 01 (para as fases 03–04 e para os fluxos):**
+- `<Toaster />` (Sonner): hoje em `bottom-center`; ao montar, usar `bottom-right` no desktop.
+- Carousel: as setas ficam fora do container (`-left-12`); a página que usar setas deve conter esse excesso para não gerar rolagem horizontal no mobile.
+- A conferir com o usuário na revisão visual: Tabs sem linha sob a lista (o Figma desktop tem, o mobile não) e Pagination com 40 px.
+- Regra ESLint `set-state-in-effect` desligada só em `src/components/ui/**` (por causa do Carousel).
+
+**CLI do shadcn:** ao adicionar um componente, a CLI pode pedir para sobrescrever primitivos já estilizados (ex.: `button.tsx`, dependência do Dialog). Responder **não** sempre: os primitivos estilizados nunca são sobrescritos.
+
 | Primitivo | Uso principal |
 |---|---|
-| Button | Todos os botões (variantes: `primary`, `outline`, `ghost`, `link`, `icon`) |
+| Button | Todos os botões. Variantes implementadas (01-004): `default` (primary), `outline`, `ghost`, `link`, `icon`, `gradient` (botões em pílula do mobile). Tamanhos: `default`, `sm`, `lg`. |
 | Input, Textarea, Label | Campos de formulário |
 | Select | Rede, tipo de carteira, sufixo `.eth`, ordenação |
 | RadioGroup | Seleção de carteira, "Usar outra carteira?", "Igual à carteira principal" |

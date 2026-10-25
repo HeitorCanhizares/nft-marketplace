@@ -20,19 +20,24 @@ Tema único: escuro. Não existe tema claro no Figma.
 | `primary-foreground` | `#140d0a` | Texto sobre botão `primary` |
 | `price` | `#e89b55` | Preços e totais |
 | `foreground` | `#f5f1eb` | Texto principal |
-| `muted-foreground` | a confirmar (tom bege/caramelo) | Descrições, placeholders, textos secundários |
+| `muted-foreground` | `#cfb28c` | Descrições, placeholders, textos secundários |
+| `tan` | `#b39463` | Textos terciários em tom caramelo |
+| `border-soft` | `#55321f` | Bordas suaves |
 | `required` | `#f0805f` | Asterisco de campo obrigatório |
-| `destructive` | a definir no padrão | Erros de validação, pagamento recusado (não existe no Figma) |
-| `success` | a definir no padrão | Pagamento confirmado (não existe no Figma) |
+| `destructive` | `#ef6b5b` | Erros de validação, pagamento recusado (não existe no Figma) |
+| `success` | `#7fb069` | Pagamento confirmado (não existe no Figma) |
 
-Gradiente do mobile: os botões principais e o hero do mobile usam um gradiente de `primary` para um tom mais escuro. Confirmar os valores no Figma.
+Gradiente do mobile (`--gradient-primary`, utilitário `bg-gradient-primary`): `linear-gradient(135deg, #d28a4c 0%, #8a5a33 100%)`, usado nos botões principais e no hero do mobile.
+
+> Valores de `muted-foreground`, `tan`, `border-soft`, `destructive`, `success` e do gradiente **aprovados pelo usuário em 2026-10-25** (bloco 01-001). Tema único escuro: sem `.dark`, `--chart-*` nem `--sidebar-*`; as classes `dark:` do shadcn ficam sempre ativas (`@custom-variant dark (&)`).
 
 **Contraste:** antes de usar `muted-foreground` sobre `surface` em texto pequeno, verificar a razão de contraste ≥ 4.5:1 ([qualidade/acessibilidade.md](../qualidade/acessibilidade.md)).
 
 ## Tipografia
 
-- Família: **monoespaçada em toda a interface**. Estimativa: **Roboto Mono** (pendência A8 em [decisoes.md](../decisoes.md)).
+- Família: **monoespaçada em toda a interface**: **Roboto Mono**, instalada via `@fontsource-variable/roboto-mono` 5.3.0 (bloco 01-002). A confirmação no Figma continua pendente (A8 em [decisoes.md](../decisoes.md)).
 - Títulos de destaque (hero "SEJA DONO DO FUTURO DA ARTE DIGITAL", "NFT EM DESTAQUE"): caixa alta, peso bold.
+- Escala tipográfica implementada de **9 a 43 px** (bloco 01-003, valores aprovados pelo usuário); `--radius` base de **4 px**. Confirmar no Figma quando possível.
 - Escalas exatas de tamanho e altura de linha: confirmar no Figma. Até lá, medir nas capturas `design/telas/*` (as capturas de 1440px e 414px estão em escala 1:1, exceto as listadas em [telas/README.md](telas/README.md)).
 
 ## Raios

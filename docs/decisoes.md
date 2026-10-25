@@ -139,6 +139,12 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
   - **Fase 02:** confirmar que o modo `test` carrega o `.env.test`; decidir se o tempo real fica desligado nos testes.
   - **Fase 13:** tratar as 16 vulnerabilidades do `npm audit` trazidas pelo `@lhci/cli` (ferramenta de desenvolvimento).
 
+### Fase 01 concluída (2026-10-25)
+- Visual **aprovado pelo usuário**; tag **`fase-01-design-base`** no commit `aa48d78`.
+- Tokens, Roboto Mono, escala 9–43 px, raio base 4 px, 20 primitivos do shadcn e teste de contraste.
+- Tabs sem linha sob a lista e Pagination com 40 px aceitos como estão.
+- Pendências para as próximas fases em [design/componentes.md](design/componentes.md) (posição do toast, setas do carrossel).
+
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
 - 00 Setup → 01 Design base → 02 Mock base → 03 App base → 04 Layout e estados → 05 Login/Cadastro → 06 Início → 07 Detalhes → 08 Carrinho → 09 Perfil → 10 Carteiras → 11 Pagamento → 12 Confirmação → 13 Final.
