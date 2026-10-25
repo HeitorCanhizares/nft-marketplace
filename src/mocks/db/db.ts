@@ -117,6 +117,18 @@ export interface MockDbSchema extends DBSchema {
 
 export type MockDb = IDBPDatabase<MockDbSchema>
 
+// Conexão aberta por esta aba. Quando outra aba apaga o banco (reseed), o
+// navegador pede para fechar a conexão (blocking); ela é zerada aqui e o
+// próximo getDb() reabre o banco recriado.
+let dbPromise: Promise<MockDb> | null = null
+let connection: MockDb | null = null
+
+function releaseConnection(): void {
+  connection?.close()
+  connection = null
+  dbPromise = null
+}
+
 function openMockDb(): Promise<MockDb> {
   return openDB<MockDbSchema>(DB_NAME, DB_VERSION, {
     upgrade(db) {
@@ -144,10 +156,18 @@ function openMockDb(): Promise<MockDb> {
 
       db.createObjectStore('meta', { keyPath: 'key' })
     },
+    blocking() {
+      releaseConnection()
+    },
+    terminated() {
+      connection = null
+      dbPromise = null
+    },
+  }).then((db) => {
+    connection = db
+    return db
   })
 }
-
-let dbPromise: Promise<MockDb> | null = null
 
 export function getDb(): Promise<MockDb> {
   dbPromise ??= openMockDb()
@@ -156,13 +176,14 @@ export function getDb(): Promise<MockDb> {
 
 export async function deleteMockDb(): Promise<void> {
   if (dbPromise) {
+    // Abertura ainda em andamento: espera e fecha antes de apagar.
     const pending = dbPromise
     dbPromise = null
-    // Se a abertura falhou, não há conexão para fechar.
     await pending.then(
       (db) => db.close(),
       () => undefined,
     )
   }
+  connection = null
   await deleteDB(DB_NAME)
 }
