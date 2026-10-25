@@ -51,7 +51,7 @@ const PING_INTERVAL_MS = 20_000
 const connections = new Map<Client, ConnectionState>()
 let rejectNewUntil = 0
 
-const realtimeLink = ws.link('ws://*/')
+const realtimeLink = ws.link('*')
 
 function readIds(payload: unknown): string[] {
   if (typeof payload !== 'object' || payload === null || !('ids' in payload)) {
