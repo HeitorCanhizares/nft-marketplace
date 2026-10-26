@@ -37,7 +37,7 @@ export function QuantityStepper({
       <div className="flex items-center gap-3">
         <Button
           type="button"
-          variant="outline"
+          variant="default"
           size="icon"
           aria-label="Diminuir quantidade"
           disabled={!canDecrement}
@@ -57,7 +57,7 @@ export function QuantityStepper({
         </output>
         <Button
           type="button"
-          variant="outline"
+          variant="default"
           size="icon"
           aria-label="Aumentar quantidade"
           aria-describedby={hint ? hintId : undefined}

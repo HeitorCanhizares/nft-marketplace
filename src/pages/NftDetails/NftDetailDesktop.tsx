@@ -118,7 +118,7 @@ export function NftDetailDesktop({
             />
           </div>
 
-          <div className="flex flex-wrap items-start gap-4">
+          <div className="flex flex-wrap items-start justify-between gap-4">
             <div className="flex flex-col gap-2">
               <QuantityStepper
                 value={purchase.quantity}
@@ -132,25 +132,27 @@ export function NftDetailDesktop({
                 <p className="text-sm text-muted-foreground">{purchase.inCartText}</p>
               ) : null}
             </div>
-            <Button
-              type="button"
-              size="lg"
-              aria-busy={cart.pending || undefined}
-              disabled={purchase.allSoldOut}
-              onClick={() => {
-                if (!cart.pending) cart.onBuy()
-              }}
-              className="h-11 min-w-48"
-            >
-              {purchase.allSoldOut ? 'Esgotado' : 'COMPRAR'}
-            </Button>
-            <FavoriteButton
-              variant="text"
-              label={nft.name}
-              pressed={nft.isFavorite === true}
-              busy={favorite.busy}
-              onToggle={favorite.onToggle}
-            />
+            <div className="flex items-start gap-3">
+              <Button
+                type="button"
+                size="lg"
+                aria-busy={cart.pending || undefined}
+                disabled={purchase.allSoldOut}
+                onClick={() => {
+                  if (!cart.pending) cart.onBuy()
+                }}
+                className="h-11 min-w-48"
+              >
+                {purchase.allSoldOut ? 'Esgotado' : 'COMPRAR'}
+              </Button>
+              <FavoriteButton
+                variant="text"
+                label={nft.name}
+                pressed={nft.isFavorite === true}
+                busy={favorite.busy}
+                onToggle={favorite.onToggle}
+              />
+            </div>
           </div>
 
           {cartError || purchase.notice ? (

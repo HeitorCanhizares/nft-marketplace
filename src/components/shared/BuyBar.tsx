@@ -63,7 +63,7 @@ export function BuyBar({
         ) : (
           <Button
             type="button"
-            className="h-11 flex-1"
+            className="h-14 flex-1 rounded-full"
             onClick={() => {
               if (!pending) onBuy()
             }}
@@ -80,7 +80,7 @@ export function BuyBar({
           onClick={() => {
             if (!pending) onAddToCart()
           }}
-          className="size-11 rounded-full"
+          className="size-14 rounded-full"
         >
           {added ? <CheckIcon aria-hidden="true" /> : <ShoppingCartIcon aria-hidden="true" />}
         </Button>

@@ -48,7 +48,7 @@ export function NftGallery({ images, name, className }: NftGalleryProps) {
                   aria-current={imageIndex === index ? 'true' : undefined}
                   onClick={() => setIndex(imageIndex)}
                   className={cn(
-                    'size-16 shrink-0 overflow-hidden rounded-lg border-2 bg-card outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                    'size-24 shrink-0 overflow-hidden rounded-xl border-2 bg-card outline-none focus-visible:ring-2 focus-visible:ring-ring',
                     imageIndex === index ? 'border-primary' : 'border-border-soft',
                   )}
                 >
@@ -57,11 +57,11 @@ export function NftGallery({ images, name, className }: NftGalleryProps) {
               ))}
             </div>
           ) : null}
-          <div className="relative min-w-0 flex-1 overflow-hidden rounded-lg bg-card">
+          <div className="relative min-w-0 flex-1 rounded-xl bg-card p-6">
             <img
               src={current.src}
               alt={current.alt}
-              className="aspect-square w-full object-cover"
+              className="aspect-square w-full rounded-2xl object-cover"
             />
             <Button
               type="button"
@@ -69,7 +69,7 @@ export function NftGallery({ images, name, className }: NftGalleryProps) {
               size="icon"
               aria-label="Ampliar imagem"
               onClick={() => openZoom(index)}
-              className="absolute right-3 bottom-3 rounded-full bg-card/80 text-foreground"
+              className="absolute top-8 right-8 rounded-full bg-card/80 text-foreground"
             >
               <ZoomInIcon aria-hidden="true" />
             </Button>

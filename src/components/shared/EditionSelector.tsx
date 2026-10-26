@@ -29,7 +29,7 @@ export function EditionSelector({ editions, value, onChange, className }: Editio
             value={edition.id}
             disabled={soldOut}
             className={cn(
-              'inline-flex min-h-11 min-w-16 flex-col items-center justify-center rounded-mobile border border-border-soft bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors outline-none select-none lg:min-h-9 lg:rounded-lg',
+              'inline-flex min-h-11 min-w-16 flex-col items-center justify-center rounded-full border border-border-soft bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors outline-none select-none lg:min-h-9',
               'focus-visible:ring-2 focus-visible:ring-ring',
               'data-[state=checked]:border-primary',
               'disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-60',
