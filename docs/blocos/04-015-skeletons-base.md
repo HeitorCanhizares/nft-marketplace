@@ -1,6 +1,6 @@
 # 04-015 — Skeletons base (página e formulário)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Estados
 **Depende de:** 03-020
 

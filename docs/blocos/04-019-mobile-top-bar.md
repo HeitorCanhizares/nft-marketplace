@@ -1,6 +1,6 @@
 # 04-019 — MobileTopBar
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout (mobile)
 **Depende de:** 04-010
 

@@ -1,6 +1,6 @@
 # 04-018 — Breadcrumb (componente de layout)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout
 **Depende de:** 04-010
 

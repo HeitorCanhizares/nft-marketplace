@@ -1,6 +1,6 @@
 # 04-016 — ComingSoon (item desabilitado com dica "Em breve")
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Itens desabilitados
 **Depende de:** 03-020
 

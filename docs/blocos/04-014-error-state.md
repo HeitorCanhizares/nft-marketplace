@@ -1,6 +1,6 @@
 # 04-014 — ErrorState
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Estados
 **Depende de:** 03-020
 

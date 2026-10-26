@@ -1,6 +1,6 @@
 # 04-017 — Dados de navegação (cabeçalho e menu do perfil)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Base de layout
 **Depende de:** 04-010
 
