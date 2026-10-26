@@ -1,11 +1,13 @@
 import { Outlet, useNavigate, useSearch } from '@tanstack/react-router'
 
+import { SessionExpiryBanner } from '@/components/shared/SessionExpiryBanner'
 import { useAuth } from '@/contexts/auth'
 import { Toaster } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { useIsDesktop } from '@/hooks/useMediaQuery'
 import { useRouteChrome } from '@/hooks/useRouteChrome'
 import { useRouteFocus } from '@/hooks/useRouteFocus'
+import { useSessionRenewal } from '@/hooks/useSessionRenewal'
 import { useSignOut } from '@/hooks/useSignOut'
 
 import { Footer } from './Footer'
@@ -19,6 +21,7 @@ export function AppShell() {
   useRouteFocus()
 
   const { status, user } = useAuth()
+  const renewal = useSessionRenewal()
   const signOut = useSignOut()
   const { footer, mobileTabBar } = useRouteChrome()
   const isDesktop = useIsDesktop()
@@ -46,6 +49,14 @@ export function AppShell() {
       </a>
 
       <div className="flex min-h-dvh flex-col overflow-x-clip">
+        {renewal.open && (
+          <SessionExpiryBanner
+            onContinue={() => void renewal.renew()}
+            pending={renewal.pending}
+            error={renewal.error}
+          />
+        )}
+
         <Header
           className="max-lg:hidden"
           authStatus={status}
