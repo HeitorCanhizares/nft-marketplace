@@ -32,7 +32,7 @@ export function AuthForm({ mode, variant, redirect, children, className }: AuthF
     return (
       <div className={cn('px-20 pt-12 pb-17.5', className)}>
         <AuthTabs active={mode} redirect={redirect} />
-        <p className="mx-auto mt-10 max-w-102.5 text-center text-caption-md leading-4 text-foreground">
+        <p className="-mx-8.75 mt-10 text-center text-caption-md leading-4 text-foreground">
           {DESKTOP_SUPPORT_TEXT[mode]}
         </p>
         <div className="mt-6">{children}</div>
