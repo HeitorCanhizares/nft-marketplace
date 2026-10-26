@@ -53,6 +53,12 @@ export async function authenticate(request: Request): Promise<AuthenticatedReque
   return { session, user }
 }
 
+// Igual a authenticate, mas nunca devolve Response: rotas públicas tratam qualquer falha como visitante.
+export async function tryAuthenticate(request: Request): Promise<AuthenticatedRequest | null> {
+  const auth = await authenticate(request)
+  return auth instanceof Response ? null : auth
+}
+
 // Nunca devolve passwordHash nem passwordSalt.
 export function toPublicUser(record: UserRecord): User {
   return {
