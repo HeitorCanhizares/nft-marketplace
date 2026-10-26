@@ -1,6 +1,6 @@
 # 04-027 — MobileTabBar
 
-**Status:** pendente (**formato do recorte e rotas com a barra: perguntas 4 e 8 do relatório da fase 04**)
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout (mobile)
 **Depende de:** 04-003, 04-010, 04-016
 

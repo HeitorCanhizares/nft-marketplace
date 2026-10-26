@@ -1,6 +1,6 @@
 # 04-028 — ProfileSidebar
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout (Perfil e Carteiras, desktop)
 **Depende de:** 04-016, 04-017, 04-009
 

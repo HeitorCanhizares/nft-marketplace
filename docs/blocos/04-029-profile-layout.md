@@ -1,6 +1,6 @@
 # 04-029 — ProfileLayout
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout (Perfil e Carteiras)
 **Depende de:** 04-011, 04-028
 
