@@ -17,6 +17,8 @@
   --text-lg: 18px;
   --text-heading: 24px;
   --text-logo: 32px;
+  --text-section: 28px;
+  --text-featured: 22px;
   --text-display: 43px;
 }
 
@@ -58,6 +60,8 @@
   --radius-4xl: calc(var(--radius) * 2.6);
   --radius-mobile: 0.75rem;
   --radius-media: 0.75rem;
+  --radius-panel: 1.5rem;
+  --radius-card: 1.25rem;
 }
 
 :root {

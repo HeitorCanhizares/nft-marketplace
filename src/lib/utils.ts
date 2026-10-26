@@ -5,10 +5,21 @@ export const cn = createCn({
     classGroups: {
       'font-size': [
         {
-          text: ['tiny', 'caption', 'caption-md', 'body', 'subtitle', 'heading', 'logo', 'display'],
+          text: [
+            'tiny',
+            'caption',
+            'caption-md',
+            'body',
+            'subtitle',
+            'heading',
+            'logo',
+            'section',
+            'featured',
+            'display',
+          ],
         },
       ],
-      rounded: [{ rounded: ['mobile', 'media'] }],
+      rounded: [{ rounded: ['mobile', 'media', 'panel', 'card'] }],
     },
   },
 })
