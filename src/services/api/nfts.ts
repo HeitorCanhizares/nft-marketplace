@@ -60,6 +60,10 @@ export function getRelatedNfts(id: string, signal?: AbortSignal): Promise<NftSum
   return get(`/nfts/${encodeURIComponent(id)}/related`, z.array(nftSummarySchema), { signal })
 }
 
+export function getRecommendedNfts(signal?: AbortSignal): Promise<NftSummary[]> {
+  return get('/nfts/recommendations', z.array(nftSummarySchema), { signal })
+}
+
 export function getReviews(
   id: string,
   page: number,

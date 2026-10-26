@@ -8,6 +8,8 @@ export const nfts = {
   list: (params: QueryParams) => ['nfts', 'list', params] as const,
   detail: (id: string) => ['nfts', 'detail', id] as const,
   related: (id: string) => ['nfts', 'related', id] as const,
+  // Dentro de relatedAll de propósito: o useToggleFavorite também atualiza os cards recomendados.
+  recommendations: ['nfts', 'related', 'recommendations'] as const,
   reviews: (id: string, page: number) => ['nfts', 'reviews', id, page] as const,
 }
 

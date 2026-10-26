@@ -8,6 +8,7 @@ import type { NftRecord } from '../db/db'
 import { toNftDetail } from '../db/nftDetail'
 import { toNftSummary } from '../db/nftSummary'
 import { favoritesStore, nftsStore, usersStore } from '../db/stores'
+import { SEED_NFT_STATS } from '../seed/nfts'
 import { hasScenario } from '../scenarios/active'
 import { apiPath } from '../scenarios/config'
 import { apiError } from '../scenarios/errors'
@@ -28,6 +29,14 @@ async function countFavorites(all: NftRecord[]): Promise<Map<string, number>> {
 }
 
 const RELATED_LIMIT = 10
+const RECOMMENDATIONS_LIMIT = 10
+
+// Posição no seed: as chaves de SEED_NFT_STATS seguem a ordem de inserção do seed.
+const SEED_ORDER = new Map(Object.keys(SEED_NFT_STATS).map((id, index) => [id, index]))
+
+function seedOrder(id: string): number {
+  return SEED_ORDER.get(id) ?? Number.MAX_SAFE_INTEGER
+}
 
 // Favoritos do token, se houver sessão válida; visitante recebe undefined (isFavorite omitido).
 async function readFavoriteIds(request: Request): Promise<Set<string> | undefined> {
@@ -82,7 +91,25 @@ export const nftsHandlers = [
       })
     }),
   ),
-  // Registrar /nfts/recommendations (fase 08) antes de /nfts/:id, senão o :id captura "recommendations".
+  http.get(
+    apiPath('/nfts/recommendations'),
+    withMock('GET /nfts/recommendations', async ({ request }) => {
+      // Mais vendidos e favoritados em 7 dias, sem esgotados. Desempate pela ordem do seed.
+      const all = await nftsStore.getAll()
+      const ranked = all
+        .filter((nft) => !toNftSummary(nft).soldOut)
+        .sort((a, b) => {
+          const diff =
+            b.stats.sales7d + b.stats.favorites7d - (a.stats.sales7d + a.stats.favorites7d)
+          return diff !== 0 ? diff : seedOrder(a.id) - seedOrder(b.id)
+        })
+
+      const favoriteIds = await readFavoriteIds(request)
+      return HttpResponse.json(
+        ranked.slice(0, RECOMMENDATIONS_LIMIT).map((item) => toNftSummary(item, favoriteIds)),
+      )
+    }),
+  ),
   http.get(
     apiPath('/nfts/:id'),
     withMock('GET /nfts/:id', async ({ request, params }) => {
