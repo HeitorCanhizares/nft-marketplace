@@ -65,6 +65,7 @@ Instalados pelo CLI do shadcn e estilizados com os [tokens](tokens.md). Não con
 | `useRouteChrome` | hooks | Lê o `staticData` da rota (rodapé, barra mobile, título) |
 | `useRouteFocus` | hooks | Foco no `<h1>` e `document.title` a cada troca de rota |
 | `useSignOut` | hooks | Navega para `/` e encerra a sessão |
+| `useDeferredEmptyValidation` | hooks (fase 05) | Envolve o resolver do react-hook-form: antes do primeiro envio, campo vazio não mostra erro de "obrigatório" ao sair; erros de formato continuam. **Usar em todos os formulários** (regra em `decisoes.md`). Chamar `markSubmitAttempt()` antes do `handleSubmit`. |
 
 ## `components/shared/` — componentes de domínio
 
