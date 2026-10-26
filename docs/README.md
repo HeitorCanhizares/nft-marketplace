@@ -10,6 +10,8 @@ Documentação de planejamento do frontend. Leia este arquivo antes de qualquer 
 | **Sonnet 5.5** | Quebra e testa | Divide os fluxos em blocos em `docs/blocos/`, escreve e roda os testes, valida a entrega do Haiku. |
 | **Haiku 5.5** | Implementa | Implementa **um bloco por vez**, exatamente como o bloco descreve. Não decide arquitetura. |
 
+**Orquestração (desde 2026-10-26):** o usuário conversa **só com o Opus**, na conversa principal. O Opus cria o Sonnet e o Haiku como **subagentes** (ferramenta Agent, `model: sonnet` / `model: haiku`), sem abrir sessões separadas. Perguntas e aprovações que o Sonnet precisar sobem ao usuário pelo Opus. Os papéis não mudam.
+
 ## Regras que valem para todos
 
 1. **Arquitetura, pastas, arquivos novos fora do previsto e dependências novas: sempre perguntar ao usuário.** Nada de assumir.

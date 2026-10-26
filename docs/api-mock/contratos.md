@@ -251,7 +251,22 @@ Identificação: com sessão, o carrinho do usuário; sem sessão, cabeçalho `X
 - Adicionar o mesmo NFT e a mesma edição **soma** a quantidade no item existente, limitada ao estoque da edição.
 - Quantidades são **inteiras** ≥ 1 (o mock rejeita decimais com `422`).
 - O cupom fica **guardado no carrinho**: sobrevive a refresh, segue para o pagamento e é mesclado no login (o cupom do visitante prevalece se o usuário não tinha um).
-- Carrinho do visitante é mesclado ao do usuário no login (decisão A1): mesmos NFT e edição somam, respeitando o estoque; o excedente é descartado e informado em `details.adjustments` da resposta do login.
+- Carrinho do visitante é mesclado ao do usuário no login (decisão A1): mesmos NFT e edição somam, respeitando o estoque; o excedente é descartado e informado em `details.adjustments` da resposta do login (e do cadastro), no formato:
+
+```ts
+type CartAdjustment = {
+  nftId: string
+  nftName: string        // "Emerald Ape #042", para a mensagem
+  editionId: string
+  editionLabel: string   // "1/50"
+  requested: number      // quantidade somada antes do ajuste
+  applied: number        // quantidade que ficou no carrinho (0 = removido)
+  reason: 'stock'
+}
+// details.adjustments?: CartAdjustment[]
+```
+
+O front monta a mensagem a partir desses campos ("Ajustamos Emerald Ape #042 (1/50) de 5 para 3 unidades, o estoque disponível").
 - O tipo `Cart` ganha `coupon?: { code: string }`.
 
 ## Cotação

@@ -157,6 +157,14 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - Aprovado também: o servidor de tempo real envia **ping próprio a cada 20 s** (o binding do Socket.IO não envia).
 - Pendência de performance (86 no mobile) registrada para a fase 13.
 
+### Fase 03 concluída (2026-10-25)
+- **Aprovada pelo usuário**; tag **`fase-03-app-base`** no commit `a54fab1`. 114 testes do Playwright passando (250 execuções sem falha).
+- Aprovados: ponte de teste `window.__kurio` só em modo `test`; redirecionamento de sessão expirada na fase 05; falha de rede ao recuperar a sessão → segue como visitante e mantém o token; na expiração, o socket reconecta sem token e os dados privados e o rascunho ficam até o próximo login; `.claude/` no `.prettierignore`.
+- Performance mobile 83–85 e LCP 2,8 s → pendência da fase 13 (cascata de imports dinâmicos; sugestão: pré-carregar em paralelo e semear de forma preguiçosa).
+
+### Workflow (2026-10-26)
+- O usuário passa a falar **só com o Opus**; o Opus cria Sonnet e Haiku como **subagentes**. Ver [README.md](README.md#papéis).
+
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
 - 00 Setup → 01 Design base → 02 Mock base → 03 App base → 04 Layout e estados → 05 Login/Cadastro → 06 Início → 07 Detalhes → 08 Carrinho → 09 Perfil → 10 Carteiras → 11 Pagamento → 12 Confirmação → 13 Final.

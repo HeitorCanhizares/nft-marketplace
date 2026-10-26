@@ -18,9 +18,9 @@
 
 ## Regras de validação (valem também para Perfil e troca de senha)
 Schemas compartilhados em `src/schemas/`:
-- **Nome de usuário:** 3–20 caracteres; letras, números, `_` e `.`; sem espaços; único sem diferenciar maiúsculas (o mock compara em minúsculas).
+- **Nome de usuário:** 3–20 caracteres; letras **ASCII sem acento** (a–z, A–Z), números, `_` e `.`; sem espaços; único sem diferenciar maiúsculas (o mock compara em minúsculas).
 - **E-mail:** formato válido; único sem diferenciar maiúsculas.
-- **Senha:** mínimo 8 caracteres, com pelo menos uma letra e um número.
+- **Senha:** mínimo 8 caracteres, com pelo menos uma letra (qualquer letra Unicode, acentos valem) e um número.
 - **Confirmar senha:** igual à senha.
 
 ## Subitens
