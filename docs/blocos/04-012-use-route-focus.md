@@ -1,6 +1,6 @@
 # 04-012 — Foco no `<h1>` e título do documento a cada troca de rota
 
-**Status:** pendente
+**Status:** concluído (verificação em runtime — foco no h1, título e ignorar mudança só de search — fica para o 04-030, quando o `#conteudo` existir; código revisado contra o bloco)
 **Fluxo / subitem:** Fase 04 › Acessibilidade de navegação
 **Depende de:** 04-006
 

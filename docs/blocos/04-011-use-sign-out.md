@@ -1,6 +1,6 @@
 # 04-011 — Hook useSignOut
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Base de layout (Login › 7. Logout)
 **Depende de:** 04-010
 

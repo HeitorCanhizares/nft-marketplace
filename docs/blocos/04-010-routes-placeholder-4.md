@@ -1,6 +1,6 @@
 # 04-010 — Rotas provisórias (4/4): carteiras e parâmetros da Início
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Rotas provisórias
 **Depende de:** 04-009
 

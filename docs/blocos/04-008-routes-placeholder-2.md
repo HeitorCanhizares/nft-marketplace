@@ -1,6 +1,6 @@
 # 04-008 — Rotas provisórias (2/4): pedido, entrar, cadastro
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Rotas provisórias
 **Depende de:** 04-007
 

@@ -1,6 +1,6 @@
 # 04-007 — Rotas provisórias (1/4): detalhe, carrinho, pagamento
 
-**Status:** pendente (**depende da resposta do usuário à pergunta 5 do relatório da fase 04**)
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Rotas provisórias
 **Depende de:** 04-006
 

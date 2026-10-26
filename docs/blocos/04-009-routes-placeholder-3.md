@@ -1,6 +1,6 @@
 # 04-009 — Rotas provisórias (3/4): layout e páginas do perfil
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Rotas provisórias
 **Depende de:** 04-008
 
