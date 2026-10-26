@@ -33,7 +33,7 @@ export function UserMenu({ user, onSignOut, className }: UserMenuProps) {
         >
           <Avatar size="sm">
             <AvatarImage src={user.avatarUrl} alt="" />
-            <AvatarFallback>{initial}</AvatarFallback>
+            <AvatarFallback data-initial={initial} className="after:content-[attr(data-initial)]" />
           </Avatar>
           <span className="min-w-0 truncate text-sm">{user.displayName}</span>
           <SvgIcon name="arrow-down" className="text-foreground" />
