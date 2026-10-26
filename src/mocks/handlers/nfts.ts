@@ -5,6 +5,7 @@ import { buildFacets } from '../db/catalogFacets'
 import { parseCatalogQuery } from '../db/catalogParams'
 import { sortNfts } from '../db/catalogSort'
 import type { NftRecord } from '../db/db'
+import { toNftDetail } from '../db/nftDetail'
 import { toNftSummary } from '../db/nftSummary'
 import { favoritesStore, nftsStore, usersStore } from '../db/stores'
 import { hasScenario } from '../scenarios/active'
@@ -24,6 +25,16 @@ async function countFavorites(all: NftRecord[]): Promise<Map<string, number>> {
     }
   }
   return counts
+}
+
+const RELATED_LIMIT = 10
+
+// Favoritos do token, se houver sessão válida; visitante recebe undefined (isFavorite omitido).
+async function readFavoriteIds(request: Request): Promise<Set<string> | undefined> {
+  const auth = await tryAuthenticate(request)
+  if (auth === null) return undefined
+  const favorites = await favoritesStore.listByUserId(auth.user.id)
+  return new Set(favorites.map((favorite) => favorite.nftId))
 }
 
 export const nftsHandlers = [
@@ -69,6 +80,40 @@ export const nftsHandlers = [
         totalPages,
         facets: buildFacets(all, query, context),
       })
+    }),
+  ),
+  // Registrar /nfts/recommendations (fase 08) antes de /nfts/:id, senão o :id captura "recommendations".
+  http.get(
+    apiPath('/nfts/:id'),
+    withMock('GET /nfts/:id', async ({ request, params }) => {
+      const id = params.id
+      if (typeof id !== 'string') return apiError('BAD_REQUEST')
+
+      const record = await nftsStore.get(id)
+      if (record === undefined) return apiError('NOT_FOUND')
+
+      const favoriteIds = await readFavoriteIds(request)
+      return HttpResponse.json(toNftDetail(record, favoriteIds))
+    }),
+  ),
+  http.get(
+    apiPath('/nfts/:id/related'),
+    withMock('GET /nfts/:id/related', async ({ request, params }) => {
+      const id = params.id
+      if (typeof id !== 'string') return apiError('BAD_REQUEST')
+
+      const record = await nftsStore.get(id)
+      if (record === undefined) return apiError('NOT_FOUND')
+
+      // Mesma coleção, sem o próprio NFT, na ordem do seed (mais recentes primeiro), no máximo 10.
+      const all = await nftsStore.getAll()
+      const sameCollection = all.filter(
+        (candidate) => candidate.collection.id === record.collection.id && candidate.id !== id,
+      )
+      const related = sortNfts(sameCollection, 'recent', new Map()).slice(0, RELATED_LIMIT)
+
+      const favoriteIds = await readFavoriteIds(request)
+      return HttpResponse.json(related.map((item) => toNftSummary(item, favoriteIds)))
     }),
   ),
 ]
