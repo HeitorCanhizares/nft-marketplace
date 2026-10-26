@@ -33,6 +33,6 @@ export function logout() {
   return post('/auth/logout', null)
 }
 
-export function checkAvailability(input: AvailabilityInput) {
-  return post('/auth/availability', availabilityResponseSchema, input)
+export function checkAvailability(input: AvailabilityInput, signal?: AbortSignal) {
+  return post('/auth/availability', availabilityResponseSchema, input, { signal })
 }
