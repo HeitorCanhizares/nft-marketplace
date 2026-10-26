@@ -17,16 +17,19 @@ Descobrir, comparando a lista anterior com a atual, quais NFTs tiveram o preço 
 
 ## Instruções
 1. `useLiveChanges(items: readonly NftSummary[] | undefined, resetKey: string): { updatedIds: ReadonlySet<string> }`.
-2. Guarda numa `ref` o mapa `id → { price, soldOut }` da **última lista da mesma `resetKey`**. Quando `items` muda:
-   - `items` indefinido → não faz nada; `resetKey` diferente da anterior → só **troca a base** (sem comparar, sem marcar nada) e zera `updatedIds`;
-   - mesma `resetKey`: para cada item presente nas duas listas, **`price` diferente** (comparação de texto, nunca conta) → "preço atualizado"; **`soldOut` de falso para verdadeiro** → "esgotou". Itens novos ou removidos são ignorados.
-3. `updatedIds`: estado com os ids "preço atualizado" **e** "esgotou"; cada id sai sozinho **5 s** depois de marcado (um timer por id; marcar de novo reinicia; limpar os timers ao desmontar).
-4. **Anúncio agrupado:** as mudanças vão para um acumulador. A primeira mudança abre uma janela de **1 s** para juntar as que chegarem logo depois; no fim dela, **uma** chamada `announce(msg, 'polite')`. Depois de anunciar, **nenhum aviso novo por 5 s**: o que chegar nesse intervalo espera e sai junto, numa só mensagem, quando os 5 s passarem. Mensagem: partes `N preço(s)` e `N esgotado(s)` unidas por " e ": "1 preço foi atualizado", "2 preços foram atualizados", "1 NFT esgotou", "2 NFTs esgotaram", "2 preços foram atualizados e 1 NFT esgotou". Limpar timers ao desmontar.
+2. **Regras do ESLint (`react-hooks/refs`, `react-hooks/set-state-in-effect`; não desligar regra):** nada de `ref.current` no render e nenhum `setState` síncrono dentro de `useEffect`. Por isso a detecção roda **durante o render**, com o padrão "ajustar state quando algo muda" (react.dev, *You Might Not Need an Effect*), e os efeitos só cuidam de timers (o `setState` dentro do callback do `setTimeout` é permitido).
+   - States: `base: { items, key, snap } | null` (a última lista **da mesma `resetKey`** e o mapa `snap`: `id → { price, soldOut }`), `updatedIds: ReadonlySet<string>` e `change: { seq: number; prices: string[]; soldOut: string[] } | null` (o "evento" da última mudança).
+   - No corpo do hook: `if (items && items !== base?.items) { ... }` (essa condição é a trava contra laço):
+     - `base` nulo ou `resetKey` diferente de `base.key` → só **troca a base** (`setBase`, sem comparar, sem marcar) e `setUpdatedIds(new Set())`;
+     - mesma `resetKey`: para cada item presente nas duas listas, **`price` diferente** (comparação de texto, nunca conta) → "preço atualizado"; **`soldOut` de falso para verdadeiro** → "esgotou". Itens novos ou removidos são ignorados. Sempre `setBase` com a lista nova; havendo mudanças: `setUpdatedIds(prev => new Set([...prev, ...ids]))` e `setChange({ seq: (change?.seq ?? 0) + 1, prices, soldOut })`.
+     - `items` indefinido → não faz nada.
+3. `updatedIds` tem os ids "preço atualizado" **e** "esgotou". Cada id sai sozinho **5 s** depois de marcado: um `useEffect` com dep `[change]` (retorna cedo se `change` é nulo) guarda os timers numa `ref` (`Map<id, timer>`, **só lida e escrita dentro do efeito**), faz `clearTimeout` do id e cria `setTimeout(() => setUpdatedIds(prev => sem o id), 5000)` (marcar de novo reinicia). Outro `useEffect` com `[]` limpa todos os timers ao desmontar.
+4. **Anúncio agrupado** (no mesmo `useEffect([change])`, com o acumulador e os timers em `ref`s, só dentro de efeitos/callbacks): as mudanças vão para o acumulador. A primeira mudança abre uma janela de **1 s** para juntar as que chegarem logo depois; no fim dela, **uma** chamada `announce(msg, 'polite')`. Depois de anunciar, **nenhum aviso novo por 5 s**: o que chegar nesse intervalo espera e sai junto, numa só mensagem, quando os 5 s passarem. Mensagem: partes `N preço(s)` e `N esgotado(s)` unidas por " e ": "1 preço foi atualizado", "2 preços foram atualizados", "1 NFT esgotou", "2 NFTs esgotaram", "2 preços foram atualizados e 1 NFT esgotou". Limpar timers ao desmontar.
 5. Quem chama passa `items` **sem** o `placeholderData` (`isPlaceholderData` → `undefined`) e uma `resetKey` que muda com a chave da consulta.
 6. Fechamento: `npx prettier --write src/hooks/useLiveChanges.ts`; `npm run format:check && npm run lint && npm run typecheck && npm run build` → exit 0. Commit: `git add src/hooks/useLiveChanges.ts` e `git commit -m "06-030: hook useLiveChanges"`.
 
 ## Critérios de aceite
-- [ ] Sem `any`, sem `@ts-ignore`; trocar de filtro/página **não** gera selo nem aviso.
+- [ ] Sem `any`, sem `@ts-ignore`; trocar de filtro/página **não** gera selo nem aviso; `npm run lint` limpo, sem `eslint-disable`.
 - [ ] Três preços mudando em menos de 1 s geram **um** aviso ("3 preços foram atualizados"), não três; uma mudança nova nos 5 s seguintes só é anunciada depois deles.
 - [ ] O selo some sozinho em 5 s; nada muda de posição nem recebe foco.
 
