@@ -70,6 +70,11 @@ export const sessionResponseSchema: z.ZodType<{ user: User; expiresAt: string }>
   expiresAt: isoDateSchema,
 })
 
+// Refresh devolve só a sessão nova (contrato: POST /auth/refresh → { session }).
+export const refreshResponseSchema: z.ZodType<{ session: Session }> = z.object({
+  session: sessionSchema,
+})
+
 export const availabilityResponseSchema: z.ZodType<{ available: boolean }> = z.object({
   available: z.boolean(),
 })
