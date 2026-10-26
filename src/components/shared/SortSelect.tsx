@@ -55,6 +55,7 @@ export function SortSelect({
   return (
     <Select value={value} onValueChange={handleValueChange}>
       <SelectTrigger
+        aria-label="Ordenar por"
         className={cn('h-auto w-auto gap-2 border-0 bg-transparent px-0 text-body', className)}
       >
         <span className="text-foreground">Ordenar por:</span> <SelectValue />
