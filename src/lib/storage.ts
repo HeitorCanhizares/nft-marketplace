@@ -4,6 +4,7 @@ export const STORAGE_KEYS = {
   mockScenarios: 'kurio:mock:scenarios',
   checkout: 'kurio:checkout',
   checkoutDraft: 'kurio:checkout-draft',
+  pendingAction: 'kurio:pending-action',
   mockSeedResetDone: 'kurio:mock:seed-reset-done',
 } as const
 
