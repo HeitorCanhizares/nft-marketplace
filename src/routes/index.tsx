@@ -1,5 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { Home } from '@/pages/Home/Home'
+
 // Placeholder: a fase 06 troca pelo Home.
 export const Route = createFileRoute('/')({
   staticData: { mobileTabBar: true },
@@ -16,5 +18,5 @@ export const Route = createFileRoute('/')({
       favoritos: search.favoritos === 1 || search.favoritos === '1' ? 1 : undefined,
     }
   },
-  component: () => <h1>Kurio</h1>,
+  component: Home,
 })
