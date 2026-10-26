@@ -4,6 +4,7 @@ import { SessionExpiryBanner } from '@/components/shared/SessionExpiryBanner'
 import { useAuth } from '@/contexts/auth'
 import { Toaster } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
+import { useCart } from '@/hooks/useCart'
 import { useIsDesktop } from '@/hooks/useMediaQuery'
 import { useRouteChrome } from '@/hooks/useRouteChrome'
 import { usePendingExecutors } from '@/hooks/usePendingExecutors'
@@ -22,6 +23,8 @@ export function AppShell() {
   useRouteFocus()
   usePendingExecutors()
 
+  const { data: cart } = useCart()
+  const cartCount = cart?.itemCount ?? 0
   const { status, user } = useAuth()
   const renewal = useSessionRenewal()
   const signOut = useSignOut()
@@ -63,7 +66,7 @@ export function AppShell() {
           className="max-lg:hidden"
           authStatus={status}
           user={user}
-          cartCount={0}
+          cartCount={cartCount}
           onSignOut={() => void signOut()}
           searchQuery={typeof q === 'string' ? q : undefined}
           onSearch={handleSearch}
@@ -83,7 +86,7 @@ export function AppShell() {
 
         {footer && <Footer className="max-lg:hidden" />}
 
-        {mobileTabBar && <MobileTabBar className="lg:hidden" />}
+        {mobileTabBar && <MobileTabBar className="lg:hidden" cartCount={cartCount} />}
       </div>
 
       <Toaster
