@@ -18,6 +18,8 @@ Instalados pelo CLI do shadcn e estilizados com os [tokens](tokens.md). Não con
 - A conferir com o usuário na revisão visual: Tabs sem linha sob a lista (o Figma desktop tem, o mobile não) e Pagination com 40 px.
 - Regra ESLint `set-state-in-effect` desligada só em `src/components/ui/**` (por causa do Carousel).
 
+**Raio customizado e `cn` (achado no 04-019):** o `Button` usa a classe `rounded-mobile`, que o merge de classes do `cn` não reconhece como raio. Um `rounded-*` passado por `className` pode perder para ela; hoje se contorna com `!` (ex.: `rounded-full!`). Ao tocar no `Button` ou no `cn`, avaliar registrar os raios customizados no merge para dispensar o `!`.
+
 **CLI do shadcn:** ao adicionar um componente, a CLI pode pedir para sobrescrever primitivos já estilizados (ex.: `button.tsx`, dependência do Dialog). Responder **não** sempre: os primitivos estilizados nunca são sobrescritos.
 
 | Primitivo | Uso principal |
