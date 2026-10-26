@@ -8,6 +8,10 @@ import { cn } from '@/lib/utils'
 // Altura da barra (sem a área segura): o AppShell usa para o padding-bottom do conteúdo e o Toaster.
 export const MOBILE_TAB_BAR_HEIGHT = 96
 
+// O Link marca aria-current sozinho por prefixo e ignora a diferença de busca; Início e Favoritos
+// compartilham a rota "/", então só vale a correspondência exata, com a busca.
+const HOME_ACTIVE_OPTIONS = { exact: true, includeSearch: true }
+
 type MobileTabBarProps = {
   // Só entra no aria-label do carrinho; a barra não desenha contador (Figma).
   cartCount?: number
@@ -57,40 +61,43 @@ export function MobileTabBar({ cartCount = 0, className }: MobileTabBarProps) {
         className="absolute inset-0 rounded-t-[2.5rem] bg-card [mask-image:radial-gradient(circle_52px_at_50%_0,transparent_99%,black_100%)]"
       />
 
-      <ul className="relative grid h-24 grid-cols-5 items-center px-2">
-        <li className="flex justify-center">
+      <ul className="relative flex h-24 items-center px-2.5">
+        <li className="flex flex-1 justify-center">
           <Link
             to="/"
+            activeOptions={HOME_ACTIVE_OPTIONS}
             aria-label="Início"
             aria-current={homeActive ? 'page' : undefined}
             className={tabClass(homeActive)}
           >
-            <HouseIcon className={cn('size-6', homeActive && 'fill-current')} />
+            <HouseIcon className="size-6 fill-current" />
             <ActiveDot active={homeActive} />
           </Link>
         </li>
 
-        <li className="flex justify-center">
+        <li className="flex flex-1 justify-center">
           <Link
             to="/"
             search={{ favoritos: 1 }}
+            activeOptions={HOME_ACTIVE_OPTIONS}
             aria-label="Favoritos"
             aria-current={favoritesActive ? 'page' : undefined}
             className={tabClass(favoritesActive)}
           >
-            <HeartIcon className={cn('size-6', favoritesActive && 'fill-current')} />
+            <HeartIcon className="size-6 fill-current" />
             <ActiveDot active={favoritesActive} />
           </Link>
         </li>
 
-        <li className="relative flex justify-center">
-          <ComingSoon className="absolute -top-8 flex size-16 items-center justify-center rounded-full bg-gradient-primary text-foreground">
+        {/* Vão central de 106 px; o botão fica sobre a borda superior da barra (centro em y = 0 da lista). */}
+        <li className="w-26.5 shrink-0">
+          <ComingSoon className="absolute -top-8 left-1/2 flex size-16 -translate-x-1/2 items-center justify-center rounded-full bg-gradient-primary text-foreground">
             <ScanLineIcon className="size-7" />
             <span className="sr-only">Ação central</span>
           </ComingSoon>
         </li>
 
-        <li className="flex justify-center">
+        <li className="flex flex-1 justify-center">
           <Link
             to="/carrinho"
             aria-label={cartLabel(cartCount)}
@@ -102,7 +109,7 @@ export function MobileTabBar({ cartCount = 0, className }: MobileTabBarProps) {
           </Link>
         </li>
 
-        <li className="flex justify-center">
+        <li className="flex flex-1 justify-center">
           <Link
             to="/perfil"
             aria-label="Perfil"
