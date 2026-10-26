@@ -1,6 +1,6 @@
 # 04-031 — Fallbacks de rota (404, erro e carregando)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Estados
 **Depende de:** 04-013, 04-014, 04-015
 
