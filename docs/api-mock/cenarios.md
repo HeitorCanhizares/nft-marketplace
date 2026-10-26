@@ -32,7 +32,7 @@ Decisão A6: em dev e teste, `localStorage['kurio:mock:scenarios']` sobrescreve 
 | Requisito | Cenário forçado (`VITE_MOCK_SCENARIOS`) | Comportamento do mock | O que o front deve mostrar |
 |---|---|---|---|
 | Sucesso | (nenhum) | Respostas normais com dados do seed | Fluxo completo |
-| Resultado vazio | `empty-catalog`, `empty-cart`, `empty-wallets` | `items: []` / carrinho vazio / sem carteiras | `EmptyState` com ação ("Limpar filtros", "Explorar NFTs", "Adicionar carteira") |
+| Resultado vazio (no catálogo, `facets` vêm com contagens 0 e faixa `0.00`) | `empty-catalog`, `empty-cart`, `empty-wallets` | `items: []` / carrinho vazio / sem carteiras | `EmptyState` com ação ("Limpar filtros", "Explorar NFTs", "Adicionar carteira") |
 | Latência variável e fora de ordem | `slow` (latência 2–5s), `jitter` (0–3s) | Sorteia latência por requisição | Skeletons; resultado final sempre corresponde ao **último** filtro escolhido |
 | Falha de conexão | `offline` ou `network-error:<rota>` | `HttpResponse.error()` | `ErrorState` com "Tentar novamente"; mutations mantêm o que o usuário digitou |
 | 4xx/5xx | `server-error:<rota>` (500), `unavailable:<rota>` (503), `not-found:<rota>` | Status forçado na rota indicada (ex.: `server-error:GET /nfts`) | Mensagem amigável; 404 do NFT mostra página "NFT não encontrado" |

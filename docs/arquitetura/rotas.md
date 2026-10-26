@@ -35,6 +35,8 @@ Criadores, Aprenda e os itens desabilitados do perfil **não têm rota**.
 
 > **Armadilha do TanStack Router (achada no 04-008/04-010):** o router mescla o retorno do `validateSearch` sobre a busca bruta. Uma chave inválida que o `validateSearch` simplesmente omite **continua** em `useSearch()` com o valor bruto (ex.: `redirect: "//evil.com"`). Todo `validateSearch` (inclusive os schemas zod das fases 05+) deve **devolver as chaves conhecidas sempre, com `undefined` quando inválidas**, ou usar o middleware `stripSearchParams`.
 
+Na fase 06 o `validateSearch` da `/` passa a ser `validateHomeSearch` (URL limpa: sem `aba=todos` nem `pagina=1`). A Início **não usa `loader`**: cada seção carrega e trata o próprio estado (decisão da fase 06). A `Home` recebe `search` por props para poder ser renderizada sem filtros atrás do modal de login.
+
 Filtros, busca, ordenação e página **vivem na URL**. Recarregar ou compartilhar o link mantém o mesmo resultado.
 
 ### `/entrar` e `/cadastro`

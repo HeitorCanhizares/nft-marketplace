@@ -20,7 +20,7 @@ Só o código em `src/mocks/` acessa. O app nunca lê este banco direto: ele con
 | `wallets` | Carteiras principal e secundária | `id`, índice `userId` |
 | `avatars` | Blob da imagem do avatar | `userId` |
 | `reviews` | Avaliações | `id`, índice `nftId` |
-| `meta` | Versão do seed | `key` |
+| `meta` | Versão do seed (`SEED_VERSION` 2 desde a fase 06, com `NftRecord.stats`: vendas e favoritos para "Em alta" e "Mais favoritados") | `key` |
 
 - Na primeira execução (ou com `VITE_MOCK_SEED_RESET=true`, uma vez por sessão da aba, ou se a versão do seed mudou), o banco é recriado a partir de `src/mocks/seed/`.
 - O seed inclui usuários de teste com **credenciais fictícias**. O seed (`src/mocks/seed/`) guarda **só o hash**. A senha em texto existe em **um único lugar**, `tests/e2e/fixtures.ts`, porque os testes precisam fazer login (aprovado pelo usuário em 2026-10-25). Nunca na documentação nem na interface.

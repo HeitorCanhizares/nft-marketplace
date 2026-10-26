@@ -216,6 +216,15 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - Baselines visuais de Login/Cadastro aprovadas (valem só no Windows, sufixo `-win32`).
 - Conhecido: o mock ainda não tem rotas de carrinho, favoritos e carteiras (fases 06–10).
 
+### Fase 06 — blocos aprovados (2026-10-26)
+71 blocos em `docs/blocos/06-*` (68 + 3 do contador do carrinho, `06-069` a `06-071`, executados logo após o `06-027`). Decisões do usuário:
+- **Contador do carrinho funcionando já na fase 06** (substitui a decisão da fase 04 de manter `cartCount={0}` até as fases 07–08) (`GET /cart`, `useCart`, ligação no cabeçalho); `itemCount` = total de unidades.
+- **Card mobile sem botão de carrinho**, como o Figma (só o coração).
+- **Drawer de filtros mobile:** `Sheet` inferior com Ordenar, Coleções, Faixa de preço e Rede; rodapé "Limpar filtros" / "Ver N resultados"; escolhas aplicadas na hora (faixa de preço só no "Aplicar").
+- **Demais propostas do Sonnet aprovadas:** medidas lidas nas capturas 1:1; tokens `--radius-panel` 24 px, `--radius-card` 20 px, `--text-section` 28 px, `--text-featured` 22 px; hero com `emerald-ape-042`, `sage-nomad-009`, `golden-beat-207` e destaque `cosmic-bloom-118`; textos do hero fixos no componente; hero rotaciona a cada 6 s (pausa escondida com `prefers-reduced-motion`); aba "Novos" relativa ao NFT mais recente do seed; "Em alta" = 48 NFTs com maior `sales7d + favorites7d`; "Carregar mais" por `pageSize` acumulado (máx. 300); `push` no histórico para filtro, aba, ordem e página, `replace` para digitação mobile e "Carregar mais"; "Limpar filtros" mantém aba, ordem e favoritos; selo "Atualizado" por 5 s e aviso agrupado; front não calcula valores (tempo real só aplica `setQueryData` da edição exibida ou invalida); **preço exibido com ponto ("1.19 ETH"), como o Figma**; `h1` sr-only "Kurio" e seções como `h2`; Início sem `loader` no router (carregamento por seção); erro de `/home` vira um único `ErrorState`; textos de vazio e erro propostos; diferenças pequenas do Figma aceitas (bolinhas do hero com a ativa preenchida, botão de pausa, filtro ativo com check e barra, blog em 4 colunas cheias, paginação de 40 px, contagens do seed).
+- `POST /cart/items` implementado já na fase 06 (antes previsto para a 07).
+- Pendência de performance/LCP da fase 13 aumenta: a Início passa a carregar hero, 9 imagens e fontes.
+
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
 - 00 Setup → 01 Design base → 02 Mock base → 03 App base → 04 Layout e estados → 05 Login/Cadastro → 06 Início → 07 Detalhes → 08 Carrinho → 09 Perfil → 10 Carteiras → 11 Pagamento → 12 Confirmação → 13 Final.

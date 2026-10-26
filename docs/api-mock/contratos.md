@@ -223,6 +223,15 @@ A sessão expira após `VITE_MOCK_SESSION_TTL_SECONDS`. O login também **mescla
 
 Valores: `tab` = `all` \| `new` (últimos 30 dias) \| `trending` (mais vendidos e favoritados em 7 dias); `sort` = `recent` \| `price_asc` \| `price_desc` \| `top_rated` \| `most_favorited`. O mapeamento dos valores da URL em PT-BR para estes fica em `services/api/nfts.ts`.
 
+Regras definidas na fase 06:
+- `NftSummary` ganha `soldOut?: boolean` e `defaultEditionId?: string` (edição do preço exibido), calculados pelo mock.
+- `pageSize` até 300; parâmetros inválidos → `422` com `fields`; `favorites` aceita só `1`.
+- `facets`: a contagem de cada grupo ignora o filtro do próprio grupo; `priceRange` vem do catálogo inteiro; ordem do seed.
+- `tab=new` usa como referência o NFT mais recente do seed (30 dias antes dele); `tab=trending` = os 48 NFTs com maior `sales7d + favorites7d`.
+- `GET /home` usa ids fixos de hero e destaque; o cenário `empty-catalog` não afeta `/home`.
+- `GET /cart` (fase 06): mesma identificação do dono que o `POST`; sem sessão nem `X-Cart-Id` devolve carrinho vazio sem gravar; recalcula `available`/`availability` pelo estoque atual; não devolve `ownerId`.
+- `POST /cart/items`: com `Authorization` usa a sessão (`401` em falha); sem ela exige `X-Cart-Id` (`400` se faltar).
+
 `favorites=1` exige token. Busca sem resultado devolve `200` com `items: []` (estado vazio, não erro).
 
 ## Favoritos 🔒

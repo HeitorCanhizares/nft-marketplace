@@ -37,6 +37,8 @@ Gradiente do mobile (`--gradient-primary`, utilitário `bg-gradient-primary`): `
 
 - Família: **monoespaçada em toda a interface**: **Roboto Mono**, instalada via `@fontsource-variable/roboto-mono` 5.3.0 (bloco 01-002). A confirmação no Figma continua pendente (A8 em [decisoes.md](../decisoes.md)).
 - Títulos de destaque (hero "SEJA DONO DO FUTURO DA ARTE DIGITAL", "NFT EM DESTAQUE"): caixa alta, peso bold.
+- Fase 06: `--radius-panel: 24px` (hero), `--radius-card: 20px` (card mobile), `--text-section: 28px` (títulos de seção), `--text-featured: 22px` ("NFT EM DESTAQUE"). Registrados no `cn`.
+- Preço sempre com **ponto** decimal ("1.19 ETH"), como o Figma; o `aria-label` lê o mesmo valor.
 - `--text-logo: 32px` (fase 05): logo "KURIO" das telas de login e cadastro no mobile.
 - `--text-subtitle: 17px` (fase 04): título dos destaques do rodapé, medido no Figma.
 - Escala tipográfica implementada de **9 a 43 px** (bloco 01-003, valores aprovados pelo usuário); `--radius` base de **4 px**. Confirmar no Figma quando possível.

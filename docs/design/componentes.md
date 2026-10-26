@@ -73,11 +73,18 @@ Instalados pelo CLI do shadcn e estilizados com os [tokens](tokens.md). Não con
 | Componente | Telas | Notas |
 |---|---|---|
 | `NftCard` | IN, DE, CA, LO/CD (fundo) | Imagem, nome, preço (`PriceTag`), selo `RarityBadge`. Hover no desktop mostra ações: adicionar ao carrinho, favoritar, ver. No mobile o favorito fica fixo no canto da imagem. |
+| `NftCardActions` / `NftCardSkeleton` | IN | Ações do card (carrinho, favoritar, ver) e skeleton do card (fase 06) |
+| `PriceChangedNotice` | IN, CA | Selo "Atualizado" / "Esgotado" com texto (não só cor) |
+| `FilterOptionList` / `PriceRangeFilter` | IN | Partes do `FilterPanel`: lista de uma opção por grupo e faixa de preço com "Aplicar" |
+| `FilterSheet` | IN m | Drawer inferior de filtros e ordenação (não desenhado; aprovado na fase 06) |
+| `CatalogSection` | IN | Área do catálogo com título, estados de vazio e erro restritos a ela |
+| `CatalogPagination` | IN d | Paginação numérica sobre o primitivo |
+| `FeaturedNftCardSkeleton`, `PromoCardSkeleton`, `BlogCardSkeleton` | IN | Skeletons das seções da Início |
 | `NftGrid` | IN | Grade de `NftCard`: 3 colunas no desktop, 2 colunas desalinhadas (efeito masonry) no mobile, como no Figma |
 | `NftCarousel` | DE ("Mais desta coleção"), CA ("Colecionadores também viram") | Título da seção + Carousel de `NftCard` + indicadores |
 | `PriceTag` | IN, DE, CA, PG, CO | Valor em ETH; opcionalmente preço anterior riscado (ex.: Neon Vessel `1.99 ETH ~~2.29 ETH~~`) |
 | `RarityBadge` | IN | Selo "RARO" |
-| `FavoriteButton` | IN, DE | Coração; desktop com texto "Favoritar", mobile só ícone. Otimista. |
+| `FavoriteButton` | IN, DE | Variantes `circle` e `square` na fase 06 (a com texto vem na 07). Coração; desktop com texto "Favoritar", mobile só ícone. Otimista. |
 | `HeroBanner` | IN | Variante desktop (texto + imagem grande + indicadores) e mobile (card com gradiente + imagens sobrepostas). Carrossel automático com botão de pausar/retomar. |
 | `LoadMoreButton` | IN m | "Carregar mais" no fim da grade, com estado de carregamento e anúncio do total carregado |
 | `FeaturedNftCard` | IN d | "NFT EM DESTAQUE / OFERTA LIMITADA" |

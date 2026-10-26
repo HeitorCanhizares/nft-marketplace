@@ -56,6 +56,8 @@ session
 ```
 
 ### Padrões
+- `useCart` só liga depois da recuperação da sessão e invalida o carrinho quando o status de autenticação muda (traz a mescla do visitante).
+- "Carregar mais" (mobile) acumula por `pageSize` (`page=1&pageSize=9×N`), não por `useInfiniteQuery`; a ordem dos cards fica estável entre atualizações (`keepOrder`).
 - `staleTime` padrão de 30s; catálogo com `placeholderData: keepPreviousData` (troca de página sem piscar).
 - **Respostas fora de ordem:** cada query passa o `signal` do Query para o Axios. Mudou o filtro, a requisição antiga é cancelada e não sobrescreve a nova. Busca com debounce de 300ms.
 - **Retry:** GET tenta de novo até 2 vezes só em erro de rede ou 5xx. Nunca em 4xx. Mutations não fazem retry automático, **exceto a criação de pedido** (abaixo).
