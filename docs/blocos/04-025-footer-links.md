@@ -1,6 +1,6 @@
 # 04-025 — Rodapé: colunas de links
 
-**Status:** pendente (**quais links ficam habilitados: pergunta 15 do relatório da fase 04**)
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout (Footer, parte 3)
 **Depende de:** 04-010, 04-016
 

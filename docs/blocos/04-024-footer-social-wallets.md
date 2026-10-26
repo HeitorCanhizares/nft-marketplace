@@ -1,6 +1,6 @@
 # 04-024 — Rodapé: redes sociais e carteiras compatíveis
 
-**Status:** **bloqueado até o usuário responder à pergunta 3 do relatório da fase 04** (origem dos ícones de marca; o `lucide-react` instalado não tem Facebook, Instagram, Twitter, LinkedIn nem YouTube)
+**Status:** pendente (bloqueado: SVGs do usuário)
 **Fluxo / subitem:** Fase 04 › Layout (Footer, parte 2)
 **Depende de:** 04-003, 04-016
 

@@ -1,6 +1,6 @@
 # 04-021 — UserMenu
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Header (menu do usuário logado)
 **Depende de:** 04-003, 04-010
 

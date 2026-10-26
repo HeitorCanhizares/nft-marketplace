@@ -1,6 +1,6 @@
 # 04-022 — Header (desktop)
 
-**Status:** pendente (**ícones da lupa e do carrinho aguardam a pergunta 2; busca aberta, a 7**)
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout
 **Depende de:** 04-005, 04-016, 04-017, 04-020, 04-021
 

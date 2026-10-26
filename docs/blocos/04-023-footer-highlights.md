@@ -1,6 +1,6 @@
 # 04-023 — Rodapé: destaques e newsletter
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout (Footer, parte 1)
 **Depende de:** 04-005, 04-016
 

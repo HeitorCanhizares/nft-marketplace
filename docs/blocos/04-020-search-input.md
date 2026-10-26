@@ -1,6 +1,6 @@
 # 04-020 — SearchInput (campo que expande a partir da lupa)
 
-**Status:** pendente (**comportamento aberto aguarda a pergunta 7 do relatório da fase 04**)
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Header (busca)
 **Depende de:** 04-003, 04-010
 
