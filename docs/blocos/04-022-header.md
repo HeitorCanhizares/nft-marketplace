@@ -20,7 +20,7 @@ Montar o cabeçalho do desktop: logo, menu de navegação, busca, carrinho com c
 |---|---|
 | Altura | 68 px de conteúdo + linha inferior de 1 px `border-strong` (`#432b1a`): `h-17` + `border-b` |
 | Logo "KURIO" | `x` 120, texto de 14 px (`text-sm`), bold, `foreground`, com espaçamento entre letras ≈ 1 px (`tracking-widest` é um pouco largo; ajustar para `tracking-[0.07em]`); centro vertical ≈ 41 px |
-| Itens do menu | 15 px (`text-body`), `foreground`; item ativo em `price` (`#e89b55`), bold; 40 px entre itens; centro vertical ≈ 35 px |
+| Itens do menu | 16 px (`text-base`, medido na captura 1:1; corrigido pelo Opus em 2026-10-26), `foreground`; item ativo em `price` (`#e89b55`), bold; 40 px entre itens; centro vertical ≈ 35 px |
 | Sublinhado do item ativo | 3 px, `primary`, largura do texto, colado na linha inferior do cabeçalho (cobre a linha: `-bottom-px`) |
 | Lupa | 22 px, `foreground`; centro `x` ≈ 1123 |
 | Carrinho | 22 px, `foreground`; centro `x` ≈ 1173; contador: círculo de 16 px, `primary`, número de 9 px (`Badge variant="count"`, `text-tiny`), no canto superior direito do ícone |
