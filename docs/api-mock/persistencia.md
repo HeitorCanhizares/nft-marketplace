@@ -43,7 +43,11 @@ Só o código em `src/mocks/` acessa. O app nunca lê este banco direto: ele con
 | `kurio:checkout` | `{ idempotencyKey, quoteId, orderId? }` do pedido em andamento (recuperação após refresh) |
 | `kurio:checkout-draft` | Rascunho do formulário do Pagamento (sem senha nem dado sensível além do que o próprio formulário pede), para retomar após expiração da sessão. Apagado ao confirmar o pedido, no logout e na troca de usuário. |
 
+| `kurio:pending-action` | Ação que levou ao login (ex.: favoritar), válida por 10 min. Nasce antes do login, por isso **não** é apagada pelo `clearPrivateSession`. |
+
 ## Regras
+- O bloqueio de login por tentativas (`429`) fica **só em memória** no mock e zera ao recarregar.
+- Carrinhos no mock: o do usuário tem `id = cart-<userId>` e `ownerId = userId`; o do visitante tem `id = ownerId = X-Cart-Id`.
 
 - Todo acesso ao storage passa por `src/lib/storage.ts`, com `try/catch`: em navegação privada ou com storage bloqueado, o app continua funcionando (sessão só em memória).
 - Nada de dado pessoal em URL ou query string.

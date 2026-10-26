@@ -206,7 +206,7 @@ type User = {
 | `POST /auth/refresh` 🔒 | — | `200 { session: { token, expiresAt } }` | `401 SESSION_EXPIRED` |
 | `POST /auth/logout` 🔒 | — | `204` | — |
 
-- `POST /auth/login` após **5 tentativas erradas** para o mesmo e-mail responde `429 TOO_MANY_ATTEMPTS` com `details.retryAfterSeconds` (30) até o prazo acabar.
+- `POST /auth/login`: a partir da **5ª tentativa errada** para o mesmo e-mail (inclusive ela) responde `429 TOO_MANY_ATTEMPTS` com `details.retryAfterSeconds` (30) até o prazo acabar.
 
 A sessão expira após `VITE_MOCK_SESSION_TTL_SECONDS`. O login também **mescla o carrinho de visitante** (decisão A1).
 
@@ -312,7 +312,7 @@ A mudança é emitida no tempo real (`order:updated`) e também aparece no `GET`
 | `DELETE /profile/avatar` | — | `204` | — |
 | `POST /profile/password` | `{ currentPassword, newPassword }` | `204` (a sessão atual continua; as outras sessões do usuário são encerradas) | `422 INVALID_CURRENT_PASSWORD`, `422 VALIDATION_ERROR` (inclui nova senha igual à atual) |
 
-`POST /auth/register` define `displayName` igual ao `username`; `ensName` e `walletNickname` começam vazios.
+`POST /auth/register` define `displayName` igual ao `username` (os cenários `email-taken`/`username-taken` afetam só o `register`, não o `availability`); `ensName` e `walletNickname` começam vazios.
 
 ## Carteiras 🔒
 

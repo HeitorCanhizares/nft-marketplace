@@ -44,6 +44,8 @@ Filtros, busca, ordenação e página **vivem na URL**. Recarregar ou compartilh
 
 ## Proteção de rotas
 
+- Implementação (fase 05): `beforeLoad` com **contexto do roteador** (`app/routerContext.ts`, `app/routeGuards.ts`: `requireAuth`, `requireGuest`). As guardas esperam a promessa **`ready`** do `AuthContext` (fim da recuperação da sessão). O `AppRouter` chama `router.invalidate()` quando o status muda.
+
 - Rotas **logado**: `beforeLoad` consulta a sessão (`AuthContext`). Sem sessão → `redirect({ to: '/entrar', search: { redirect: location.href } })`.
 - Rotas **só deslogado**: com sessão → redireciona para `redirect` ou `/`.
 - `/pagamento` com carrinho vazio → redireciona para `/carrinho`.

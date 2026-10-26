@@ -120,7 +120,10 @@ Instalados pelo CLI do shadcn e estilizados com os [tokens](tokens.md). Não con
 | `EnsInput` | PG, PE, CT | Select de sufixo (`.eth`) + campo de nome |
 | `AvatarUploader` | PE | Avatar circular + "Alterar" + "Remover" |
 | `AuthForm` | LO, CD | Formulário de login ou de cadastro; usado dentro do Dialog (desktop) e da página (mobile) |
-| `AuthTabs` | LO, CD d | "Entrar \| Criar conta" |
+| `AuthTabs` | LO, CD d | "Entrar \| Criar conta" como `nav` de links com `aria-current`; ativa com cor + sublinhado de 2 px |
+| `AuthDialog` | LO, CD d | Moldura do modal (500 px, faixa inferior `primary`), sem escurecer o fundo |
+| `LoginForm` / `SignupForm` | LO / CD | Formulários concretos sobre o `AuthForm` |
+| `TextDivider` | LO, CD | Linha com texto ("Ou continue com") |
 | `SocialAuthButtons` | LO, CD | "Continuar com Google/Facebook", **desabilitados** |
 | `UserMenu` | Header d (não desenhado) | Avatar/inicial + nome; menu com Dados do perfil, Carteiras, Sair |
 | `SessionExpiryBanner` | todas (não desenhado) | Aviso 2 min antes da expiração com "Continuar conectado" |

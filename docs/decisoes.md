@@ -193,6 +193,13 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - Desvios aceitos em relação ao Figma: menu do cabeçalho centralizado (24 px à direita do Figma); recorte da barra mobile simétrico; ponto sob o item ativo da barra mobile; ícones sociais do Font Awesome.
 - Pendência de performance (LCP subiu ~0,25 s com o `AppShell`) somada à da fase 13.
 
+### Fase 05 — blocos aprovados (2026-10-26)
+49 blocos em `docs/blocos/05-*`. Decisões do usuário:
+- **Logos coloridos dos botões sociais:** baixados da internet. `google.svg` = devicon 2.16.0 (`google-original`, licença MIT); `facebook-color.svg` = o "f" do Font Awesome Free 6.5.2 com a cor da marca `#1877F2` aplicada (CC BY 4.0, modificação indicada no comentário do arquivo). Renderizados como `<img>` (o `SvgIcon` é monocromático).
+- **Acessibilidade acima do Figma em dois pontos:** olho da senha em `tan` (contraste 6,1:1; o Figma tem 1,7:1) e aba ativa de "Entrar | Criar conta" com **sublinhado de 2 px** além da cor.
+- **Modal de Login/Cadastro sem escurecer o fundo**, como no Figma (camada transparente mantém o clique fora e a inertização; nova prop no `ui/dialog.tsx`).
+- **Demais recomendações do Sonnet aprovadas** (relatório da fase 05): guardas `beforeLoad` com contexto do roteador e promessa `ready` no `AuthContext`; Home provisória atrás do modal; modal centralizado na viewport com rolagem interna; `AuthTabs` como `nav` de links com `aria-current`; raios mobile `rounded-3xl` (campo) e `rounded-4xl` (botão); título mobile 20 px; `--text-logo: 32px`; botão principal mobile liso (sem gradiente, como na captura); 5ª senha errada já devolve `429` com 30 s, contador só em memória; ação pendente em `kurio:pending-action` (sessionStorage, 10 min, fora do `clearPrivateSession`); aviso de ajustes do carrinho em toast de 10 s; aviso de expiração como faixa no topo (`role="alertdialog"`, sem mover o foco); fechar o modal devolve o foco ao "Entrar" (`skipRouteFocus`); `redirect` rejeita `\`, controle, >2048 caracteres e `/entrar`/`/cadastro`; placeholder "Senha" no login; correções pequenas do Figma (alinhamentos, sublinhado nos links de troca, anel de foco mantido); convenção de carrinhos no mock (`cart-<userId>` e `X-Cart-Id`); ETH em inteiros no mock.
+
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
 - 00 Setup → 01 Design base → 02 Mock base → 03 App base → 04 Layout e estados → 05 Login/Cadastro → 06 Início → 07 Detalhes → 08 Carrinho → 09 Perfil → 10 Carteiras → 11 Pagamento → 12 Confirmação → 13 Final.
