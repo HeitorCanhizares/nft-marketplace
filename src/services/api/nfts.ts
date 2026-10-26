@@ -18,7 +18,7 @@ export function toCatalogParams(search: HomeSearch, isDesktop: boolean): Catalog
   const pagina = search.pagina ?? 1
   const params: CatalogApiParams = isDesktop
     ? { page: pagina, pageSize: DESKTOP_PAGE_SIZE }
-    : { page: 1, pageSize: DESKTOP_PAGE_SIZE * pagina }
+    : { page: 1, pageSize: Math.min(DESKTOP_PAGE_SIZE * pagina, 300) }
 
   if (search.q !== undefined) params.q = search.q
   if (search.colecao !== undefined) params.collection = search.colecao
