@@ -3,11 +3,16 @@ import type { CSSProperties } from 'react'
 import { cn } from '@/lib/utils'
 
 import arrowDownUrl from './arrow-down.svg'
+import facebookUrl from './facebook.svg'
+import instagramUrl from './instagram.svg'
+import linkedinUrl from './linkedin.svg'
 import messageUrl from './message.svg'
 import searchUrl from './search.svg'
 import shopUrl from './shop.svg'
+import twitterUrl from './twitter.svg'
 import userUrl from './user.svg'
 import xUrl from './x.svg'
+import youtubeUrl from './youtube.svg'
 
 const ICONS = {
   message: { src: messageUrl, size: 18 },
@@ -16,6 +21,11 @@ const ICONS = {
   search: { src: searchUrl, size: 22 },
   user: { src: userUrl, size: 20 },
   shop: { src: shopUrl, size: 20 },
+  facebook: { src: facebookUrl, size: 16 },
+  instagram: { src: instagramUrl, size: 16 },
+  twitter: { src: twitterUrl, size: 16 },
+  linkedin: { src: linkedinUrl, size: 16 },
+  youtube: { src: youtubeUrl, size: 16 },
 } as const
 
 export type SvgIconName = keyof typeof ICONS
