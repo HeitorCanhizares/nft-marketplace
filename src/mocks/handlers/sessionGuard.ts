@@ -53,10 +53,21 @@ export async function authenticate(request: Request): Promise<AuthenticatedReque
   return { session, user }
 }
 
-// Igual a authenticate, mas nunca devolve Response: rotas públicas tratam qualquer falha como visitante.
+// Só leitura: nunca devolve Response e nunca apaga ou altera a sessão.
+// Rotas públicas tratam qualquer falha (ausente, inválida, vencida) como visitante.
 export async function tryAuthenticate(request: Request): Promise<AuthenticatedRequest | null> {
-  const auth = await authenticate(request)
-  return auth instanceof Response ? null : auth
+  const token = readBearerToken(request)
+  if (token === null) return null
+
+  const session = await sessionsStore.get(token)
+  if (session === undefined) return null
+
+  const user = await usersStore.get(session.userId)
+  if (user === undefined) return null
+
+  if (Date.parse(session.expiresAt) <= Date.now()) return null
+
+  return { session, user }
 }
 
 // Nunca devolve passwordHash nem passwordSalt.
