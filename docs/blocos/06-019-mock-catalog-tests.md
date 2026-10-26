@@ -1,6 +1,6 @@
 # 06-019 — Testes do mock: catálogo e início
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Início › API (`GET /home`, `GET /nfts`)
 **Depende de:** 06-014, 06-015

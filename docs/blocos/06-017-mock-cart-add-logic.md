@@ -1,6 +1,6 @@
 # 06-017 — Mock: regra de adicionar item ao carrinho
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (adicionar ao carrinho pelo card)
 **Depende de:** 06-009, 05-004, 05-005, 02-009
 **Depende de decisão:** pergunta 5 do relatório da fase 06 (só `POST /cart/items` entra agora)

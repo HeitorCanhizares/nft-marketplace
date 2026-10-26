@@ -1,6 +1,6 @@
 # 06-020 — Testes do mock: favoritos e adicionar ao carrinho
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Início › API (`/favorites`, `POST /cart/items`)
 **Depende de:** 06-016, 06-018

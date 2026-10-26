@@ -1,6 +1,6 @@
 # 06-016 — Mock: handlers de favoritos
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 e 9 (favoritar; filtro de favoritos)
 **Depende de:** 05-006, 02-010, 02-008
 

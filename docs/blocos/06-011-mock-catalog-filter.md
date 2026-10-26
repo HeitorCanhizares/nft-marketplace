@@ -1,6 +1,6 @@
 # 06-011 — Mock: filtros do catálogo (busca, aba, coleção, rede, preço, favoritos)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 4, 6, 7, 9
 **Depende de:** 06-008, 06-010
 **Depende de decisão:** pergunta 2 do relatório da fase 06 ("novos" e "em alta")

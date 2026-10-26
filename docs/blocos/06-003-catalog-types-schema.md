@@ -1,6 +1,6 @@
 # 06-003 — Tipos e validação dos parâmetros da Início
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 3 a 7, 9 (estado na URL)
 **Depende de:** 06-002, 03-002, 03-003
 **Depende de decisão:** perguntas 11 e 17 do relatório da fase 06 (limites e normalização)

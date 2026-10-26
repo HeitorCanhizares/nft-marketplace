@@ -1,6 +1,6 @@
 # 06-002 — Campos `soldOut` e `defaultEditionId` no `NftSummary`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (card: esgotado e "adicionar ao carrinho")
 **Depende de:** 02-001, 03-003
 **Depende de decisão:** pergunta 1 do relatório da fase 06 (mudança de contrato)

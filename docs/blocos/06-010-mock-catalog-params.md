@@ -1,6 +1,6 @@
 # 06-010 — Mock: leitura e validação dos parâmetros de `GET /nfts`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 3 a 7 (o que o servidor entende)
 **Depende de:** 03-002, 02-007, 02-009
 **Depende de decisão:** perguntas 4 e 17 do relatório da fase 06 (`pageSize` até 300; `q` até 100)

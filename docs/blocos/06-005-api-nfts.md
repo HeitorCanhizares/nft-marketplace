@@ -1,6 +1,6 @@
 # 06-005 — Serviço de API: início e catálogo
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 3 a 7, 9 (parâmetros enviados à API)
 **Depende de:** 06-003, 03-003, 03-007, 03-008
 **Depende de decisão:** pergunta 4 do relatório da fase 06 ("Carregar mais" por `pageSize` acumulado)

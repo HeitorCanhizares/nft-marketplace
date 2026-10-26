@@ -1,6 +1,6 @@
 # 06-012 — Mock: as 5 ordenações do catálogo
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 5 (ordenação)
 **Depende de:** 06-008, 06-010
 

@@ -1,6 +1,6 @@
 # 06-015 — Mock: handler `GET /home`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 1, 2, 10 (hero, destaque, promos, blog)
 **Depende de:** 06-009, 06-014, 02-015
 **Depende de decisão:** pergunta 7 do relatório da fase 06 (quais NFTs são o hero e o destaque)

@@ -1,6 +1,6 @@
 # 06-001 — Tokens novos da Início (raios e tamanhos de texto)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › Layout (hero, destaque, promos, blog, card mobile)
 **Depende de:** 01-001, 01-003
 **Depende de decisão:** pergunta 8 do relatório da fase 06 (tokens novos medidos nas capturas)

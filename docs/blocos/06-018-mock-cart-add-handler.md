@@ -1,6 +1,6 @@
 # 06-018 — Mock: handler `POST /cart/items`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (adicionar ao carrinho pelo card)
 **Depende de:** 06-017, 05-006, 02-008
 **Depende de decisão:** pergunta 5 do relatório da fase 06

@@ -1,6 +1,6 @@
 # 06-004 — `formatEth` e opções do catálogo
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 4, 5 (rótulos de aba e ordenação) e preços
 **Depende de:** 06-003
 **Depende de decisão:** pergunta 9 do relatório da fase 06 (ponto decimal como no Figma)

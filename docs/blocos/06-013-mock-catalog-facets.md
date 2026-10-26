@@ -1,6 +1,6 @@
 # 06-013 — Mock: `facets` do catálogo (contagens e faixa de preço)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 6 (filtros com contagem e limites do preço)
 **Depende de:** 06-010, 06-011
 **Depende de decisão:** pergunta 3 do relatório da fase 06 (como as contagens e a faixa são calculadas)

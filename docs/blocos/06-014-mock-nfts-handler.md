@@ -1,6 +1,6 @@
 # 06-014 — Mock: handler `GET /nfts`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 3 a 7, 9, 12 (catálogo, filtros, ordenação, favoritos, vazio)
 **Depende de:** 06-009, 06-010, 06-011, 06-012, 06-013, 05-006, 02-008
 **Depende de decisão:** perguntas 3 e 4 do relatório da fase 06

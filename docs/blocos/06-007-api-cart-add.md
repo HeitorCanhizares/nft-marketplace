@@ -1,6 +1,6 @@
 # 06-007 — Serviço de API: adicionar ao carrinho
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (adicionar ao carrinho pelo card)
 **Depende de:** 03-004, 03-008
 **Depende de decisão:** pergunta 5 do relatório da fase 06 (só `POST /cart/items` entra agora)

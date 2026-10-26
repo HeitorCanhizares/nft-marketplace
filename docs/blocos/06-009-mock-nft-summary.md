@@ -1,6 +1,6 @@
 # 06-009 — Mock: do registro do banco para o `NftSummary`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (card: esgotado, edição do preço, favorito)
 **Depende de:** 06-002, 06-008, 02-009
 

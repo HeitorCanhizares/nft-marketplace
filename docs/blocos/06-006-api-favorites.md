@@ -1,6 +1,6 @@
 # 06-006 — Serviço de API: favoritar e desfavoritar
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (favoritar)
 **Depende de:** 03-008
 

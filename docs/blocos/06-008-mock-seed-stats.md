@@ -1,6 +1,6 @@
 # 06-008 — Estatísticas do seed (vendas e favoritos)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 4 e 5 (aba "Em alta" e ordenação "Mais favoritados")
 **Depende de:** 02-014, 02-016
 **Depende de decisão:** pergunta 2 do relatório da fase 06 (estatísticas no seed e o que é "Em alta")
