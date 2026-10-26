@@ -273,7 +273,9 @@ test.describe('anunciador', () => {
   test('mensagens polite e assertive chegam às regiões certas', async ({ page }) => {
     await openApp(page)
     await page.evaluate(`window.__kurio.announce('Item adicionado ao carrinho')`)
-    await expect(page.getByRole('status')).toHaveText('Item adicionado ao carrinho')
+    await expect(page.locator('[role="status"][aria-live="polite"]')).toHaveText(
+      'Item adicionado ao carrinho',
+    )
     await page.evaluate(`window.__kurio.announce('Pagamento recusado', 'assertive')`)
     await expect(page.getByRole('alert')).toHaveText('Pagamento recusado')
   })

@@ -66,7 +66,8 @@ export function useHandler(page: Page, body: string) {
 export async function collectAnnouncements(page: Page) {
   await page.evaluate(`(() => {
     window.__ann = []
-    for (const sel of ['[role="status"]', '[role="alert"]']) {
+    // A Início tem esqueletos com role="status": só as regiões do anunciador têm aria-live.
+    for (const sel of ['[role="status"][aria-live="polite"]', '[role="alert"]']) {
       const region = document.querySelector(sel)
       new MutationObserver(() => { const t = region.textContent; if (t) window.__ann.push(t) })
         .observe(region, { childList: true, characterData: true, subtree: true })

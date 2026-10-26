@@ -365,9 +365,16 @@ test.describe('6. Logout', () => {
     expect(await storageValue(page, 'sessionStorage', 'kurio:checkout')).toBeNull()
     expect(await storageValue(page, 'sessionStorage', 'kurio:checkout-draft')).toBeNull()
     expect(
-      await page.evaluate<string[]>(`['favorites', 'cart', 'wallets', 'orders'].filter(
+      await page.evaluate<string[]>(`['favorites', 'wallets', 'orders'].filter(
         (key) => window.__kurio.queryClient.getQueryData([key]) !== undefined)`),
     ).toEqual([])
+    // A Início refaz o GET /cart do cabeçalho como visitante: o cache do usuário some e
+    // só pode restar o carrinho vazio do visitante.
+    expect([null, 0]).toContain(
+      await page.evaluate<number | null>(
+        `(() => { const c = window.__kurio.queryClient.getQueryData(['cart']); return c ? c.itemCount + c.items.length : null })()`,
+      ),
+    )
     await expect
       .poll(() => page.evaluate<string>(`window.__kurio.wallet.state.status`))
       .toBe('disconnected')
