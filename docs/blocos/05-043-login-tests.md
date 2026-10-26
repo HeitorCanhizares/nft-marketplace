@@ -1,6 +1,6 @@
 # 05-043 — Testes do Login
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Login › 1, 2, 3 e 4
 **Depende de:** 05-012, 05-036, 05-041, 05-042

@@ -1,6 +1,6 @@
 # 05-046 — Testes das rotas protegidas e do `redirect`
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Login › 8 e Rotas › Proteção de rotas
 **Depende de:** 05-036, 05-037, 05-038, 05-041, 05-042

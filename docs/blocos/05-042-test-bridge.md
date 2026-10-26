@@ -1,6 +1,6 @@
 # 05-042 — Ponte de teste: ampliações da fase 05
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (infraestrutura de teste)
 **Fluxo / subitem:** Fase 05 › Testes
 **Depende de:** 05-001, 05-002, 05-025, 05-026, 05-034

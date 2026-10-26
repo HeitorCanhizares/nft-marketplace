@@ -1,6 +1,6 @@
 # 05-048 — Baseline visual do Login e do Cadastro
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Login e Cadastro › baseline visual (aprovada pelo usuário)
 **Depende de:** 05-043, 05-044, 05-047

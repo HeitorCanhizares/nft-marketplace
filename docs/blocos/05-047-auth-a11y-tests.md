@@ -1,6 +1,6 @@
 # 05-047 — Acessibilidade do Login e do Cadastro (axe, teclado, 320 px)
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Login e Cadastro › acessibilidade (toda fase de fluxo termina com ela)
 **Depende de:** 05-039, 05-043, 05-044

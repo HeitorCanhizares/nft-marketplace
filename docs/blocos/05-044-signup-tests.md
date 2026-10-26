@@ -1,6 +1,6 @@
 # 05-044 — Testes do Cadastro
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Cadastro › 1 a 6
 **Depende de:** 05-012, 05-036, 05-041, 05-042

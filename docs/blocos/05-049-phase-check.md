@@ -1,6 +1,6 @@
 # 05-049 — Validação final e checkpoint da fase 05
 
-**Status:** pendente
+**Status:** concluído (tag aguardando o usuário)
 **Responsável:** Sonnet
 **Fluxo / subitem:** Fase 05 › Checkpoint
 **Depende de:** 05-001 a 05-048

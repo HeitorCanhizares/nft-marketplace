@@ -1,6 +1,6 @@
 # 05-045 — Testes de sessão, expiração, logout, troca de usuário, mescla e ação pendente
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Login › 4, 5, 6 e 7
 **Depende de:** 05-012, 05-036, 05-039, 05-040, 05-041, 05-042
