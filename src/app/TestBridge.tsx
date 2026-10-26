@@ -11,9 +11,14 @@ import {
   type UseWalletConnectionResult,
   type WalletConnectionState,
 } from '@/hooks/useWalletConnection'
+import { router } from '@/app/router'
 import * as address from '@/lib/address'
+import * as cartAdjustments from '@/lib/cartAdjustments'
+import * as pendingAction from '@/lib/pendingAction'
+import * as redirect from '@/lib/redirect'
 import * as session from '@/lib/session'
 import * as apiSchemas from '@/schemas/api'
+import * as authSchemas from '@/schemas/auth'
 import * as cartSchemas from '@/schemas/cart'
 import * as commonSchemas from '@/schemas/common'
 import * as nftSchemas from '@/schemas/nft'
@@ -61,7 +66,12 @@ type KurioTestApi = {
   socket: typeof socket
   session: typeof session
   address: typeof address
+  redirect: typeof redirect
+  cartAdjustments: typeof cartAdjustments
+  pendingAction: typeof pendingAction
+  router: typeof router
   schemas: {
+    auth: typeof authSchemas
     api: typeof apiSchemas
     cart: typeof cartSchemas
     common: typeof commonSchemas
@@ -143,7 +153,12 @@ export default function TestBridge() {
       socket,
       session,
       address,
+      redirect,
+      cartAdjustments,
+      pendingAction,
+      router,
       schemas: {
+        auth: authSchemas,
         api: apiSchemas,
         cart: cartSchemas,
         common: commonSchemas,
