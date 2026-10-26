@@ -98,7 +98,13 @@ export function CouponField({
         error={formError ?? error?.message}
       >
         {(field) => (
-          <div className={cn('flex', isMobile && 'gap-2')}>
+          <div
+            className={cn(
+              'flex',
+              isMobile &&
+                'h-12 rounded-full border border-border bg-background focus-within:border-primary',
+            )}
+          >
             <Input
               {...field}
               {...register('code')}
@@ -107,14 +113,19 @@ export function CouponField({
               placeholder="Digite o código promocional..."
               className={cn(
                 'min-w-0 flex-1 text-caption-md',
-                isMobile ? 'rounded-full px-4' : 'rounded-r-none',
+                isMobile
+                  ? 'h-full rounded-full border-0 bg-transparent px-4 focus-visible:ring-0'
+                  : 'rounded-r-none',
               )}
             />
             <Button
               type="submit"
               variant={isMobile ? 'gradient' : 'default'}
               aria-busy={isApplying}
-              className={cn('min-h-11 shrink-0', isMobile ? 'rounded-full px-5' : 'rounded-l-none')}
+              className={cn(
+                'min-h-11 shrink-0',
+                isMobile ? 'h-full rounded-full px-6' : 'rounded-l-none',
+              )}
             >
               Aplicar
             </Button>
