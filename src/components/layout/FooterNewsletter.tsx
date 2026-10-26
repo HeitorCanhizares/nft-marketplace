@@ -28,7 +28,8 @@ export function FooterNewsletter() {
           id={inputId}
           type="email"
           placeholder="digite seu e-mail..."
-          disabled
+          aria-disabled="true"
+          readOnly
           className="h-10 w-60 min-w-0 shrink rounded-r-none! border-transparent bg-surface-3 px-3 text-sm"
         />
         <ComingSoon

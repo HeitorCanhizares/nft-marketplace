@@ -22,7 +22,7 @@ export function ComingSoon({ children, label = 'Em breve', className, ...props }
           type="button"
           aria-disabled="true"
           onClick={handleClick}
-          className={cn('cursor-not-allowed opacity-50', className)}
+          className={cn('cursor-not-allowed', className)}
         >
           {children}
           <span className="sr-only"> (em breve)</span>
