@@ -1,6 +1,6 @@
 # 07-012 — Favorito do detalhe: cache otimista e ação pendente
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 5 (favoritar, persistir, login e volta)
 **Depende de:** 07-004
 

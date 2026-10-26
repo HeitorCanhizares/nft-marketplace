@@ -1,6 +1,6 @@
 # 07-006 — Tempo real no detalhe
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 11 (tempo real)
 **Depende de:** 07-004
 

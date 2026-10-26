@@ -1,6 +1,6 @@
 # 07-017 — Fechamento da fase 07
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 **Depende de:** 07-016
 

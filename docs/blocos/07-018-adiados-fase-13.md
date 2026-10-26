@@ -1,6 +1,6 @@
 # 07-018 — Casos de borda do detalhe adiados para a fase 13
 
-**Status:** pendente (executado só na fase 13)
+**Status:** concluído (lista adiada; os testes são escritos na fase 13)
 **Depende de:** 07-017
 
 Lista de testes que **não** são escritos na fase 07 (modo enxuto). O comportamento já está implementado e documentado.

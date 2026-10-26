@@ -1,6 +1,6 @@
 # 07-009 — `NftGallery` e zoom em tela cheia
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 1 (galeria, swipe, zoom)
 **Depende de:** 06-068
 

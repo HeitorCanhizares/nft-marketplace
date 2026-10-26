@@ -1,6 +1,6 @@
 # 07-014 — Detalhe: layout mobile e skeleton
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 1–7, 12 (tela mobile completa e skeleton)
 **Depende de:** 07-013
 

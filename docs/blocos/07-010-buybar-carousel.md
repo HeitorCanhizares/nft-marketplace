@@ -1,6 +1,6 @@
 # 07-010 — `BuyBar` (mobile) e `NftCarousel`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 6, 8 (barra de compra, "Mais desta coleção")
 **Depende de:** 07-007
 

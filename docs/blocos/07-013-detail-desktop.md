@@ -1,6 +1,6 @@
 # 07-013 — Detalhe: layout desktop
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 1–10 (tela desktop completa)
 **Depende de:** 07-005, 07-006, 07-007, 07-008, 07-009, 07-010, 07-011, 07-012
 

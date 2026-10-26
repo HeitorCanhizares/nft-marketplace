@@ -1,6 +1,6 @@
 # 07-011 — Avaliações: hook, painel e `Sheet`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 7 (avaliações só leitura, "Carregar mais", drawer no mobile)
 **Depende de:** 07-004, 07-007
 

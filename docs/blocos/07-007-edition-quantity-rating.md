@@ -1,6 +1,6 @@
 # 07-007 — `EditionSelector`, `QuantityStepper` e `RatingStars`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 3, 4, 7 (edição, quantidade, nota)
 **Depende de:** 06-068
 

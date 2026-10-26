@@ -1,6 +1,6 @@
 # 07-015 — Página, rota com `loader`, 404 e título
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 5, 6, 10, 11, 12 (acesso direto, 404, ligação de tudo)
 **Depende de:** 07-013, 07-014
 **Depende de decisão:** perguntas 2 e 3 do relatório da fase 07

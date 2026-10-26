@@ -1,6 +1,6 @@
 # 07-008 — `ShareLinks`, `NftMeta` e `FavoriteButton` com texto
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 2, 5, 9 (metadados, favoritar, compartilhar)
 **Depende de:** 06-068
 

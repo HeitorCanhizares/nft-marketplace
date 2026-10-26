@@ -1,6 +1,6 @@
 # 07-003 — Mock: `GET /nfts/:id/reviews`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 7 (avaliações)
 **Depende de:** 06-068
 

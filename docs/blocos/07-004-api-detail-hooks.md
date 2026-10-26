@@ -1,6 +1,6 @@
 # 07-004 — Serviço e hooks de dados do detalhe
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 2, 8, 12 (carregar NFT, relacionados, acesso direto)
 **Depende de:** 07-002, 07-003
 

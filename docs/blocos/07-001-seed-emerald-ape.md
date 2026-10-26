@@ -1,6 +1,6 @@
 # 07-001 — Seed: Emerald Ape #042 igual ao Figma
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 1, 3 (galeria e edições; dado para a baseline visual)
 **Depende de:** 06-068
 **Depende de decisão:** pergunta 1 do relatório da fase 07

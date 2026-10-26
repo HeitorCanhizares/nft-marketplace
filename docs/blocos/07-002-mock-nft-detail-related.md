@@ -1,6 +1,6 @@
 # 07-002 — Mock: `GET /nfts/:id` e `GET /nfts/:id/related`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 2, 8, 12 (informações, relacionados, 404)
 **Depende de:** 06-068
 

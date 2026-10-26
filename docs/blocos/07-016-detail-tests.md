@@ -1,6 +1,6 @@
 # 07-016 — Testes do detalhe (caminho principal)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › todos (modo enxuto)
 **Depende de:** 07-015, 07-001
 

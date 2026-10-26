@@ -1,6 +1,6 @@
 # 07-005 — Seleção de edição, quantidade e adicionar ao carrinho
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Detalhes › 3, 4, 6 (edição, quantidade, comprar e carrinho)
 **Depende de:** 07-004
 
