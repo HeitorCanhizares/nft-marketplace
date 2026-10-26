@@ -61,6 +61,7 @@ session
 - `staleTime` padrão de 30s; catálogo com `placeholderData: keepPreviousData` (troca de página sem piscar).
 - **Respostas fora de ordem:** cada query passa o `signal` do Query para o Axios. Mudou o filtro, a requisição antiga é cancelada e não sobrescreve a nova. Busca com debounce de 300ms.
 - **Retry:** GET tenta de novo até 2 vezes só em erro de rede ou 5xx. Nunca em 4xx. Mutations não fazem retry automático, **exceto a criação de pedido** (abaixo).
+- **Clique repetido em mutations** (fase 06): a trava é síncrona via `queryClient.isMutating({ mutationKey, predicate })`, com `mutationKey` própria (ex.: `['toggle-favorite']`, `['add-to-cart']`). Não usar state nem ref no render para isso; o `pendingIds` em state serve só para a UI.
 - **Atualização otimista:** favoritos e quantidade do carrinho. Em caso de erro, desfaz e avisa.
 - **Invalidação:** mutations do carrinho e do cupom invalidam `cart` e `quote`; login/logout limpam tudo que é privado (`clearPrivateSession`); pedido confirmado invalida `cart`.
 - **Persistência:** o carrinho e o cupom vivem no servidor simulado, então sobrevivem a refresh; o front só guarda o `cartId` do visitante.
