@@ -109,6 +109,9 @@ export function AuthProvider({ children, onClearPrivateSession, onExpired }: Aut
   // Roda a cada mudança de status ou de expiresAt (login, refresh, logout) e limpa os timers.
   const expire = useCallback(() => {
     clearSession()
+    // Reconecta o socket para que a conexão deixe de usar o token vencido.
+    // A limpeza de dados privados não roda aqui: o rascunho do checkout precisa sobreviver.
+    reconnectSocket()
     setState(ANONYMOUS_STATE)
     announce('Sua sessão expirou.', 'assertive')
     latest.current.onExpired?.()
