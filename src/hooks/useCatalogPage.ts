@@ -110,9 +110,10 @@ export function useCatalogPage(search: HomeSearch) {
   }
 
   function getHref(next: number): string {
-    // Variável tipada (não literal): a rota ainda tem o validateSearch provisório até a 06-057.
-    const target: HomeSearch = { ...search, pagina: next <= 1 ? undefined : next }
-    return router.buildLocation({ to: '/', search: target }).href
+    return router.buildLocation({
+      to: '/',
+      search: { ...search, pagina: next <= 1 ? undefined : next },
+    }).href
   }
 
   function onLoadMore() {
