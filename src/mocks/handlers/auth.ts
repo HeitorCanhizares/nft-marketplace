@@ -5,12 +5,18 @@ import type { UserRecord } from '../db/db'
 import { mergeGuestCart } from '../db/cartMerge'
 import { getLockRemainingSeconds, registerFailedAttempt, resetAttempts } from '../db/loginAttempts'
 import { hashPassword, verifyPassword } from '../db/password'
-import { usersStore } from '../db/stores'
+import { sessionsStore, usersStore } from '../db/stores'
 import { apiPath } from '../scenarios/config'
 import { hasScenario } from '../scenarios/active'
 import { apiError, validationError } from '../scenarios/errors'
 import { withMock } from '../scenarios/middleware'
-import { createSession, readCartId, toPublicUser } from './sessionGuard'
+import {
+  authenticate,
+  createSession,
+  readBearerToken,
+  readCartId,
+  toPublicUser,
+} from './sessionGuard'
 
 function tooManyAttempts(retryAfterSeconds: number): Response {
   const unit = retryAfterSeconds === 1 ? 'segundo' : 'segundos'
@@ -146,5 +152,57 @@ export const authHandlers = [
         ...(merge.adjustments.length > 0 ? { details: { adjustments: merge.adjustments } } : {}),
       })
     }),
+  ),
+  http.get(
+    apiPath('/auth/session'),
+    withMock(
+      'GET /auth/session',
+      async ({ request }) => {
+        const auth = await authenticate(request)
+        if (auth instanceof Response) return auth
+
+        // A sessão não é estendida por esta rota.
+        return HttpResponse.json({
+          user: toPublicUser(auth.user),
+          expiresAt: auth.session.expiresAt,
+        })
+      },
+      { protected: true, exemptFromRandomFailures: true },
+    ),
+  ),
+  http.post(
+    apiPath('/auth/refresh'),
+    withMock(
+      'POST /auth/refresh',
+      async ({ request }) => {
+        const auth = await authenticate(request)
+        if (auth instanceof Response) return auth
+
+        // Token novo com TTL cheio; o antigo deixa de valer.
+        await sessionsStore.delete(auth.session.token)
+        const session = await createSession(auth.user.id)
+
+        return HttpResponse.json({
+          session: { token: session.token, expiresAt: session.expiresAt },
+        })
+      },
+      { protected: true },
+    ),
+  ),
+  http.post(
+    apiPath('/auth/logout'),
+    withMock(
+      'POST /auth/logout',
+      async ({ request }) => {
+        // Idempotente: token ausente, inválido ou já apagado também responde 204.
+        const token = readBearerToken(request)
+        if (token !== null && (await sessionsStore.get(token)) !== undefined) {
+          await sessionsStore.delete(token)
+        }
+
+        return new HttpResponse(null, { status: 204 })
+      },
+      { protected: true },
+    ),
   ),
 ]
