@@ -664,9 +664,7 @@ test.describe('9. Ação pendente', () => {
     await expect(page.getByText('Não foi possível concluir a ação')).toHaveCount(0)
   })
 
-  // O bloco pede que a ação sem executor seja DESCARTADA. Hoje runPendingAction devolve null antes
-  // de limpar, então ela continua no sessionStorage (até vencer em 10 minutos). Decisão do usuário.
-  test.fixme('sem executor registrado: a ação é descartada', async ({ page }, testInfo) => {
+  test('sem executor registrado: a ação é descartada', async ({ page }, testInfo) => {
     await go(page)
     await page.evaluate(SAVE)
     await page.evaluate(`window.__kurio.router.navigate({ to: '/entrar' })`)

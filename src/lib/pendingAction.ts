@@ -75,11 +75,12 @@ export async function runPendingAction(): Promise<PendingResult | null> {
   const action = readPendingAction()
   if (!action) return null
 
+  // Apaga antes de executar: a ação nunca roda duas vezes. Sem executor registrado ela também é
+  // descartada, em silêncio.
+  clearPendingAction()
+
   const executor = executors.get(action.type)
   if (!executor) return null
-
-  // Apaga antes de executar: a ação nunca roda duas vezes.
-  clearPendingAction()
 
   try {
     const message = await executor(action)
