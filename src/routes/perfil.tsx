@@ -1,7 +1,13 @@
 import { createFileRoute, Outlet } from '@tanstack/react-router'
 
-// Layout do perfil. 04-029 troca o Outlet pelo ProfileLayout.
+import { ProfileLayout } from '@/components/layout/ProfileLayout'
+
+// Layout do perfil: menu lateral no desktop e o conteúdo da rota filha.
 export const Route = createFileRoute('/perfil')({
   staticData: { footer: false },
-  component: Outlet,
+  component: () => (
+    <ProfileLayout>
+      <Outlet />
+    </ProfileLayout>
+  ),
 })
