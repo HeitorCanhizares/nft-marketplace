@@ -88,6 +88,7 @@ export function NftDetailDesktop({
           <div className="mt-2 flex items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-3">
               <PriceTag
+                className="lg:text-[22px] lg:leading-7"
                 price={edition.price}
                 previousPrice={edition.id === nft.defaultEditionId ? nft.previousPrice : undefined}
               />

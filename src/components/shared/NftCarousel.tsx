@@ -70,6 +70,7 @@ export function NftCarousel({
               <CarouselItem key={nft.id} className="basis-1/2 lg:basis-1/5">
                 <NftCard
                   nft={nft}
+                  size="compact"
                   onAddToCart={onAddToCart}
                   onToggleFavorite={onToggleFavorite}
                   favoriteBusy={favoriteBusyIds?.has(nft.id) ?? false}

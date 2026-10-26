@@ -14,6 +14,8 @@ type NftCardProps = {
   updated?: boolean
   favoriteBusy?: boolean
   cartBusy?: boolean
+  // compact: nome e preço de 14px no desktop (carrossel do detalhe).
+  size?: 'default' | 'compact'
   className?: string
 }
 
@@ -24,9 +26,11 @@ export function NftCard({
   updated = false,
   favoriteBusy = false,
   cartBusy = false,
+  size = 'default',
   className,
 }: NftCardProps) {
   const soldOut = nft.soldOut === true
+  const compact = size === 'compact'
 
   return (
     <article className={cn('group relative', className)} data-nft-id={nft.id}>
@@ -62,7 +66,12 @@ export function NftCard({
       </div>
 
       <div className="mt-2.25 max-lg:px-2 lg:mt-2">
-        <h3 className="text-body leading-4.5 lg:text-base lg:leading-6">
+        <h3
+          className={cn(
+            'text-body leading-4.5',
+            compact ? 'lg:text-sm lg:leading-5' : 'lg:text-base lg:leading-6',
+          )}
+        >
           <Link
             to="/nft/$nftId"
             params={{ nftId: nft.id }}
@@ -77,7 +86,7 @@ export function NftCard({
           <PriceTag
             price={nft.price}
             previousPrice={nft.previousPrice}
-            className="leading-4.5 lg:leading-7"
+            className={cn('leading-4.5', compact ? 'lg:text-sm lg:leading-5' : 'lg:leading-7')}
           />
           {updated ? <PriceChangedNotice kind="updated" /> : null}
           {soldOut ? <PriceChangedNotice kind="sold-out" /> : null}
