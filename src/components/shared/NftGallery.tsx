@@ -37,9 +37,9 @@ export function NftGallery({ images, name, className }: NftGalleryProps) {
   return (
     <div className={cn('w-full', className)}>
       {isDesktop ? (
-        <div className="flex gap-4">
+        <div className="flex gap-7">
           {total > 1 ? (
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               {images.map((image, imageIndex) => (
                 <button
                   key={imageIndex}
@@ -48,7 +48,7 @@ export function NftGallery({ images, name, className }: NftGalleryProps) {
                   aria-current={imageIndex === index ? 'true' : undefined}
                   onClick={() => setIndex(imageIndex)}
                   className={cn(
-                    'size-24 shrink-0 overflow-hidden rounded-xl border-2 bg-card outline-none focus-visible:ring-2 focus-visible:ring-ring',
+                    'size-25 shrink-0 overflow-hidden rounded-lg border-2 bg-card outline-none focus-visible:ring-2 focus-visible:ring-ring',
                     imageIndex === index ? 'border-primary' : 'border-border-soft',
                   )}
                 >
@@ -57,7 +57,7 @@ export function NftGallery({ images, name, className }: NftGalleryProps) {
               ))}
             </div>
           ) : null}
-          <div className="relative min-w-0 flex-1 rounded-xl bg-card p-6">
+          <div className="relative min-w-0 flex-1 rounded-lg bg-card p-5">
             <img
               src={current.src}
               alt={current.alt}
@@ -69,7 +69,7 @@ export function NftGallery({ images, name, className }: NftGalleryProps) {
               size="icon"
               aria-label="Ampliar imagem"
               onClick={() => openZoom(index)}
-              className="absolute top-8 right-8 rounded-full bg-card/80 text-foreground"
+              className="absolute top-5 right-5 size-7 rounded-full bg-card/80 text-foreground"
             >
               <ZoomInIcon aria-hidden="true" />
             </Button>
@@ -114,7 +114,7 @@ function MobileGallery({ images, index, onIndexChange, onZoom }: MobileGalleryPr
   }, [api, onIndexChange])
 
   return (
-    <Carousel setApi={setApi} opts={options}>
+    <Carousel setApi={setApi} opts={options} className="px-7">
       <CarouselContent>
         {images.map((image, imageIndex) => (
           <CarouselItem key={imageIndex}>
@@ -122,7 +122,7 @@ function MobileGallery({ images, index, onIndexChange, onZoom }: MobileGalleryPr
               type="button"
               aria-label={`Ampliar imagem ${imageIndex + 1} de ${total}`}
               onClick={() => onZoom(imageIndex)}
-              className="block w-full overflow-hidden rounded-mobile outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              className="block w-full overflow-hidden rounded-[20px] outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <img
                 src={image.src}
@@ -134,7 +134,7 @@ function MobileGallery({ images, index, onIndexChange, onZoom }: MobileGalleryPr
           </CarouselItem>
         ))}
       </CarouselContent>
-      {total > 1 ? <CarouselDots className="mt-3 justify-center" /> : null}
+      {total > 1 ? <CarouselDots className="absolute inset-x-0 bottom-12 justify-center" /> : null}
     </Carousel>
   )
 }

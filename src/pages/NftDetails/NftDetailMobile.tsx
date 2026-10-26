@@ -38,16 +38,16 @@ export function NftDetailMobile({
   const cartError = cart.error?.editionId === purchase.editionId ? cart.error.message : null
 
   return (
-    <div className="flex flex-col">
-      <section className="relative pt-[env(safe-area-inset-top)]">
-        <div className="absolute inset-x-4 top-[calc(env(safe-area-inset-top)+0.75rem)] z-10 flex items-center justify-between">
+    <div className="flex flex-col bg-card">
+      <section className="relative pt-[calc(env(safe-area-inset-top)+66px)]">
+        <div className="absolute inset-x-7 top-[calc(env(safe-area-inset-top)+22px)] z-10 flex items-center justify-between">
           <Button
             type="button"
             variant="icon"
             size="icon"
             aria-label="Voltar"
             onClick={goBack}
-            className="size-11 rounded-full"
+            className="size-9 rounded-full"
           >
             <ArrowLeftIcon aria-hidden="true" />
           </Button>
@@ -57,7 +57,7 @@ export function NftDetailMobile({
             pressed={nft.isFavorite === true}
             busy={favorite.busy}
             onToggle={favorite.onToggle}
-            className="size-11 rounded-full"
+            className="size-9 rounded-full"
           />
         </div>
         <NftGallery images={nft.images} name={nft.name} />
@@ -65,12 +65,12 @@ export function NftDetailMobile({
 
       <div
         className={cn(
-          'relative -mt-6 flex flex-col gap-6 rounded-t-mobile bg-background p-4',
+          'relative -mt-[35px] flex flex-col rounded-t-[28px] bg-card px-6 pt-8',
           BUY_BAR_SPACE_CLASS,
         )}
       >
         <div className="flex items-start justify-between gap-3">
-          <h1 className="text-heading font-bold text-foreground">{nft.name}</h1>
+          <h1 className="text-xl font-bold text-foreground">{nft.name}</h1>
           <RatingStars
             variant="pill"
             average={nft.rating.average}
@@ -79,9 +79,9 @@ export function NftDetailMobile({
           />
         </div>
 
-        <p className="text-body text-muted-foreground">{nft.description}</p>
+        <p className="mt-2.5 text-sm leading-6 text-muted-foreground">{nft.description}</p>
 
-        <div className="flex flex-col gap-3">
+        <div className="mt-2.5 flex flex-col gap-1">
           <span className="text-sm font-bold text-foreground">Edição:</span>
           <EditionSelector
             editions={nft.editions}
@@ -91,7 +91,7 @@ export function NftDetailMobile({
         </div>
 
         {cartError || purchase.notice || purchase.inCartText ? (
-          <div role="status" className="flex flex-col gap-1 text-sm">
+          <div role="status" className="mt-4 flex flex-col gap-1 text-sm">
             {cartError ? <p className="text-destructive">{cartError}</p> : null}
             {purchase.notice ? <p className="text-muted-foreground">{purchase.notice}</p> : null}
             {purchase.inCartText ? (
@@ -101,6 +101,7 @@ export function NftDetailMobile({
         ) : null}
 
         <NftMeta
+          className="mt-3"
           tokenId={nft.tokenId}
           collection={nft.collection.name}
           attributes={nft.attributes}

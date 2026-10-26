@@ -33,11 +33,12 @@ export function RatingStars({
 
   const content =
     variant === 'pill' ? (
-      <span className="inline-flex items-center gap-1 text-sm font-medium text-foreground">
+      <span className="inline-flex h-7 items-center gap-1.5 rounded-full border border-primary/60 px-2.5 text-sm font-bold text-foreground">
         <span aria-hidden="true" className="text-primary">
           ★
         </span>
-        {`${average.toFixed(1)} (${count})`}
+        {average.toFixed(1)}
+        <span className="font-normal text-muted-foreground">{`(${count})`}</span>
       </span>
     ) : (
       <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
@@ -69,7 +70,7 @@ export function RatingStars({
       onClick={onClick}
       aria-label={reviewsActionLabel(count, average)}
       className={cn(
-        'rounded-md outline-none focus-visible:ring-2 focus-visible:ring-ring',
+        'rounded-full outline-none focus-visible:ring-2 focus-visible:ring-ring',
         className,
       )}
     >
