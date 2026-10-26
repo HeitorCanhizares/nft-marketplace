@@ -1,10 +1,14 @@
 import { createFileRoute } from '@tanstack/react-router'
 
+import { requireAuth } from '@/app/routeGuards'
 import { Home } from '@/pages/Home/Home'
 
 // Placeholder: a fase 06 troca pelo Home.
 export const Route = createFileRoute('/')({
   staticData: { mobileTabBar: true },
+  // Favoritos exige login; a Início sem `favoritos=1` continua pública.
+  beforeLoad: ({ context, search, location }) =>
+    search.favoritos === 1 ? requireAuth({ context, location }) : undefined,
   // Placeholder: a fase 06 troca este validateSearch pelo schema zod completo de rotas.md.
   validateSearch: (
     search: Record<string, unknown>,
