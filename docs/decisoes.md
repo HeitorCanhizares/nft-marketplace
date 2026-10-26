@@ -176,6 +176,13 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - **Demais recomendações do Sonnet aprovadas:** `staticData` no TanStack Router para decidir rodapé, barra mobile e título; rotas provisórias com `<h1>` para as 11 rotas; `container-page` com 24 px de margem entre 1024 e 1247 px; busca do desktop expande no cabeçalho e leva a `/?q=…#catalogo`; recorte da barra mobile simplificado; contador do carrinho no mobile só no `aria-label`; `SearchInput` em `components/shared`; setas do carrossel resolvidas na fase 07; `cartCount={0}` até as fases 07–08; `toast` exposto na ponte de teste; `scrollRestoration` ligado; links do rodapé habilitados só para "Meu perfil" e as coleções; "Mercado" ativo também em `/pedido/*`; título do documento `"<título> | Kurio"`.
 - **Valores medidos nas capturas 1:1** (alturas, larguras, cores do header, footer, `ProfileSidebar`, `MobileTopBar`, `MobileTabBar`) aprovados como estão nos blocos.
 
+### Fase 04 — ajustes após verificação do header e rodapé (2026-10-26)
+- **Itens "Em breve"** (newsletter do rodapé, Criadores, Aprenda e demais `ComingSoon`): **cor cheia, como no Figma**, sem opacidade. O estado aparece no cursor, no tooltip "Em breve" e no `aria-disabled`. Campos de formulário desabilitados de verdade continuam com o estilo de desabilitado.
+- **Linha do cabeçalho** limitada à largura do conteúdo (1200 px), como no Figma, em todas as telas.
+- **Ícone do "Entrar":** porta com seta saindo, como no Figma (`LogOutIcon` do lucide).
+- **UserMenu:** a inicial do avatar vira decoração via CSS; o nome acessível fica "Menu de <nome>".
+- Decisões técnicas do Opus: título do destaque do rodapé fica em 18 px (não há token de 17); o 04-033 exclui a regra `aria-hidden-focus` do axe com menus Radix abertos (falso positivo do `hideOthers`); Esc da busca só no campo (limitação do jsx-a11y) é aceito.
+
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
 - 00 Setup → 01 Design base → 02 Mock base → 03 App base → 04 Layout e estados → 05 Login/Cadastro → 06 Início → 07 Detalhes → 08 Carrinho → 09 Perfil → 10 Carteiras → 11 Pagamento → 12 Confirmação → 13 Final.
