@@ -78,3 +78,48 @@ export async function collectAnnouncements(page: Page) {
 export function announcements(page: Page) {
   return page.evaluate<string[]>(`window.__ann`)
 }
+
+/** Id da primeira edição do NFT, lido do mock (útil para NFTs gerados, cujas edições variam). */
+export function firstEditionId(page: Page, nftId: string) {
+  return page.evaluate<string>(`(async () => {
+    const res = await fetch('/api/nfts/${nftId}')
+    const nft = await res.json()
+    return nft.editions[0].id
+  })()`)
+}
+
+/**
+ * Monta o carrinho do visitante pelo próprio mock. Chamar depois de `page.goto('/')` e `ready`;
+ * o app só precisa recarregar a rota para ler o carrinho.
+ */
+export async function seedCart(
+  page: Page,
+  items: { nftId: string; editionId: string; quantity: number }[],
+) {
+  await page.evaluate(`(async () => {
+    let id = localStorage.getItem('kurio:guest-cart-id')
+    if (!id) {
+      id = crypto.randomUUID()
+      localStorage.setItem('kurio:guest-cart-id', id)
+    }
+    for (const item of ${JSON.stringify(items)}) {
+      const res = await fetch('/api/cart/items', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Cart-Id': id },
+        body: JSON.stringify(item),
+      })
+      if (!res.ok) throw new Error('seedCart falhou: ' + res.status + ' ' + (await res.text()))
+    }
+  })()`)
+}
+
+/** Itens do Figma: Emerald Ape ×2, Violet Nomad, Ivory Baron. */
+export async function seedFigmaCart(page: Page) {
+  const violet = await firstEditionId(page, 'violet-nomad-314')
+  const ivory = await firstEditionId(page, 'ivory-baron-088')
+  await seedCart(page, [
+    { nftId: 'emerald-ape-042', editionId: 'emerald-ape-042-1-50', quantity: 2 },
+    { nftId: 'violet-nomad-314', editionId: violet, quantity: 1 },
+    { nftId: 'ivory-baron-088', editionId: ivory, quantity: 1 },
+  ])
+}
