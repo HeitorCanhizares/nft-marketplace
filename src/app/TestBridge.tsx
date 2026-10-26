@@ -1,4 +1,5 @@
 import { useEffect, useRef, type MutableRefObject } from 'react'
+import { toast } from 'sonner'
 
 import { clearPrivateSession } from '@/app/clearPrivateSession'
 import { queryClient } from '@/app/queryClient'
@@ -45,6 +46,7 @@ type TestWalletApi = {
 type KurioTestApi = {
   auth: TestAuthApi
   announce: LiveAnnouncerContextValue['announce']
+  toast: typeof toast
   queryClient: typeof queryClient
   http: typeof http
   HTTP_TIMEOUT_MS: typeof HTTP_TIMEOUT_MS
@@ -126,6 +128,7 @@ export default function TestBridge() {
         refreshSession: () => latestAuth.current.refreshSession(),
       },
       announce,
+      toast,
       queryClient,
       http,
       HTTP_TIMEOUT_MS,
