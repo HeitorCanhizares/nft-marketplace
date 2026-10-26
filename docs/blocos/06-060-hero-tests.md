@@ -1,6 +1,6 @@
 # 06-060 — Testes do hero e do destaque
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 
 > **Modo enxuto** (docs/decisoes.md): só o caminho principal. 

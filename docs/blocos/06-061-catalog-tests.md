@@ -1,6 +1,6 @@
 # 06-061 — Testes do catálogo
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 
 > **Modo enxuto** (docs/decisoes.md): só o caminho principal. 

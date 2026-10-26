@@ -1,6 +1,6 @@
 # 06-063 — Testes do card
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 
 > **Modo enxuto** (docs/decisoes.md): só o caminho principal. 

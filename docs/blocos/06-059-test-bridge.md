@@ -1,6 +1,6 @@
 # 06-059 — Ponte de teste
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 
 > **Modo enxuto** (docs/decisoes.md): só o caminho principal. 

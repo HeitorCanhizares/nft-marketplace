@@ -1,6 +1,6 @@
 # 06-062 — Testes da busca
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 
 > **Modo enxuto** (docs/decisoes.md): só o caminho principal. 

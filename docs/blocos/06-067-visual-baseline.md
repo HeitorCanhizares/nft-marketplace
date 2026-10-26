@@ -1,6 +1,6 @@
 # 06-067 — Baseline visual da Início
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 
 > **Modo enxuto** (docs/decisoes.md): só o caminho principal. 

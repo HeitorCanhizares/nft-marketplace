@@ -1,6 +1,6 @@
 # 06-064 — Testes dos estados
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 
 > **Modo enxuto** (docs/decisoes.md): só o caminho principal. 

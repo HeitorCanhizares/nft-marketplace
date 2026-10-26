@@ -1,6 +1,6 @@
 # 06-068 — Fechamento da fase 06
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 
 > **Modo enxuto** (docs/decisoes.md): só o caminho principal. 
