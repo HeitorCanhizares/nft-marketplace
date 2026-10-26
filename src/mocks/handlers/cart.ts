@@ -5,7 +5,13 @@ import { cartSchema } from '@/schemas/cart'
 import { positiveIntSchema } from '@/schemas/common'
 import { addToCart, type AddToCartOwner } from '../db/cartAdd'
 import { userCartId } from '../db/cartMerge'
-import { removeItem, toCartResponse, updateItemQuantity } from '../db/cartOps'
+import {
+  applyCoupon,
+  clearCoupon,
+  removeItem,
+  toCartResponse,
+  updateItemQuantity,
+} from '../db/cartOps'
 import { cartsStore } from '../db/stores'
 import { apiPath } from '../scenarios/config'
 import { apiError, validationError } from '../scenarios/errors'
@@ -21,6 +27,13 @@ const addItemBodySchema = z.object({
 
 const updateItemBodySchema = z.object({
   quantity: positiveIntSchema,
+})
+
+const couponBodySchema = z.object({
+  code: z
+    .string({ error: 'Informe o código promocional.' })
+    .trim()
+    .min(1, { error: 'Informe o código promocional.' }),
 })
 
 // Com Authorization, o carrinho é o do usuário (sessão vencida devolve 401 SESSION_EXPIRED).
@@ -118,6 +131,42 @@ export const cartHandlers = [
         return apiError(result.code, { message: result.message, details: result.details })
       }
       return HttpResponse.json(result.cart)
+    }),
+  ),
+
+  http.put(
+    apiPath('/cart/coupon'),
+    withMock('PUT /cart/coupon', async ({ request }) => {
+      const body: unknown = await request.json().catch(() => null)
+      if (typeof body !== 'object' || body === null || Array.isArray(body)) {
+        return apiError('BAD_REQUEST')
+      }
+
+      const parsed = couponBodySchema.safeParse(body)
+      if (!parsed.success) return validationError(parsed.error)
+
+      const owner = await resolveOwner(request)
+      if (owner instanceof Response) return owner
+      if (owner === null) {
+        return apiError('BAD_REQUEST', { message: 'Informe o carrinho do visitante.' })
+      }
+
+      const result = await applyCoupon(owner, parsed.data.code)
+      if (!result.ok) return apiError(result.code, { message: result.message })
+      return HttpResponse.json(result.cart)
+    }),
+  ),
+
+  http.delete(
+    apiPath('/cart/coupon'),
+    withMock('DELETE /cart/coupon', async ({ request }) => {
+      const owner = await resolveOwner(request)
+      if (owner instanceof Response) return owner
+      if (owner === null) {
+        return apiError('BAD_REQUEST', { message: 'Informe o carrinho do visitante.' })
+      }
+
+      return HttpResponse.json(await clearCoupon(owner.cartId))
     }),
   ),
 

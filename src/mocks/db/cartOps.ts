@@ -2,11 +2,21 @@ import { cartSchema } from '@/schemas/cart'
 import { MAX_PER_PURCHASE } from '@/lib/maxQuantity'
 import type { Cart, CartItem } from '@/types/cart'
 import type { ApiErrorCode } from '@/types/api'
+import type { AddToCartOwner } from './cartAdd'
 import type { CartRecord } from './db'
 import { multiplyEth } from './money'
 import { cartsStore, nftsStore } from './stores'
+import { findCoupon } from '../seed/coupons'
 
 const LOW_STOCK_THRESHOLD = 3
+
+export type CouponResult =
+  | { ok: true; cart: Cart }
+  | {
+      ok: false
+      code: Extract<ApiErrorCode, 'COUPON_INVALID' | 'COUPON_EXPIRED'>
+      message: string
+    }
 
 export type CartOpResult =
   | { ok: true; cart: Cart }
@@ -143,4 +153,53 @@ export async function removeItem(cartId: string, itemId: string): Promise<CartOp
   await cartsStore.put(updated)
 
   return { ok: true, cart: await toCartResponse(updated) }
+}
+
+// Guarda o cupom no carrinho (código normalizado). Em erro, nada é gravado.
+export async function applyCoupon(owner: AddToCartOwner, code: string): Promise<CouponResult> {
+  const normalized = code.trim().toUpperCase()
+  const terms = findCoupon(normalized)
+  if (terms === undefined) {
+    return { ok: false, code: 'COUPON_INVALID', message: 'Código promocional inválido.' }
+  }
+  if (terms.expired) {
+    return { ok: false, code: 'COUPON_EXPIRED', message: 'Este código promocional expirou.' }
+  }
+
+  const stored = await cartsStore.get(owner.cartId)
+  const record: CartRecord = stored ?? {
+    id: owner.cartId,
+    ownerId: owner.ownerId,
+    items: [],
+    itemCount: 0,
+    version: 0,
+  }
+  const updated: CartRecord = {
+    ...record,
+    coupon: { code: normalized },
+    version: record.version + 1,
+  }
+  await cartsStore.put(updated)
+
+  return { ok: true, cart: await toCartResponse(updated) }
+}
+
+// Remove o cupom. Sem cupom (ou sem carrinho) não grava nada e devolve o carrinho como está.
+export async function clearCoupon(cartId: string): Promise<Cart> {
+  const record = await cartsStore.get(cartId)
+  if (record === undefined) {
+    return cartSchema.parse({ id: cartId, items: [], itemCount: 0, version: 0 })
+  }
+  if (record.coupon === undefined) return toCartResponse(record)
+
+  const updated: CartRecord = {
+    id: record.id,
+    ownerId: record.ownerId,
+    items: record.items,
+    itemCount: record.itemCount,
+    version: record.version + 1,
+  }
+  await cartsStore.put(updated)
+
+  return toCartResponse(updated)
 }
