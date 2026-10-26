@@ -30,12 +30,12 @@ export function FooterNewsletter() {
           placeholder="digite seu e-mail..."
           aria-disabled="true"
           readOnly
-          className="h-10 w-60 min-w-0 shrink cursor-not-allowed rounded-r-none border-transparent bg-surface-3 px-3 text-sm placeholder:text-tan"
+          className="h-10 w-60 min-w-0 shrink cursor-not-allowed rounded-r-none border-transparent bg-surface-3 px-3 text-sm placeholder:text-tan lg:rounded-r-none"
         />
         <ComingSoon
           className={cn(
             buttonVariants(),
-            'h-10 w-21.25 shrink-0 rounded-l-none text-lg hover:bg-primary aria-disabled:pointer-events-auto aria-disabled:opacity-100',
+            'h-10 w-21.25 shrink-0 rounded-l-none text-lg hover:bg-primary aria-disabled:pointer-events-auto aria-disabled:opacity-100 lg:rounded-l-none',
           )}
         >
           Enviar
