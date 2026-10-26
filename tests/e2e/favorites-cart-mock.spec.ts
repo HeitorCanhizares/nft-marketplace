@@ -494,6 +494,29 @@ test.describe('POST /cart/items: usuário logado', () => {
     expect(unknown.body.error.code).toBe('UNAUTHORIZED')
   })
 
+  test('token vencido: rota pública vira visitante sem apagar a sessão e a protegida dá SESSION_EXPIRED', async ({
+    page,
+  }) => {
+    await openApp(page)
+    const token = await login(page, users.primary)
+    const target = await pickEdition(page, 'limited')
+    await stores<void>(
+      page,
+      `
+      const session = await s.sessionsStore.get(${JSON.stringify(token)})
+      await s.sessionsStore.put({ ...session, expiresAt: new Date(Date.now() - 1000).toISOString() })
+    `,
+    )
+
+    const publicList = await catalog(page, 'pageSize=9', token)
+    expect(publicList.status).toBe(200)
+    expect('isFavorite' in publicList.body.items[0]).toBe(false)
+
+    const protectedCall = await addItem(page, { ...target, quantity: 1 }, { token })
+    expect(protectedCall.status).toBe(401)
+    expect(protectedCall.body.error.code).toBe('SESSION_EXPIRED')
+  })
+
   test('server-error:POST /cart/items devolve 500', async ({ page }) => {
     await openApp(page, 'server-error:POST /cart/items')
     const target = await pickEdition(page, 'limited')
