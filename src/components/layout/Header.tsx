@@ -50,95 +50,97 @@ export function Header({
   const redirectSearch = AUTH_ROUTES.includes(pathname) ? undefined : { redirect: location.href }
 
   return (
-    <header className={cn('border-b border-border-strong', className)}>
-      <div className="container-page grid h-17 grid-cols-[1fr_auto_1fr] items-center">
-        <Link
-          to="/"
-          aria-label="Kurio, página inicial"
-          activeOptions={NAV_ACTIVE_OPTIONS}
-          className="mt-3.5 justify-self-start text-sm font-bold tracking-[0.07em] text-foreground"
-        >
-          KURIO
-        </Link>
+    <header className={className}>
+      <div className="container-page">
+        <div className="grid h-17 grid-cols-[1fr_auto_1fr] items-center border-b border-border-strong">
+          <Link
+            to="/"
+            aria-label="Kurio, página inicial"
+            activeOptions={NAV_ACTIVE_OPTIONS}
+            className="mt-3.5 justify-self-start text-sm font-bold tracking-[0.07em] text-foreground"
+          >
+            KURIO
+          </Link>
 
-        <nav aria-label="Navegação principal" className={cn('h-full', searchOpen && 'invisible')}>
-          <ul className="flex h-full items-center gap-10">
-            {NAV_ITEMS.map((item) => {
-              const isActive = item.isActive(pathname)
+          <nav aria-label="Navegação principal" className={cn('h-full', searchOpen && 'invisible')}>
+            <ul className="flex h-full items-center gap-10">
+              {NAV_ITEMS.map((item) => {
+                const isActive = item.isActive(pathname)
 
-              if (item.disabled || !item.to) {
+                if (item.disabled || !item.to) {
+                  return (
+                    <li key={item.id}>
+                      <ComingSoon className="text-body text-foreground">{item.label}</ComingSoon>
+                    </li>
+                  )
+                }
+
                 return (
-                  <li key={item.id}>
-                    <ComingSoon className="text-body text-foreground">{item.label}</ComingSoon>
+                  <li key={item.id} className="h-full">
+                    <Link
+                      to={item.to}
+                      hash={item.hash}
+                      activeOptions={NAV_ACTIVE_OPTIONS}
+                      aria-current={isActive ? 'page' : undefined}
+                      className={cn(
+                        'relative flex h-full items-center text-body text-foreground',
+                        isActive && 'font-bold text-price',
+                      )}
+                    >
+                      {item.label}
+                      {isActive ? (
+                        <span
+                          aria-hidden="true"
+                          className="absolute inset-x-0 -bottom-px h-[3px] bg-primary"
+                        />
+                      ) : null}
+                    </Link>
                   </li>
                 )
-              }
+              })}
+            </ul>
+          </nav>
 
-              return (
-                <li key={item.id} className="h-full">
-                  <Link
-                    to={item.to}
-                    hash={item.hash}
-                    activeOptions={NAV_ACTIVE_OPTIONS}
-                    aria-current={isActive ? 'page' : undefined}
-                    className={cn(
-                      'relative flex h-full items-center text-body text-foreground',
-                      isActive && 'font-bold text-price',
-                    )}
+          <div className="mt-6 flex items-center justify-end gap-4.5 self-start">
+            <SearchInput
+              initialQuery={searchQuery}
+              onSearch={onSearch}
+              onOpenChange={setSearchOpen}
+            />
+
+            <Button
+              asChild
+              variant="ghost"
+              size="icon"
+              className="relative size-8 text-foreground hover:bg-transparent"
+            >
+              <Link to="/carrinho" aria-label={cartLabel(cartCount)}>
+                <ShoppingCartIcon className="size-5.5" />
+                {cartCount > 0 ? (
+                  <Badge
+                    variant="count"
+                    aria-hidden="true"
+                    className="absolute top-1 -right-1 text-tiny"
                   >
-                    {item.label}
-                    {isActive ? (
-                      <span
-                        aria-hidden="true"
-                        className="absolute inset-x-0 -bottom-px h-[3px] bg-primary"
-                      />
-                    ) : null}
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </nav>
-
-        <div className="mt-6 flex items-center justify-end gap-4.5 self-start">
-          <SearchInput
-            initialQuery={searchQuery}
-            onSearch={onSearch}
-            onOpenChange={setSearchOpen}
-          />
-
-          <Button
-            asChild
-            variant="ghost"
-            size="icon"
-            className="relative size-8 text-foreground hover:bg-transparent"
-          >
-            <Link to="/carrinho" aria-label={cartLabel(cartCount)}>
-              <ShoppingCartIcon className="size-5.5" />
-              {cartCount > 0 ? (
-                <Badge
-                  variant="count"
-                  aria-hidden="true"
-                  className="absolute top-1 -right-1 text-tiny"
-                >
-                  {cartCount > 99 ? '99+' : cartCount}
-                </Badge>
-              ) : null}
-            </Link>
-          </Button>
-
-          {authStatus === 'loading' ? (
-            <Skeleton className="ml-3.25 h-9 w-25 rounded-mobile lg:rounded-lg" />
-          ) : authStatus === 'authenticated' && user ? (
-            <UserMenu user={user} onSignOut={onSignOut} className="ml-3.25" />
-          ) : (
-            <Button asChild className="ml-3.25 h-9 px-2.5 text-base">
-              <Link to="/entrar" search={redirectSearch}>
-                <LogInIcon />
-                Entrar
+                    {cartCount > 99 ? '99+' : cartCount}
+                  </Badge>
+                ) : null}
               </Link>
             </Button>
-          )}
+
+            {authStatus === 'loading' ? (
+              <Skeleton className="ml-3.25 h-9 w-25 rounded-mobile lg:rounded-lg" />
+            ) : authStatus === 'authenticated' && user ? (
+              <UserMenu user={user} onSignOut={onSignOut} className="ml-3.25" />
+            ) : (
+              <Button asChild className="ml-3.25 h-9 px-2.5 text-base">
+                <Link to="/entrar" search={redirectSearch}>
+                  <LogInIcon />
+                  Entrar
+                </Link>
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     </header>
