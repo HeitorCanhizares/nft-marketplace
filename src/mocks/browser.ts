@@ -3,6 +3,8 @@ import { setupWorker } from 'msw/browser'
 
 import { createMockWalletProvider } from './wallet/provider'
 import { ensureSeeded } from './db/seed'
+import { mergeGuestCart, userCartId } from './db/cartMerge'
+import { multiplyEth, ethToUnits, unitsToEth } from './db/money'
 import { hashPassword, verifyPassword } from './db/password'
 import {
   cartsStore,
@@ -53,6 +55,15 @@ export interface KurioMockTestApi {
     hashPassword: typeof hashPassword
     verifyPassword: typeof verifyPassword
   }
+  money: {
+    ethToUnits: typeof ethToUnits
+    unitsToEth: typeof unitsToEth
+    multiplyEth: typeof multiplyEth
+  }
+  cartMerge: {
+    mergeGuestCart: typeof mergeGuestCart
+    userCartId: typeof userCartId
+  }
   msw: {
     worker: typeof worker
     http: typeof http
@@ -98,6 +109,8 @@ export async function startMocking(): Promise<void> {
         cartsStore,
       },
       password: { hashPassword, verifyPassword },
+      money: { ethToUnits, unitsToEth, multiplyEth },
+      cartMerge: { mergeGuestCart, userCartId },
       msw: { worker, http, HttpResponse, ws },
     }
   }
