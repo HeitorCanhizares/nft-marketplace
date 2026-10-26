@@ -23,6 +23,10 @@ type HeaderProps = {
   className?: string
 }
 
+// O Link marca aria-current sozinho por prefixo ("/" casaria com todas as rotas e o hash seria
+// ignorado); aqui só conta a rota exata. Quem decide o item ativo é o isActive do NAV_ITEMS.
+const NAV_ACTIVE_OPTIONS = { exact: true, includeSearch: false, includeHash: true }
+
 const AUTH_ROUTES = ['/entrar', '/cadastro']
 
 function cartLabel(cartCount: number) {
@@ -51,7 +55,8 @@ export function Header({
         <Link
           to="/"
           aria-label="Kurio, página inicial"
-          className="justify-self-start text-sm font-bold tracking-[0.07em] text-foreground"
+          activeOptions={NAV_ACTIVE_OPTIONS}
+          className="mt-3.5 justify-self-start text-sm font-bold tracking-[0.07em] text-foreground"
         >
           KURIO
         </Link>
@@ -74,6 +79,7 @@ export function Header({
                   <Link
                     to={item.to}
                     hash={item.hash}
+                    activeOptions={NAV_ACTIVE_OPTIONS}
                     aria-current={isActive ? 'page' : undefined}
                     className={cn(
                       'relative flex h-full items-center text-body text-foreground',
@@ -94,7 +100,7 @@ export function Header({
           </ul>
         </nav>
 
-        <div className="flex items-center justify-end gap-4.5">
+        <div className="mt-6 flex items-center justify-end gap-4.5 self-start">
           <SearchInput
             initialQuery={searchQuery}
             onSearch={onSearch}
@@ -113,7 +119,7 @@ export function Header({
                 <Badge
                   variant="count"
                   aria-hidden="true"
-                  className="absolute -top-1 -right-1 text-tiny"
+                  className="absolute top-1 -right-1 text-tiny"
                 >
                   {cartCount > 99 ? '99+' : cartCount}
                 </Badge>
@@ -122,11 +128,11 @@ export function Header({
           </Button>
 
           {authStatus === 'loading' ? (
-            <Skeleton className="h-9 w-25 rounded-mobile lg:rounded-lg" />
+            <Skeleton className="ml-3.25 h-9 w-25 rounded-mobile lg:rounded-lg" />
           ) : authStatus === 'authenticated' && user ? (
-            <UserMenu user={user} onSignOut={onSignOut} />
+            <UserMenu user={user} onSignOut={onSignOut} className="ml-3.25" />
           ) : (
-            <Button asChild className="h-9">
+            <Button asChild className="ml-3.25 h-9 px-2.5 text-base">
               <Link to="/entrar" search={redirectSearch}>
                 <LogInIcon />
                 Entrar
