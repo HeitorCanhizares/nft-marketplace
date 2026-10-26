@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw'
+import { http, HttpResponse, ws } from 'msw'
 import { setupWorker } from 'msw/browser'
 
 import { createMockWalletProvider } from './wallet/provider'
@@ -56,6 +56,7 @@ export interface KurioMockTestApi {
     worker: typeof worker
     http: typeof http
     HttpResponse: typeof HttpResponse
+    ws: typeof ws
   }
 }
 
@@ -96,7 +97,7 @@ export async function startMocking(): Promise<void> {
         cartsStore,
       },
       password: { hashPassword, verifyPassword },
-      msw: { worker, http, HttpResponse },
+      msw: { worker, http, HttpResponse, ws },
     }
   }
 
