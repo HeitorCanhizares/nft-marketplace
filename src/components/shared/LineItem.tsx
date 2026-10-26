@@ -171,7 +171,7 @@ export function LineItem({
   if (variant === 'cart-row') {
     return (
       <tr className="bg-card">
-        <td className="rounded-l-card p-3">
+        <td className="py-0 pr-3 pl-0">
           <div className="flex items-center gap-4">
             <LineThumb item={item} className="size-[70px] overflow-hidden rounded-media" />
             <div className="flex min-w-0 flex-col gap-1">
@@ -184,31 +184,35 @@ export function LineItem({
             </div>
           </div>
         </td>
-        <td className="p-3">
+        <td className="px-3 py-0">
           <p className="font-bold text-primary">{formatEth(item.unitPrice)}</p>
         </td>
-        <td className="p-3">
+        <td className="px-3 py-0">
           <LineQuantity item={item} onQuantityChange={onQuantityChange} />
         </td>
-        <td className="p-3">{total}</td>
-        <td className="rounded-r-card p-3">
-          <LineRemove item={item} onRemove={onRemove} />
+        <td className="px-3 py-0">{total}</td>
+        <td className="py-0 pr-3 pl-3">
+          <LineRemove item={item} className="bg-transparent" onRemove={onRemove} />
         </td>
       </tr>
     )
   }
 
   return (
-    <li className="relative flex gap-3 rounded-card bg-card p-3">
-      <LineThumb item={item} className="size-[70px] overflow-hidden rounded-media" />
-      <div className="flex min-w-0 flex-1 flex-col gap-1 pr-10">
+    <li className="relative flex min-h-[94px] overflow-hidden rounded-card bg-card">
+      <LineThumb item={item} className="w-[94px] self-stretch overflow-hidden" />
+      <div className="flex min-w-0 flex-1 flex-col gap-1 p-3 pr-12">
         <LineName item={item} />
         <p className="text-caption-md text-muted-foreground">Edição: {item.edition.label}</p>
         <LineNotices item={item} priceChange={priceChange} onAdjust={onAdjust} />
-        <div className="mt-1 text-base">{total}</div>
-        <LineQuantity item={item} className="mt-1" onQuantityChange={onQuantityChange} />
+        <div className="mt-auto text-base">{total}</div>
       </div>
-      <LineRemove item={item} className="absolute top-2 right-2" onRemove={onRemove} />
+      <LineQuantity
+        item={item}
+        className="absolute right-3 bottom-3"
+        onQuantityChange={onQuantityChange}
+      />
+      <LineRemove item={item} className="absolute top-1 right-1" onRemove={onRemove} />
     </li>
   )
 }

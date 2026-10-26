@@ -48,10 +48,10 @@ export function LineItemList({
   }
 
   return (
-    <table className="w-full border-separate border-spacing-y-2 text-left text-body">
+    <table className="w-full border-separate border-spacing-y-3 text-left text-body">
       <caption className="sr-only">Itens do carrinho</caption>
       <thead>
-        <tr className="text-caption-md text-muted-foreground">
+        <tr className="text-body text-foreground">
           <th scope="col" className="border-b border-border pb-2 font-normal">
             NFTs
           </th>

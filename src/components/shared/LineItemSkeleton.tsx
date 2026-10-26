@@ -10,7 +10,7 @@ export function LineItemSkeleton({ variant }: LineItemSkeletonProps) {
   if (variant === 'cart-row') {
     return (
       <tr aria-hidden="true" className="bg-card">
-        <td className="rounded-l-card p-3">
+        <td className="py-0 pr-3 pl-0">
           <div className="flex items-center gap-4">
             <Skeleton className="size-[70px] shrink-0 rounded-media" />
             <div className="flex flex-col gap-2">
@@ -19,16 +19,16 @@ export function LineItemSkeleton({ variant }: LineItemSkeletonProps) {
             </div>
           </div>
         </td>
-        <td className="p-3">
+        <td className="px-3 py-0">
           <Skeleton className="h-4 w-20" />
         </td>
-        <td className="p-3">
+        <td className="px-3 py-0">
           <Skeleton className="h-7 w-24" />
         </td>
-        <td className="p-3">
+        <td className="px-3 py-0">
           <Skeleton className="h-4 w-20" />
         </td>
-        <td className="rounded-r-card p-3">
+        <td className="py-0 pr-3 pl-3">
           <Skeleton className="size-11 rounded-full" />
         </td>
       </tr>
