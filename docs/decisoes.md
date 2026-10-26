@@ -183,6 +183,10 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - **UserMenu:** a inicial do avatar vira decoração via CSS; o nome acessível fica "Menu de <nome>".
 - Decisões técnicas do Opus: título do destaque do rodapé fica em 18 px (não há token de 17); o 04-033 exclui a regra `aria-hidden-focus` do axe com menus Radix abertos (falso positivo do `hideOthers`); Esc da busca só no campo (limitação do jsx-a11y) é aceito.
 
+### Ícones das redes sociais (2026-10-26)
+- O usuário pediu SVGs padrão da internet. Fonte: **Font Awesome Free 6.5.2** (marcas), via jsDelivr (`@fortawesome/fontawesome-free@6.5.2/svgs/brands`): `facebook-f`, `instagram`, `twitter`, `linkedin-in`, `youtube`, salvos como `facebook.svg`, `instagram.svg`, `twitter.svg`, `linkedin.svg`, `youtube.svg`.
+- **Licença CC BY 4.0:** exige atribuição. O comentário de licença dentro de cada SVG é mantido (arquivos copiados sem edição).
+
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
 - 00 Setup → 01 Design base → 02 Mock base → 03 App base → 04 Layout e estados → 05 Login/Cadastro → 06 Início → 07 Detalhes → 08 Carrinho → 09 Perfil → 10 Carteiras → 11 Pagamento → 12 Confirmação → 13 Final.
