@@ -29,3 +29,6 @@ Fazer a rota raiz usar o `AppShell` e registrar 404, erro e carregamento padrão
 ## Verificação (Sonnet)
 - `npm run format:check && npm run lint && npm run typecheck && npm run build` → exit 0; `npm run test:e2e` verde.
 - Capturas de `/` em 1440×900 e 414×896 comparadas com os topos de `desktop-inicio.png` e `mobile-inicio.png` (a barra inferior e o cabeçalho já aparecem; o conteúdo ainda é placeholder).
+
+## Nota do Opus (2026-10-26, achado na verificação do 04-031)
+O `pendingComponent` do `__root` só cobre o carregamento do próprio root. Para as rotas filhas, registrar `RoutePending` como **`defaultPendingComponent`** no `createRouter` (e, por coerência, `defaultNotFoundComponent` e `defaultErrorComponent`). Incluir também `viewport-fit=cover` no `<meta name="viewport">` do `index.html`, para o `env(safe-area-inset-bottom)` da `MobileTabBar` funcionar em iPhones com notch, e conferir que o `nav` oculto (Header ou MobileTabBar, conforme o breakpoint) não fica na árvore de acessibilidade.
