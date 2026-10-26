@@ -6,6 +6,7 @@ import { Toaster } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { useIsDesktop } from '@/hooks/useMediaQuery'
 import { useRouteChrome } from '@/hooks/useRouteChrome'
+import { usePendingExecutors } from '@/hooks/usePendingExecutors'
 import { useRouteFocus } from '@/hooks/useRouteFocus'
 import { useSessionRenewal } from '@/hooks/useSessionRenewal'
 import { useSignOut } from '@/hooks/useSignOut'
@@ -19,6 +20,7 @@ const TOAST_BOTTOM = 24
 
 export function AppShell() {
   useRouteFocus()
+  usePendingExecutors()
 
   const { status, user } = useAuth()
   const renewal = useSessionRenewal()
