@@ -187,6 +187,12 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - O usuário pediu SVGs padrão da internet. Fonte: **Font Awesome Free 6.5.2** (marcas), via jsDelivr (`@fortawesome/fontawesome-free@6.5.2/svgs/brands`): `facebook-f`, `instagram`, `twitter`, `linkedin-in`, `youtube`, salvos como `facebook.svg`, `instagram.svg`, `twitter.svg`, `linkedin.svg`, `youtube.svg`.
 - **Licença CC BY 4.0:** exige atribuição. O comentário de licença dentro de cada SVG é mantido (arquivos copiados sem edição).
 
+### Fase 04 concluída (2026-10-26)
+- **Aprovada pelo usuário**; tag **`fase-04-layout-estados`**. Clone limpo: 151 testes do Playwright passando (13 pulados por projeto); LHCI mobile: performance 84–86, acessibilidade 100, boas práticas 100, SEO 91, CLS 0, LCP ~3,05 s.
+- Token novo **`--text-subtitle: 17px`** para o título dos destaques do rodapé, igual ao Figma (decisão do usuário).
+- Desvios aceitos em relação ao Figma: menu do cabeçalho centralizado (24 px à direita do Figma); recorte da barra mobile simétrico; ponto sob o item ativo da barra mobile; ícones sociais do Font Awesome.
+- Pendência de performance (LCP subiu ~0,25 s com o `AppShell`) somada à da fase 13.
+
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
 - 00 Setup → 01 Design base → 02 Mock base → 03 App base → 04 Layout e estados → 05 Login/Cadastro → 06 Início → 07 Detalhes → 08 Carrinho → 09 Perfil → 10 Carteiras → 11 Pagamento → 12 Confirmação → 13 Final.

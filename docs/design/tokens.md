@@ -37,6 +37,7 @@ Gradiente do mobile (`--gradient-primary`, utilitário `bg-gradient-primary`): `
 
 - Família: **monoespaçada em toda a interface**: **Roboto Mono**, instalada via `@fontsource-variable/roboto-mono` 5.3.0 (bloco 01-002). A confirmação no Figma continua pendente (A8 em [decisoes.md](../decisoes.md)).
 - Títulos de destaque (hero "SEJA DONO DO FUTURO DA ARTE DIGITAL", "NFT EM DESTAQUE"): caixa alta, peso bold.
+- `--text-subtitle: 17px` (fase 04): título dos destaques do rodapé, medido no Figma.
 - Escala tipográfica implementada de **9 a 43 px** (bloco 01-003, valores aprovados pelo usuário); `--radius` base de **4 px**. Confirmar no Figma quando possível.
 - Escalas exatas de tamanho e altura de linha: confirmar no Figma. Até lá, medir nas capturas `design/telas/*` (as capturas de 1440px e 414px estão em escala 1:1, exceto as listadas em [telas/README.md](telas/README.md)).
 
