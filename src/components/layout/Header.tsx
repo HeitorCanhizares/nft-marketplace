@@ -47,7 +47,10 @@ export function Header({
   const location = useLocation()
   const [searchOpen, setSearchOpen] = useState(false)
   const pathname = location.pathname
-  const redirectSearch = AUTH_ROUTES.includes(pathname) ? undefined : { redirect: location.href }
+  // A chave `redirect` vai sempre na busca (validateSearch de /entrar devolve a chave, mesmo `undefined`).
+  const redirectSearch = {
+    redirect: AUTH_ROUTES.includes(pathname) ? undefined : location.href,
+  }
 
   return (
     <header className={className}>

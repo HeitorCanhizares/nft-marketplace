@@ -1,15 +1,17 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-// Placeholder: a fase 05 troca pelo SignIn e troca este validateSearch pelo schema zod.
+import { requireGuest } from '@/app/routeGuards'
+import { validateAuthSearch } from '@/lib/redirect'
+import { SignIn } from '@/pages/SignIn/SignIn'
+
 export const Route = createFileRoute('/entrar')({
   staticData: { title: 'Entrar' },
-  validateSearch: (search: Record<string, unknown>): { redirect?: string } => {
-    const redirect = search.redirect
-    // `redirect: undefined` explícito: o roteador mescla o resultado sobre a busca bruta, então `{}` deixaria `//host` vazar para useSearch.
-    if (typeof redirect === 'string' && redirect.startsWith('/') && !redirect.startsWith('//')) {
-      return { redirect }
-    }
-    return { redirect: undefined }
-  },
-  component: () => <h1 className="container-page py-8 text-heading font-bold">Entrar</h1>,
+  validateSearch: validateAuthSearch,
+  beforeLoad: requireGuest,
+  component: EntrarRoute,
 })
+
+function EntrarRoute() {
+  const { redirect } = Route.useSearch()
+  return <SignIn redirect={redirect} />
+}
