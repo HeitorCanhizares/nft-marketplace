@@ -3,6 +3,9 @@
 O app usa o cliente oficial `socket.io-client`. Não existe servidor: o MSW intercepta a conexão WebSocket e o `@mswjs/socket.io-binding` (dependência aprovada em A7) traduz o protocolo do Socket.IO.
 
 - O cliente conecta com `transports: ['websocket']` (o MSW intercepta WebSocket, não long-polling).
+- **Armadilha (fase 02):** no bundle de navegador do MSW 2.15, `ws.link('ws://*/…')` não casa a URL real do socket.io. Usar `ws.link('*')` e filtrar pelo caminho `/socket.io/` dentro do handler. Testes em Node usam outro build do MSW e podem dar falso positivo; validar o tempo real **no navegador** (Playwright).
+- **Ping:** o `@mswjs/socket.io-binding` não envia ping; o servidor simulado envia um próprio **a cada 20 s** para manter a conexão viva.
+- **Queda simulada (`dropConnections`):** durante a janela de recusa, a conexão nova é **segurada até o fim da janela**, e não fechada. Fechá-la deixava o `socket.io-client` parado, porque ele só reagenda a reconexão quando vê um `error` antes do `open`.
 - URL: `VITE_SOCKET_URL` (padrão: mesma origem, caminho `/socket.io`).
 - O handshake envia o token da sessão quando houver.
 - Reconexão automática do Socket.IO ligada. Ao reconectar, o front **invalida** as queries afetadas (pode ter perdido eventos).

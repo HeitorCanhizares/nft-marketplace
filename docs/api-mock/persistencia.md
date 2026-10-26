@@ -22,7 +22,7 @@ Só o código em `src/mocks/` acessa. O app nunca lê este banco direto: ele con
 | `reviews` | Avaliações | `id`, índice `nftId` |
 | `meta` | Versão do seed | `key` |
 
-- Na primeira execução (ou com `VITE_MOCK_SEED_RESET=true`, ou se a versão do seed mudou), o banco é recriado a partir de `src/mocks/seed/`.
+- Na primeira execução (ou com `VITE_MOCK_SEED_RESET=true`, uma vez por sessão da aba, ou se a versão do seed mudou), o banco é recriado a partir de `src/mocks/seed/`.
 - O seed inclui usuários de teste com **credenciais fictícias**. O seed (`src/mocks/seed/`) guarda **só o hash**. A senha em texto existe em **um único lugar**, `tests/e2e/fixtures.ts`, porque os testes precisam fazer login (aprovado pelo usuário em 2026-10-25). Nunca na documentação nem na interface.
 - `orders` guarda o **snapshot** do pedido; nenhum handler o altera depois de criado, exceto `status`, `txHash`, `explorerUrl` e `declineReason`.
 - Alterações confirmadas (perfil, senha, avatar, carteiras, favoritos, carrinho) ficam no IndexedDB e **sobrevivem a refresh**.

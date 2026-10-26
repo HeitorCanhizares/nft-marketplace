@@ -138,6 +138,7 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - Pendências herdadas:
   - **Fase 02:** confirmar que o modo `test` carrega o `.env.test`; decidir se o tempo real fica desligado nos testes.
   - **Fase 13:** tratar as 16 vulnerabilidades do `npm audit` trazidas pelo `@lhci/cli` (ferramenta de desenvolvimento).
+  - **Fase 13:** performance mobile caiu de 99 para **86** na fase 02 (TBT ~440 ms, custo do seed e do MSW na inicialização). Sugestão do Sonnet: semear de forma preguiçosa e fora da thread principal.
 
 ### Fase 01 concluída (2026-10-25)
 - Visual **aprovado pelo usuário**; tag **`fase-01-design-base`** no commit `aa48d78`.
@@ -150,6 +151,11 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - **Seed com 283 NFTs**, imagens vindas do Figma, contagens escaladas a partir do Figma: Arte digital 39, Fotografia 14, Música 77, Arte 3D 46, Colecionáveis 27, Generativa 20, Jogos 23, Assinaturas 16, Utilidade 21; redes Ethereum 119, Polygon 78, Solana 86.
 - Nos testes, o **tempo real fica ligado, sem oscilação aleatória** de preço e estoque (desligada quando `MODE === 'test'`, sem variável nova).
 - Blocos da fase 02 aprovados com os pontos propostos pelo Sonnet: tipos `Review`, `Promo`, `Post` e `HomeResponse` com campos mínimos (bloco 02-001); endpoint técnico **`GET /api/health`**; senhas fictícias de teste em texto só em `tests/e2e/fixtures.ts`; imagens no formato do Figma (conversão para WebP na fase 13).
+
+### Fase 02 concluída (2026-10-25)
+- **Aprovada pelo usuário**; tag **`fase-02-mock-base`**. 64 testes do Playwright passando em desktop e mobile.
+- Aprovado também: o servidor de tempo real envia **ping próprio a cada 20 s** (o binding do Socket.IO não envia).
+- Pendência de performance (86 no mobile) registrada para a fase 13.
 
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).

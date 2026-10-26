@@ -21,7 +21,7 @@ Definidas em `.env` / `.env.development` / `.env.test`. Todas com prefixo `VITE_
 | `VITE_MOCK_REALTIME` | `enabled` | Liga os eventos simulados de tempo real |
 | `VITE_MOCK_SCENARIOS` | vazio | Lista de cenários forçados, separados por vírgula (tabela abaixo) |
 | `VITE_SOCKET_URL` | vazio (mesma origem, caminho `/socket.io`) | URL do Socket.IO usada pelo cliente (`services/realtime`, fase 03). Opcional; não é variável do mock. |
-| `VITE_MOCK_SEED_RESET` | `false` | Apaga o banco do mock e recria a partir do seed ao iniciar |
+| `VITE_MOCK_SEED_RESET` | `false` | Apaga o banco do mock e recria a partir do seed **uma vez por sessão da aba** (refresh mantém os dados) |
 
 Falhas aleatórias (`ERROR_RATE`, `NETWORK_ERROR_RATE`) **nunca** atingem `GET /auth/session` na inicialização, para o app sempre conseguir abrir. Em `.env.test` todas as taxas aleatórias são `0`: os testes usam só cenários forçados, para serem determinísticos.
 
