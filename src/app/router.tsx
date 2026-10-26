@@ -1,5 +1,6 @@
 import { createRouter } from '@tanstack/react-router'
 
+import type { RouterContext } from '@/app/routerContext'
 import { RouteError, RouteNotFound, RoutePending } from '@/components/layout/RouteFallbacks'
 import { routeTree } from '@/routeTree.gen'
 
@@ -11,6 +12,8 @@ export const router = createRouter({
   defaultPendingComponent: RoutePending,
   // Voltar/avançar do navegador restaura a rolagem (pergunta 14 aprovada).
   scrollRestoration: true,
+  // O valor real vem do AppRouter (RouterProvider context); a guarda nunca roda antes dele.
+  context: { auth: undefined as unknown as RouterContext['auth'] },
 })
 
 declare module '@tanstack/history' {
