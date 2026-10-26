@@ -127,6 +127,26 @@ const LIMITED_SPECS = EDITION_SPECS.filter((spec) => spec.supply !== null)
 
 const GENERATED_COUNT = TOTAL_NFTS - FIGMA_NFTS.length
 
+const EMERALD_APE_ID = 'emerald-ape-042'
+
+// Sobrescreve só o Emerald Ape #042 com os dados do Figma (imagens, edições e textos). O preço vem da edição 1/50.
+function applyEmeraldApe(nft: NftDetail): void {
+  const id = EMERALD_APE_ID
+  const editions: Edition[] = [
+    { id: `${id}-1-1`, label: '1/1', supply: 1, available: 1, price: '1.49' },
+    { id: `${id}-1-10`, label: '1/10', supply: 10, available: 6, price: '1.39' },
+    { id: `${id}-1-50`, label: '1/50', supply: 50, available: 20, price: '1.19' },
+    { id: `${id}-aberta`, label: 'ABERTA', supply: null, available: null, price: '1.29' },
+  ]
+  nft.images = BASE_IMAGES.map((image) => ({ ...image }))
+  nft.image = { ...nft.images[0] }
+  nft.price = '1.19'
+  nft.editions = editions
+  nft.attributes = ['Óculos', 'Esmeralda', 'Raro']
+  nft.description =
+    'Um colecionável digital finalizado à mão da coleção Kurio Editions, verificado na Ethereum, com arte desbloqueável e acesso para colecionadores.'
+}
+
 type Plan = {
   name: string
   number: number
@@ -330,7 +350,22 @@ function buildEntries(): SeedEntry[] {
     })
   }
 
+  // Emerald Ape #042 fica em "Arte digital": troca a coleção com o primeiro gerado dessa coleção,
+  // para as contagens por coleção não mudarem.
+  const emeraldPlan = plans[0]
+  const arteDigitalPartner = plans.find(
+    (plan, index) => index >= FIGMA_NFTS.length && plan.collection.id === 'arte-digital',
+  )
+  if (arteDigitalPartner !== undefined && emeraldPlan.collection.id !== 'arte-digital') {
+    const emeraldCollection = emeraldPlan.collection
+    emeraldPlan.collection = arteDigitalPartner.collection
+    arteDigitalPartner.collection = emeraldCollection
+  }
+
   const entries = plans.map((plan) => buildNft(rand, plan))
+  for (const entry of entries) {
+    if (entry.nft.id === EMERALD_APE_ID) applyEmeraldApe(entry.nft)
+  }
   // Mais recentes primeiro; o sort é estável, então empates mantêm a ordem de geração.
   return entries.sort((a, b) => a.offset - b.offset)
 }
