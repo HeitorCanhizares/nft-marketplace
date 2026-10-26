@@ -225,6 +225,12 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - `POST /cart/items` implementado já na fase 06 (antes previsto para a 07).
 - Pendência de performance/LCP da fase 13 aumenta: a Início passa a carregar hero, 9 imagens e fontes.
 
+### Fase 06 concluída (2026-10-26)
+- **Aprovada pelo usuário**; tag **`fase-06-inicio`**. Suíte completa (uma vez): 553 passaram, 0 falhas. Baseline visual da Início desktop e mobile aprovada.
+- Desvios aceitos: destaque 1 px mais alto; demais diferenças ≤ 3 px; bolinhas do hero com a ativa preenchida.
+- Teste de logout passou a aceitar o carrinho de visitante vazio (o app refaz `GET /cart` após sair).
+- Casos de borda da Início (estados, tempo real, fora de ordem etc.) adiados para a fase 13, listados no topo dos blocos 06-059 a 06-068.
+
 ### Modo enxuto de testes (2026-10-26)
 O usuário pediu menos testes para ganhar velocidade e gastar menos tokens. A partir do fim da fase 06:
 - **Testes E2E por fase:** só o **caminho principal** de cada subitem. **Casos de borda** (cenários de `cenarios.md`: falhas, 4xx/5xx, fora de ordem, sessão expirada, conflitos, preço/estoque mudando, timeout, recusa etc.) ficam **todos para a fase 13**, já que o comportamento está documentado.
