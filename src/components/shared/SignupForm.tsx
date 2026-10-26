@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState, type FormEvent } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useWatch } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Link } from '@tanstack/react-router'
 import { CircleAlertIcon, Loader2Icon } from 'lucide-react'
@@ -48,7 +48,8 @@ export function SignupForm({ variant, onSubmit, redirect, className }: SignupFor
     mode: 'onTouched',
     defaultValues: { username: '', email: '', password: '', confirmPassword: '' },
   })
-  const { register, watch, setError, clearErrors, getFieldState, trigger, getValues } = form
+  const { register, control, setError, clearErrors, getFieldState, trigger, getValues, setFocus } =
+    form
   const { errors } = form.formState
 
   const usernameAvailability = useAvailability('username')
@@ -57,11 +58,14 @@ export function SignupForm({ variant, onSubmit, redirect, className }: SignupFor
   const [submitting, setSubmitting] = useState(false)
   const [formMessage, setFormMessage] = useState<FormMessage | null>(null)
   const [takenEmail, setTakenEmail] = useState<string | null>(null)
+  // Erros do servidor ficam fora do react-hook-form: ele os apaga ao sair do campo, e a mensagem
+  // (com o link "Entrar com este e-mail" embaixo) sumiria e voltaria no meio do clique.
+  const [serverErrors, setServerErrors] = useState<Partial<Record<ServerFieldKey, string>>>({})
   // Ref além do estado: duplo clique no mesmo frame não passa pelo re-render.
   const submittingRef = useRef(false)
   const lastValuesRef = useRef<SignupFormValues | null>(null)
 
-  const password = watch('password')
+  const password = useWatch({ control, name: 'password' })
 
   // Traduz a disponibilidade em erro de campo; só mexe nos erros do tipo "availability".
   const syncAvailability = useCallback(
@@ -95,18 +99,26 @@ export function SignupForm({ variant, onSubmit, redirect, className }: SignupFor
     })
   }
 
+  function clearServerError(field: ServerFieldKey) {
+    setServerErrors((current) =>
+      current[field] === undefined ? current : { ...current, [field]: undefined },
+    )
+  }
+
   function markTyping(field: AvailabilityFieldKey, availability: Availability) {
     availability.cancel()
     setFormMessage(null)
+    clearServerError(field)
     if (field === 'email') setTakenEmail(null)
   }
 
   function applyServerFields(fields: Record<string, string>) {
     const knownKeys = Object.keys(fields).filter(isServerFieldKey)
-    knownKeys.forEach((key, index) => {
-      setError(key, { type: 'server', message: fields[key] }, { shouldFocus: index === 0 })
-    })
-    return knownKeys.length > 0
+    if (knownKeys.length === 0) return false
+
+    setServerErrors(Object.fromEntries(knownKeys.map((key) => [key, fields[key]])))
+    setFocus(knownKeys[0])
+    return true
   }
 
   function handleError(error: unknown, values: SignupFormValues) {
@@ -121,7 +133,8 @@ export function SignupForm({ variant, onSubmit, redirect, className }: SignupFor
         const key: 'email' | 'username' = error.code === 'EMAIL_TAKEN' ? 'email' : 'username'
         const handled = applyServerFields(error.fields ?? {})
         if (!handled) {
-          setError(key, { type: 'server', message: TAKEN_MESSAGE[key] }, { shouldFocus: true })
+          setServerErrors({ [key]: TAKEN_MESSAGE[key] })
+          setFocus(key)
         }
         if (key === 'email') setTakenEmail(values.email)
         return
@@ -154,6 +167,7 @@ export function SignupForm({ variant, onSubmit, redirect, className }: SignupFor
     setSubmitting(true)
     setFormMessage(null)
     setTakenEmail(null)
+    setServerErrors({})
     lastValuesRef.current = values
 
     try {
@@ -183,7 +197,12 @@ export function SignupForm({ variant, onSubmit, redirect, className }: SignupFor
     onBlur: () => checkOnBlur('email', emailAvailability),
     onChange: () => markTyping('email', emailAvailability),
   })
-  const passwordField = register('password', { onChange: () => setFormMessage(null) })
+  const passwordField = register('password', {
+    onChange: () => {
+      setFormMessage(null)
+      clearServerError('password')
+    },
+  })
   const confirmField = register('confirmPassword', { onChange: () => setFormMessage(null) })
 
   const buttonLabel = variant === 'desktop' ? 'Criar conta' : 'Criar perfil'
@@ -212,7 +231,7 @@ export function SignupForm({ variant, onSubmit, redirect, className }: SignupFor
           label="Nome de usuário"
           hideLabel
           required
-          error={errors.username?.message}
+          error={errors.username?.message ?? serverErrors.username}
           adornment={
             usernameAvailability.status === 'checking' ? (
               <Loader2Icon aria-hidden="true" className="size-4 animate-spin text-tan" />
@@ -236,7 +255,7 @@ export function SignupForm({ variant, onSubmit, redirect, className }: SignupFor
           label="E-mail"
           hideLabel
           required
-          error={errors.email?.message}
+          error={errors.email?.message ?? serverErrors.email}
           adornment={
             emailAvailability.status === 'checking' ? (
               <Loader2Icon aria-hidden="true" className="size-4 animate-spin text-tan" />
@@ -273,7 +292,7 @@ export function SignupForm({ variant, onSubmit, redirect, className }: SignupFor
           label="Senha"
           hideLabel
           required
-          error={errors.password?.message}
+          error={errors.password?.message ?? serverErrors.password}
           description={<PasswordRequirements value={password} className="mt-2" />}
         >
           {(field) => (
