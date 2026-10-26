@@ -1,4 +1,5 @@
 import { HttpResponse } from 'msw'
+import type { ZodError } from 'zod'
 import type { ApiErrorBody, ApiErrorCode } from '../../types/api'
 
 export type ApiErrorOptions = {
@@ -68,6 +69,16 @@ export function apiError(code: ApiErrorCode, options: ApiErrorOptions = {}): Res
     },
   }
   return HttpResponse.json(body, { status: ERROR_STATUS[code] })
+}
+
+// Uma mensagem por campo: a primeira issue de cada path[0]; issue sem path vira "form".
+export function validationError(error: ZodError): Response {
+  const fields = new Map<string, string>()
+  for (const issue of error.issues) {
+    const key = issue.path.length > 0 ? String(issue.path[0]) : 'form'
+    if (!fields.has(key)) fields.set(key, issue.message)
+  }
+  return apiError('VALIDATION_ERROR', { fields: Object.fromEntries(fields) })
 }
 
 export function networkError(): Response {

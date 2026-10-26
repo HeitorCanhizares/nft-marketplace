@@ -15,13 +15,14 @@ import {
   usersStore,
   walletsStore,
 } from './db/stores'
+import { authHandlers } from './handlers/auth'
 import { healthHandlers } from './handlers/health'
 import { dropConnections, realtimeHandlers } from './realtime/server'
 import { startScheduler, triggerPriceChange, triggerStockChange } from './realtime/scheduler'
 import { isTestMode, mockConfig } from './scenarios/config'
 
 // Handlers de cada recurso da API entram aqui conforme os fluxos forem implementados (um arquivo por recurso em handlers/).
-const resourceHandlers: Parameters<typeof setupWorker>[0][] = [...healthHandlers]
+const resourceHandlers: Parameters<typeof setupWorker>[0][] = [...healthHandlers, ...authHandlers]
 
 const worker = setupWorker(...realtimeHandlers, ...resourceHandlers)
 
