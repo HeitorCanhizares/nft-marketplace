@@ -40,7 +40,9 @@ function handleCloseAutoFocus(event: Event) {
   target.focus()
 }
 
-// Moldura do modal de Login e Cadastro no desktop. Quem decide o destino ao fechar é a página.
+// Moldura do modal de Login e Cadastro no desktop. Ancorado pelo topo (160 px, como no Figma; menos em
+// viewport baixa, onde o modal rola por dentro): erros e requisitos crescem para baixo, sem mover o topo.
+// Quem decide o destino ao fechar é a página.
 export function AuthDialog({ title, onClose, children, className }: AuthDialogProps) {
   function handleOpenAutoFocus(event: Event) {
     rememberOpener()
@@ -66,7 +68,7 @@ export function AuthDialog({ title, onClose, children, className }: AuthDialogPr
         onOpenAutoFocus={handleOpenAutoFocus}
         onCloseAutoFocus={handleCloseAutoFocus}
         className={cn(
-          'max-h-[calc(100dvh-2rem)] min-h-[min(37.5rem,calc(100dvh-2rem))] w-125 max-w-125 gap-0 overflow-y-auto rounded-none border-b-10 p-0 sm:max-w-125 lg:rounded-none',
+          'top-[clamp(1rem,calc(100dvh-46rem),10rem)] max-h-[calc(100dvh-2rem)] min-h-[min(37.5rem,calc(100dvh-2rem))] w-125 max-w-125 translate-y-0 gap-0 overflow-y-auto rounded-none border-b-10 p-0 sm:max-w-125 lg:rounded-none',
           className,
         )}
       >

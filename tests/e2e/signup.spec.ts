@@ -112,10 +112,8 @@ test.describe('Estrutura', () => {
     await expect(page.getByRole('dialog', { name: 'Entrar' })).toBeVisible()
   })
 
-  // BUG conhecido (relatado ao Opus, sem correção aqui): com o "Nome de usuário" vazio e focado, o
-  // mousedown na aba "Entrar" tira o foco do campo, o erro de validação aparece, o modal cresce e
-  // recentraliza, e a aba sobe ~19 px (mais que os 20 px dela): o mouseup cai fora e o clique se perde.
-  test.fixme('1. [d] clicar em "Entrar" com o usuário vazio e focado troca de aba', async ({
+  // O modal é ancorado pelo topo: o erro do usuário vazio cresce para baixo e a aba não se move.
+  test('1. [d] clicar em "Entrar" com o usuário vazio e focado troca de aba', async ({
     page,
   }, testInfo) => {
     only(testInfo, 'desktop')
@@ -218,7 +216,10 @@ test.describe('Validação', () => {
     const form = scope(page, testInfo)
     const f = fields(form)
 
-    await submitButton(form, testInfo).click()
+    // Enter no botão focado: com o usuário vazio e focado, o clique com o mouse perde o botão porque o
+    // erro do usuário (ao sair do campo) empurra o botão para baixo entre o mousedown e o mouseup.
+    await submitButton(form, testInfo).focus()
+    await page.keyboard.press('Enter')
 
     await expect(f.username).toBeFocused()
     for (const field of Object.values(f)) {

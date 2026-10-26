@@ -85,8 +85,11 @@ test.describe('Estrutura', () => {
       await expect(item).toHaveAttribute('aria-disabled', 'true')
       await expect(item).not.toHaveAttribute('disabled', /.*/)
       // O Radix liga o balão ao gatilho (aria-describedby) só enquanto ele está aberto.
-      await item.focus()
-      await expect(item).toHaveAttribute('aria-describedby', /.+/)
+      await expect(async () => {
+        await item.blur()
+        await item.focus()
+        await expect(item).toHaveAttribute('aria-describedby', /.+/, { timeout: 1_000 })
+      }).toPass()
       const tipId = await item.getAttribute('aria-describedby')
       await expect(page.locator(`[id="${tipId}"]`)).toHaveText('Em breve')
 

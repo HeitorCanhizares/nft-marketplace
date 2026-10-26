@@ -206,6 +206,15 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - **16 px** entre os botões sociais em todas as telas (o Figma usa 12 px só no login desktop).
 - Modal de Login e de Cadastro **sem raio** nos dois (o Figma arredonda só o do Cadastro).
 
+### Fase 05 concluída (2026-10-26)
+- **Aprovada pelo usuário**, com 3 ajustes finais:
+  - Modal de Login/Cadastro **ancorado pelo topo** (no Figma ele começa a 160 px do topo da página); erros crescem para baixo e nada sai de baixo do mouse ao trocar de aba.
+  - Ação pendente **sem executor é descartada** após o login, sem erro.
+  - Mensagens separadas: e-mail vazio → "Informe um e-mail."; formato inválido → "Informe um e-mail válido.".
+- Clone limpo: 458 testes passando (110 pulados por projeto), LHCI mobile performance 83, acessibilidade 100, boas práticas 100, SEO 91, LCP ~3,36 s (piorou ~0,3 s; pendência da fase 13).
+- Baselines visuais de Login/Cadastro aprovadas (valem só no Windows, sufixo `-win32`).
+- Conhecido: o mock ainda não tem rotas de carrinho, favoritos e carteiras (fases 06–10).
+
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
 - 00 Setup → 01 Design base → 02 Mock base → 03 App base → 04 Layout e estados → 05 Login/Cadastro → 06 Início → 07 Detalhes → 08 Carrinho → 09 Perfil → 10 Carteiras → 11 Pagamento → 12 Confirmação → 13 Final.
