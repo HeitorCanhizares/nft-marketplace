@@ -3,6 +3,7 @@
 interface ImportMetaEnv {
   readonly VITE_API_MOCKING: 'enabled' | 'disabled'
   readonly VITE_API_BASE_URL: string
+  readonly VITE_SOCKET_URL: string
   readonly VITE_MOCK_LATENCY_MIN_MS: string
   readonly VITE_MOCK_LATENCY_MAX_MS: string
   readonly VITE_MOCK_ERROR_RATE: string
