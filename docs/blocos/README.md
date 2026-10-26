@@ -72,7 +72,7 @@ O Sonnet detalha **uma fase por vez** em blocos. Ao fim de cada fase há um **ch
 | 10 | **Carteiras** (+ handlers de carteiras) |
 | 11 | **Pagamento** (+ handlers de pedidos, revalidação, idempotência, conexão da carteira) |
 | 12 | **Confirmação** (+ ciclo de vida do pedido, tempo real e polling) |
-| 13 | **Final:** Lighthouse com metas, varredura de acessibilidade, suíte E2E completa em Chromium, Firefox e WebKit |
+| 13 | **Final:** testes de **casos de borda** de todos os fluxos (todos os cenários de `api-mock/cenarios.md`, adiados das fases 06–12 pelo modo enxuto),  Lighthouse com metas, varredura de acessibilidade, suíte E2E completa em Chromium, Firefox e WebKit |
 
 ### Toda fase de fluxo (05–12) termina com
 1. Handlers do MSW dos recursos que o fluxo usa, com os cenários de [cenarios.md](../api-mock/cenarios.md) correspondentes.

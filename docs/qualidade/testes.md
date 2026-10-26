@@ -10,6 +10,8 @@ Responsável: **Sonnet**. Cada bloco termina com testes passando; o Haiku não e
 - Cenário forçado por teste: decisão A6 (gravar no localStorage antes do `goto`).
 - Seletores: `getByRole`, `getByLabel`, `getByText`. **Sem seletores CSS ou `data-testid`**, a não ser quando não houver alternativa acessível. Isso também testa a acessibilidade.
 
+> **Modo enxuto (2026-10-26):** nas fases 06–12 cada fluxo testa só o caminho principal; os casos de borda da tabela abaixo e de `api-mock/cenarios.md` são escritos na **fase 13**. Ver `decisoes.md`.
+
 ## E2E (`tests/e2e/`)
 
 Um arquivo por fluxo. Além do caminho feliz, **um teste por cenário obrigatório** de [cenarios.md](../api-mock/cenarios.md):

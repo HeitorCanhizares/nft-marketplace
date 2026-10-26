@@ -225,6 +225,17 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - `POST /cart/items` implementado já na fase 06 (antes previsto para a 07).
 - Pendência de performance/LCP da fase 13 aumenta: a Início passa a carregar hero, 9 imagens e fontes.
 
+### Modo enxuto de testes (2026-10-26)
+O usuário pediu menos testes para ganhar velocidade e gastar menos tokens. A partir do fim da fase 06:
+- **Testes E2E por fase:** só o **caminho principal** de cada subitem. **Casos de borda** (cenários de `cenarios.md`: falhas, 4xx/5xx, fora de ordem, sessão expirada, conflitos, preço/estoque mudando, timeout, recusa etc.) ficam **todos para a fase 13**, já que o comportamento está documentado.
+- **Sem `--repeat-each`**; cada spec roda uma vez.
+- **Verificação do Sonnet:** por grupo, só lint, typecheck, build e o spec do grupo; a verificação visual contra o Figma é feita **uma vez por fase**, nos elementos principais, com uma captura lado a lado por tela (desktop e mobile).
+- **Suíte completa:** uma vez, no fechamento da fase.
+- **Clone limpo e Lighthouse:** só na fase 13.
+- **Baseline visual:** uma captura por tela (desktop e mobile), não por estado.
+- Blocos de teste menores: no máximo um spec por fluxo, mais o de acessibilidade (axe nas telas principais).
+- Grupos maiores de blocos para o Haiku.
+
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
 - 00 Setup → 01 Design base → 02 Mock base → 03 App base → 04 Layout e estados → 05 Login/Cadastro → 06 Início → 07 Detalhes → 08 Carrinho → 09 Perfil → 10 Carteiras → 11 Pagamento → 12 Confirmação → 13 Final.
