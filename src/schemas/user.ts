@@ -1,4 +1,5 @@
 import { z } from 'zod'
+import type { CartAdjustment } from '@/types/cart'
 import type { Session, User, Wallet, WalletsResponse } from '@/types/user'
 import {
   emailSchema,
@@ -7,6 +8,7 @@ import {
   walletAddressSchema,
   walletProviderSchema,
 } from '@/schemas/common'
+import { cartAdjustmentSchema } from '@/schemas/cart'
 
 export const userSchema: z.ZodType<User> = z.object({
   id: z.string(),
@@ -46,20 +48,22 @@ export const walletsResponseSchema: z.ZodType<WalletsResponse> = z.object({
   secondary: walletSchema.nullable(),
 })
 
-// Ajustes do carrinho mesclado no login (decisão A1). Formato da lista: textos prontos para exibir.
+// Login e cadastro devolvem o mesmo formato. details.adjustments: ajustes do carrinho mesclado (decisão A1).
 export const loginResponseSchema: z.ZodType<{
   user: User
   session: Session
-  details?: { adjustments?: string[] }
+  details?: { adjustments?: CartAdjustment[] }
 }> = z.object({
   user: userSchema,
   session: sessionSchema,
   details: z
     .object({
-      adjustments: z.array(z.string()).optional(),
+      adjustments: z.array(cartAdjustmentSchema).optional(),
     })
     .optional(),
 })
+
+export const registerResponseSchema = loginResponseSchema
 
 export const sessionResponseSchema: z.ZodType<{ user: User; expiresAt: string }> = z.object({
   user: userSchema,

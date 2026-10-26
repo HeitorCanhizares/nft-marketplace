@@ -19,6 +19,17 @@ export type Cart = {
   coupon?: { code: string }
 }
 
+// Ajuste do carrinho mesclado no login/cadastro (applied 0 = item removido).
+export type CartAdjustment = {
+  nftId: string
+  nftName: string
+  editionId: string
+  editionLabel: string
+  requested: number
+  applied: number
+  reason: 'stock'
+}
+
 export type Quote = {
   id: string
   expiresAt: string

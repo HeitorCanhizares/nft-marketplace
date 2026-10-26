@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import type { Cart, CartItem, Quote } from '@/types/cart'
+import type { Cart, CartAdjustment, CartItem, Quote } from '@/types/cart'
 import { ethAmountSchema, isoDateSchema, positiveIntSchema } from '@/schemas/common'
 import { nftSummarySchema } from '@/schemas/nft'
 
@@ -15,6 +15,17 @@ const cartItemShape = {
 }
 
 export const cartItemSchema: z.ZodType<CartItem> = z.object(cartItemShape)
+
+// Ajuste do carrinho no login/cadastro: estoque insuficiente (applied 0 = removido).
+export const cartAdjustmentSchema: z.ZodType<CartAdjustment> = z.object({
+  nftId: z.string(),
+  nftName: z.string(),
+  editionId: z.string(),
+  editionLabel: z.string(),
+  requested: positiveIntSchema,
+  applied: z.number().int().min(0),
+  reason: z.literal('stock'),
+})
 
 export const cartSchema: z.ZodType<Cart> = z.object({
   id: z.string(),
