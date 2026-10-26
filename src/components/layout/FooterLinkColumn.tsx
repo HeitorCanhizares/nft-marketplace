@@ -10,9 +10,9 @@ type FooterLinkColumnProps = {
 
 export function FooterLinkColumn({ column }: FooterLinkColumnProps) {
   return (
-    <nav aria-label={column.title} className="pt-7.5">
-      <h2 className="text-lg font-bold text-foreground">{column.title}</h2>
-      <ul className="mt-2 flex flex-col">
+    <nav aria-label={column.title}>
+      <h2 className="text-lg leading-8 font-bold text-foreground">{column.title}</h2>
+      <ul className="flex flex-col">
         {column.links.map((link) => (
           <li key={link.label} className="flex h-7.5 items-center">
             {link.disabled || !link.to ? (
