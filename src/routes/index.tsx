@@ -7,17 +7,14 @@ export const Route = createFileRoute('/')({
   validateSearch: (
     search: Record<string, unknown>,
   ): { q?: string; colecao?: string; favoritos?: 1 } => {
-    const result: { q?: string; colecao?: string; favoritos?: 1 } = {}
-    if (typeof search.q === 'string' && search.q.trim() !== '') {
-      result.q = search.q.trim()
+    // Chaves ausentes ficam `undefined` explícitas: o roteador mescla o resultado sobre a busca bruta, então omiti-las deixaria o valor inválido vazar para useSearch.
+    const q = typeof search.q === 'string' ? search.q.trim() : ''
+    const colecao = typeof search.colecao === 'string' ? search.colecao : ''
+    return {
+      q: q !== '' ? q : undefined,
+      colecao: colecao !== '' ? colecao : undefined,
+      favoritos: search.favoritos === 1 || search.favoritos === '1' ? 1 : undefined,
     }
-    if (typeof search.colecao === 'string' && search.colecao !== '') {
-      result.colecao = search.colecao
-    }
-    if (search.favoritos === 1 || search.favoritos === '1') {
-      result.favoritos = 1
-    }
-    return result
   },
   component: () => <h1>Kurio</h1>,
 })
