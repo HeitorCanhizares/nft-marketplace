@@ -66,7 +66,7 @@ O Sonnet detalha **uma fase por vez** em blocos. Ao fim de cada fase há um **ch
 | 04 | **Layout e estados:** `AppShell`, `Header` (incluindo `UserMenu`), `Footer`, `MobileTabBar`, `MobileTopBar`, `Breadcrumb`, `ProfileLayout`, `EmptyState`, `ErrorState`, skeletons |
 | 05 | **Login e Cadastro** (+ handlers de auth, expiração, logout, rotas protegidas) |
 | 06 | **Início** (+ handlers de home, NFTs, favoritos, `POST /cart/items`, `GET /cart` e contador do carrinho) — 71 blocos |
-| 07 | **Detalhes do NFT** (+ handlers de detalhe, relacionados, avaliações) |
+| 07 | **Detalhes do NFT** (+ handlers de detalhe, relacionados, avaliações) — 18 blocos |
 | 08 | **Carrinho** (+ handlers de carrinho, cupom, cotação, mescla do visitante) |
 | 09 | **Perfil** (+ handlers de perfil, avatar, senha, disponibilidade) |
 | 10 | **Carteiras** (+ handlers de carteiras) |

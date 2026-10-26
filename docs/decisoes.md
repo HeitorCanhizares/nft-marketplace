@@ -231,6 +231,11 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - Teste de logout passou a aceitar o carrinho de visitante vazio (o app refaz `GET /cart` após sair).
 - Casos de borda da Início (estados, tempo real, fora de ordem etc.) adiados para a fase 13, listados no topo dos blocos 06-059 a 06-068.
 
+### Fase 07 — blocos aprovados (2026-10-26)
+18 blocos em `docs/blocos/07-*` (modo enxuto). Decisões do usuário:
+- **Todas as unidades da edição já no carrinho:** "COMPRAR" continua ativo e só leva ao carrinho (sem adicionar); o botão de carrinho do mobile fica desabilitado; mensagem "Você já tem todas as unidades disponíveis no carrinho".
+- Demais propostas aprovadas: Emerald Ape #042 com 4 imagens e 4 edições fixas como no Figma (1/1 `1.49` estoque 1; 1/10 `1.39` estoque 6; 1/50 `1.19` estoque 20; ABERTA `1.29`), `SEED_VERSION` 3; relacionados da mesma coleção, sem o próprio NFT, até 10; avaliações 5 por página, mais recentes primeiro; teto de 99 unidades; selo "Atualizado" por 5 s; carrinho do mobile confirma só com ícone de check por 2 s e anúncio (sem toast); links reais de compartilhar (LinkedIn, Twitter, `mailto:`); título da aba com o nome do NFT e "NFT não encontrado" no 404 (via `loader` + `useRouteChrome`); "Sem avaliações" quando não há; textos das abas Rede/Contrato/Direitos corrigidos (o Figma os troca); toast de favoritar pode cobrir a `BuyBar` no mobile por alguns segundos (aceito); preço dos relacionados sem tempo real (fora do escopo).
+
 ### Modo enxuto de testes (2026-10-26)
 O usuário pediu menos testes para ganhar velocidade e gastar menos tokens. A partir do fim da fase 06:
 - **Testes E2E por fase:** só o **caminho principal** de cada subitem. **Casos de borda** (cenários de `cenarios.md`: falhas, 4xx/5xx, fora de ordem, sessão expirada, conflitos, preço/estoque mudando, timeout, recusa etc.) ficam **todos para a fase 13**, já que o comportamento está documentado.

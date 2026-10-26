@@ -217,9 +217,9 @@ A sessão expira após `VITE_MOCK_SESSION_TTL_SECONDS`. O login também **mescla
 | `GET /home` | — | `{ hero: NftSummary[], featured: NftSummary, promos: Promo[], posts: Post[] }` |
 | `GET /nfts` | `q, tab, collection, network, minPrice, maxPrice, sort, page, pageSize, favorites` | `Paginated<NftSummary> & { facets: { collections: {id,name,count}[], networks: {id,name,count}[], priceRange: {min,max} } }` |
 | `GET /nfts/:id` | — | `NftDetail` · `404 NOT_FOUND` |
-| `GET /nfts/:id/related` | — | `NftSummary[]` ("Mais desta coleção") |
-| `GET /nfts/:id/reviews` | `page` | `Paginated<Review>` |
-| `GET /nfts/recommendations` | — | `NftSummary[]` ("Colecionadores também viram") |
+| `GET /nfts/:id/related` | — | `NftSummary[]` ("Mais desta coleção"): mesma coleção, sem o próprio NFT, até 10, na ordem do seed |
+| `GET /nfts/:id/reviews` | `page` | `Paginated<Review>`: 5 por página (fixo), mais recentes primeiro; `page` inválida → `422` com `fields` |
+| `GET /nfts/recommendations` | — | `NftSummary[]` ("Colecionadores também viram"). **Registrar no MSW antes de `/nfts/:id`**, senão `:id` captura "recommendations". |
 
 Valores: `tab` = `all` \| `new` (últimos 30 dias) \| `trending` (mais vendidos e favoritados em 7 dias); `sort` = `recent` \| `price_asc` \| `price_desc` \| `top_rated` \| `most_favorited`. O mapeamento dos valores da URL em PT-BR para estes fica em `services/api/nfts.ts`.
 
