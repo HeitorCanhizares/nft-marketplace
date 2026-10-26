@@ -61,4 +61,4 @@ Regra para larguras intermediárias: o layout nunca pode gerar rolagem horizonta
 
 ## Ícones
 
-Ícones de linha, finos, na cor `primary` ou `foreground` (lupa, carrinho, coração, lixeira, olho, sair, perfil...). Usar **lucide-react** (confirmado pelo usuário), que já vem com o shadcn. Ícones de marca (Google, Facebook, redes sociais) são SVGs próprios em `src/assets/`.
+Ícones de linha, finos, na cor `primary` ou `foreground` (lupa, carrinho, coração, lixeira, olho, sair, perfil...). Usar **lucide-react** (confirmado pelo usuário), que já vem com o shadcn, **exceto** nos 6 ícones exportados do Figma, que são usados como SVG próprio em `src/assets/icons/` (decisão do usuário em 2026-10-26): `message` (e-mail), `x` (fechar), `arrow-down` (setas de select), `search` (busca), `user` (perfil, barra mobile) e `shop` (carrinho, barra mobile). Os SVGs originais estão no export do Figma (`Desktop /` e `Mobile /`). Ícones de marca (Google, Facebook, redes sociais) são SVGs próprios em `src/assets/`.

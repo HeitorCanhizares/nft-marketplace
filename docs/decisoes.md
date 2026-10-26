@@ -164,6 +164,9 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 
 ### Workflow (2026-10-26)
 - O usuário passa a falar **só com o Opus**; o Opus cria Sonnet e Haiku como **subagentes**. Ver [README.md](README.md#papéis).
+- Export do Figma recebido: as 15 capturas em `docs/design/telas/` foram trocadas por recortes **1:1**.
+- **Ícones:** os 6 SVGs do Figma (Message, X, Arrow-Down, Search, User, Shop) vão para a pasta nova **`src/assets/icons/`** e substituem os equivalentes do lucide-react; o resto continua do lucide.
+- A sessão separada do Sonnet foi arquivada.
 
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).

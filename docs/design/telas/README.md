@@ -14,7 +14,7 @@ Capturas tiradas do Figma em 2026-10-25. São a referência visual principal (o 
 | Perfil | [desktop-perfil.png](desktop-perfil.png) | *não existe — adaptar* | `9:1238` | — |
 | Carteiras | [desktop-carteiras.png](desktop-carteiras.png) | *não existe — adaptar* | `9:1670` | — |
 
-¹ Captura **reduzida** (o frame original tem 1440px de largura). Para medir, use a proporção: Início 786px = 1440px; Detalhes 1026px; Carrinho 1314px; Pagamento e Confirmação 1391px; Login e Cadastro 1018px. As demais estão em escala 1:1.
+¹ Desde 2026-10-26, **todas as capturas estão em escala 1:1** (desktop 1440px, mobile 414px), recortadas do export completo do Figma feito pelo usuário. Dá para medir direto em pixels.
 
 ## Notas por tela
 
