@@ -1,6 +1,6 @@
 # 04-004 — Trocar os ícones do lucide pelos do Figma nos primitivos
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Ícones
 **Depende de:** 04-003
 

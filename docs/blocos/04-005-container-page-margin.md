@@ -1,6 +1,6 @@
 # 04-005 — Margem lateral do `container-page` entre 1024 e 1247 px
 
-**Status:** pendente (**depende da resposta do usuário à pergunta 6 do relatório da fase 04**)
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Base de layout
 **Depende de:** 03-020
 

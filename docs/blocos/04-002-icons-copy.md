@@ -1,6 +1,6 @@
 # 04-002 — Copiar os 6 ícones SVG do Figma
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Ícones
 **Depende de:** 03-020
 

@@ -1,6 +1,6 @@
 # 04-001 — Hook useMediaQuery
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Base de layout
 **Depende de:** 03-020
 

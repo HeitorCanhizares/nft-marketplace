@@ -1,6 +1,6 @@
 # 04-003 — Componente SvgIcon (sem dependência nova)
 
-**Status:** pendente (**depende da resposta do usuário à pergunta 1 do relatório da fase 04**)
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Ícones
 **Depende de:** 04-002
 

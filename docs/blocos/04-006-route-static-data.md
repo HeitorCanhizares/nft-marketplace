@@ -1,6 +1,6 @@
 # 04-006 — Dados estáticos de rota (título, rodapé, barra inferior)
 
-**Status:** pendente (**depende da resposta do usuário à pergunta 4 do relatório da fase 04**)
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Base de layout
 **Depende de:** 03-020
 
