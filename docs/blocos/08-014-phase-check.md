@@ -1,6 +1,6 @@
 # 08-014 — Fechamento da fase 08
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 **Depende de:** 08-013
 

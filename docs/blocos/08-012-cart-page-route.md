@@ -1,6 +1,6 @@
 # 08-012 — Página do carrinho (dados, estados, foco) e rota
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 3 (foco), 6 (persistência), 8 (contador), 9 (ir para o pagamento), 11 (estados)
 **Depende de:** 08-011, 08-008, 08-006, 08-007
 

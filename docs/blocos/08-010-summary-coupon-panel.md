@@ -1,6 +1,6 @@
 # 08-010 — `CouponField`, `PriceSummary` e `CartSummaryPanel`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 4 (cupom), 5 (resumo pela cotação), 9 (ir para o pagamento)
 **Depende de:** 08-007, 08-008
 

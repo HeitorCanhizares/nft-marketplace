@@ -1,6 +1,6 @@
 # 08-011 — Telas do carrinho: `CartDesktop`, `CartMobile` e props
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 1, 10 (recomendações), layout das duas telas
 **Depende de:** 08-009, 08-010, 08-004
 

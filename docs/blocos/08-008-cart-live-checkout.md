@@ -1,6 +1,6 @@
 # 08-008 — `useCartLive` e regra do botão "Conectar e finalizar"
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 7 (tempo real), 9 (ir para o pagamento)
 **Depende de:** 08-005
 

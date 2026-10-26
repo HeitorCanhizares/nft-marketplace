@@ -1,6 +1,6 @@
 # 08-005 — Serviços do carrinho, `useCartQuote` e `useRecommendedNfts`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 5 (resumo pela cotação), 10 (recomendações)
 **Depende de:** 08-003, 08-004
 

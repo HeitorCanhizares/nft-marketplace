@@ -1,6 +1,6 @@
 # 08-007 — `useCartCoupon` e schema do campo de cupom
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 4 (aplicar e remover cupom)
 **Depende de:** 08-005
 

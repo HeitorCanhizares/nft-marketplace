@@ -1,6 +1,6 @@
 # 08-003 — Mock: `POST /quote`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 5 (resumo pela cotação), 7 (preço e estoque)
 **Depende de:** 08-002
 

@@ -1,6 +1,6 @@
 # 08-013 — Testes do carrinho (caminho principal)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › todos (modo enxuto)
 **Depende de:** 08-012
 

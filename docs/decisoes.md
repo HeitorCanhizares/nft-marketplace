@@ -290,3 +290,6 @@ Nenhum ponto de arquitetura em aberto. Pendências:
 - Confirmar tokens e fonte no Figma quando o limite do plano renovar.
 - ~~Confirmar `lucide-react`~~ ✅ confirmado (ver "Setup").
 - ~~Valores propostos nos blocos da fase 00~~ ✅ aprovados com a fase.
+
+### Fase 08 — fechamento (2026-10-26)
+Suíte completa: 592 passaram, 0 falhas (190 pulados por projeto). Ajustes ao Figma: linhas da tabela planas e coladas na miniatura, cabeçalho em `text-body`, cartão mobile com miniatura de ponta a ponta e stepper à direita, campo de cupom com botão encostado no desktop. Acessibilidade: `dl` do resumo válido, nomes de lixeira e de quantidade incluem a edição, foco no título do vazio ao remover o último item. Tag `fase-08-carrinho` aguarda o OK do usuário.

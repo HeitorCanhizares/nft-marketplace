@@ -1,6 +1,6 @@
 # 08-004 — `GET /nfts/recommendations` (mock, serviço e chave)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 10 (recomendações no desktop)
 **Depende de:** 08-001
 

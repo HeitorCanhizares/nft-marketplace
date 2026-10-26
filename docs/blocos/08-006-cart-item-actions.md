@@ -1,6 +1,6 @@
 # 08-006 — `useCartItemActions`: quantidade, remover com "Desfazer" e ajustar
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 2 (quantidade), 3 (remover com Desfazer), 7 (Ajustar para N)
 **Depende de:** 08-005
 

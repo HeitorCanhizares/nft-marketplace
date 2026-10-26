@@ -1,6 +1,6 @@
 # 08-002 — Mock: cupom do carrinho (`PUT` e `DELETE /cart/coupon`)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 4 (aplicar e remover cupom)
 **Depende de:** 08-001
 

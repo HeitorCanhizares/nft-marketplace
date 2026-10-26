@@ -1,6 +1,6 @@
 # 08-001 — Mock: preço atual, `PATCH` e `DELETE` de itens do carrinho
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 2 (alterar quantidade), 3 (remover), 7 (preço e estoque atuais)
 **Depende de:** 07-017, 06-069
 

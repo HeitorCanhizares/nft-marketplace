@@ -1,6 +1,6 @@
 # 08-015 — Casos de borda do carrinho adiados para a fase 13
 
-**Status:** concluído (lista adiada; os testes são escritos na fase 13)
+**Status:** concluído
 **Depende de:** 08-014
 
 Lista de testes que **não** são escritos na fase 08 (modo enxuto). O comportamento já está implementado e documentado.

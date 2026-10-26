@@ -1,6 +1,6 @@
 # 08-009 — `LineItem` (`cart-row` e `cart-card`), `LineItemList` e `LineItemSkeleton`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carrinho › 1 (lista), 2 (quantidade), 3 (lixeira), 7 (esgotado, estoque, preço atualizado), 11 (carregando)
 **Depende de:** 08-006
 
