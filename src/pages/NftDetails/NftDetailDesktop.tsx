@@ -56,8 +56,8 @@ export function NftDetailDesktop({
   const cartError = cart.error?.editionId === purchase.editionId ? cart.error.message : null
 
   return (
-    <div className="container-page flex flex-col gap-16 py-8">
-      <Breadcrumb>
+    <div className="container-page flex flex-col pb-16">
+      <Breadcrumb className="mb-2.5">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
@@ -79,13 +79,13 @@ export function NftDetailDesktop({
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,1fr)] gap-12">
+      <div className="mb-[90px] grid grid-cols-[minmax(0,571fr)_minmax(0,598fr)] gap-x-[31px]">
         <NftGallery images={nft.images} name={nft.name} />
 
-        <div className="flex min-w-0 flex-col gap-6">
-          <h1 className="text-heading font-bold text-foreground">{nft.name}</h1>
+        <div className="flex min-w-0 flex-col">
+          <h1 className="mt-1 text-[28px] leading-[34px] font-bold text-foreground">{nft.name}</h1>
 
-          <div className="flex items-center justify-between gap-4">
+          <div className="mt-2 flex items-center justify-between gap-4">
             <div className="flex flex-wrap items-center gap-3">
               <PriceTag
                 price={edition.price}
@@ -102,14 +102,14 @@ export function NftDetailDesktop({
             />
           </div>
 
-          <hr className="border-border-soft" />
+          <hr className="mt-1.5 border-border-soft" />
 
-          <div className="flex flex-col gap-3">
-            <h2 className="text-lg font-bold text-foreground">Sobre este NFT:</h2>
-            <p className="text-body text-muted-foreground">{nft.description}</p>
+          <div className="mt-3 flex flex-col gap-2">
+            <h2 className="text-sm font-bold text-foreground">Sobre este NFT:</h2>
+            <p className="text-sm leading-6 text-muted-foreground">{nft.description}</p>
           </div>
 
-          <div className="flex flex-col gap-3">
+          <div className="mt-2 flex flex-col gap-2">
             <span className="text-sm font-bold text-foreground">Edição:</span>
             <EditionSelector
               editions={nft.editions}
@@ -118,7 +118,7 @@ export function NftDetailDesktop({
             />
           </div>
 
-          <div className="flex flex-wrap items-start justify-between gap-4">
+          <div className="mt-3.5 flex flex-wrap items-start justify-between gap-4">
             <div className="flex flex-col gap-2">
               <QuantityStepper
                 value={purchase.quantity}
@@ -132,7 +132,7 @@ export function NftDetailDesktop({
                 <p className="text-sm text-muted-foreground">{purchase.inCartText}</p>
               ) : null}
             </div>
-            <div className="flex items-start gap-3">
+            <div className="flex items-start gap-2">
               <Button
                 type="button"
                 size="lg"
@@ -141,7 +141,7 @@ export function NftDetailDesktop({
                 onClick={() => {
                   if (!cart.pending) cart.onBuy()
                 }}
-                className="h-11 min-w-48"
+                className="h-10 w-32"
               >
                 {purchase.allSoldOut ? 'Esgotado' : 'COMPRAR'}
               </Button>
@@ -151,6 +151,7 @@ export function NftDetailDesktop({
                 pressed={nft.isFavorite === true}
                 busy={favorite.busy}
                 onToggle={favorite.onToggle}
+                className="h-10 w-32"
               />
             </div>
           </div>
@@ -162,19 +163,22 @@ export function NftDetailDesktop({
             </div>
           ) : null}
 
-          <hr className="border-border-soft" />
-
           <NftMeta
+            className="mt-3.5"
             tokenId={nft.tokenId}
             collection={nft.collection.name}
             attributes={nft.attributes}
           />
 
-          <ShareLinks url={`${window.location.origin}/nft/${nft.id}`} title={nft.name} />
+          <ShareLinks
+            className="mt-2.5"
+            url={`${window.location.origin}/nft/${nft.id}`}
+            title={nft.name}
+          />
         </div>
       </div>
 
-      <div ref={tabsRef} className="scroll-mt-8">
+      <div ref={tabsRef} className="mb-24 scroll-mt-8">
         <NftDetailTabs
           nft={nft}
           value={tab}

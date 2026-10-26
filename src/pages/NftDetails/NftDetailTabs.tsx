@@ -28,22 +28,30 @@ export function NftDetailTabs({
       value={value}
       onValueChange={(next) => onValueChange(next === 'reviews' ? 'reviews' : 'details')}
     >
-      <TabsList className="w-full justify-start gap-6 border-b border-border-soft">
-        <TabsTrigger value="details">Detalhes do NFT</TabsTrigger>
-        <TabsTrigger ref={reviewsTriggerRef} value="reviews">
+      <TabsList className="w-full justify-start gap-10 border-b border-border-soft">
+        <TabsTrigger value="details" className="text-base">
+          Detalhes do NFT
+        </TabsTrigger>
+        <TabsTrigger ref={reviewsTriggerRef} value="reviews" className="text-base">
           {`Avaliações de colecionadores (${nft.rating.count})`}
         </TabsTrigger>
       </TabsList>
 
-      <TabsContent value="details" className="pt-6">
-        <p className="text-body text-foreground">{nft.details.body}</p>
-        <dl className="mt-6 grid grid-cols-[auto_1fr] gap-x-6 gap-y-3 text-sm">
-          <dt className="text-muted-foreground">Rede:</dt>
-          <dd className="text-foreground">{nft.details.network}</dd>
-          <dt className="text-muted-foreground">Contrato:</dt>
-          <dd className="break-all text-foreground">{nft.details.contract}</dd>
-          <dt className="text-muted-foreground">Direitos autorais:</dt>
-          <dd className="text-foreground">{nft.details.royalties}</dd>
+      <TabsContent value="details" className="pt-4">
+        <p className="text-sm leading-6 text-muted-foreground">{nft.details.body}</p>
+        <dl className="mt-6 flex flex-col gap-4 text-sm leading-6">
+          <div>
+            <dt className="font-bold text-foreground">Rede:</dt>
+            <dd className="text-muted-foreground">{nft.details.network}</dd>
+          </div>
+          <div>
+            <dt className="font-bold text-foreground">Contrato:</dt>
+            <dd className="break-all text-muted-foreground">{nft.details.contract}</dd>
+          </div>
+          <div>
+            <dt className="font-bold text-foreground">Direitos autorais:</dt>
+            <dd className="text-muted-foreground">{nft.details.royalties}</dd>
+          </div>
         </dl>
       </TabsContent>
 

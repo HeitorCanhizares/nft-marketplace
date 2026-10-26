@@ -19,7 +19,7 @@ export function EditionSelector({ editions, value, onChange, className }: Editio
       orientation="horizontal"
       value={value}
       onValueChange={onChange}
-      className={cn('flex flex-wrap gap-2', className)}
+      className={cn('flex flex-wrap gap-3 lg:gap-2', className)}
     >
       {editions.map((edition) => {
         const soldOut = edition.available === 0
@@ -29,9 +29,9 @@ export function EditionSelector({ editions, value, onChange, className }: Editio
             value={edition.id}
             disabled={soldOut}
             className={cn(
-              'inline-flex min-h-11 min-w-16 flex-col items-center justify-center rounded-full border border-border-soft bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors outline-none select-none lg:min-h-9',
+              'inline-flex min-h-7 min-w-10 flex-col items-center justify-center rounded-full border border-border-soft bg-card px-3 text-[13px] font-medium text-muted-foreground transition-colors outline-none select-none',
               'focus-visible:ring-2 focus-visible:ring-ring',
-              'data-[state=checked]:border-primary',
+              'data-[state=checked]:border-primary data-[state=checked]:font-bold data-[state=checked]:text-primary',
               'disabled:cursor-not-allowed disabled:text-muted-foreground disabled:opacity-60',
             )}
           >

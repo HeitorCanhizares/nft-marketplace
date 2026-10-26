@@ -34,7 +34,7 @@ export function QuantityStepper({
 
   return (
     <div className={cn('flex flex-col gap-1', className)}>
-      <div className="flex items-center gap-3">
+      <div className={cn('flex items-center', isSmall ? 'gap-2' : 'gap-4')}>
         <Button
           type="button"
           variant="default"
@@ -42,7 +42,10 @@ export function QuantityStepper({
           aria-label="Diminuir quantidade"
           disabled={!canDecrement}
           onClick={() => onChange(Math.max(min, value - 1))}
-          className={cn('rounded-full', isSmall ? 'size-8' : 'size-10')}
+          className={cn(
+            'rounded-full lg:rounded-full',
+            isSmall ? 'h-7 w-5 [&_svg]:size-3' : 'h-12 w-8',
+          )}
         >
           <MinusIcon aria-hidden="true" />
         </Button>
@@ -63,7 +66,10 @@ export function QuantityStepper({
           aria-describedby={hint ? hintId : undefined}
           disabled={!canIncrement}
           onClick={() => onChange(Math.min(max, value + 1))}
-          className={cn('rounded-full', isSmall ? 'size-8' : 'size-10')}
+          className={cn(
+            'rounded-full lg:rounded-full',
+            isSmall ? 'h-7 w-5 [&_svg]:size-3' : 'h-12 w-8',
+          )}
         >
           <PlusIcon aria-hidden="true" />
         </Button>

@@ -11,15 +11,15 @@ type ShareLinksProps = {
 }
 
 const linkClass =
-  'inline-flex size-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors outline-none hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring'
+  'inline-flex size-6 items-center justify-center rounded-full text-foreground transition-colors outline-none hover:text-primary focus-visible:ring-2 focus-visible:ring-ring'
 
 export function ShareLinks({ url, title, className }: ShareLinksProps) {
   const encodedUrl = encodeURIComponent(url)
   const encodedTitle = encodeURIComponent(title)
 
   return (
-    <div className={cn('flex flex-wrap items-center gap-3', className)}>
-      <span className="text-sm text-muted-foreground">Compartilhar este NFT:</span>
+    <div className={cn('flex flex-wrap items-center gap-2', className)}>
+      <span className="text-sm font-bold text-foreground">Compartilhar este NFT:</span>
       <a
         href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`}
         target="_blank"
@@ -30,6 +30,13 @@ export function ShareLinks({ url, title, className }: ShareLinksProps) {
         <SvgIcon name="linkedin" />
       </a>
       <a
+        href={`mailto:?subject=${encodedTitle}&body=${encodedUrl}`}
+        aria-label="Compartilhar por e-mail"
+        className={linkClass}
+      >
+        <MailIcon aria-hidden="true" className="size-4" />
+      </a>
+      <a
         href={`https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`}
         target="_blank"
         rel="noopener noreferrer"
@@ -37,13 +44,6 @@ export function ShareLinks({ url, title, className }: ShareLinksProps) {
         className={linkClass}
       >
         <SvgIcon name="twitter" />
-      </a>
-      <a
-        href={`mailto:?subject=${encodedTitle}&body=${encodedUrl}`}
-        aria-label="Compartilhar por e-mail"
-        className={linkClass}
-      >
-        <MailIcon aria-hidden="true" className="size-4" />
       </a>
     </div>
   )

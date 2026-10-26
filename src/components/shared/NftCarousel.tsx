@@ -42,12 +42,12 @@ export function NftCarousel({
 
   return (
     <section aria-labelledby={titleId} className={cn('w-full', className)}>
-      <div className="mb-6 flex items-center gap-4">
-        <h2 id={titleId} className="text-heading font-bold whitespace-nowrap text-foreground">
-          {title}
-        </h2>
-        <div aria-hidden="true" className="h-px flex-1 bg-border-soft" />
-      </div>
+      <h2
+        id={titleId}
+        className="mb-7 border-b border-border-soft pb-2 text-base font-bold text-primary"
+      >
+        {title}
+      </h2>
 
       {isLoading ? (
         <div className="grid grid-cols-2 gap-4 lg:grid-cols-5">
