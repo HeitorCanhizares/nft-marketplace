@@ -17,6 +17,12 @@ type Snapshot = {
   home: [QueryKey, HomeResponse | undefined][]
 }
 
+const MUTATION_KEY = ['toggle-favorite'] as const
+
+function isToggleVars(value: unknown): value is ToggleVars {
+  return typeof value === 'object' && value !== null && 'nft' in value && 'next' in value
+}
+
 function withFavorite(item: NftSummary, nftId: string, isFavorite: boolean): NftSummary {
   return item.id === nftId ? { ...item, isFavorite } : item
 }
@@ -30,6 +36,7 @@ export function useToggleFavorite() {
   const [pendingIds, setPendingIds] = useState<ReadonlySet<string>>(() => new Set())
 
   const mutation = useMutation<void, Error, ToggleVars, Snapshot>({
+    mutationKey: MUTATION_KEY,
     mutationFn: ({ nft, next }) => (next ? addFavorite(nft.id) : removeFavorite(nft.id)),
     onMutate: async ({ nft, next }) => {
       await Promise.all([
@@ -96,7 +103,16 @@ export function useToggleFavorite() {
       return
     }
 
-    if (pendingIds.has(nft.id)) return
+    // O cache de mutações já sabe, de forma síncrona, que há um pedido em andamento para este NFT
+    // (o state `pendingIds` só muda no render seguinte, e dois cliques no mesmo render passariam).
+    const inFlight = queryClient.isMutating({
+      mutationKey: MUTATION_KEY,
+      predicate: (candidate) => {
+        const vars = candidate.state.variables
+        return isToggleVars(vars) && vars.nft.id === nft.id
+      },
+    })
+    if (inFlight > 0) return
     mutation.mutate({ nft, next: nft.isFavorite !== true })
   }
 
