@@ -23,17 +23,16 @@ async function bootstrap(): Promise<void> {
     registerWalletProvider(createMockWalletProvider())
   }
 
-  const [{ Providers }, { RouterProvider }, { router }, { connectSocket }] = await Promise.all([
+  const [{ Providers }, { AppRouter }, { connectSocket }] = await Promise.all([
     import('@/app/Providers'),
-    import('@tanstack/react-router'),
-    import('@/app/router'),
+    import('@/app/AppRouter'),
     import('@/services/realtime/socket'),
   ])
 
   createRoot(rootElement).render(
     <StrictMode>
       <Providers>
-        <RouterProvider router={router} />
+        <AppRouter />
       </Providers>
     </StrictMode>,
   )
