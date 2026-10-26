@@ -109,13 +109,17 @@ function LineQuantity({ item, className, onQuantityChange }: LineQuantityProps) 
   }
 
   return (
-    <div role="group" aria-label={`Quantidade de ${name}`} className={className}>
+    <div
+      role="group"
+      aria-label={`Quantidade de ${name}, edição ${item.edition.label}`}
+      className={className}
+    >
       <QuantityStepper
         size="sm"
         min={1}
         max={max}
         value={item.quantity}
-        label={`Quantidade de ${name}`}
+        label={`Quantidade de ${name}, edição ${item.edition.label}`}
         hint={hint}
         onChange={(quantity) => onQuantityChange(item, quantity)}
       />
@@ -133,7 +137,7 @@ function LineRemove({ item, className, onRemove }: LineRemoveProps) {
       type="button"
       variant="icon"
       size="icon"
-      aria-label={`Remover ${item.nft.name}`}
+      aria-label={`Remover ${item.nft.name}, edição ${item.edition.label}`}
       data-remove-for={item.id}
       onClick={() => onRemove(item)}
       className={cn('size-11', className)}

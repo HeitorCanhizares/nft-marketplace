@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
 
 import { Breadcrumb, type BreadcrumbEntry } from '@/components/layout/Breadcrumb'
@@ -59,6 +59,19 @@ export function Cart() {
   const emptyRef = useRef<HTMLDivElement>(null)
 
   const items = cartData?.items ?? []
+
+  // Ao remover o último item, o foco vai para o título do estado vazio assim que ele aparece.
+  const focusEmptyRef = useRef(false)
+  const isEmpty = cartData !== undefined && items.length === 0
+  useEffect(() => {
+    if (!isEmpty || !focusEmptyRef.current) return
+    focusEmptyRef.current = false
+    const heading = emptyRef.current?.querySelector<HTMLElement>('h2')
+    if (heading) {
+      heading.tabIndex = -1
+      heading.focus()
+    }
+  }, [isEmpty])
   // Desktop: container da largura da página. Mobile: a largura toda, com o respiro dos blocos.
   const frameClass = isDesktop ? 'container-page flex flex-col pb-16' : 'flex flex-col pb-8'
 
@@ -114,17 +127,13 @@ export function Cart() {
     const index = items.findIndex((line) => line.id === item.id)
     remove(item)
 
+    if (items.length === 1) {
+      focusEmptyRef.current = true
+      return
+    }
     requestAnimationFrame(() => {
       if (index === -1) return
       const buttons = pageRef.current?.querySelectorAll<HTMLElement>('[data-remove-for]') ?? []
-      if (buttons.length === 0) {
-        const heading = emptyRef.current?.querySelector<HTMLElement>('h2')
-        if (heading) {
-          heading.tabIndex = -1
-          heading.focus()
-        }
-        return
-      }
       buttons[Math.min(index, buttons.length - 1)]?.focus()
     })
   }

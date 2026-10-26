@@ -53,16 +53,16 @@ export function PriceSummary({ quote, isUpdating, isError, onRetry }: PriceSumma
             (-) {formatEth(quote.discount)}
           </dd>
         </div>
-        <div className="flex flex-col gap-0.5">
-          <div className="flex items-baseline justify-between gap-4">
-            <dt className="text-body text-foreground">Taxa de rede</dt>
-            <dd className="text-subtitle text-foreground tabular-nums">
+        <div className="flex items-baseline justify-between gap-4">
+          <dt className="text-body text-foreground">Taxa de rede</dt>
+          <dd className="flex flex-col items-end gap-0.5">
+            <span className="text-subtitle text-foreground tabular-nums">
               {formatEth(quote.networkFee)}
-            </dd>
-          </div>
-          {quote.networkFeeEstimated ? (
-            <p className="self-end text-caption text-muted-foreground">Taxa estimada</p>
-          ) : null}
+            </span>
+            {quote.networkFeeEstimated ? (
+              <span className="text-caption text-muted-foreground">Taxa estimada</span>
+            ) : null}
+          </dd>
         </div>
         <div className="flex items-baseline justify-between gap-4 pt-1">
           <dt className="font-bold text-foreground">Total</dt>
