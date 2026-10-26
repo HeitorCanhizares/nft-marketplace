@@ -20,6 +20,10 @@ export type NftSummary = {
   collection: { id: string; name: string }
   network: Network
   isFavorite?: boolean
+  // true quando todas as edições têm available === 0
+  soldOut?: boolean
+  // id da edição de menor preço com estoque; ausente quando soldOut
+  defaultEditionId?: string
 }
 
 export type Edition = {

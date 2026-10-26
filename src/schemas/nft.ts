@@ -28,6 +28,8 @@ const nftSummaryShape = {
   collection: z.object({ id: z.string(), name: z.string() }),
   network: networkSchema,
   isFavorite: z.boolean().optional(),
+  soldOut: z.boolean().optional(),
+  defaultEditionId: z.string().optional(),
 }
 
 export const nftSummarySchema: z.ZodType<NftSummary> = z.object(nftSummaryShape)
