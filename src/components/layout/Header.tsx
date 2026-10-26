@@ -52,7 +52,7 @@ export function Header({
   return (
     <header className={className}>
       <div className="container-page">
-        <div className="grid h-17 grid-cols-[1fr_auto_1fr] items-center border-b border-border-strong">
+        <div className="grid h-17.25 grid-cols-[1fr_auto_1fr] items-center border-b border-border-strong">
           <Link
             to="/"
             aria-label="Kurio, página inicial"
@@ -70,7 +70,7 @@ export function Header({
                 if (item.disabled || !item.to) {
                   return (
                     <li key={item.id}>
-                      <ComingSoon className="text-body text-foreground">{item.label}</ComingSoon>
+                      <ComingSoon className="text-base text-foreground">{item.label}</ComingSoon>
                     </li>
                   )
                 }
@@ -83,7 +83,7 @@ export function Header({
                       activeOptions={NAV_ACTIVE_OPTIONS}
                       aria-current={isActive ? 'page' : undefined}
                       className={cn(
-                        'relative flex h-full items-center text-body text-foreground',
+                        'relative flex h-full items-center text-base text-foreground',
                         isActive && 'font-bold text-price',
                       )}
                     >
