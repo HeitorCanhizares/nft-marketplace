@@ -7,9 +7,17 @@ import type { User, Wallet } from '../../types/user'
 const DB_NAME = 'kurio-mock-db'
 const DB_VERSION = 1
 
-// createdAt fica fora de NftDetail (contrato); os handlers removem o campo ao responder.
+// Números de vendas e favoritos para "Em alta" e "Mais favoritados". Fora do contrato; os handlers removem ao responder.
+export type NftStats = {
+  sales7d: number
+  favorites7d: number
+  favoritesTotal: number
+}
+
+// createdAt e stats ficam fora de NftDetail (contrato); os handlers removem os campos ao responder.
 export type NftRecord = NftDetail & {
   createdAt: string
+  stats: NftStats
 }
 
 export type UserRecord = User & {

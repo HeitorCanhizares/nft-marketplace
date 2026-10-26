@@ -1,4 +1,5 @@
 import type { Edition, Network, NftDetail } from '@/types/nft'
+import type { NftStats } from '../db/db'
 import apeGreenJacket from '@/assets/nfts/ape-green-jacket.webp'
 import apeOrangeHeadphones from '@/assets/nfts/ape-orange-headphones.webp'
 import gorillaBlackBlazer from '@/assets/nfts/gorilla-black-blazer.webp'
@@ -349,3 +350,20 @@ export const SEED_NFT_CREATED_AT: Readonly<Record<string, string>> = Object.from
 export const SEED_FAVORITE_IDS: readonly string[] = SEED_ENTRIES.slice(0, 12).map(
   (entry) => entry.nft.id,
 )
+
+// Estatísticas com semente própria: não consome o gerador do catálogo, então o catálogo não muda.
+function buildSeedStats(): Record<string, NftStats> {
+  const rand = mulberry32(SEED ^ 0x5eed)
+  const stats: Record<string, NftStats> = {}
+  SEED_ENTRIES.forEach((entry, index) => {
+    const sales7d = int(rand, 0, 40)
+    const favorites7d = int(rand, 0, 60)
+    const drawn = int(rand, favorites7d, 400)
+    // Os 9 primeiros de SEED_ENTRIES são os do Figma (offsets 0 a 8, antes de qualquer gerado).
+    const favoritesTotal = index < FIGMA_NFTS.length ? Math.max(drawn, 150) : drawn
+    stats[entry.nft.id] = { sales7d, favorites7d, favoritesTotal }
+  })
+  return stats
+}
+
+export const SEED_NFT_STATS: Readonly<Record<string, NftStats>> = buildSeedStats()
