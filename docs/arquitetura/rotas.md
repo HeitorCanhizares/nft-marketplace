@@ -33,6 +33,8 @@ Criadores, Aprenda e os itens desabilitados do perfil **não têm rota**.
 | `pagina` | number ≥ 1 | 1 (desktop: página atual; mobile: quantas páginas o "Carregar mais" já trouxe) |
 | `favoritos` | `1` | — (decisão A4) |
 
+> **Armadilha do TanStack Router (achada no 04-008/04-010):** o router mescla o retorno do `validateSearch` sobre a busca bruta. Uma chave inválida que o `validateSearch` simplesmente omite **continua** em `useSearch()` com o valor bruto (ex.: `redirect: "//evil.com"`). Todo `validateSearch` (inclusive os schemas zod das fases 05+) deve **devolver as chaves conhecidas sempre, com `undefined` quando inválidas**, ou usar o middleware `stripSearchParams`.
+
 Filtros, busca, ordenação e página **vivem na URL**. Recarregar ou compartilhar o link mantém o mesmo resultado.
 
 ### `/entrar` e `/cadastro`
