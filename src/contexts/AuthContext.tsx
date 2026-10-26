@@ -41,6 +41,20 @@ const ANONYMOUS_STATE: AuthState = {
   expiryWarning: false,
 }
 
+type ReadyStatus = 'authenticated' | 'anonymous'
+
+// Promessa de inicialização com o `resolve` guardado junto. Criada uma vez por provider.
+function createReadyGate(): {
+  promise: Promise<ReadyStatus>
+  settle: (status: ReadyStatus) => void
+} {
+  let settle: (status: ReadyStatus) => void = () => undefined
+  const promise = new Promise<ReadyStatus>((resolve) => {
+    settle = resolve
+  })
+  return { promise, settle }
+}
+
 // Com sessão salva, começa em `loading` até o GET /auth/session responder.
 // Lazy init: a leitura do localStorage roda uma vez, na montagem.
 function initialAuthState(): AuthState {
@@ -51,6 +65,9 @@ function initialAuthState(): AuthState {
 export function AuthProvider({ children, onClearPrivateSession, onExpired }: AuthProviderProps) {
   const [state, setState] = useState<AuthState>(initialAuthState)
   const { announce } = useLiveAnnouncer()
+
+  // Uma única promessa por provider, com identidade estável entre renders.
+  const [readyGate] = useState(createReadyGate)
 
   // Último usuário autenticado. Guardado em ref: não dispara render e sobrevive à expiração,
   // para que um login de outro usuário depois da expiração ainda limpe os dados privados.
@@ -74,7 +91,10 @@ export function AuthProvider({ children, onClearPrivateSession, onExpired }: Aut
   // (a) Inicialização: recupera a sessão salva. Sem sessão, o estado já é `anonymous`.
   useEffect(() => {
     const saved = readSession()
-    if (saved === null) return
+    if (saved === null) {
+      readyGate.settle('anonymous')
+      return
+    }
 
     const controller = new AbortController()
 
@@ -88,8 +108,10 @@ export function AuthProvider({ children, onClearPrivateSession, onExpired }: Aut
           expiresAt: response.expiresAt,
           expiryWarning: false,
         })
+        readyGate.settle('authenticated')
       },
       (error: unknown) => {
+        // Cancelado (cleanup do StrictMode): não resolve; o efeito seguinte resolve.
         if (controller.signal.aborted) return
 
         // Token vencido ou inválido: apaga a sessão. Erro de rede/5xx: mantém o token.
@@ -97,13 +119,14 @@ export function AuthProvider({ children, onClearPrivateSession, onExpired }: Aut
           clearSession()
         }
         setState(ANONYMOUS_STATE)
+        readyGate.settle('anonymous')
       },
     )
 
     return () => {
       controller.abort()
     }
-  }, [])
+  }, [readyGate])
 
   // (c) Expiração: aviso 2 minutos antes e expiração no horário de `expiresAt`.
   // Roda a cada mudança de status ou de expiresAt (login, refresh, logout) e limpa os timers.
@@ -207,8 +230,15 @@ export function AuthProvider({ children, onClearPrivateSession, onExpired }: Aut
   }, [])
 
   const value = useMemo<AuthContextValue>(
-    () => ({ ...state, signIn, signUp, signOut, refreshSession }),
-    [state, signIn, signUp, signOut, refreshSession],
+    () => ({
+      ...state,
+      ready: readyGate.promise,
+      signIn,
+      signUp,
+      signOut,
+      refreshSession,
+    }),
+    [state, readyGate, signIn, signUp, signOut, refreshSession],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

@@ -23,6 +23,8 @@ export interface AuthResponse {
 }
 
 export interface AuthContextValue extends AuthState {
+  // Resolve uma vez, quando a inicialização termina; depois disso use `status`.
+  ready: Promise<'authenticated' | 'anonymous'>
   signIn: (credentials: LoginInput) => Promise<AuthResponse>
   signUp: (data: RegisterInput) => Promise<AuthResponse>
   signOut: () => Promise<void>
