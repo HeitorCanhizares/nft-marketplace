@@ -18,10 +18,12 @@ export function HomeDesktop({ search }: { search: HomeSearch }) {
   const home = useHome()
   const page = useCatalogPage(search)
   const data = home.data
+  // O erro só aparece quando não há dados (nem em cache).
+  const failed = home.isError && !data
 
   return (
     <div className="container-page flex flex-col gap-24">
-      {home.isError ? (
+      {failed ? (
         <ErrorState
           as="h2"
           title="Não foi possível carregar os destaques"
@@ -50,7 +52,7 @@ export function HomeDesktop({ search }: { search: HomeSearch }) {
             onClear={page.onClearFilters}
             hasActiveFilters={page.hasActiveFilters}
           />
-          {home.isError ? null : data ? (
+          {failed ? null : data ? (
             <FeaturedNftCard nft={data.featured} />
           ) : (
             <FeaturedNftCardSkeleton />
@@ -87,7 +89,7 @@ export function HomeDesktop({ search }: { search: HomeSearch }) {
         />
       </div>
 
-      {home.isError ? null : (
+      {failed ? null : (
         <>
           <div className="grid grid-cols-2 gap-7">
             {data

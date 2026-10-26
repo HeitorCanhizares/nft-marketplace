@@ -13,6 +13,8 @@ export function HomeMobile({ search }: { search: HomeSearch }) {
   const home = useHome()
   const page = useCatalogPage(search)
   const data = home.data
+  // O erro só aparece quando não há dados (nem em cache).
+  const failed = home.isError && !data
 
   return (
     <div className="flex flex-col gap-4 px-6 pt-[calc(2.5rem+env(safe-area-inset-top))]">
@@ -36,7 +38,7 @@ export function HomeMobile({ search }: { search: HomeSearch }) {
         />
       </div>
 
-      {home.isError ? (
+      {failed ? (
         <ErrorState
           as="h2"
           title="Não foi possível carregar os destaques"
