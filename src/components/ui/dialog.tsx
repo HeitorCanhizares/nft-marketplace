@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Dialog as DialogPrimitive } from 'radix-ui'
-import { XIcon } from 'lucide-react'
+import { SvgIcon } from '@/assets/icons/SvgIcon'
 
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -65,7 +65,7 @@ function DialogContent({
               aria-label="Fechar"
               className="absolute top-2 right-2 text-primary hover:bg-transparent hover:text-primary"
             >
-              <XIcon />
+              <SvgIcon name="x" />
             </Button>
           </DialogPrimitive.Close>
         )}

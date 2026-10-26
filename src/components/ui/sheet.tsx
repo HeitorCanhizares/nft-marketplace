@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Dialog as SheetPrimitive } from 'radix-ui'
-import { XIcon } from 'lucide-react'
+import { SvgIcon } from '@/assets/icons/SvgIcon'
 
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
@@ -68,7 +68,7 @@ function SheetContent({
               aria-label="Fechar"
               className="absolute top-3 right-3 text-primary hover:bg-transparent hover:text-primary"
             >
-              <XIcon />
+              <SvgIcon name="x" />
             </Button>
           </SheetPrimitive.Close>
         )}
