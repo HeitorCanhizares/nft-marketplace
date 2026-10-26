@@ -1,6 +1,6 @@
 # 05-018 — SocialAuthButtons (Google e Facebook, desabilitados)
 
-**Status:** pendente (SVGs definidos: `google.svg` do devicon e `facebook-color.svg` do Font Awesome com a cor da marca; ver decisoes.md, "Fase 05 — blocos aprovados")
+**Status:** concluído (SVGs definidos: `google.svg` do devicon e `facebook-color.svg` do Font Awesome com a cor da marca; ver decisoes.md, "Fase 05 — blocos aprovados")
 **Fluxo / subitem:** Login › 1 e Cadastro › 1 (botões sociais desabilitados com "Em breve")
 **Depende de:** 04-016
 

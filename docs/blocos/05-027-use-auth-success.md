@@ -1,6 +1,6 @@
 # 05-027 — Hook useAuthSuccess (o que acontece depois de entrar ou cadastrar)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 4 e Cadastro › 5 (boas-vindas, aviso de ajustes do carrinho, ação pendente)
 **Depende de:** 03-015, 04-030, 05-025, 05-026
 **Depende de decisão:** perguntas 11 e 12 do relatório da fase 05

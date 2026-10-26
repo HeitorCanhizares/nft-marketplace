@@ -1,6 +1,6 @@
 # 05-026 — Ação pendente (guardar antes do login, executar depois)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 4 (ação pendente é concluída após o login e anunciada)
 **Depende de:** 03-004
 **Depende de decisão:** pergunta 11 do relatório da fase 05 (chave, formato e registro de executores)

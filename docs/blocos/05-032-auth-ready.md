@@ -1,6 +1,6 @@
 # 05-032 — AuthContext: promessa `ready` (fim da recuperação da sessão)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 5 (a sessão é restaurada **antes** de renderizar rotas protegidas)
 **Depende de:** 03-015
 **Depende de decisão:** pergunta 1 do relatório da fase 05 (guardas por `beforeLoad` com contexto do roteador)

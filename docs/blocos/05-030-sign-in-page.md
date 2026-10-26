@@ -1,6 +1,6 @@
 # 05-030 — Página SignIn (modal no desktop, página no mobile)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 1, 2, 3 e 4 (montagem da tela)
 **Depende de:** 03-015, 05-002, 05-020, 05-021, 05-022, 05-027, 05-028, 05-029
 

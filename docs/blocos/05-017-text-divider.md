@@ -1,6 +1,6 @@
 # 05-017 — TextDivider ("Ou continue com")
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login/Cadastro › divisor antes dos botões sociais
 **Depende de:** 01-001
 

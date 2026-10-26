@@ -1,6 +1,6 @@
 # 05-041 — Ajustar os testes das fases 03 e 04 às guardas de rota
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Fase 05 › Rotas protegidas (efeito colateral)
 **Depende de:** 05-011, 05-035, 05-037, 05-038, 05-039, 05-040

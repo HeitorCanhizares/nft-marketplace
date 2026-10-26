@@ -1,6 +1,6 @@
 # 05-036 — Rotas `/entrar` e `/cadastro` de verdade
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login e Cadastro › 1 (rotas, `redirect`, só deslogado)
 **Depende de:** 05-002, 05-030, 05-031, 05-033, 05-035
 

@@ -1,6 +1,6 @@
 # 05-035 — `main.tsx` usa o `AppRouter`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 5 e 8
 **Depende de:** 05-034
 

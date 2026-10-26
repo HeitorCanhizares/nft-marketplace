@@ -1,6 +1,6 @@
 # 05-021 — AuthForm (estrutura de Login e Cadastro, desktop e mobile)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 1 e Cadastro › 1 (estrutura das duas telas)
 **Depende de:** 03-001, 04-010, 05-003, 05-017, 05-018, 05-019
 **Depende de decisão:** perguntas 8 (tamanho do título mobile), 10 e 19 (correções do Figma) do relatório da fase 05

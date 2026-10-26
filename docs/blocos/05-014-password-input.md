@@ -1,6 +1,6 @@
 # 05-014 — PasswordInput
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 2 e Cadastro › 2 (botão olho)
 **Depende de:** 01-005, 05-013
 **Depende de decisão:** pergunta 7 do relatório da fase 05 (cor do olho no mobile)

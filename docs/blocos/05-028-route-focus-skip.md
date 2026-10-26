@@ -1,6 +1,6 @@
 # 05-028 — Foco ao fechar o modal: estado de navegação `skipRouteFocus`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 1 (Esc/X fecham e o foco volta a quem abriu); Cadastro › 4 (e-mail passado por estado de navegação)
 **Depende de:** 04-012, 04-032
 **Depende de decisão:** pergunta 15 do relatório da fase 05

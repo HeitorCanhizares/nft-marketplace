@@ -1,6 +1,6 @@
 # 05-037 — Rotas protegidas: `/pagamento`, `/pedido/$orderId` e `/perfil`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 8 (rotas protegidas sem sessão → `/entrar?redirect=`)
 **Depende de:** 05-033, 05-035
 

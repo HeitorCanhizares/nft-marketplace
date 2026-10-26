@@ -1,6 +1,6 @@
 # 05-019 — AuthTabs ("Entrar | Criar conta")
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 1 e Cadastro › 1 (abas do modal; trocar de aba navega mantendo o `redirect`)
 **Depende de:** 01-001, 05-002
 **Depende de decisão:** pergunta 5 do relatório da fase 05 (links em `nav`, não o primitivo `Tabs`; sublinhado na aba ativa)

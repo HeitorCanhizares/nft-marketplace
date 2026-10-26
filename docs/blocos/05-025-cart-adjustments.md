@@ -1,6 +1,6 @@
 # 05-025 — Mensagens dos ajustes do carrinho mesclado
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 4 e Cadastro › 5 (ajustes por estoque avisados)
 **Depende de:** 02-003
 **Depende de decisão:** pergunta 12 do relatório da fase 05 (texto do item removido e formato do aviso)

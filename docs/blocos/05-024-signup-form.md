@@ -1,6 +1,6 @@
 # 05-024 — SignupForm
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Cadastro › 2, 3, 4 e 6 (formulário, requisitos da senha, disponibilidade, conflito, erros)
 **Depende de:** 05-001, 05-013, 05-014, 05-015, 05-023
 **Depende de decisão:** perguntas 6, 18 e 19 do relatório da fase 05

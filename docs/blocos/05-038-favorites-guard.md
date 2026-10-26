@@ -1,6 +1,6 @@
 # 05-038 — Guarda de favoritos (`/?favoritos=1`)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 8 (favoritos exige login; aba Favoritos da barra mobile, A4)
 **Depende de:** 05-029, 05-033, 05-035
 

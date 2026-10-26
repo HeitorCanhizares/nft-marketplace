@@ -1,6 +1,6 @@
 # 05-016 — RetryCountdown
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 3 (bloqueio de 30 s: contagem regressiva acessível)
 **Depende de:** 03-010
 **Depende de decisão:** pergunta 18 do relatório da fase 05 (componente não desenhado)

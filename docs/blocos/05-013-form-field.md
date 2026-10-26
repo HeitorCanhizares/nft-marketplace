@@ -1,6 +1,6 @@
 # 05-013 — FormField e estilos dos campos de autenticação
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 2 e Cadastro › 2 (labels só para leitor de tela, erros ligados por `aria-describedby`)
 **Depende de:** 01-005
 **Depende de decisão:** pergunta 18 do relatório da fase 05 (erro de campo com ícone: não desenhado)

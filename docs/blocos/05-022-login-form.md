@@ -1,6 +1,6 @@
 # 05-022 — LoginForm
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 2 e 3 (formulário, validação, erros, bloqueio)
 **Depende de:** 04-016, 05-001, 05-013, 05-014, 05-016
 **Depende de decisão:** perguntas 6, 18 e 21 do relatório da fase 05

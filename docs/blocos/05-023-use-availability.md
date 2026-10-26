@@ -1,6 +1,6 @@
 # 05-023 — Hook useAvailability (disponibilidade de e-mail e usuário)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Cadastro › 3 (disponibilidade ao sair do campo, com debounce e cancelamento)
 **Depende de:** 03-014, 05-001
 

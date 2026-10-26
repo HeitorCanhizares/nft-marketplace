@@ -1,6 +1,6 @@
 # 05-031 — Página SignUp (modal no desktop, página no mobile)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Cadastro › 1, 2, 4 e 5 (montagem da tela)
 **Depende de:** 03-015, 05-002, 05-020, 05-021, 05-024, 05-027, 05-028, 05-029
 

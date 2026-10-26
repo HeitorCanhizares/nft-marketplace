@@ -1,6 +1,6 @@
 # 05-040 — Expiração: aviso e redirecionamento para o login
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 6 (sem resposta: expira; `401 SESSION_EXPIRED` dispara o mesmo fluxo)
 **Depende de:** 03-017, 05-035, 05-036
 **Depende de decisão:** pergunta 16 do relatório da fase 05 (o rascunho do checkout é gravado pelo Pagamento, na fase 11)

@@ -1,6 +1,6 @@
 # 05-015 — PasswordRequirements
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Cadastro › 2 (requisitos da senha visíveis)
 **Depende de:** 05-001
 **Depende de decisão:** pergunta 18 do relatório da fase 05 (componente não desenhado)

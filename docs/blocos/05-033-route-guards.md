@@ -1,6 +1,6 @@
 # 05-033 — Guardas de rota (`requireAuth` e `requireGuest`)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 1 e 8 (só deslogado; rotas protegidas → `/entrar?redirect=`)
 **Depende de:** 05-002, 05-032
 **Depende de decisão:** pergunta 1 do relatório da fase 05

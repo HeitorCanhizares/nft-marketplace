@@ -1,6 +1,6 @@
 # 05-029 — Página Home provisória (para ficar atrás do modal)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login/Cadastro › 1 (modal sobre a Início)
 **Depende de:** 04-007
 **Depende de decisão:** pergunta 2 do relatório da fase 05 (a Início real é da fase 06)

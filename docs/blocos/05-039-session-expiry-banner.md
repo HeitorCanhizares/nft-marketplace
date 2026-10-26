@@ -1,6 +1,6 @@
 # 05-039 — Aviso de expiração da sessão (`SessionExpiryBanner`)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 6 (aviso 2 minutos antes, "Continuar conectado")
 **Depende de:** 03-010, 03-015, 04-030
 **Depende de decisão:** pergunta 13 do relatório da fase 05 (componente não desenhado: posição, texto, foco)

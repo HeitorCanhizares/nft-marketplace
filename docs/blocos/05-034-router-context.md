@@ -1,6 +1,6 @@
 # 05-034 — Contexto do roteador e `AppRouter`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 5 e 8 (o roteador conhece a sessão e reavalia as guardas quando ela muda)
 **Depende de:** 04-032, 05-033
 **Depende de decisão:** pergunta 1 do relatório da fase 05

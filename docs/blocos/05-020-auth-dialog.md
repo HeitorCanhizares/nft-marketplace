@@ -1,6 +1,6 @@
 # 05-020 — AuthDialog (moldura do modal de Login e Cadastro no desktop)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 1 e Cadastro › 1 (modal sobre a Início, fundo inerte, Esc/X fecham)
 **Depende de:** 01-008, 04-003
 **Depende de decisão:** perguntas 3 (sem escurecimento do fundo), 4 (posição vertical) e 10 (componente novo) do relatório da fase 05
