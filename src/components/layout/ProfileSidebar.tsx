@@ -11,15 +11,15 @@ type ProfileSidebarProps = {
 }
 
 const ITEM_CLASS =
-  'relative flex h-11.25 w-full items-center gap-3 pl-4 text-body text-price focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset'
+  'relative flex h-11.25 w-full items-center gap-3 pl-4 text-body! text-price focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset'
 
 export function ProfileSidebar({ onSignOut, className }: ProfileSidebarProps) {
   const pathname = useLocation({ select: (location) => location.pathname })
 
   return (
-    <aside aria-label="Menu do perfil" className={cn('w-[310px] bg-card py-4', className)}>
+    <aside aria-label="Menu do perfil" className={cn('w-[310px] bg-card', className)}>
       <nav aria-label="Meu perfil">
-        <h2 className="flex h-11 items-center pl-2.5 text-lg font-bold text-foreground">
+        <h2 className="flex h-11 items-center pt-2 pl-2.5 text-lg font-bold text-foreground">
           Meu perfil
         </h2>
 
@@ -45,7 +45,7 @@ export function ProfileSidebar({ onSignOut, className }: ProfileSidebarProps) {
                 <Link
                   to={item.to}
                   aria-current={active ? 'page' : undefined}
-                  className={cn(ITEM_CLASS, active && 'font-bold')}
+                  className={ITEM_CLASS}
                 >
                   {active ? (
                     <span
@@ -65,12 +65,14 @@ export function ProfileSidebar({ onSignOut, className }: ProfileSidebarProps) {
         </ul>
       </nav>
 
-      <div aria-hidden="true" className="my-2 h-px bg-border-soft" />
+      <div aria-hidden="true" className="h-px bg-border-soft" />
 
-      <button type="button" onClick={onSignOut} className={cn(ITEM_CLASS, 'font-bold')}>
-        <PROFILE_SIGN_OUT.icon className="size-5 shrink-0 text-primary" aria-hidden="true" />
-        {PROFILE_SIGN_OUT.label}
-      </button>
+      <div className="pb-2">
+        <button type="button" onClick={onSignOut} className={cn(ITEM_CLASS, 'h-10 font-bold')}>
+          <PROFILE_SIGN_OUT.icon className="size-5 shrink-0 text-primary" aria-hidden="true" />
+          {PROFILE_SIGN_OUT.label}
+        </button>
+      </div>
     </aside>
   )
 }
