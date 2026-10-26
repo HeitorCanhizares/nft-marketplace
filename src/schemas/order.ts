@@ -6,9 +6,7 @@ import type {
   OrderStatus,
   QuoteChange,
 } from '@/types/order'
-import type { Wallet } from '@/types/user'
 import {
-  emailSchema,
   ethAmountSchema,
   isoDateSchema,
   networkSchema,
@@ -16,27 +14,13 @@ import {
   walletAddressSchema,
   walletProviderSchema,
 } from '@/schemas/common'
+import { walletSchema } from '@/schemas/user'
 
-// Campos de Wallet sem id/slot. Mesmo formato que o bloco 03-005 (src/schemas/user.ts) deve reaproveitar.
-const collectorShape = {
-  displayName: z.string(),
-  username: z.string(),
-  nickname: z.string(),
-  profileName: z.string(),
-  network: networkSchema,
-  address: walletAddressSchema,
-  secondaryAddressOrEns: z.string().optional(),
-  provider: walletProviderSchema,
-  referralCode: z.string(),
-  email: emailSchema,
-  ensName: z.string(),
-}
-
-export const collectorSchema: z.ZodType<Omit<Wallet, 'id' | 'slot'>> = z.object(collectorShape)
+// Collector: campos de Wallet sem id/slot, derivado de walletSchema.
+export const collectorSchema = walletSchema.omit({ id: true, slot: true })
 
 // Collector gravado no pedido: wallet-like + nota opcional.
-const orderCollectorSchema: z.ZodType<Order['collector']> = z.object({
-  ...collectorShape,
+const orderCollectorSchema: z.ZodType<Order['collector']> = collectorSchema.extend({
   note: z.string().optional(),
 })
 
