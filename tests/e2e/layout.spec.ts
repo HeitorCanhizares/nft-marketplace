@@ -416,7 +416,7 @@ test.describe('404, foco e título', () => {
 
     await page.getByRole('link', { name: 'Carrinho', exact: true }).click()
     await expect(page).toHaveURL(/\/carrinho$/)
-    await expect(heading('Carrinho')).toBeFocused()
+    await expect(heading('Carrinho de NFTs')).toBeFocused()
     await expect(page).toHaveTitle('Carrinho | Kurio')
 
     await page.goBack()
@@ -436,7 +436,7 @@ test.describe('404, foco e título', () => {
     await expect(main).toBeFocused()
 
     await page.evaluate(`history.pushState({}, '', '/carrinho')`)
-    await expect(heading('Carrinho')).toBeFocused()
+    await expect(heading('Carrinho de NFTs')).toBeFocused()
   })
 })
 
