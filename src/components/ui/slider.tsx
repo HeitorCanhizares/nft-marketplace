@@ -10,6 +10,7 @@ function Slider({
   min = 0,
   max = 100,
   thumbLabels,
+  'aria-describedby': describedBy,
   ...props
 }: React.ComponentProps<typeof SliderPrimitive.Root> & {
   thumbLabels?: string[]
@@ -46,6 +47,7 @@ function Slider({
           data-slot="slider-thumb"
           key={index}
           aria-label={thumbLabels?.[index]}
+          aria-describedby={describedBy}
           className="relative block size-3.5 shrink-0 rounded-full bg-primary ring-2 ring-background transition-[color,box-shadow] outline-none select-none after:absolute after:-inset-2 hover:ring-4 hover:ring-primary/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring disabled:pointer-events-none disabled:opacity-50 data-disabled:pointer-events-none data-disabled:opacity-50"
         />
       ))}
