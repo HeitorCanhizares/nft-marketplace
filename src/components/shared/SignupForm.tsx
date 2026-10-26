@@ -10,6 +10,7 @@ import { PasswordInput } from '@/components/shared/PasswordInput'
 import { PasswordRequirements } from '@/components/shared/PasswordRequirements'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useDeferredEmptyValidation } from '@/hooks/useDeferredEmptyValidation'
 import { useAvailability, type AvailabilityStatus } from '@/hooks/useAvailability'
 import { signupFormSchema, type SignupFormValues } from '@/schemas/auth'
 import { isApiError } from '@/services/http/ApiError'
@@ -43,8 +44,11 @@ function isServerFieldKey(key: string): key is ServerFieldKey {
 }
 
 export function SignupForm({ variant, onSubmit, redirect, className }: SignupFormProps) {
+  const [resolver, markSubmitAttempt] = useDeferredEmptyValidation<SignupFormValues>(
+    zodResolver(signupFormSchema),
+  )
   const form = useForm<SignupFormValues>({
-    resolver: zodResolver(signupFormSchema),
+    resolver,
     mode: 'onTouched',
     defaultValues: { username: '', email: '', password: '', confirmPassword: '' },
   })
@@ -186,6 +190,7 @@ export function SignupForm({ variant, onSubmit, redirect, className }: SignupFor
   }
 
   function handleFormSubmit(event: FormEvent<HTMLFormElement>) {
+    markSubmitAttempt()
     void form.handleSubmit(submit)(event)
   }
 

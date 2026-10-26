@@ -163,6 +163,23 @@ test.describe('Estrutura', () => {
 })
 
 test.describe('Validação', () => {
+  test('4. sair de campo vazio não mostra erro; só o envio mostra', async ({ page }, testInfo) => {
+    await go(page, '/entrar')
+    const form = scope(page, testInfo)
+    const email = form.getByLabel('E-mail')
+    const password = form.getByLabel('Senha', { exact: true })
+
+    await email.focus()
+    await password.focus()
+    await email.focus()
+    await expect(email).not.toHaveAttribute('aria-invalid', 'true')
+    await expect(password).not.toHaveAttribute('aria-invalid', 'true')
+
+    await form.getByRole('button', { name: 'Entrar', exact: true }).click()
+    await expect(email).toHaveAttribute('aria-invalid', 'true')
+    await expect(password).toHaveAttribute('aria-invalid', 'true')
+  })
+
   test('4. envio vazio e e-mail inválido, sem nenhuma requisição', async ({ page }, testInfo) => {
     await go(page, '/entrar')
     const seen = loginRequests(page)

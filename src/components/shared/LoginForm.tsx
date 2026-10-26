@@ -10,6 +10,7 @@ import { PasswordInput } from '@/components/shared/PasswordInput'
 import { RetryCountdown } from '@/components/shared/RetryCountdown'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useDeferredEmptyValidation } from '@/hooks/useDeferredEmptyValidation'
 import { loginFormSchema, type LoginFormValues } from '@/schemas/auth'
 import { isApiError } from '@/services/http/ApiError'
 import { cn } from '@/lib/utils'
@@ -30,8 +31,11 @@ type LoginFieldKey = 'email' | 'password'
 type Countdown = { seconds: number; key: number }
 
 export function LoginForm({ variant, onSubmit, defaultEmail, className }: LoginFormProps) {
+  const [resolver, markSubmitAttempt] = useDeferredEmptyValidation<LoginFormValues>(
+    zodResolver(loginFormSchema),
+  )
   const form = useForm<LoginFormValues>({
-    resolver: zodResolver(loginFormSchema),
+    resolver,
     mode: 'onTouched',
     defaultValues: { email: defaultEmail ?? '', password: '' },
   })
@@ -131,6 +135,7 @@ export function LoginForm({ variant, onSubmit, defaultEmail, className }: LoginF
   }
 
   function handleFormSubmit(event: FormEvent<HTMLFormElement>) {
+    markSubmitAttempt()
     void form.handleSubmit(submit)(event)
   }
 

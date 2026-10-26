@@ -72,10 +72,7 @@ test.describe('1. axe', () => {
     await expect(form.getByLabel('Nome de usuário')).toBeVisible()
     expect(await seriousViolations(page, testInfo)).toEqual([])
 
-    // Enter no botão focado: com o usuário vazio e focado, o clique com o mouse perde o botão porque o
-    // erro do usuário (ao sair do campo) empurra o botão para baixo entre o mousedown e o mouseup.
-    await form.getByRole('button', { name: submitName(testInfo), exact: true }).focus()
-    await page.keyboard.press('Enter')
+    await form.getByRole('button', { name: submitName(testInfo), exact: true }).click()
     await expect(form.getByText('Confirme sua senha.')).toBeVisible()
     expect(await seriousViolations(page, testInfo)).toEqual([])
 
@@ -144,8 +141,7 @@ test.describe('2. Teclado do modal', () => {
 
     await page.keyboard.press('Enter')
     await expect(dialog).toBeVisible()
-    await dialog.getByRole('button', { name: 'Fechar' }).focus()
-    await page.keyboard.press('Enter')
+    await dialog.getByRole('button', { name: 'Fechar' }).click()
     await expect(dialog).toHaveCount(0)
     await expect(trigger).toBeFocused()
 
@@ -263,10 +259,7 @@ test.describe('5. Erros ligados aos campos', () => {
   }, testInfo) => {
     await go(page, '/cadastro')
     const form = scope(page, testInfo)
-    // Enter no botão focado: com o usuário vazio e focado, o clique com o mouse perde o botão porque o
-    // erro do usuário (ao sair do campo) empurra o botão para baixo entre o mousedown e o mouseup.
-    await form.getByRole('button', { name: submitName(testInfo), exact: true }).focus()
-    await page.keyboard.press('Enter')
+    await form.getByRole('button', { name: submitName(testInfo), exact: true }).click()
 
     for (const field of [
       form.getByLabel('Nome de usuário'),

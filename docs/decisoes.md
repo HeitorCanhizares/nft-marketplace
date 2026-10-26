@@ -211,6 +211,7 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
   - Modal de Login/Cadastro **ancorado pelo topo** (no Figma ele começa a 160 px do topo da página); erros crescem para baixo e nada sai de baixo do mouse ao trocar de aba.
   - Ação pendente **sem executor é descartada** após o login, sem erro.
   - Mensagens separadas: e-mail vazio → "Informe um e-mail."; formato inválido → "Informe um e-mail válido.".
+  - **Validação de campo vazio só no envio:** sair de um campo vazio não mostra erro de "obrigatório" (evita que o layout se mova sob o mouse); erros de formato continuam aparecendo ao sair do campo. Vale para todos os formulários do projeto.
 - Clone limpo: 458 testes passando (110 pulados por projeto), LHCI mobile performance 83, acessibilidade 100, boas práticas 100, SEO 91, LCP ~3,36 s (piorou ~0,3 s; pendência da fase 13).
 - Baselines visuais de Login/Cadastro aprovadas (valem só no Windows, sufixo `-win32`).
 - Conhecido: o mock ainda não tem rotas de carrinho, favoritos e carteiras (fases 06–10).

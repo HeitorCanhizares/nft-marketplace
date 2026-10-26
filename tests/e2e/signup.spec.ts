@@ -211,15 +211,46 @@ test.describe('Validação', () => {
     expect(seen).toEqual([])
   })
 
+  test('2. campo vazio só é validado no envio: o primeiro clique envia e o botão não se move', async ({
+    page,
+  }, testInfo) => {
+    await go(page, '/cadastro')
+    const form = scope(page, testInfo)
+    const f = fields(form)
+    const button = submitButton(form, testInfo)
+
+    // Sair de um campo vazio não mostra erro de "obrigatório".
+    await f.username.focus()
+    await f.email.focus()
+    await f.password.focus()
+    await expect(f.username).not.toHaveAttribute('aria-invalid', 'true')
+    await expect(f.email).not.toHaveAttribute('aria-invalid', 'true')
+    await f.username.focus()
+
+    const before = await button.boundingBox()
+    const target = {
+      x: (before?.x ?? 0) + (before?.width ?? 0) / 2,
+      y: (before?.y ?? 0) + (before?.height ?? 0) / 2,
+    }
+    await page.mouse.move(target.x, target.y)
+    await page.mouse.down()
+    // O mousedown tira o foco do usuário vazio: nada pode mudar de lugar até o mouseup.
+    const afterDown = await button.boundingBox()
+    await page.mouse.up()
+
+    expect(afterDown).toEqual(before)
+    await expect(form.getByText('Informe um e-mail.')).toBeVisible()
+    for (const field of Object.values(f)) {
+      await expect(field).toHaveAttribute('aria-invalid', 'true')
+    }
+  })
+
   test('2. envio vazio mostra os erros e foca o primeiro campo', async ({ page }, testInfo) => {
     await go(page, '/cadastro')
     const form = scope(page, testInfo)
     const f = fields(form)
 
-    // Enter no botão focado: com o usuário vazio e focado, o clique com o mouse perde o botão porque o
-    // erro do usuário (ao sair do campo) empurra o botão para baixo entre o mousedown e o mouseup.
-    await submitButton(form, testInfo).focus()
-    await page.keyboard.press('Enter')
+    await submitButton(form, testInfo).click()
 
     await expect(form.getByText('Informe um e-mail.')).toBeVisible()
     await expect(f.username).toBeFocused()
