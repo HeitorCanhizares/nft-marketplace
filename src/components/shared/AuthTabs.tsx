@@ -8,7 +8,7 @@ type AuthTabsProps = {
   className?: string
 }
 
-const TAB_CLASS = 'relative text-xl leading-5 font-medium'
+const TAB_CLASS = 'relative block text-xl leading-5 font-medium'
 const TAB_ACTIVE_CLASS =
   'text-price after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:bg-primary'
 const TAB_INACTIVE_CLASS = 'text-foreground'
