@@ -19,6 +19,7 @@ import {
 } from './db/stores'
 import { authHandlers } from './handlers/auth'
 import { healthHandlers } from './handlers/health'
+import { homeHandlers } from './handlers/home'
 import { nftsHandlers } from './handlers/nfts'
 import { dropConnections, realtimeHandlers } from './realtime/server'
 import { startScheduler, triggerPriceChange, triggerStockChange } from './realtime/scheduler'
@@ -29,6 +30,7 @@ const resourceHandlers: Parameters<typeof setupWorker>[0][] = [
   ...healthHandlers,
   ...authHandlers,
   ...nftsHandlers,
+  ...homeHandlers,
 ]
 
 const worker = setupWorker(...realtimeHandlers, ...resourceHandlers)
