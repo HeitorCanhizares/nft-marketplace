@@ -32,9 +32,23 @@ export function useNftDetail(id: string) {
   })
 }
 
+// Os relacionados trazem `isFavorite`: relê ao entrar ou sair, como o detalhe.
 export function useRelatedNfts(id: string) {
+  const { status } = useAuth()
+  const queryClient = useQueryClient()
+  const previousStatus = useRef(status)
+
+  useEffect(() => {
+    if (previousStatus.current === status) return
+    const wasLoading = previousStatus.current === 'loading'
+    previousStatus.current = status
+    if (wasLoading) return
+    void queryClient.invalidateQueries({ queryKey: nfts.related(id) })
+  }, [status, id, queryClient])
+
   return useQuery({
     queryKey: nfts.related(id),
     queryFn: ({ signal }) => getRelatedNfts(id, signal),
+    enabled: status !== 'loading',
   })
 }
