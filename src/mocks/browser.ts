@@ -23,6 +23,7 @@ import { favoritesHandlers } from './handlers/favorites'
 import { healthHandlers } from './handlers/health'
 import { homeHandlers } from './handlers/home'
 import { nftsHandlers } from './handlers/nfts'
+import { reviewsHandlers } from './handlers/reviews'
 import { dropConnections, realtimeHandlers } from './realtime/server'
 import { startScheduler, triggerPriceChange, triggerStockChange } from './realtime/scheduler'
 import { isTestMode, mockConfig } from './scenarios/config'
@@ -32,6 +33,7 @@ const resourceHandlers: Parameters<typeof setupWorker>[0][] = [
   ...healthHandlers,
   ...authHandlers,
   ...nftsHandlers,
+  ...reviewsHandlers,
   ...homeHandlers,
   ...favoritesHandlers,
   ...cartHandlers,
