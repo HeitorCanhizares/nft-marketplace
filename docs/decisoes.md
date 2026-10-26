@@ -245,6 +245,12 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - **`NftCard size="compact"`** (14 px) só nos cards de "Mais desta coleção" (decisão do usuário); a Início não muda.
 - Desvios aceitos: indicadores do swipe no mobile (decisão anterior); diferenças de conteúdo do mock (textos, imagens das miniaturas).
 
+### Fase 08 — blocos aprovados (2026-10-26)
+15 blocos em `docs/blocos/08-*` (modo enxuto). Decisões do usuário:
+- **Linha do carrinho desktop mostra a edição** ("Edição 1/50") abaixo do ID do token (o Figma desktop só mostra o ID).
+- **Painel do mobile fixo no rodapé** (`sticky bottom-0`, altura máxima ~60 % da tela e rolagem interna).
+- Demais propostas aprovadas: taxa de rede por cotação, sempre estimada (Ethereum `0.016`, Polygon `0.002`, Solana `0.0005`, padrão Ethereum, carrinho vazio `0.00`); desconto = `floor(subtotal × % / 100)` em unidades de 0,000001 ETH; linha esgotada fora do subtotal (total riscado + texto para leitor de tela); preço da linha é o último que o usuário viu e o aviso "antigo → novo" fica até ele agir na linha (`PATCH` regrava); quantidade otimista só em `quantity`/`itemCount`, valores em `aria-busy` até a resposta; "Desfazer" devolve o item ao fim da lista; recomendações = 10 mais em alta sem esgotados, o front tira os que já estão no carrinho; desconto exibido como `(-) 0.00 ETH`; cupom normalizado (`trim` + maiúsculas); "Continuar explorando" só no desktop; coluna "Edições" mantida; teto de 99 também para edição aberta no mock.
+
 ### Modo enxuto de testes (2026-10-26)
 O usuário pediu menos testes para ganhar velocidade e gastar menos tokens. A partir do fim da fase 06:
 - **Testes E2E por fase:** só o **caminho principal** de cada subitem. **Casos de borda** (cenários de `cenarios.md`: falhas, 4xx/5xx, fora de ordem, sessão expirada, conflitos, preço/estoque mudando, timeout, recusa etc.) ficam **todos para a fase 13**, já que o comportamento está documentado.

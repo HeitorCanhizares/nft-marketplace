@@ -257,6 +257,9 @@ Identificação: com sessão, o carrinho do usuário; sem sessão, cabeçalho `X
 | `PUT /cart/coupon` | `{ code }` | `Cart` (com `coupon`) | `422 COUPON_INVALID` / `COUPON_EXPIRED` |
 | `DELETE /cart/coupon` | — | `Cart` | — |
 
+- Fase 08: `GET /cart` devolve o **preço atual** da edição; a linha guarda o último preço visto (regravado no `PATCH`). `PATCH` em erro de estoque devolve `details: { available, inCart }`. `PUT /cart/coupon` normaliza o código (`trim` + maiúsculas) e não grava em erro. Toda mutação incrementa `version`.
+- Cotação (fase 08): taxa por rede (Ethereum `0.016`, Polygon `0.002`, Solana `0.0005`); desconto = `floor(subtotal × % / 100)` em unidades de 0,000001 ETH; total = subtotal − desconto + taxa; linha `sold_out` fora do subtotal; `priceChanged` compara o preço gravado com o atual.
+- Recomendações: os 10 mais em alta (vendas + favoritos em 7 dias), sem esgotados.
 - Adicionar o mesmo NFT e a mesma edição **soma** a quantidade no item existente, limitada ao estoque da edição.
 - Quantidades são **inteiras** ≥ 1 (o mock rejeita decimais com `422`).
 - O cupom fica **guardado no carrinho**: sobrevive a refresh, segue para o pagamento e é mesclado no login (o cupom do visitante prevalece se o usuário não tinha um).

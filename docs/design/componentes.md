@@ -108,6 +108,7 @@ Instalados pelo CLI do shadcn e estilizados com os [tokens](tokens.md). Não con
 |---|---|---|
 | `LineItem` | CA, PG, CO | Miniatura, nome, ID do token ou edição, quantidade, total. Variantes: `cart-row` (CA d, tabela com stepper e lixeira), `cart-card` (CA m), `summary` (PG d, com "(x 2)"), `receipt` (CO). |
 | `LineItemList` | CA, PG, CO | Lista de `LineItem` com cabeçalho (NFTs / Preço / Edições / Total) |
+| `CartSummaryPanel` | CA | Junta cupom, resumo e botões; mesmo componente no desktop (coluna) e no mobile (painel fixo no rodapé) |
 | `PriceSummary` | CA, PG, CO | Subtotal, Desconto do lançamento, Taxa de rede ("Taxa estimada"), Total |
 | `CouponField` | CA, PG | Campo "Código promocional" + "Aplicar". Mostra estados: aplicado (com "Remover cupom"), inválido, expirado. No PG começa recolhido ("Tem um código promocional? Aplique aqui"). |
 | `WalletProviderOption` | PG | Card de rádio: WalletConnect, MetaMask, Coinbase Wallet (ícone + nome) |
