@@ -11,7 +11,7 @@ type ProfileSidebarProps = {
 }
 
 const ITEM_CLASS =
-  'relative flex h-11.25 w-full items-center gap-3 pl-4 text-body! text-price focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset'
+  'relative flex h-11.25 w-full items-center gap-3 pl-4 text-body text-price focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset'
 
 export function ProfileSidebar({ onSignOut, className }: ProfileSidebarProps) {
   const pathname = useLocation({ select: (location) => location.pathname })

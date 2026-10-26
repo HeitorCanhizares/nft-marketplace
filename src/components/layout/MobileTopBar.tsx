@@ -33,7 +33,7 @@ export function MobileTopBar({
     navigate(fallbackTo)
   }
 
-  const backButtonClassName = 'size-9 rounded-full! border-border text-tan'
+  const backButtonClassName = 'size-9 rounded-full border-border text-tan'
 
   return (
     <header
