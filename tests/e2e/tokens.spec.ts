@@ -28,6 +28,8 @@ const pairs: Array<[string, string, number]> = [
   ['destructive', 'card', 4.5],
   ['success', 'card', 4.5],
   ['required', 'card', 4.5],
+  ['tan', 'background', 4.5],
+  ['tan', 'card', 4.5],
   ['ring', 'background', 3],
 ]
 
