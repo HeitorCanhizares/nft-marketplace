@@ -36,12 +36,14 @@ export function FooterHighlights() {
           >
             {item.letter}
           </span>
-          <h2 className="mt-3 text-lg font-bold text-foreground">{item.title}</h2>
-          <p className="text-sm leading-5.5 text-muted-foreground">{item.description}</p>
+          <h2 className="mt-1.75 text-lg font-bold text-foreground">{item.title}</h2>
+          <p className="mt-1.25 max-w-50 text-sm leading-5.5 text-muted-foreground">
+            {item.description}
+          </p>
         </div>
       ))}
 
-      <div className="border-l border-primary pl-4">
+      <div className="border-l border-primary px-4">
         <FooterNewsletter />
       </div>
     </div>
