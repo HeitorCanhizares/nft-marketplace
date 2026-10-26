@@ -31,7 +31,7 @@ Registrar os 4 tokens que a Início usa e a escala atual não tem, e ensiná-los
 
 ## Critérios de aceite
 - [ ] Sem `any`, sem `@ts-ignore`; os tokens antigos continuam como estavam.
-- [ ] `cn('rounded-panel rounded-card', 'text-section text-featured')` não descarta nenhuma das classes (testar num probe **não commitado**).
+- [ ] `cn('rounded-panel text-section text-foreground', 'p-4')` mantém as três classes (os tokens novos têm grupo próprio e não se confundem com cor nem com espaçamento); duas classes do **mesmo** grupo (`rounded-panel rounded-card`, `text-section text-featured`) ficam só com a última, como o `twMerge` faz (testar num probe **não commitado**).
 - [ ] Sem cor hexadecimal nova.
 
 ## Verificação (Sonnet)
