@@ -77,18 +77,21 @@ test.describe('Estrutura, item ativo e desabilitados (desktop)', () => {
 
   test('2. item ativo do cabeçalho por rota', async ({ page }, testInfo) => {
     only(testInfo, 'desktop')
-    const cases: [string, 'home' | 'market' | 'none'][] = [
+    type Active = 'home' | 'market' | 'none'
+    const publicCases: [string, Active][] = [
       ['/', 'home'],
       ['/carrinho', 'market'],
-      ['/pagamento', 'market'],
       ['/nft/x', 'market'],
+    ]
+    // Rotas protegidas: exigem sessão (05-037), então são abertas já logado.
+    const protectedCases: [string, Active][] = [
+      ['/pagamento', 'market'],
       ['/pedido/x', 'market'],
       ['/perfil/dados', 'none'],
       ['/perfil/carteiras', 'none'],
     ]
 
-    for (const [path, active] of cases) {
-      await go(page, path)
+    async function expectActive(path: string, active: Active) {
       const nav = page.getByRole('banner').getByRole('navigation', { name: 'Navegação principal' })
       const home = nav.getByRole('link', { name: 'Início', exact: true })
       const market = nav.getByRole('link', { name: 'Mercado', exact: true })
@@ -98,6 +101,20 @@ test.describe('Estrutura, item ativo e desabilitados (desktop)', () => {
 
       if (active === 'market') await expect(market, path).toHaveAttribute('aria-current', 'page')
       else await expect(market, path).not.toHaveAttribute('aria-current')
+    }
+
+    for (const [path, active] of publicCases) {
+      await go(page, path)
+      await expectActive(path, active)
+    }
+
+    // O init script vale só para as navegações seguintes: as públicas acima seguem anônimas.
+    await bootLoggedIn(page)
+    for (const [path, active] of protectedCases) {
+      await go(page, path)
+      await expect.poll(async () => (await authState(page)).status).toBe('authenticated')
+      await expect(page, path).toHaveURL(new RegExp(`${path}$`))
+      await expectActive(path, active)
     }
   })
 
@@ -338,6 +355,18 @@ test.describe('Estrutura mobile', () => {
     const home = nav.getByRole('link', { name: 'Início', exact: true })
     const favorites = nav.getByRole('link', { name: 'Favoritos' })
     await expect(home).toHaveAttribute('aria-current', 'page')
+
+    // Deslogado, Favoritos e Perfil levam ao login e voltam ao destino depois (05-037 e 05-038).
+    await favorites.click()
+    await expect(page).toHaveURL(/\/entrar\?redirect=%2F%3Ffavoritos%3D1$/)
+    await go(page)
+    await nav.getByRole('link', { name: 'Perfil' }).click()
+    await expect(page).toHaveURL(/\/entrar\?redirect=%2Fperfil$/)
+
+    // Logado, as duas abas abrem normalmente.
+    await bootLoggedIn(page)
+    await go(page)
+    await expect.poll(async () => (await authState(page)).status).toBe('authenticated')
     await favorites.click()
     await expect(page).toHaveURL(/\/\?favoritos=1$/)
     await expect(favorites).toHaveAttribute('aria-current', 'page')
