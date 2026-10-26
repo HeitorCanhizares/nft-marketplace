@@ -1,6 +1,6 @@
 # 06-050 — `CatalogPagination` (paginação numérica do desktop)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 3 (desktop: paginação numérica ligada a `?pagina=`)
 **Depende de:** 01-012
 **Depende de decisão:** pergunta 14 do relatório da fase 06 (botões de 40 px do primitivo)

@@ -1,6 +1,6 @@
 # 06-041 — `FilterOptionList` (grupo de filtro de uma opção)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 6 (Coleções e Rede: uma opção por grupo, aplicada na hora, com contagem)
 **Depende de:** 01-004
 **Depende de decisão:** pergunta 3 do relatório da fase 06 (opções com contagem 0)

@@ -1,6 +1,6 @@
 # 06-030 — Hook `useLiveChanges` (selo "Atualizado" e anúncio agrupado)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 11 (selo "Atualizado" por alguns segundos; no máximo um aviso agrupado a cada poucos segundos)
 **Depende de:** 06-002, 03-010
 **Depende de decisão:** pergunta 12 do relatório da fase 06 (5 s, textos do aviso)

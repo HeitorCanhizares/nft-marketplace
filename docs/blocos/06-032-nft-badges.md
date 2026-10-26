@@ -1,6 +1,6 @@
 # 06-032 — Selos do card: `RarityBadge` e `PriceChangedNotice`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (selo "RARO"; "Esgotado") e 11 (selo "Atualizado")
 **Depende de:** 01-017, 06-001
 

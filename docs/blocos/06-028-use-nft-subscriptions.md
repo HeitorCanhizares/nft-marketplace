@@ -1,6 +1,6 @@
 # 06-028 — Hook `useNftSubscriptions` (inscrever os NFTs visíveis)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 11 (tempo real: inscreve os visíveis, cancela ao sair ou trocar de página; revalida ao reconectar)
 **Depende de:** 06-024, 03-011
 

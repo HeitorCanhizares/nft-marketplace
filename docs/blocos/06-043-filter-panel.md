@@ -1,6 +1,6 @@
 # 06-043 — `FilterPanel`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 6 (barra lateral de filtros; "Limpar filtros" sempre disponível quando houver filtro ativo)
 **Depende de:** 06-041, 06-042, 06-003
 **Depende de decisão:** pergunta 3 do relatório da fase 06

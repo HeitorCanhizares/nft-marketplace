@@ -1,6 +1,6 @@
 # 06-042 — `PriceRangeFilter` (faixa de preço com "Aplicar")
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 6 (Faixa de preço: slider de dois cursores; só aplica no botão "Aplicar")
 **Depende de:** 01-011, 01-004
 **Depende de decisão:** perguntas 3 e 9 do relatório da fase 06 (limites estáveis; vírgula no rótulo como no Figma)

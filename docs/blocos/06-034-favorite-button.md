@@ -1,6 +1,6 @@
 # 06-034 — `FavoriteButton`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (favoritar no card)
 **Depende de:** 01-004
 **Depende de decisão:** pergunta 14 do relatório da fase 06 (variante com texto fica para o Detalhes)

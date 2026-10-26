@@ -1,6 +1,6 @@
 # 06-040 — `SortSelect`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 5 (ordenação "Ordenar por:" com 5 opções)
 **Depende de:** 01-006, 06-004
 

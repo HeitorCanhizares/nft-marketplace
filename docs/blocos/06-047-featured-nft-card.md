@@ -1,6 +1,6 @@
 # 06-047 — `FeaturedNftCard`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 2 (NFT em destaque, só no desktop; clicar abre o detalhe)
 **Depende de:** 01-015, 06-001
 **Depende de decisão:** pergunta 7 do relatório da fase 06 (qual NFT é o destaque)

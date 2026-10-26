@@ -1,6 +1,6 @@
 # 06-054 — Hook `useCatalogPage` (liga o catálogo da Início)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 3 a 9, 11, 12 (a ligação entre URL, dados, ações, tempo real e foco)
 **Depende de:** 06-022, 06-024, 06-025, 06-027, 06-028, 06-029, 06-030, 06-053, 06-003, 06-004
 **Depende de decisão:** perguntas 4, 11 e 13 do relatório da fase 06

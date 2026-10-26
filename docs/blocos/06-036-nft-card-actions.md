@@ -1,6 +1,6 @@
 # 06-036 — `NftCardActions` (ações do card)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (ações no hover **e no foco** no desktop; coração fixo no mobile; "Esgotado")
 **Depende de:** 06-034
 **Depende de decisão:** perguntas 14 e 15 do relatório da fase 06 (ícones; mobile só com o coração)

@@ -1,6 +1,6 @@
 # 06-046 — `HeroBanner` (desktop e mobile)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 1 (hero automático com pausa; indicadores; "EXPLORAR" rola ao catálogo)
 **Depende de:** 06-031, 06-001, 01-013, 01-004
 **Depende de decisão:** pergunta 7 do relatório da fase 06 (textos fixos; 3 imagens; botão de pausa)

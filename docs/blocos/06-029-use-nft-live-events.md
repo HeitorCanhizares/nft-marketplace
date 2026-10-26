@@ -1,6 +1,6 @@
 # 06-029 — Hook `useNftLiveEvents` (aplicar os eventos no cache)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 11 (preço alterado muda o card; estoque zerado mostra "Esgotado")
 **Depende de:** 06-024, 03-011
 **Depende de decisão:** pergunta 12 do relatório da fase 06 (como os eventos entram no cache)

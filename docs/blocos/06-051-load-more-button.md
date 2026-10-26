@@ -1,6 +1,6 @@
 # 06-051 — `LoadMoreButton`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 3 (mobile: botão "Carregar mais" no fim da grade)
 **Depende de:** 01-004
 

@@ -1,6 +1,6 @@
 # 06-044 — `FilterSheet` (drawer de filtros no mobile)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 6 e 5 (mobile: `Sheet` aberto pelo botão de filtros, com os mesmos grupos, a ordenação, "Limpar filtros" e "Ver N resultados")
 **Depende de:** 06-040, 06-043, 01-009
 **Depende de decisão:** pergunta 10 do relatório da fase 06 (o drawer **não foi desenhado**: forma e textos propostos)

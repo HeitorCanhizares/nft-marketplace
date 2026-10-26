@@ -1,6 +1,6 @@
 # 06-055 — `HomeDesktop` (composição da Início no desktop)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 1 a 12 (desktop)
 **Depende de:** 06-054, 06-023, 06-043, 06-046, 06-047, 06-048, 06-049, 06-052
 **Depende de decisão:** perguntas 7 e 10 do relatório da fase 06 (erro de `GET /home`)

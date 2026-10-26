@@ -1,6 +1,6 @@
 # 06-031 — Hook `useCarouselAutoplay` (rotação com pausa)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 1 (hero automático; para com hover, foco, `prefers-reduced-motion` e pelo botão)
 **Depende de:** 04-001, 01-013
 **Depende de decisão:** pergunta 7 do relatório da fase 06

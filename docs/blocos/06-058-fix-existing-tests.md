@@ -1,6 +1,6 @@
 # 06-058 — Ajustar os testes antigos à Início real
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Início › efeito colateral nas fases 03 a 05
 **Depende de:** 06-057

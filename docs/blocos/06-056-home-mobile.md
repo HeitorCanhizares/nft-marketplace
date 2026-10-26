@@ -1,6 +1,6 @@
 # 06-056 — `HomeMobile` (composição da Início no mobile)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 1, 3 a 9, 11, 12 (mobile)
 **Depende de:** 06-054, 06-023, 06-044, 06-045, 06-046, 06-052
 **Depende de decisão:** perguntas 7 e 10 do relatório da fase 06

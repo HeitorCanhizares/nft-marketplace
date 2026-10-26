@@ -1,6 +1,6 @@
 # 06-037 — `NftCard`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (o card inteiro abre o detalhe; preço, selo RARO, esgotado) e 11 (selo "Atualizado")
 **Depende de:** 06-002, 06-032, 06-033, 06-036, 06-001
 **Depende de decisão:** pergunta 15 do relatório da fase 06 (mobile sem carrinho no card)

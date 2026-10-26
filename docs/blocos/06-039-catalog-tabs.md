@@ -1,6 +1,6 @@
 # 06-039 — `CatalogTabs` (abas e área do catálogo)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 4 (abas "Todos os NFTs", "Novos lançamentos", "Em alta")
 **Depende de:** 01-010, 06-004
 **Depende de decisão:** pergunta 14 do relatório da fase 06 (espaçamento das abas no mobile)

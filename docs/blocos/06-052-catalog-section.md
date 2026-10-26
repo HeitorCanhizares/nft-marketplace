@@ -1,6 +1,6 @@
 # 06-052 — `CatalogSection` (título, abas, grade, paginação e estados)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 3, 4, 9, 12 (catálogo; "Seus favoritos"; vazio; erro só na área do catálogo)
 **Depende de:** 06-038, 06-039, 06-040, 06-050, 06-051, 04-013, 04-014
 **Depende de decisão:** perguntas 6 e 10 do relatório da fase 06 (títulos e textos dos estados)

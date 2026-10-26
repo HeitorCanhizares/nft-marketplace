@@ -1,6 +1,6 @@
 # 06-033 — `PriceTag` (preço em ETH com preço anterior riscado)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (preço e preço riscado no card)
 **Depende de:** 06-004
 **Depende de decisão:** pergunta 9 do relatório da fase 06 (ponto decimal como no Figma)

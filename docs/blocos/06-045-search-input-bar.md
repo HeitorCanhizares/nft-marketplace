@@ -1,6 +1,6 @@
 # 06-045 — `SearchInput`: variante barra (mobile, com debounce)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 7 (mobile: barra "Explorar coleções" com debounce de 300 ms, atualizando `?q=`)
 **Depende de:** 04-020, 06-021
 **Depende de decisão:** pergunta 14 do relatório da fase 06 (ícone da barra)

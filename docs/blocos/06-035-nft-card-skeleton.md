@@ -1,6 +1,6 @@
 # 06-035 — `NftCardSkeleton`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 12 (carregando: skeleton na grade)
 **Depende de:** 01-015, 06-001
 

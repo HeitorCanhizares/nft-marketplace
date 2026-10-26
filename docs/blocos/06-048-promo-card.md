@@ -1,6 +1,6 @@
 # 06-048 — `PromoCard`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 10 (promos levam ao catálogo filtrado; só desktop)
 **Depende de:** 06-004, 06-001, 01-015
 

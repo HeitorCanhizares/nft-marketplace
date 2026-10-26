@@ -1,6 +1,6 @@
 # 06-038 — `NftGrid`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 3 (grade 3 colunas no desktop; 2 colunas desalinhadas no mobile) e 12 (carregando, grade anterior esmaecida)
 **Depende de:** 06-035, 06-037
 

@@ -1,6 +1,6 @@
 # 06-057 — `Home` real e rota `/` com a busca completa
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › todos (liga a página à rota)
 **Depende de:** 06-055, 06-056, 06-003, 05-029, 05-038
 **Depende de decisão:** pergunta 6 do relatório da fase 06 (`h1` e títulos); pergunta 7 (sem `loader`)

@@ -1,6 +1,6 @@
 # 06-049 — `BlogCard`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 10 (blog "Diário da Cunhagem": cards visíveis; "Ler mais" desabilitado)
 **Depende de:** 04-016, 01-015
 

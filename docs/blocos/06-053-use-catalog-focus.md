@@ -1,6 +1,6 @@
 # 06-053 — Hook `useCatalogFocus` (rolagem, foco e anúncios do catálogo)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 1 e 3 ("EXPLORAR" rola até `#catalogo` e foca o título; trocar de página rola ao topo do catálogo e foca o título; "Carregar mais" foca o primeiro card novo e anuncia o total)
 **Depende de:** 03-010, 04-012
 
