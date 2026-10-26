@@ -200,6 +200,12 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - **Modal de Login/Cadastro sem escurecer o fundo**, como no Figma (camada transparente mantém o clique fora e a inertização; nova prop no `ui/dialog.tsx`).
 - **Demais recomendações do Sonnet aprovadas** (relatório da fase 05): guardas `beforeLoad` com contexto do roteador e promessa `ready` no `AuthContext`; Home provisória atrás do modal; modal centralizado na viewport com rolagem interna; `AuthTabs` como `nav` de links com `aria-current`; raios mobile `rounded-3xl` (campo) e `rounded-4xl` (botão); título mobile 20 px; `--text-logo: 32px`; botão principal mobile liso (sem gradiente, como na captura); 5ª senha errada já devolve `429` com 30 s, contador só em memória; ação pendente em `kurio:pending-action` (sessionStorage, 10 min, fora do `clearPrivateSession`); aviso de ajustes do carrinho em toast de 10 s; aviso de expiração como faixa no topo (`role="alertdialog"`, sem mover o foco); fechar o modal devolve o foco ao "Entrar" (`skipRouteFocus`); `redirect` rejeita `\`, controle, >2048 caracteres e `/entrar`/`/cadastro`; placeholder "Senha" no login; correções pequenas do Figma (alinhamentos, sublinhado nos links de troca, anel de foco mantido); convenção de carrinhos no mock (`cart-<userId>` e `X-Cart-Id`); ETH em inteiros no mock.
 
+### Fase 05 — ajustes após a verificação visual (2026-10-26)
+- Link de troca no mobile ("Crie uma conta" / "Entre"): **mesma cor do texto ao redor (`muted-foreground`), sem negrito, com sublinhado**.
+- Requisitos da senha visíveis no Cadastro aceitos (modal ~30 px mais alto que o Figma).
+- **16 px** entre os botões sociais em todas as telas (o Figma usa 12 px só no login desktop).
+- Modal de Login e de Cadastro **sem raio** nos dois (o Figma arredonda só o do Cadastro).
+
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
 - 00 Setup → 01 Design base → 02 Mock base → 03 App base → 04 Layout e estados → 05 Login/Cadastro → 06 Início → 07 Detalhes → 08 Carrinho → 09 Perfil → 10 Carteiras → 11 Pagamento → 12 Confirmação → 13 Final.

@@ -24,7 +24,7 @@ const MOBILE_TITLE = {
   signup: 'Criar perfil de colecionador',
 } as const
 
-const SWITCH_LINK_CLASS = 'font-bold text-foreground underline underline-offset-4'
+const SWITCH_LINK_CLASS = 'text-muted-foreground underline underline-offset-4'
 
 // Estrutura comum de Login e Cadastro: dentro do modal (desktop) ou da página (mobile). O formulário entra como children.
 export function AuthForm({ mode, variant, redirect, children, className }: AuthFormProps) {
