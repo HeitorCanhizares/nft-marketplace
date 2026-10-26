@@ -10,12 +10,19 @@ import type { NftSummary } from '@/types/nft'
 
 type AddVars = { nft: NftSummary; editionId: string }
 
+const MUTATION_KEY = ['add-to-cart'] as const
+
+function isAddVars(value: unknown): value is AddVars {
+  return typeof value === 'object' && value !== null && 'nft' in value && 'editionId' in value
+}
+
 // Adiciona 1 unidade da edição de menor preço com estoque, direto do card.
 export function useAddToCart() {
   const queryClient = useQueryClient()
   const [pendingIds, setPendingIds] = useState<ReadonlySet<string>>(() => new Set())
 
   const mutation = useMutation({
+    mutationKey: MUTATION_KEY,
     mutationFn: ({ nft, editionId }: AddVars) =>
       addCartItem({ nftId: nft.id, editionId, quantity: 1 }),
     onSuccess: (cartData, { nft }) => {
@@ -44,7 +51,17 @@ export function useAddToCart() {
   function add(nft: NftSummary): void {
     const editionId = nft.defaultEditionId
     if (!editionId || nft.soldOut) return
-    if (pendingIds.has(nft.id)) return
+
+    // O cache de mutações já sabe, de forma síncrona, que há um pedido em andamento para este NFT
+    // (o state `pendingIds` só muda no render seguinte, e dois cliques no mesmo render passariam).
+    const inFlight = queryClient.isMutating({
+      mutationKey: MUTATION_KEY,
+      predicate: (candidate) => {
+        const vars = candidate.state.variables
+        return isAddVars(vars) && vars.nft.id === nft.id
+      },
+    })
+    if (inFlight > 0) return
 
     // Visitante sem sessão: o carrinho é identificado pelo X-Cart-Id, criado aqui se ainda não existe.
     if (readSession() === null) ensureGuestCartId()
