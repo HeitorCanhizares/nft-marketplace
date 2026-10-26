@@ -15,6 +15,8 @@ export function usePendingExecutors() {
         await Promise.all([
           queryClient.invalidateQueries({ queryKey: nfts.lists }),
           queryClient.invalidateQueries({ queryKey: home }),
+          queryClient.invalidateQueries({ queryKey: nfts.details }),
+          queryClient.invalidateQueries({ queryKey: nfts.relatedAll }),
           queryClient.invalidateQueries({ queryKey: favorites }),
         ])
         return 'Adicionado aos favoritos.'

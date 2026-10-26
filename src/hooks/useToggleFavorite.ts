@@ -8,13 +8,15 @@ import { favorites, home, nfts } from '@/hooks/queryKeys'
 import { savePendingAction } from '@/lib/pendingAction'
 import { addFavorite, removeFavorite } from '@/services/api/favorites'
 import type { CatalogResponse } from '@/types/catalog'
-import type { HomeResponse, NftSummary } from '@/types/nft'
+import type { HomeResponse, NftDetail, NftSummary } from '@/types/nft'
 
 type ToggleVars = { nft: NftSummary; next: boolean }
 
 type Snapshot = {
   lists: [QueryKey, CatalogResponse | undefined][]
   home: [QueryKey, HomeResponse | undefined][]
+  details: [QueryKey, NftDetail | undefined][]
+  related: [QueryKey, NftSummary[] | undefined][]
 }
 
 const MUTATION_KEY = ['toggle-favorite'] as const
@@ -23,7 +25,7 @@ function isToggleVars(value: unknown): value is ToggleVars {
   return typeof value === 'object' && value !== null && 'nft' in value && 'next' in value
 }
 
-function withFavorite(item: NftSummary, nftId: string, isFavorite: boolean): NftSummary {
+function withFavorite<T extends NftSummary>(item: T, nftId: string, isFavorite: boolean): T {
   return item.id === nftId ? { ...item, isFavorite } : item
 }
 
@@ -42,12 +44,25 @@ export function useToggleFavorite() {
       await Promise.all([
         queryClient.cancelQueries({ queryKey: nfts.lists }),
         queryClient.cancelQueries({ queryKey: home }),
+        queryClient.cancelQueries({ queryKey: nfts.details }),
+        queryClient.cancelQueries({ queryKey: nfts.relatedAll }),
       ])
 
       const snapshot: Snapshot = {
         lists: queryClient.getQueriesData<CatalogResponse>({ queryKey: nfts.lists }),
         home: queryClient.getQueriesData<HomeResponse>({ queryKey: home }),
+        details: queryClient.getQueriesData<NftDetail>({ queryKey: nfts.details }),
+        related: queryClient.getQueriesData<NftSummary[]>({ queryKey: nfts.relatedAll }),
       }
+
+      queryClient.setQueriesData<NftDetail>(
+        { queryKey: nfts.details },
+        (old) => old && withFavorite(old, nft.id, next),
+      )
+      queryClient.setQueriesData<NftSummary[]>(
+        { queryKey: nfts.relatedAll },
+        (old) => old && old.map((item) => withFavorite(item, nft.id, next)),
+      )
 
       queryClient.setQueriesData<CatalogResponse>(
         { queryKey: nfts.lists },
@@ -74,6 +89,8 @@ export function useToggleFavorite() {
       if (snapshot) {
         for (const [key, data] of snapshot.lists) queryClient.setQueryData(key, data)
         for (const [key, data] of snapshot.home) queryClient.setQueryData(key, data)
+        for (const [key, data] of snapshot.details) queryClient.setQueryData(key, data)
+        for (const [key, data] of snapshot.related) queryClient.setQueryData(key, data)
       }
       toast.error(
         `Não foi possível ${next ? 'favoritar' : 'remover dos favoritos'} ${nft.name}. Tente de novo.`,
