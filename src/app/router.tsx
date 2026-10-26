@@ -13,6 +13,13 @@ export const router = createRouter({
   scrollRestoration: true,
 })
 
+declare module '@tanstack/history' {
+  interface HistoryState {
+    skipRouteFocus?: boolean // fechar o modal de Login/Cadastro: o foco volta ao gatilho, não ao <h1>
+    email?: string // e-mail do "Entrar com este e-mail" (estado de navegação, nunca na URL)
+  }
+}
+
 declare module '@tanstack/react-router' {
   interface Register {
     router: typeof router

@@ -12,8 +12,13 @@ export function useRouteFocus(): void {
   }, [title])
 
   useEffect(() => {
-    return router.subscribe('onResolved', ({ fromLocation, pathChanged }) => {
+    return router.subscribe('onResolved', ({ fromLocation, toLocation, pathChanged }) => {
       if (!fromLocation || !pathChanged) {
+        return
+      }
+
+      // Fechar o modal de Login/Cadastro: o Radix devolve o foco ao gatilho.
+      if (toLocation.state.skipRouteFocus === true) {
         return
       }
 
