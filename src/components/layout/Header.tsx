@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from '@tanstack/react-router'
-import { LogInIcon, ShoppingCartIcon } from 'lucide-react'
+import { LogOutIcon, ShoppingCartIcon } from 'lucide-react'
 
 import { ComingSoon } from '@/components/shared/ComingSoon'
 import { SearchInput } from '@/components/shared/SearchInput'
@@ -135,7 +135,7 @@ export function Header({
             ) : (
               <Button asChild className="ml-3.25 h-9 px-2.5 text-base">
                 <Link to="/entrar" search={redirectSearch}>
-                  <LogInIcon />
+                  <LogOutIcon />
                   Entrar
                 </Link>
               </Button>
