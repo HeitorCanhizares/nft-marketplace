@@ -3,12 +3,11 @@ import { useState } from 'react'
 import { toast } from 'sonner'
 
 import { useLiveAnnouncer } from '@/contexts/liveAnnouncer'
-import { cart } from '@/hooks/queryKeys'
+import { cart, quoteAll } from '@/hooks/queryKeys'
 import { applyCartCoupon, removeCartCoupon } from '@/services/api/cart'
 import { isApiError } from '@/services/http/ApiError'
 import type { Cart } from '@/types/cart'
 
-const QUOTE_ROOT = ['quote'] as const
 const COUPON_KEY = ['cart-coupon'] as const
 
 export type CartCouponError = {
@@ -24,7 +23,7 @@ export function useCartCoupon() {
 
   function onCouponSaved(saved: Cart): void {
     queryClient.setQueryData(cart, saved)
-    void queryClient.invalidateQueries({ queryKey: QUOTE_ROOT })
+    void queryClient.invalidateQueries({ queryKey: quoteAll })
     setError(null)
   }
 

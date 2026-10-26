@@ -2,13 +2,12 @@ import { useQueryClient } from '@tanstack/react-query'
 import { useEffect, useRef } from 'react'
 
 import { useLiveAnnouncer } from '@/contexts/liveAnnouncer'
-import { cart } from '@/hooks/queryKeys'
+import { cart, quoteAll } from '@/hooks/queryKeys'
 import { useNftSubscriptions } from '@/hooks/useNftSubscriptions'
 import { formatEthSpoken } from '@/lib/formatEth'
 import { onReconnect, onSocketEvent } from '@/services/realtime/socket'
 import type { Cart } from '@/types/cart'
 
-const QUOTE_ROOT = ['quote'] as const
 // Avisos de preço e estoque que chegam juntos viram uma só fala.
 const ANNOUNCE_WINDOW_MS = 1000
 
@@ -24,7 +23,7 @@ export function useCartLive(cartData: Cart | undefined): void {
   useEffect(() => {
     return onReconnect(() => {
       void queryClient.invalidateQueries({ queryKey: cart })
-      void queryClient.invalidateQueries({ queryKey: QUOTE_ROOT })
+      void queryClient.invalidateQueries({ queryKey: quoteAll })
     })
   }, [queryClient])
 
@@ -49,7 +48,7 @@ export function useCartLive(cartData: Cart | undefined): void {
 
     function refresh(): void {
       void queryClient.invalidateQueries({ queryKey: cart })
-      void queryClient.invalidateQueries({ queryKey: QUOTE_ROOT })
+      void queryClient.invalidateQueries({ queryKey: quoteAll })
     }
 
     const offPrice = onSocketEvent('nft:price_changed', (payload) => {

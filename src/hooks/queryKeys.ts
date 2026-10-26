@@ -19,6 +19,8 @@ export const favorites = ['favorites'] as const
 
 export const cart = ['cart'] as const
 
+export const quoteAll = ['quote'] as const
+
 export const quote = (input: QueryParams) => ['quote', input] as const
 
 export const orders = {

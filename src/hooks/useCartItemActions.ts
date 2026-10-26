@@ -3,13 +3,12 @@ import { useRef, useState } from 'react'
 import { toast } from 'sonner'
 
 import { useLiveAnnouncer } from '@/contexts/liveAnnouncer'
-import { cart } from '@/hooks/queryKeys'
+import { cart, quoteAll } from '@/hooks/queryKeys'
 import { addCartItem, removeCartItem, updateCartItem } from '@/services/api/cart'
 import { isApiError } from '@/services/http/ApiError'
 import type { Cart, CartItem } from '@/types/cart'
 
 // Raiz de todas as cotações (a chave quote(input) é uma função, não serve para invalidar).
-const QUOTE_ROOT = ['quote'] as const
 const QUANTITY_KEY = ['cart-quantity'] as const
 const REMOVE_KEY = ['cart-remove'] as const
 
@@ -78,7 +77,7 @@ export function useCartItemActions() {
     onSuccess: (data) => {
       // Com outra linha ainda pendente, a resposta deixaria o valor otimista antigo na tela: fica para o próximo PATCH.
       if (groups.current.size === 0) queryClient.setQueryData(cart, data)
-      void queryClient.invalidateQueries({ queryKey: QUOTE_ROOT })
+      void queryClient.invalidateQueries({ queryKey: quoteAll })
     },
     onError: (error, vars) => {
       if (!groups.current.has(vars.itemId)) revertQuantity(vars.itemId, vars.baseline)
@@ -103,7 +102,7 @@ export function useCartItemActions() {
     mutationFn: ({ line }: RemoveVars) => removeCartItem(line.id),
     onSuccess: (data, { line }) => {
       if (groups.current.size === 0) queryClient.setQueryData(cart, data)
-      void queryClient.invalidateQueries({ queryKey: QUOTE_ROOT })
+      void queryClient.invalidateQueries({ queryKey: quoteAll })
       toast(`${line.nft.name} removido`, {
         duration: UNDO_DURATION_MS,
         action: { label: 'Desfazer', onClick: () => void undoRemove(line) },
@@ -213,7 +212,7 @@ export function useCartItemActions() {
 
     const restore = (restored: Cart) => {
       queryClient.setQueryData(cart, restored)
-      void queryClient.invalidateQueries({ queryKey: QUOTE_ROOT })
+      void queryClient.invalidateQueries({ queryKey: quoteAll })
       announce(`${name} voltou ao carrinho`, 'polite')
     }
 
