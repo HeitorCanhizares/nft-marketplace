@@ -133,10 +133,7 @@ test.describe('Cadastro', () => {
   test('erros de validação', async ({ page }, testInfo) => {
     await go(page, '/cadastro')
     const form = scope(page, testInfo)
-    // Enter no botão focado: com o usuário vazio e focado, o clique com o mouse perde o botão porque o
-    // erro do usuário (ao sair do campo) empurra o botão para baixo entre o mousedown e o mouseup.
-    await signupButton(form, testInfo).focus()
-    await page.keyboard.press('Enter')
+    await signupButton(form, testInfo).click()
     await expect(form.getByText('Confirme sua senha.')).toBeVisible()
     await capture(page, testInfo, 'cadastro-validacao')
   })
