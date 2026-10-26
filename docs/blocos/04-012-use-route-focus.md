@@ -1,6 +1,6 @@
 # 04-012 — Foco no `<h1>` e título do documento a cada troca de rota
 
-**Status:** concluído (verificação em runtime — foco no h1, título e ignorar mudança só de search — fica para o 04-030, quando o `#conteudo` existir; código revisado contra o bloco)
+**Status:** concluído (verificação em runtime feita no 04-033, item 11: foco no h1 ao trocar de caminho, sem foco na carga inicial nem quando só a busca muda, título "<título> | Kurio")
 **Fluxo / subitem:** Fase 04 › Acessibilidade de navegação
 **Depende de:** 04-006
 

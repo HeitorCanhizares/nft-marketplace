@@ -1,6 +1,6 @@
 # 04-033 — Testes do layout e dos estados
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Fase 04 › Testes
 **Depende de:** 04-001 a 04-032

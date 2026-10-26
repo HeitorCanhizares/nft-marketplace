@@ -1,6 +1,6 @@
 # 04-030 — AppShell
 
-**Status:** pendente (**cabo do contador do carrinho: pergunta 12; contenção do carrossel: pergunta 11**)
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout
 **Depende de:** 04-001, 04-005, 04-011, 04-012, 04-022, 04-026, 04-027
 

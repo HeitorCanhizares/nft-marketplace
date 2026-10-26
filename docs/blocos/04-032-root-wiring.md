@@ -1,6 +1,6 @@
 # 04-032 — Ligar o AppShell e os fallbacks ao router
 
-**Status:** pendente (**`scrollRestoration`: pergunta 14**)
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout
 **Depende de:** 04-030, 04-031
 

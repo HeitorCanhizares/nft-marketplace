@@ -1,6 +1,6 @@
 # 04-024 — Rodapé: redes sociais e carteiras compatíveis
 
-**Status:** pendente (SVGs definidos pelo usuário: Font Awesome Free 6.5.2, ver decisoes.md)
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout (Footer, parte 2)
 **Depende de:** 04-003, 04-016
 

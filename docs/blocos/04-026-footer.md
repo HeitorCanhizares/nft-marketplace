@@ -1,6 +1,6 @@
 # 04-026 — Footer (composição)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Fase 04 › Layout (Footer, parte 4)
 **Depende de:** 04-023, 04-024, 04-025
 
