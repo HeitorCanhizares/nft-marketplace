@@ -239,6 +239,12 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - **Coleção do Emerald Ape:** o Figma mostra "Kurio Apes", que não existe entre as 9 coleções dos filtros. Decisão do usuário: o Emerald Ape fica na coleção **"Arte digital"** e o detalhe mostra "Coleção: Arte digital"; os filtros continuam iguais ao Figma.
 - `useRelatedNfts` invalida na troca de sessão, como o detalhe (decisão do Opus, para o `isFavorite` não ficar defasado).
 
+### Fase 07 concluída (2026-10-26)
+- **Aprovada pelo usuário**; tag **`fase-07-detalhes`**. Suíte completa: 572 passaram, 0 falhas. Baselines `detalhes-desktop` e `detalhes-mobile` aprovadas.
+- Ajustes ao Figma feitos antes da aprovação: imagem mobile recuada com o painel sobreposto (sheet), título 28 px e preço 22 px só no detalhe desktop, stepper circular.
+- **`NftCard size="compact"`** (14 px) só nos cards de "Mais desta coleção" (decisão do usuário); a Início não muda.
+- Desvios aceitos: indicadores do swipe no mobile (decisão anterior); diferenças de conteúdo do mock (textos, imagens das miniaturas).
+
 ### Modo enxuto de testes (2026-10-26)
 O usuário pediu menos testes para ganhar velocidade e gastar menos tokens. A partir do fim da fase 06:
 - **Testes E2E por fase:** só o **caminho principal** de cada subitem. **Casos de borda** (cenários de `cenarios.md`: falhas, 4xx/5xx, fora de ordem, sessão expirada, conflitos, preço/estoque mudando, timeout, recusa etc.) ficam **todos para a fase 13**, já que o comportamento está documentado.
