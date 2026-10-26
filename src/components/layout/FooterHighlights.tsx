@@ -36,7 +36,7 @@ export function FooterHighlights() {
           >
             {item.letter}
           </span>
-          <h2 className="mt-1.75 text-lg font-bold text-foreground">{item.title}</h2>
+          <h2 className="mt-1.75 text-subtitle font-bold text-foreground">{item.title}</h2>
           <p className="mt-1.25 max-w-50 text-sm leading-5.5 text-muted-foreground">
             {item.description}
           </p>
