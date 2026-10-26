@@ -52,6 +52,18 @@ Instalados pelo CLI do shadcn e estilizados com os [tokens](tokens.md). Não con
 | `ProfileLayout` | PE, CT | ProfileSidebar + área de conteúdo |
 | `ProfileSidebar` | PE, CT d | "Meu perfil": Dados do perfil, Carteiras, Atividade, Lista de interesse, Ofertas, Arquivos baixados, Suporte, Sair. Item ativo com barra lateral `primary`. Só os dois primeiros e Sair ficam habilitados. |
 
+### Apoio do layout (fase 04)
+| Item | Onde | Notas |
+|---|---|---|
+| `SvgIcon` | `src/assets/icons/` | Renderiza os SVGs do Figma como máscara CSS com `currentColor` |
+| `ComingSoon` | itens desabilitados | `aria-disabled`, tooltip "Em breve" no foco |
+| `PageSkeleton`, `FormSkeleton` | rotas e formulários | Skeletons base; os de dados nascem com seus componentes |
+| `RouteFallbacks` | rota raiz | 404, erro e carregamento |
+| `useMediaQuery` / `useIsDesktop` | hooks | Breakpoint de 1024 px (A5) |
+| `useRouteChrome` | hooks | Lê o `staticData` da rota (rodapé, barra mobile, título) |
+| `useRouteFocus` | hooks | Foco no `<h1>` e `document.title` a cada troca de rota |
+| `useSignOut` | hooks | Navega para `/` e encerra a sessão |
+
 ## `components/shared/` — componentes de domínio
 
 ### Catálogo e NFT

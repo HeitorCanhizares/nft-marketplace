@@ -166,7 +166,15 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - O usuário passa a falar **só com o Opus**; o Opus cria Sonnet e Haiku como **subagentes**. Ver [README.md](README.md#papéis).
 - Export do Figma recebido: as 15 capturas em `docs/design/telas/` foram trocadas por recortes **1:1**.
 - **Ícones:** os 6 SVGs do Figma (Message, X, Arrow-Down, Search, User, Shop) vão para a pasta nova **`src/assets/icons/`** e substituem os equivalentes do lucide-react; o resto continua do lucide.
-- A sessão separada do Sonnet foi arquivada.
+- A sessão separada do Sonnet deve ser arquivada (o arquivamento automático foi recusado porque ela ainda tinha um cliente do Remote Control conectado; arquivar pela barra lateral).
+
+### Fase 04 — blocos aprovados (2026-10-26)
+34 blocos em `docs/blocos/04-*`. Decisões do usuário:
+- **Ícones:** no cabeçalho desktop, lupa e carrinho de linha do **lucide** (como na captura); os SVGs `search`, `shop` e `user` só na barra mobile; `x`, `arrow-down` e `message` nos primitivos e onde couberem.
+- **SVG como componente:** `SvgIcon` com o arquivo como **máscara CSS** pintada com `currentColor` (sem dependência nova).
+- **Ícones das redes sociais:** o **usuário vai exportar os 5 SVGs do Figma** (Facebook, Instagram, Twitter, LinkedIn, YouTube). O bloco 04-024 fica **parado** até eles chegarem.
+- **Demais recomendações do Sonnet aprovadas:** `staticData` no TanStack Router para decidir rodapé, barra mobile e título; rotas provisórias com `<h1>` para as 11 rotas; `container-page` com 24 px de margem entre 1024 e 1247 px; busca do desktop expande no cabeçalho e leva a `/?q=…#catalogo`; recorte da barra mobile simplificado; contador do carrinho no mobile só no `aria-label`; `SearchInput` em `components/shared`; setas do carrossel resolvidas na fase 07; `cartCount={0}` até as fases 07–08; `toast` exposto na ponte de teste; `scrollRestoration` ligado; links do rodapé habilitados só para "Meu perfil" e as coleções; "Mercado" ativo também em `/pedido/*`; título do documento `"<título> | Kurio"`.
+- **Valores medidos nas capturas 1:1** (alturas, larguras, cores do header, footer, `ProfileSidebar`, `MobileTopBar`, `MobileTabBar`) aprovados como estão nos blocos.
 
 ### Fases de implementação (2026-10-25)
 Aprovadas. Detalhes em [blocos/README.md](blocos/README.md).
