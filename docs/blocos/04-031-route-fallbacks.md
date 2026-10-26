@@ -16,7 +16,7 @@ Criar os três componentes que o router usa por padrão: página 404, erro da ro
 
 ## Instruções
 1. Exportar três componentes (export nomeado):
-   - `RouteNotFound`: `EmptyState` com `as="h1"`, título "Página não encontrada", descrição "O endereço que você abriu não existe ou foi removido." e ação `Button asChild` + `Link to="/"` "Voltar para a Início". Envolto em `div.container-page`.
+   - `RouteNotFound`: `EmptyState` com `as="h1"`, título "Página não encontrada", descrição "O endereço que você abriu não existe ou foi removido." e ação `Button asChild` + `Link to="/"` "Voltar para o início". Envolto em `div.container-page`.
    - `RouteError({ error, reset }: ErrorComponentProps)` (tipo de `@tanstack/react-router`): `ErrorState` com `as="h1"`; título e texto padrão, **exceto** quando `isApiError(error)` for verdadeiro e o erro vier do servidor com mensagem em PT-BR segura (`error.message`): usar essa mensagem como `message`. `onRetry`: chama `reset()` e `router.invalidate()` (`useRouter()`), com `retrying` enquanto a invalidação roda. Não mostrar `stack`, `code` nem texto técnico.
    - `RoutePending`: `PageSkeleton` (04-015).
 2. Não registrar nada no router aqui (isso é o 04-032).

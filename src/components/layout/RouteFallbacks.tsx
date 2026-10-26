@@ -22,7 +22,7 @@ export function RouteNotFound() {
         description={NOT_FOUND_DESCRIPTION}
         action={
           <Button asChild>
-            <Link to="/">Voltar para a Início</Link>
+            <Link to="/">Voltar para o início</Link>
           </Button>
         }
       />
