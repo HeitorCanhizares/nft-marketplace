@@ -55,7 +55,7 @@ export function HomeMobile({ search }: { search: HomeSearch }) {
       )}
 
       <CatalogSection
-        className="pt-0.75"
+        className="-mt-1.5"
         favoritesMode={page.favoritesMode}
         isDesktop={page.isDesktop}
         tab={page.tab}

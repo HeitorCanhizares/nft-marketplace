@@ -86,7 +86,7 @@ export function HeroBanner({ slides, variant, onExplore, className }: HeroBanner
       <div
         className={cn(
           'absolute z-10 flex flex-col items-start',
-          isDesktop ? 'top-11.25 left-10 max-w-136' : 'top-2 left-4 max-w-47',
+          isDesktop ? 'top-9.75 left-10 max-w-137' : 'top-1.25 left-4 max-w-47',
         )}
       >
         <p className={cn('text-foreground', isDesktop ? 'text-base' : 'text-caption')}>
@@ -95,7 +95,7 @@ export function HeroBanner({ slides, variant, onExplore, className }: HeroBanner
         <h2
           className={cn(
             'font-bold text-foreground',
-            isDesktop ? 'mt-8 text-display leading-17.5' : 'mt-1 text-lg leading-7.25',
+            isDesktop ? 'mt-1.25 text-display leading-17.5' : 'mt-1.25 text-lg leading-7.25',
           )}
         >
           {copy.title}
@@ -103,13 +103,13 @@ export function HeroBanner({ slides, variant, onExplore, className }: HeroBanner
         <p
           className={cn(
             'text-muted-foreground',
-            isDesktop ? 'mt-7 text-sm leading-6' : 'mt-1 text-caption leading-4.5',
+            isDesktop ? 'mt-0.75 text-sm leading-6' : 'mt-1.5 text-caption leading-4.5',
           )}
         >
           {copy.text}
         </p>
         {isDesktop ? (
-          <Button type="button" onClick={onExplore} className="mt-9.75 w-35 text-base font-bold">
+          <Button type="button" onClick={onExplore} className="mt-8 w-35 text-base font-bold">
             EXPLORAR
           </Button>
         ) : (
@@ -117,7 +117,7 @@ export function HeroBanner({ slides, variant, onExplore, className }: HeroBanner
             type="button"
             variant="link"
             onClick={onExplore}
-            className="mt-2 text-caption font-bold"
+            className="mt-0 h-4 px-0 text-caption font-bold"
           >
             EXPLORAR
             <ArrowRightIcon className="size-4.5" />
@@ -177,11 +177,13 @@ export function HeroBanner({ slides, variant, onExplore, className }: HeroBanner
           className={cn(
             'absolute',
             isDesktop
-              ? 'right-0 bottom-12 left-10 grid grid-cols-[1fr_auto_1fr] items-center'
-              : 'inset-x-0 bottom-2.5 flex items-center justify-center',
+              ? 'right-0 bottom-8.75 left-10 grid h-6 grid-cols-[1fr_auto_1fr] items-center'
+              : 'inset-x-0 bottom-1 flex h-4 items-center justify-center',
           )}
         >
-          <CarouselDots className={cn(isDesktop && 'col-start-2')} />
+          <CarouselDots
+            className={cn(isDesktop ? 'col-start-2' : 'gap-1.75 [&>button]:size-1.5')}
+          />
           {pauseButton}
         </div>
       </Carousel>

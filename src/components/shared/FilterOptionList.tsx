@@ -28,7 +28,7 @@ export function FilterOptionList({
     <fieldset className={cn('min-w-0', className)}>
       <legend className="text-lg font-bold">{legend}</legend>
 
-      <ul className="mt-2 flex flex-col">
+      <ul className="mt-1.5 flex flex-col">
         {options.map((option) => {
           const active = option.id === value
           // Contagem zero continua focável (aria-disabled), mas não aplica nada.

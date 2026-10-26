@@ -83,7 +83,7 @@ export function FilterPanel({
   }
 
   return (
-    <aside aria-label="Filtros" className={cn('bg-card px-5 py-7', className)}>
+    <aside aria-label="Filtros" className={cn('bg-card px-5 pt-3.5 pb-5.5', className)}>
       <div className="flex flex-col gap-8">
         {groups}
 

@@ -61,7 +61,7 @@ export function PriceRangeFilter({ bounds, value, onApply, className }: PriceRan
         onValueChange={(next) => {
           setDraft([next[0] ?? min, next[1] ?? max])
         }}
-        className="mt-3"
+        className="mt-0.5 mb-2"
       />
 
       <p id={textId} aria-live="off" className="text-body text-foreground">

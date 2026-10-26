@@ -61,8 +61,8 @@ export function NftCard({
         />
       </div>
 
-      <div className="mt-3 max-lg:px-2">
-        <h3 className="text-body lg:text-base">
+      <div className="mt-2.25 max-lg:px-2 lg:mt-2">
+        <h3 className="text-body leading-4.5 lg:text-base lg:leading-6">
           <Link
             to="/nft/$nftId"
             params={{ nftId: nft.id }}
@@ -73,8 +73,12 @@ export function NftCard({
           </Link>
         </h3>
 
-        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1">
-          <PriceTag price={nft.price} previousPrice={nft.previousPrice} />
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 lg:mt-0.75">
+          <PriceTag
+            price={nft.price}
+            previousPrice={nft.previousPrice}
+            className="leading-4.5 lg:leading-7"
+          />
           {updated ? <PriceChangedNotice kind="updated" /> : null}
           {soldOut ? <PriceChangedNotice kind="sold-out" /> : null}
         </div>

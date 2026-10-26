@@ -260,7 +260,7 @@ function CarouselDots({ className, ...props }: React.ComponentProps<'div'>) {
             aria-current={active ? 'true' : undefined}
             onClick={() => api.scrollTo(index)}
             className={cn(
-              'size-2.5 rounded-full border border-primary transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring',
+              'size-2 rounded-full border border-primary transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring',
               active ? 'bg-primary' : 'bg-transparent',
             )}
           />

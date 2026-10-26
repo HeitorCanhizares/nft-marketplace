@@ -34,7 +34,11 @@ export function CatalogTabs({
       <div className="flex items-center justify-between gap-4">
         <TabsList aria-label="Categorias do catálogo" className="min-w-0 flex-wrap gap-4 lg:gap-5">
           {CATALOG_TABS.map((tab) => (
-            <TabsTrigger key={tab.value} value={tab.value} className="text-sm lg:text-body">
+            <TabsTrigger
+              key={tab.value}
+              value={tab.value}
+              className="px-0 text-sm lg:px-1 lg:text-body"
+            >
               {tab.label}
             </TabsTrigger>
           ))}
