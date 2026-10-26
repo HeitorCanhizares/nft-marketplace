@@ -42,7 +42,7 @@ export function FooterNewsletter() {
         </ComingSoon>
       </div>
 
-      <p className="text-sm leading-5.5 text-muted-foreground">
+      <p className="max-w-75 text-caption-md leading-5.5 text-muted-foreground">
         Receba lançamentos selecionados, histórias de criadores e novidades do mercado.
       </p>
     </form>

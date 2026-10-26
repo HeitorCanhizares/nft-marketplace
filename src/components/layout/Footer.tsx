@@ -20,7 +20,7 @@ export function Footer({ className }: FooterProps) {
 
           <div className="grid h-22 grid-cols-[303fr_303fr_302fr_227fr] items-center bg-surface-3 px-8 text-sm text-foreground">
             <p className="font-bold tracking-[0.07em]">KURIO</p>
-            <p>Feito para colecionadores, criadores e cultura</p>
+            <p className="pr-10">Feito para colecionadores, criadores e cultura</p>
             <a href="mailto:contato@email.com" className="hover:text-primary">
               contato@email.com
             </a>
@@ -29,7 +29,7 @@ export function Footer({ className }: FooterProps) {
             </a>
           </div>
 
-          <div className="grid grid-cols-[303fr_303fr_302fr_227fr] px-8 pt-6 pb-9">
+          <div className="grid grid-cols-[303fr_303fr_302fr_227fr] px-8 pt-6 pb-7.5">
             {FOOTER_COLUMNS.map((column) => (
               <FooterLinkColumn key={column.title} column={column} />
             ))}
@@ -37,14 +37,16 @@ export function Footer({ className }: FooterProps) {
             <div className="flex flex-col gap-6">
               <div>
                 <h2 className="text-lg leading-8 font-bold text-foreground">Redes sociais</h2>
-                <SocialLinks />
+                <div className="mt-2.5">
+                  <SocialLinks />
+                </div>
               </div>
 
               <div>
                 <h2 className="text-lg leading-8 font-bold text-foreground">
                   Carteiras compatíveis
                 </h2>
-                <WalletBadges />
+                <WalletBadges className="mt-1" />
               </div>
             </div>
           </div>
