@@ -3,6 +3,8 @@ export type QueryParams = Record<string, unknown>
 export const nfts = {
   all: ['nfts'] as const,
   lists: ['nfts', 'list'] as const,
+  details: ['nfts', 'detail'] as const,
+  relatedAll: ['nfts', 'related'] as const,
   list: (params: QueryParams) => ['nfts', 'list', params] as const,
   detail: (id: string) => ['nfts', 'detail', id] as const,
   related: (id: string) => ['nfts', 'related', id] as const,

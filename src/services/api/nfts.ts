@@ -1,7 +1,14 @@
 import { DESKTOP_PAGE_SIZE } from '@/lib/catalogOptions'
+import { z } from 'zod'
 import type { CatalogApiParams, CatalogResponse, HomeSearch } from '@/types/catalog'
-import type { HomeResponse } from '@/types/nft'
-import { catalogResponseSchema, homeResponseSchema } from '@/schemas/nft'
+import type { HomeResponse, NftDetail, NftSummary, Paginated, Review } from '@/types/nft'
+import {
+  catalogResponseSchema,
+  homeResponseSchema,
+  nftDetailSchema,
+  nftSummarySchema,
+  reviewPageSchema,
+} from '@/schemas/nft'
 import { get } from '@/services/http/validate'
 
 const TAB_TO_API = { novos: 'new', 'em-alta': 'trending' } as const
@@ -43,4 +50,23 @@ export function getCatalog(
 
 export function getHome(signal?: AbortSignal): Promise<HomeResponse> {
   return get('/home', homeResponseSchema, { signal })
+}
+
+export function getNft(id: string, signal?: AbortSignal): Promise<NftDetail> {
+  return get(`/nfts/${encodeURIComponent(id)}`, nftDetailSchema, { signal })
+}
+
+export function getRelatedNfts(id: string, signal?: AbortSignal): Promise<NftSummary[]> {
+  return get(`/nfts/${encodeURIComponent(id)}/related`, z.array(nftSummarySchema), { signal })
+}
+
+export function getReviews(
+  id: string,
+  page: number,
+  signal?: AbortSignal,
+): Promise<Paginated<Review>> {
+  return get(`/nfts/${encodeURIComponent(id)}/reviews`, reviewPageSchema, {
+    params: { page },
+    signal,
+  })
 }
