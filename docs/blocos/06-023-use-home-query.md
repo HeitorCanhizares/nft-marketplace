@@ -1,6 +1,6 @@
 # 06-023 — Hook `useHome` (destaques da Início)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 1, 2, 10 (hero, destaque, promos, blog) e 12 (erro isolado)
 **Depende de:** 06-005, 03-009
 

@@ -1,6 +1,6 @@
 # 06-022 — Hook `useHomeNavigate` (mudar a URL da Início)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 3 a 7, 9 (filtros, abas, ordem, busca, páginas na URL)
 **Depende de:** 06-003
 **Depende de decisão:** pergunta 11 do relatório da fase 06 (histórico: `push` ou `replace`)

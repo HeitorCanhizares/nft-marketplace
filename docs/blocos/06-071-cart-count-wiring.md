@@ -1,6 +1,6 @@
 # 06-071 — Contador do carrinho no `AppShell`
 
-**Status:** pendente
+**Status:** concluído
 **Ordem de execução:** logo **depois do 06-070** (sequência 06-069, 06-070, 06-071; depois segue o 06-028).
 **Fluxo / subitem:** Início › 8 (contador do cabeçalho = total de unidades)
 **Depende de:** 06-070, 06-026, 04-030, 04-022, 04-027

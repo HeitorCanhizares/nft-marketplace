@@ -1,6 +1,6 @@
 # 06-021 — Hook `useDebounce`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 7 (busca mobile com debounce de 300 ms)
 **Depende de:** 00-017
 

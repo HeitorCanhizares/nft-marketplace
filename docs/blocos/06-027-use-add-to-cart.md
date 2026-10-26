@@ -1,6 +1,6 @@
 # 06-027 — Hook `useAddToCart` (adicionar pelo card)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (adiciona 1 unidade da edição do preço exibido; anuncia; erro desfaz e avisa)
 **Depende de:** 06-007, 06-024
 **Depende de decisão:** pergunta 5 do relatório da fase 06 (o contador do cabeçalho vem nos blocos 06-069 a 06-071, executados logo depois deste)

@@ -1,6 +1,6 @@
 # 06-024 — Hook `useCatalog` (consulta do catálogo)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 3, 12 (grade, trocar filtro sem piscar, respostas fora de ordem, ordem estável)
 **Depende de:** 06-003, 06-005, 03-009
 **Depende de decisão:** perguntas 4 e 12 do relatório da fase 06

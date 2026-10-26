@@ -1,6 +1,6 @@
 # 06-026 — Executor da ação pendente "favoritar"
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 ("sem login leva a `/entrar?redirect=` e conclui a ação na volta") e Login › 4
 **Depende de:** 06-006, 06-024, 06-023, 05-026, 05-027, 04-030
 

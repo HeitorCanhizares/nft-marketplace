@@ -1,6 +1,6 @@
 # 06-070 — Serviço `getCart` e hook `useCart`
 
-**Status:** pendente
+**Status:** concluído
 **Ordem de execução:** logo **depois do 06-069** (que vem depois do 06-027 e antes do 06-028).
 **Fluxo / subitem:** Início › 8 (contador do cabeçalho = total de unidades do carrinho)
 **Depende de:** 06-007, 06-069, 03-009, 03-015

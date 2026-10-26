@@ -1,6 +1,6 @@
 # 06-025 — Hook `useToggleFavorite` (favoritar com atualização otimista)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Início › 8 (favoritar: otimista; visitante vai ao login e conclui na volta) e 12 (erro em ação do card)
 **Depende de:** 06-006, 06-024, 05-026, 03-015
 **Depende de decisão:** pergunta 13 do relatório da fase 06 (favoritar dentro de `/?favoritos=1`)

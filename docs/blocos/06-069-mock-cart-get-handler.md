@@ -1,6 +1,6 @@
 # 06-069 — Mock: handler `GET /cart`
 
-**Status:** pendente
+**Status:** concluído
 **Ordem de execução:** logo **depois do 06-027** (e antes do 06-028). Os blocos 06-069, 06-070 e 06-071 formam uma sequência; só então segue o 06-028.
 **Fluxo / subitem:** Início › 8 (o contador do cabeçalho reflete o que o card adicionou)
 **Depende de:** 06-018, 06-009, 05-006, 02-008
