@@ -291,7 +291,7 @@ test.describe('5. Erros ligados aos campos', () => {
     const form = scope(page, testInfo)
     await form.getByRole('button', { name: 'Entrar', exact: true }).click()
 
-    await expect(form.getByLabel('E-mail')).toHaveAccessibleDescription(/e-mail válido/)
+    await expect(form.getByLabel('E-mail')).toHaveAccessibleDescription(/Informe um e-mail./)
     await expect(form.getByLabel('Senha', { exact: true })).toHaveAccessibleDescription(
       /Informe sua senha/,
     )

@@ -221,6 +221,7 @@ test.describe('Validação', () => {
     await submitButton(form, testInfo).focus()
     await page.keyboard.press('Enter')
 
+    await expect(form.getByText('Informe um e-mail.')).toBeVisible()
     await expect(f.username).toBeFocused()
     for (const field of Object.values(f)) {
       await expect(field).toHaveAttribute('aria-invalid', 'true')

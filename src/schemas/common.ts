@@ -23,6 +23,7 @@ export const isoDateSchema = z.iso.datetime({
 export const emailSchema = z
   .string({ error: 'Informe um e-mail.' })
   .trim()
+  .min(1, { error: 'Informe um e-mail.', abort: true })
   .pipe(z.email({ error: 'Informe um e-mail válido.' }))
 
 export const usernameSchema = z

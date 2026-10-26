@@ -178,15 +178,15 @@ test.describe('Validação', () => {
 
     await form.getByRole('button', { name: 'Entrar', exact: true }).click()
 
-    // O schema trata o e-mail vazio como e-mail inválido (não há mensagem "Informe um e-mail.").
-    await expect(form.getByText('Informe um e-mail válido.')).toBeVisible()
+    // E-mail vazio tem mensagem própria, diferente da de formato inválido.
+    await expect(form.getByText('Informe um e-mail.')).toBeVisible()
     await expect(form.getByText('Informe sua senha.')).toBeVisible()
     await expect(email).toBeFocused()
     await expect(email).toHaveAttribute('aria-invalid', 'true')
     await expect(password).toHaveAttribute('aria-invalid', 'true')
 
     for (const [field, message] of [
-      [email, 'Informe um e-mail válido.'],
+      [email, 'Informe um e-mail.'],
       [password, 'Informe sua senha.'],
     ] as const) {
       const describedBy = await field.getAttribute('aria-describedby')
