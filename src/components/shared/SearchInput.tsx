@@ -6,6 +6,7 @@ import {
   type FocusEvent,
   type FormEvent,
   type KeyboardEvent,
+  type MouseEvent,
 } from 'react'
 import { SearchIcon } from 'lucide-react'
 
@@ -62,8 +63,10 @@ export function SearchInput({
     }
   }
 
-  function handleToggleClick() {
+  function handleToggleClick(event: MouseEvent<HTMLButtonElement>) {
     if (!open) {
+      // O botão vira "submit" ao abrir; sem isto o clique que abre já enviaria o formulário.
+      event.preventDefault()
       openSearch()
     }
   }
