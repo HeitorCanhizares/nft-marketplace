@@ -1,6 +1,6 @@
 # 05-004 — Mock: aritmética de ETH em inteiros
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 4 (mescla do carrinho do visitante)
 **Depende de:** 02-009
 **Depende de decisão:** pergunta 12 do relatório da fase 05 (arquivo novo em `src/mocks/db/`)

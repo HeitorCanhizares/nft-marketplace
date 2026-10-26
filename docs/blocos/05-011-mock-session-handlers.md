@@ -1,6 +1,6 @@
 # 05-011 — Mock: `GET /auth/session`, `POST /auth/refresh` e `POST /auth/logout`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 5, 6 e 7 (sessão recuperada, renovação, logout)
 **Depende de:** 05-006, 05-010
 

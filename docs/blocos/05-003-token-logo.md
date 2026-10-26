@@ -1,6 +1,6 @@
 # 05-003 — Token de fonte do logo (32 px)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login/Cadastro › mobile (logo KURIO)
 **Depende de:** 01-003
 **Depende de decisão:** pergunta 10 do relatório da fase 05 (token novo)

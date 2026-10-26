@@ -1,6 +1,6 @@
 # 05-012 — Testes do mock de autenticação
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet (o Haiku não escreve testes)
 **Fluxo / subitem:** Fase 05 › Handlers de auth (Playwright, sem interface)
 **Depende de:** 05-004 a 05-011

@@ -1,6 +1,6 @@
 # 05-010 — Mock: `POST /auth/login`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 3 e 4 (credenciais, bloqueio, mescla do carrinho)
 **Depende de:** 05-001, 05-005, 05-006, 05-007, 05-009
 

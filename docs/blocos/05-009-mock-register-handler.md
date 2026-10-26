@@ -1,6 +1,6 @@
 # 05-009 — Mock: `POST /auth/register`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Cadastro › 4 e 5 (conflito no envio, login automático, mescla do carrinho)
 **Depende de:** 02-011, 05-001, 05-005, 05-006, 05-008
 

@@ -1,6 +1,6 @@
 # 05-002 — Biblioteca do `redirect` (validação, rota protegida, destino ao fechar)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 1 (fechar o modal) e 4 (retorno ao fluxo); Rotas › `redirect`
 **Depende de:** nenhum (função pura)
 **Depende de decisão:** pergunta 17 do relatório da fase 05 (regras mais rígidas que as do 04-008)

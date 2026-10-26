@@ -1,6 +1,6 @@
 # 05-007 — Mock: bloqueio por tentativas de login
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 3 (bloqueio de 30 s após 5 senhas erradas)
 **Depende de:** nenhum
 **Depende de decisão:** pergunta 14 do relatório da fase 05 (a 5ª tentativa errada já devolve 429; contador só em memória)

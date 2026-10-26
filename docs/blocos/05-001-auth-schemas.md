@@ -1,6 +1,6 @@
 # 05-001 — Schemas de autenticação
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 2 e Cadastro › Regras de validação
 **Depende de:** 03-002, 03-005
 

@@ -1,6 +1,6 @@
 # 05-005 — Mock: mescla do carrinho do visitante
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 4 e Cadastro › 5 (carrinho do visitante mesclado; ajustes por estoque avisados)
 **Depende de:** 02-009, 02-010, 05-004
 **Depende de decisão:** pergunta 12 do relatório da fase 05 (convenção de ids do carrinho, estoque baixo, item removido)

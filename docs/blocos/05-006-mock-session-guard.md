@@ -1,6 +1,6 @@
 # 05-006 — Mock: sessão, token e usuário público
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Login › 3, 5, 6 e 7 (sessão no mock)
 **Depende de:** 02-007, 02-009, 02-010
 

@@ -1,6 +1,6 @@
 # 05-008 — Mock: `POST /auth/availability` (e o arquivo de handlers de auth)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Cadastro › 3 (disponibilidade ao sair do campo)
 **Depende de:** 02-008, 02-009, 05-001
 **Depende de decisão:** nenhuma
