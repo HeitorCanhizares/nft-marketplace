@@ -60,3 +60,13 @@ export const quoteSchema: z.ZodType<Quote> = z.object({
     .optional(),
   warnings: z.array(z.enum(['PRICE_CHANGED', 'SOLD_OUT', 'LOW_STOCK'])),
 })
+
+export const couponFormSchema = z.object({
+  code: z
+    .string()
+    .trim()
+    .min(1, { error: 'Informe o código promocional.' })
+    .max(32, { error: 'O código promocional é muito longo.' }),
+})
+
+export type CouponFormValues = z.infer<typeof couponFormSchema>
