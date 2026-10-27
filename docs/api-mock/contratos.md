@@ -324,6 +324,8 @@ A mudança é emitida no tempo real (`order:updated`) e também aparece no `GET`
 | `DELETE /profile/avatar` | — | `204` | — |
 | `POST /profile/password` | `{ currentPassword, newPassword }` | `204` (a sessão atual continua; as outras sessões do usuário são encerradas) | `422 INVALID_CURRENT_PASSWORD`, `422 VALIDATION_ERROR` (inclui nova senha igual à atual) |
 
+Fase 09: `PATCH /profile` com `ensName`/`walletNickname` vazios limpa o campo; e-mail alterado sem `currentPassword` → `422 VALIDATION_ERROR` em `fields.currentPassword` (a senha é verificada antes dos conflitos `409`); `PUT /profile/avatar` inválido → `422` em `fields.file`; `POST /profile/password` com nova senha igual à atual → `422` em `fields.newPassword`; `GET /api/avatars/:userId` é **público** e usa `?v=<timestamp>` para renovar o cache.
+
 `POST /auth/register` define `displayName` igual ao `username` (os cenários `email-taken`/`username-taken` afetam só o `register`, não o `availability`); `ensName` e `walletNickname` começam vazios.
 
 ## Carteiras 🔒

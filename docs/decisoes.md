@@ -257,6 +257,11 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - Acessibilidade: nomes dos botões de remover/quantidade incluem a edição; resumo (`dl`) válido; foco no estado vazio ao remover o último item.
 - Novos apoios: `PageHeader` (breadcrumb + `h1` nos estados de carregando/erro/vazio) e `queryKeys.quoteAll`.
 
+### Fase 09 — blocos aprovados (2026-10-26)
+16 blocos em `docs/blocos/09-*` (modo enxuto). Decisões do usuário:
+- **"Salvar" bloqueia tudo** enquanto houver erro de formato no cliente em qualquer bloco (dados ou senha); a independência dos dois envios vale só para os erros devolvidos pela API.
+- Demais propostas aprovadas: medidas lidas em `desktop-perfil.png`; mobile adaptado do Cadastro (campos de 50 px `rounded-3xl`, botão de 60 px `rounded-4xl`, rótulos visíveis; menu em lista com linhas de 56 px, avatar de 64 px no topo e chevron nos itens habilitados); limites: nome de exibição 1–40, apelido até 30, ENS 3–63 caracteres (minúsculas, números e hífen) + sufixo único `.eth`, enviado por inteiro (`nome.eth`); campo vazio limpa o valor; requisitos da nova senha aparecem só com foco ou valor (estado vazio igual ao Figma); avatar sem foto com ícone do lucide; "Remover" desabilitado sem foto; desktop com `h1` sr-only "Dados do perfil" e `h2` visível "Perfil do colecionador"; `AuthContext.updateUser` atualiza o `UserMenu` após salvar; o `UnsavedChangesGuard` não bloqueia o redirecionamento de sessão expirada (decisão do Opus).
+
 ### Modo enxuto de testes (2026-10-26)
 O usuário pediu menos testes para ganhar velocidade e gastar menos tokens. A partir do fim da fase 06:
 - **Testes E2E por fase:** só o **caminho principal** de cada subitem. **Casos de borda** (cenários de `cenarios.md`: falhas, 4xx/5xx, fora de ordem, sessão expirada, conflitos, preço/estoque mudando, timeout, recusa etc.) ficam **todos para a fase 13**, já que o comportamento está documentado.

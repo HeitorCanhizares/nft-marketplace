@@ -45,7 +45,7 @@ Capturas tiradas do Figma em 2026-10-25. São a referência visual principal (o 
 
 ### Perfil e Carteiras
 - Desktop: `ProfileSidebar` + conteúdo. Perfil: dados, avatar, alterar senha, Salvar. Carteiras: carteira principal (formulário + "Salvar carteira"), carteira secundária vazia com "Igual à carteira principal" e "Adicionar".
-- Mobile: adaptar com `MobileTopBar`; a navegação do perfil vira uma lista acima do conteúdo ou um Sheet (decidir no bloco, perguntando ao usuário).
+- Mobile: adaptar com `MobileTopBar`; a navegação do perfil é a **tela de menu em lista** em `/perfil` (decidido na validação do Perfil).
 
 ## Inconsistências corrigidas
 

@@ -68,7 +68,7 @@ O Sonnet detalha **uma fase por vez** em blocos. Ao fim de cada fase há um **ch
 | 06 | **Início** (+ handlers de home, NFTs, favoritos, `POST /cart/items`, `GET /cart` e contador do carrinho) — 71 blocos |
 | 07 | **Detalhes do NFT** (+ handlers de detalhe, relacionados, avaliações) — 18 blocos |
 | 08 | **Carrinho** — 15 blocos — (+ handlers de carrinho, cupom, cotação, mescla do visitante) |
-| 09 | **Perfil** (+ handlers de perfil, avatar, senha, disponibilidade) |
+| 09 | **Perfil** — 16 blocos — (+ handlers de perfil, avatar, senha, disponibilidade) |
 | 10 | **Carteiras** (+ handlers de carteiras) |
 | 11 | **Pagamento** (+ handlers de pedidos, revalidação, idempotência, conexão da carteira) |
 | 12 | **Confirmação** (+ ciclo de vida do pedido, tempo real e polling) |
