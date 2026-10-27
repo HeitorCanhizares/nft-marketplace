@@ -55,6 +55,7 @@ export const usersStore = {
 
 export const sessionsStore = {
   get: async (token: string) => (await getDb()).get('sessions', token),
+  getAll: async () => (await getDb()).getAll('sessions'),
   put: async (session: SessionRecord) => {
     await (await getDb()).put('sessions', session)
   },

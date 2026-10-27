@@ -23,6 +23,7 @@ import { favoritesHandlers } from './handlers/favorites'
 import { healthHandlers } from './handlers/health'
 import { homeHandlers } from './handlers/home'
 import { nftsHandlers } from './handlers/nfts'
+import { profileHandlers } from './handlers/profile'
 import { quoteHandlers } from './handlers/quote'
 import { reviewsHandlers } from './handlers/reviews'
 import { dropConnections, realtimeHandlers } from './realtime/server'
@@ -39,6 +40,7 @@ const resourceHandlers: Parameters<typeof setupWorker>[0][] = [
   ...favoritesHandlers,
   ...cartHandlers,
   ...quoteHandlers,
+  ...profileHandlers,
 ]
 
 const worker = setupWorker(...realtimeHandlers, ...resourceHandlers)
