@@ -1,6 +1,6 @@
 # 09-015 — Fechamento da fase 09
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 **Depende de:** 09-014
 

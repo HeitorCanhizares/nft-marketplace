@@ -1,6 +1,6 @@
 # 09-010 — `ProfileMenuList` e a rota `/perfil`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 1 (layout e navegação), 8 (sair)
 **Depende de:** 09-001
 

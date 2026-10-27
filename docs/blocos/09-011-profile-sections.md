@@ -1,6 +1,6 @@
 # 09-011 — Seções do formulário: dados e senha
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 2 (dados), 5 (senha), 9 (erros por campo)
 **Depende de:** 09-007, 09-008
 

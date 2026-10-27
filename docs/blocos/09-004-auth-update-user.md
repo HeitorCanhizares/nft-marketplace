@@ -1,6 +1,6 @@
 # 09-004 — `updateUser` no `AuthContext`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 6 (cabeçalho atualiza o nome), 4 (avatar do `UserMenu`)
 **Depende de:** 09-001
 

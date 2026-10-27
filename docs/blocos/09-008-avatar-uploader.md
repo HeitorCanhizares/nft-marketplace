@@ -1,6 +1,6 @@
 # 09-008 — `AvatarUploader`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 4 (avatar)
 **Depende de:** 09-005
 

@@ -1,6 +1,6 @@
 # 09-013 — Página `Profile` e rota `/perfil/dados`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 1 (layout), 2, 9 (carregando e erro)
 **Depende de:** 09-010, 09-012
 

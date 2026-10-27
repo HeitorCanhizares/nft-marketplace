@@ -1,6 +1,6 @@
 # 09-005 — Hooks do perfil, avatar e senha
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 2, 4, 5, 6
 **Depende de:** 09-001, 09-003, 09-004
 

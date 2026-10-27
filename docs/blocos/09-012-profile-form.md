@@ -1,6 +1,6 @@
 # 09-012 — `ProfileForm`: validação, "Salvar" e fluxo do e-mail
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 2, 3, 5, 6, 7, 9
 **Depende de:** 09-006, 09-009, 09-011
 

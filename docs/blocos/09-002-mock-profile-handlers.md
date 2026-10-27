@@ -1,6 +1,6 @@
 # 09-002 — Handlers do mock: perfil e senha
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 2, 3, 5, 6
 **Depende de:** 09-001
 

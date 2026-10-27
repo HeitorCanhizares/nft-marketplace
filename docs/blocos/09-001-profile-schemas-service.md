@@ -1,6 +1,6 @@
 # 09-001 — Schemas e serviço do perfil
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 2 (dados), 3 (e-mail), 4 (avatar), 5 (senha)
 **Depende de:** 08-015
 

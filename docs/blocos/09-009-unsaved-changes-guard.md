@@ -1,6 +1,6 @@
 # 09-009 — `UnsavedChangesGuard`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 7 (alterações não salvas)
 **Depende de:** 09-001
 

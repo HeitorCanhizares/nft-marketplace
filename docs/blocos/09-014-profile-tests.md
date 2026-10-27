@@ -1,6 +1,6 @@
 # 09-014 — Testes do perfil (caminho principal)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › todos (modo enxuto)
 **Depende de:** 09-013
 

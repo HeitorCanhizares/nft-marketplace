@@ -1,6 +1,6 @@
 # 09-007 — `EnsInput` e `ConfirmPasswordDialog`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 2 (Nome ENS), 3 (troca de e-mail)
 **Depende de:** 09-001
 

@@ -1,6 +1,6 @@
 # 09-016 — Casos de borda do perfil adiados para a fase 13
 
-**Status:** pendente
+**Status:** concluído
 **Depende de:** 09-015
 
 Testes que **não** são escritos na fase 09 (modo enxuto). O comportamento já está implementado e documentado.

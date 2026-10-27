@@ -1,6 +1,6 @@
 # 09-006 — `useProfileSave`: os dois envios independentes
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Perfil › 3 (e-mail), 5 (senha), 6 (salvar)
 **Depende de:** 09-005
 
