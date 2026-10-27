@@ -17,6 +17,10 @@ export function createOrder(
   })
 }
 
+export function getOrder(orderId: string, signal?: AbortSignal): Promise<Order> {
+  return get(`/orders/${encodeURIComponent(orderId)}`, orderSchema, { signal })
+}
+
 export function getPendingOrders(signal?: AbortSignal): Promise<Order[]> {
   return get('/orders', ordersSchema, { params: { status: 'pending' }, signal })
 }
