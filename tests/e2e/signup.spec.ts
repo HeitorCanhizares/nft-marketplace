@@ -391,6 +391,7 @@ test.describe('Disponibilidade', () => {
     await f.password.focus()
     await expect.poll(() => seen.length).toBe(2)
 
+    // Espera a resposta atrasada (2 s) do valor antigo chegar antes de conferir que ela foi ignorada.
     await page.waitForTimeout(2_600)
     await expect(form.getByText('Este e-mail já está cadastrado')).toHaveCount(0)
     await expect(f.email).not.toHaveAttribute('aria-invalid', 'true')

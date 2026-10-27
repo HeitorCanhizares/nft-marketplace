@@ -24,15 +24,21 @@ export const OTHER_USER = {
 export async function bootWithHandlers(page: Page, setup: string, extra = '') {
   await page.addInitScript(`
     ${extra}
-    window.__kurioBoot = [(m) => { const { worker, http, HttpResponse } = m.msw; ${setup} }]
-    let value
-    Object.defineProperty(window, '__kurioMock', {
-      configurable: true,
-      get: () => value,
-      set: (v) => { value = v; for (const f of window.__kurioBoot) f(v) },
-    })
+    ${defineBootHook}
+    window.__kurioApiBoot.push((m) => { const { worker, http, HttpResponse } = m.msw; ${setup} })
   `)
 }
+
+// Fila de funções chamadas no instante em que o app publica `window.__kurioMock` (antes do render).
+const defineBootHook = `if (!window.__kurioApiBoot) {
+  window.__kurioApiBoot = []
+  let value
+  Object.defineProperty(window, '__kurioMock', {
+    configurable: true,
+    get: () => value,
+    set: (v) => { value = v; for (const f of window.__kurioApiBoot) f(v) },
+  })
+}`
 
 export async function openApp(page: Page, scenarios?: string) {
   if (scenarios !== undefined) {
@@ -207,7 +213,13 @@ export function seedOrder(page: Page, input: SeedOrderInput) {
   })()`)
 }
 
-export type ApiCall = { method: string; path: string; query: Record<string, string>; body: unknown }
+export type ApiCall = {
+  method: string
+  path: string
+  query: Record<string, string>
+  body: unknown
+  headers: Record<string, string>
+}
 
 /** Grava as chamadas a `/api/...` sem alterar a resposta: `calls('GET', '/nfts')`, `last(...)`, `clear()`. */
 export function recordApi(page: Page) {
@@ -229,6 +241,7 @@ export function recordApi(page: Page) {
       path: url.pathname.slice('/api'.length),
       query: Object.fromEntries(url.searchParams),
       body,
+      headers: request.headers(),
     })
   })
   const calls = (method: string, pathPattern: string | RegExp) =>
@@ -246,6 +259,47 @@ export function recordApi(page: Page) {
   }
 }
 
+// Glob no estilo do Playwright (`**` cruza `/`, `*` não) ou RegExp → regex aplicada à URL inteira.
+function urlRegex(pattern: string | RegExp) {
+  if (pattern instanceof RegExp) return { source: pattern.source, flags: pattern.flags }
+  const source = pattern
+    .split('**')
+    .map((part) =>
+      part
+        .split('*')
+        .map((piece) => piece.replace(/[.+?^${}()|[\]\\]/g, '\\$&'))
+        .join('[^/]*'),
+    )
+    .join('.*')
+  return { source: `^${source}$`, flags: '' }
+}
+
+/**
+ * Registra um handler "pega-tudo" no MSW (o `page.route` não vê requisições respondidas pelo
+ * service worker). Vale no boot de cada navegação e, se o app já subiu, na página atual.
+ * `resolver` é o corpo de `async ({ request }) => ...` com `HttpResponse` disponível;
+ * retornar `undefined` deixa a requisição seguir para os handlers do mock.
+ */
+async function mockApi(page: Page, pattern: string | RegExp, resolver: string, times?: number) {
+  const { source, flags } = urlRegex(pattern)
+  const install = `(m) => {
+    const { worker, http, HttpResponse } = m.msw
+    const re = new RegExp(${JSON.stringify(source)}, ${JSON.stringify(flags)})
+    let left = ${times ?? 'Infinity'}
+    worker.use(http.all('*', async ({ request }) => {
+      if (left <= 0 || !re.test(request.url)) return undefined
+      left -= 1
+      ${resolver}
+    }))
+  }`
+  await page.addInitScript(`(() => {
+    const install = ${install}
+    ${defineBootHook}
+    window.__kurioApiBoot.push(install)
+  })()`)
+  await page.evaluate(`(() => { if (window.__kurioMock) (${install})(window.__kurioMock) })()`)
+}
+
 /** Atrasa a resposta de uma rota da API (`delayApi(page, '**\/api/nfts*', 800, { once: true })`); exceção ao cenário do mock. */
 export async function delayApi(
   page: Page,
@@ -253,13 +307,11 @@ export async function delayApi(
   ms: number,
   options: { once?: boolean } = {},
 ) {
-  await page.route(
+  await mockApi(
+    page,
     pattern,
-    async (route) => {
-      await new Promise((resolve) => setTimeout(resolve, ms))
-      await route.continue()
-    },
-    { times: options.once ? 1 : undefined },
+    `await new Promise((resolve) => setTimeout(resolve, ${ms})); return undefined`,
+    options.once ? 1 : undefined,
   )
 }
 
@@ -270,17 +322,14 @@ export async function failApi(
   status: number | 'abort',
   options: { times?: number } = {},
 ) {
-  await page.route(
+  const body = JSON.stringify({ code: 'FORCED_FAILURE', message: 'Falha forçada pelo teste.' })
+  await mockApi(
+    page,
     pattern,
-    (route) =>
-      status === 'abort'
-        ? route.abort('failed')
-        : route.fulfill({
-            status,
-            contentType: 'application/json',
-            body: JSON.stringify({ code: 'FORCED_FAILURE', message: 'Falha forçada pelo teste.' }),
-          }),
-    { times: options.times },
+    status === 'abort'
+      ? 'return HttpResponse.error()'
+      : `return HttpResponse.json(${body}, { status: ${status} })`,
+    options.times,
   )
 }
 
