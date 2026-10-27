@@ -53,8 +53,13 @@ test('galeria troca a imagem e o zoom abre e fecha', async ({ page }, testInfo) 
   if (isDesktop(testInfo)) {
     const main = page.locator('main img').nth(4)
     const before = await main.getAttribute('src')
-    await page.getByRole('button', { name: 'Imagem 2 de 4' }).click()
-    await expect(main).not.toHaveAttribute('src', before ?? '')
+    for (let i = 0; i < 4; i++) {
+      await expect(page.locator('main img').nth(i)).toHaveAttribute('src', before ?? '')
+    }
+    const secondThumb = page.getByRole('button', { name: 'Imagem 2 de 4' })
+    await secondThumb.click()
+    await expect(secondThumb).toHaveAttribute('aria-current', 'true')
+    await expect(main).toHaveAttribute('src', before ?? '')
     await page.getByRole('button', { name: 'Ampliar imagem' }).click()
   } else {
     await page.getByRole('button', { name: 'Ampliar imagem 1 de 4' }).click()

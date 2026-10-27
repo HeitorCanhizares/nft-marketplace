@@ -6,7 +6,7 @@ import { SEED_FAVORITE_IDS, SEED_NFT_CREATED_AT, SEED_NFT_STATS, buildSeedNfts }
 import { seedUsers, seedWallets } from './users'
 
 // Incremente ao mudar qualquer dado do seed: o banco do navegador é recriado na próxima execução.
-export const SEED_VERSION = 3
+export const SEED_VERSION = 4
 
 // Dono dos favoritos do seed (usuário de teste, definido em users.ts).
 const TEST_USER_ID = 'user-teste'

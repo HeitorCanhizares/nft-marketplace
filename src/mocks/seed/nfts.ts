@@ -138,7 +138,7 @@ function applyEmeraldApe(nft: NftDetail): void {
     { id: `${id}-1-50`, label: '1/50', supply: 50, available: 20, price: '1.19' },
     { id: `${id}-aberta`, label: 'ABERTA', supply: null, available: null, price: '1.29' },
   ]
-  nft.images = BASE_IMAGES.map((image) => ({ ...image }))
+  nft.images = Array.from({ length: 4 }, () => ({ ...BASE_IMAGES[0] }))
   nft.image = { ...nft.images[0] }
   nft.price = '1.19'
   nft.editions = editions
@@ -244,12 +244,14 @@ function buildNft(rand: Rand, plan: Plan): SeedEntry {
     priceSource[0].price,
   )
 
-  const otherImages = shuffle(
+  // Consome os mesmos passos do PRNG para não alterar atributos, avaliações e contratos do seed.
+  shuffle(
     rand,
     BASE_IMAGES.map((_, index) => index).filter((index) => index !== plan.image),
   )
-  const images = [plan.image, ...otherImages.slice(0, int(rand, 1, 4) - 1)].map((index) => ({
-    ...BASE_IMAGES[index],
+  int(rand, 1, 4)
+  const images = Array.from({ length: 4 }, () => ({
+    ...BASE_IMAGES[plan.image],
   }))
 
   const attributes = shuffle(rand, ATTRIBUTES).slice(0, 3)
