@@ -1,8 +1,8 @@
 # 13-095 — Fechamento: suíte completa nos 3 navegadores
 
 **Status:** pendente
-**Responsável:** Sonnet
-**Depende de:** todos os blocos de teste e de correção da fase (13-001 a 13-093)
+**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Depende de:** todos os blocos de teste e de correção da fase (13-001 a 13-094)
 **Toca:** — (só execução)
 **Paralelo:** não.
 **Lote:** —

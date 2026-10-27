@@ -1,7 +1,7 @@
 # 13-004 — Teste instável `signup.spec.ts:214` no mobile
 
-**Status:** pendente
-**Responsável:** Sonnet
+**Status:** concluído
+**Responsável:** Claude Sonnet 5.5 (effort: low)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/signup.spec.ts` (só o teste "2. campo vazio só é validado no envio: o primeiro clique envia e o botão não se move"); se a causa for o app, abre bloco `13-1NN` para o Haiku
 **Paralelo:** sim com qualquer bloco que não toque `signup.spec.ts`.

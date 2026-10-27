@@ -1,7 +1,7 @@
 # 13-097 — Fechamento: clone limpo
 
 **Status:** pendente
-**Responsável:** Sonnet
+**Responsável:** Claude Sonnet 5.5 (effort: low)
 **Depende de:** todos os blocos commitados pelo Opus (o clone só enxerga o que está no git)
 **Toca:** — (só execução, fora do repositório)
 **Paralelo:** não.

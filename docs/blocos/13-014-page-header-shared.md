@@ -1,6 +1,6 @@
 # 13-014 — `PageHeader` compartilhado: criar e aplicar no Carrinho
 
-**Status:** pendente (aguarda a pergunta Q6; sem OK, o `PageHeader` duplicado continua como está)
+**Status:** concluído (commit `f915f4f`)
 **Responsável:** Haiku
 **Depende de:** Q6
 **Toca:** `src/components/layout/PageHeader.tsx` (**novo**, só com o OK da Q6), `src/pages/Cart/Cart.tsx`

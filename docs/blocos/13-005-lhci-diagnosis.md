@@ -1,7 +1,7 @@
 # 13-005 — Diagnóstico de desempenho (LHCI) antes de mexer no código
 
-**Status:** pendente (os blocos de correção de desempenho dependem da pergunta Q4 e deste diagnóstico)
-**Responsável:** Sonnet
+**Status:** pendente
+**Responsável:** Claude Sonnet 5.5 (effort: low)
 **Depende de:** 13-006
 **Toca:** — (só medição; relatório entregue ao Opus)
 **Paralelo:** não.

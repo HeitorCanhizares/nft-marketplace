@@ -1,7 +1,7 @@
 # 13-002 — Projetos Firefox e WebKit no Playwright
 
-**Status:** pendente (aguarda a pergunta Q1 sobre baixar os navegadores)
-**Responsável:** Sonnet
+**Status:** concluído
+**Responsável:** Claude Sonnet 5.5 (effort: low)
 **Depende de:** 13-001
 **Toca:** `playwright.config.ts` (alterar; **arquivo de registro**, lote A)
 **Paralelo:** não.

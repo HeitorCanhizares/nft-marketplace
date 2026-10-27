@@ -1,7 +1,7 @@
 # 13-011 — Título do `MobileTopBar` alinhado ao Figma
 
 **Status:** pendente
-**Responsável:** Haiku (o Sonnet mede antes e confirma depois)
+**Responsável:** Haiku (medição e validação por Claude Sonnet 5.5, effort: low)
 **Depende de:** —
 **Toca:** `src/components/layout/MobileTopBar.tsx`
 **Paralelo:** sim com 13-010 e 13-012.

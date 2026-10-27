@@ -1,7 +1,7 @@
 # 13-098 — Fechamento: capturas de todas as telas
 
 **Status:** pendente
-**Responsável:** Sonnet
+**Responsável:** Claude Sonnet 5.5 (effort: low)
 **Depende de:** 13-095
 **Toca:** — (capturas no scratchpad; nada novo no repositório)
 **Paralelo:** não.

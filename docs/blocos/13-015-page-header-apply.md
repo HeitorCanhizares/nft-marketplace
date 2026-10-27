@@ -1,6 +1,6 @@
 # 13-015 — `PageHeader` compartilhado: aplicar em Perfil, Carteiras e Confirmação
 
-**Status:** pendente (aguarda a Q6)
+**Status:** concluído (commit `3fd5e53`)
 **Responsável:** Haiku
 **Depende de:** 13-014
 **Toca:** `src/pages/Profile/Profile.tsx`, `src/pages/Wallets/Wallets.tsx`, `src/pages/OrderConfirmation/OrderConfirmation.tsx`

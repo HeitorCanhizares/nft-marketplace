@@ -1,7 +1,7 @@
 # 13-010 — Rádio desmarcado com contorno laranja
 
-**Status:** pendente
-**Responsável:** Haiku (o Sonnet mede antes e confirma depois)
+**Status:** concluído (commit `1fdf89d`; regeneração das baselines visuais no fechamento da fase)
+**Responsável:** Haiku (validado por Claude Sonnet 5.5, effort: low)
 **Depende de:** —
 **Toca:** `src/components/ui/radio-group.tsx`
 **Paralelo:** sim com 13-011 e 13-012 (arquivos distintos).
