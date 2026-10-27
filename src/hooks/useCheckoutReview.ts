@@ -181,8 +181,15 @@ export function useCheckoutReview({
 
     setRemovingId(itemId)
     try {
-      await removeCartItem(itemId)
-      void queryClient.invalidateQueries({ queryKey: cart })
+      const updated = await removeCartItem(itemId)
+      // Espera o carrinho novo antes de cotar: o refetch do carrinho cancelaria a cotação em andamento.
+      await queryClient.invalidateQueries({ queryKey: cart })
+
+      if (updated.items.length === 0) {
+        setReview(null)
+        void navigate({ to: '/carrinho', replace: true })
+        return
+      }
 
       const fresh = await refreshQuote()
       if (fresh.items.length === 0) {

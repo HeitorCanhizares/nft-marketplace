@@ -28,8 +28,9 @@ export function useCheckoutEntry() {
   const userId = user?.id
   const cart = cartQuery.data
   const pendingOrders = pendingQuery.data
-  // Com a lista em cache (ex.: pedido recusado há pouco), espera a lista nova antes de decidir.
-  const isRefreshing = pendingQuery.isFetching
+  // Com dados em cache (pedido recusado há pouco, carrinho de visitante antes do login), espera a
+  // versão nova da lista e do carrinho antes de decidir.
+  const isRefreshing = pendingQuery.isFetching || cartQuery.isFetching
 
   useEffect(() => {
     if (status === 'ready' || !userId || !cart || !pendingOrders || isRefreshing) return

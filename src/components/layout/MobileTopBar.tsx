@@ -66,7 +66,9 @@ export function MobileTopBar({
           <ChevronLeftIcon />
         </Button>
       )}
-      <h1 className="min-w-0 text-center text-xl font-bold break-words text-foreground">{title}</h1>
+      <h1 className="min-w-0 translate-x-3 text-center text-xl font-bold break-words text-foreground">
+        {title}
+      </h1>
       <div className="flex size-9 items-center justify-center justify-self-end">{action}</div>
     </header>
   )

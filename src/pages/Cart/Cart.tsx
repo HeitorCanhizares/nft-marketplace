@@ -60,6 +60,17 @@ export function Cart() {
       heading.focus()
     }
   }, [isEmpty])
+
+  // Ao remover uma linha (não a última), foca a lixeira que ficou no lugar depois que a linha sai do DOM.
+  const focusIndexRef = useRef<number | null>(null)
+  const itemCount = items.length
+  useEffect(() => {
+    const index = focusIndexRef.current
+    if (index === null) return
+    focusIndexRef.current = null
+    const buttons = pageRef.current?.querySelectorAll<HTMLElement>('[data-remove-for]') ?? []
+    buttons[Math.min(index, buttons.length - 1)]?.focus()
+  }, [itemCount])
   // Desktop: container da largura da página. Mobile: a largura toda, com o respiro dos blocos.
   const frameClass = isDesktop ? 'container-page flex flex-col pb-16' : 'flex flex-col pb-8'
 
@@ -110,20 +121,15 @@ export function Cart() {
     )
   }
 
-  // Remover: guarda o índice, tira a linha e, no quadro seguinte, foca a lixeira que ficou no lugar.
+  // Remover: guarda o índice e tira a linha; o efeito acima foca a lixeira que ficou no lugar.
   function handleRemove(item: CartItem): void {
     const index = items.findIndex((line) => line.id === item.id)
-    remove(item)
-
     if (items.length === 1) {
       focusEmptyRef.current = true
-      return
+    } else if (index !== -1) {
+      focusIndexRef.current = index
     }
-    requestAnimationFrame(() => {
-      if (index === -1) return
-      const buttons = pageRef.current?.querySelectorAll<HTMLElement>('[data-remove-for]') ?? []
-      buttons[Math.min(index, buttons.length - 1)]?.focus()
-    })
+    remove(item)
   }
 
   function handleCheckout(): void {

@@ -50,6 +50,7 @@ export function SvgIcon({ name, size, className, style, title, ...props }: SvgIc
     WebkitMaskPosition: 'center',
     maskSize: 'contain',
     WebkitMaskSize: 'contain',
+    maskMode: 'alpha',
   }
 
   const accessibilityProps = title

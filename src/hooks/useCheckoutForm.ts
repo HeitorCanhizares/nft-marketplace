@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useDebounce } from '@/hooks/useDebounce'
 import { useDeferredEmptyValidation } from '@/hooks/useDeferredEmptyValidation'
 import { toCollector, toSecondaryBody } from '@/lib/checkoutCollector'
-import { clearDraft, readDraft, writeDraft } from '@/lib/checkoutStorage'
+import { readDraft, writeDraft } from '@/lib/checkoutStorage'
 import { checkoutNoteSchema, type CheckoutDraft, type CheckoutMode } from '@/schemas/checkout'
 import { networkSchema } from '@/schemas/common'
 import {
@@ -201,8 +201,9 @@ export function useCheckoutForm(wallets: WalletsResponse, user: User) {
     }
   }
 
+  // Pedido criado: para de regravar o rascunho, mas não o apaga. Ele só sai quando o pedido
+  // confirma (useOrderOutcome); na recusa, "Tentar novamente" volta ao Pagamento preenchido.
   function discardDraft() {
-    clearDraft()
     discarded.current = true
   }
 

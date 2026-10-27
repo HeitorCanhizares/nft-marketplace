@@ -12,13 +12,11 @@ export function usePendingExecutors() {
       registerPendingExecutor('favorite', async ({ nftId }) => {
         await addFavorite(nftId)
         // As listas em cache são de visitante (sem isFavorite): precisam ser refeitas com o token.
-        await Promise.all([
-          queryClient.invalidateQueries({ queryKey: nfts.lists }),
-          queryClient.invalidateQueries({ queryKey: home }),
-          queryClient.invalidateQueries({ queryKey: nfts.details }),
-          queryClient.invalidateQueries({ queryKey: nfts.relatedAll }),
-          queryClient.invalidateQueries({ queryKey: favorites }),
-        ])
+        // Uma primeira carga em andamento pode ter lido o banco antes do favorito: o invalidate só
+        // reaproveitaria essa requisição, então ela é cancelada antes.
+        const keys = [nfts.lists, home, nfts.details, nfts.relatedAll, favorites]
+        await Promise.all(keys.map((queryKey) => queryClient.cancelQueries({ queryKey })))
+        await Promise.all(keys.map((queryKey) => queryClient.invalidateQueries({ queryKey })))
         return 'Adicionado aos favoritos.'
       }),
     [],
