@@ -7,15 +7,12 @@ import { Button } from '@/components/ui/button'
 import { RadioGroup } from '@/components/ui/radio-group'
 import { Skeleton } from '@/components/ui/skeleton'
 import { formatEth } from '@/lib/formatEth'
+import { CHECKOUT_PROVIDER_ORDER } from '@/lib/walletOptions'
 import { walletProviderSchema } from '@/schemas/common'
-import type { WalletProvider } from '@/types/nft'
 import type { Wallet } from '@/types/user'
 
 import { SavedWalletsSection } from './SavedWalletsSection'
 import type { CheckoutViewProps } from './viewProps'
-
-// Ordem do Figma: WalletConnect, MetaMask, Coinbase Wallet.
-const MOBILE_PROVIDERS: WalletProvider[] = ['walletconnect', 'metamask', 'coinbase']
 
 type CheckoutMobileProps = CheckoutViewProps & {
   primaryWallet: Wallet | null
@@ -93,7 +90,7 @@ export function CheckoutMobile({
           onValueChange={handleProviderChange}
           className="mt-3 gap-4"
         >
-          {MOBILE_PROVIDERS.map((provider) => (
+          {CHECKOUT_PROVIDER_ORDER.map((provider) => (
             <WalletProviderOption
               key={provider}
               value={provider}
@@ -122,10 +119,21 @@ export function CheckoutMobile({
           <span className="font-bold text-foreground">Total:</span>
           {quote.quote !== undefined ? (
             <span className="font-bold text-price">{formatEth(quote.quote.total)}</span>
+          ) : quote.isError ? (
+            <span className="text-caption-md text-muted-foreground">
+              Não foi possível calcular o total.
+            </span>
           ) : (
             <Skeleton className="h-5 w-28" />
           )}
         </div>
+        {quote.quote === undefined && quote.isError ? (
+          <div className="flex justify-end">
+            <Button type="button" variant="link" className="min-h-11" onClick={quote.onRetry}>
+              Tentar novamente
+            </Button>
+          </div>
+        ) : null}
 
         {confirm.message ? (
           <p id={messageId} role="alert" className="mt-4 text-sm text-destructive">

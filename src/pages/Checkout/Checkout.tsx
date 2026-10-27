@@ -37,13 +37,11 @@ function CheckoutContent({ cart, wallets, user, isDesktop }: CheckoutContentProp
   const form = useCheckoutForm(wallets, user)
   const quoteState = useCheckoutQuote(cart, form.network)
 
-  // Mesma regra do mobile: com carteira salva escolhida, a rede é a dela; no manual, a do formulário.
+  // Cotação e conexão usam a mesma rede (docs/fluxos/pagamento.md, subitem 5): no desktop, a do
+  // campo "Rede" do formulário; no mobile, a da carteira salva escolhida.
   const selectedWallet =
     form.mode === 'secondary' ? wallets.secondary : form.mode === 'primary' ? wallets.primary : null
-  const expectedNetwork =
-    form.mode === 'primary' || form.mode === 'secondary'
-      ? (selectedWallet?.network ?? null)
-      : form.network
+  const expectedNetwork = isDesktop ? form.network : (selectedWallet?.network ?? null)
 
   const wallet = useCheckoutWallet(expectedNetwork, form.provider, form.setProvider)
   const review = useCheckoutReview({

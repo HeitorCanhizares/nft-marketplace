@@ -1,4 +1,4 @@
-import { useEffect, useId, useState, type FormEvent } from 'react'
+import { useEffect, useState, type FormEvent } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -41,7 +41,6 @@ export function CouponField({
   collapsible = false,
 }: CouponFieldProps) {
   const [expanded, setExpanded] = useState(false)
-  const formId = useId()
   const [resolver, markSubmitAttempt] = useDeferredEmptyValidation<CouponFormValues>(
     zodResolver(couponFormSchema),
   )
@@ -104,7 +103,6 @@ export function CouponField({
         type="button"
         variant="link"
         aria-expanded={false}
-        aria-controls={formId}
         onClick={() => setExpanded(true)}
         className="min-h-11 w-full justify-center"
       >
@@ -116,7 +114,7 @@ export function CouponField({
   const isMobile = variant === 'mobile'
 
   return (
-    <form id={formId} onSubmit={handleFormSubmit} noValidate className="flex flex-col">
+    <form onSubmit={handleFormSubmit} noValidate className="flex flex-col">
       <FormField
         label="Código promocional"
         hideLabel={labelHidden}

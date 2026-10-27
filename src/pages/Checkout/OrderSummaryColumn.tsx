@@ -7,12 +7,9 @@ import { WalletConnectionStatus } from '@/components/shared/WalletConnectionStat
 import { WalletProviderOption } from '@/components/shared/WalletProviderOption'
 import { Button } from '@/components/ui/button'
 import { RadioGroup } from '@/components/ui/radio-group'
-import type { WalletProvider } from '@/types/nft'
+import { CHECKOUT_PROVIDER_ORDER } from '@/lib/walletOptions'
 
 import type { CheckoutViewProps } from './viewProps'
-
-// Ordem visual das carteiras no Pagamento (Figma).
-const PROVIDER_ORDER: WalletProvider[] = ['walletconnect', 'metamask', 'coinbase']
 
 // Coluna direita do desktop: NFTs, cupom, valores, carteira e confirmação.
 export function OrderSummaryColumn({
@@ -27,7 +24,7 @@ export function OrderSummaryColumn({
   const messageId = useId()
 
   function handleProviderChange(value: string) {
-    const provider = PROVIDER_ORDER.find((option) => option === value)
+    const provider = CHECKOUT_PROVIDER_ORDER.find((option) => option === value)
     if (provider !== undefined) wallet.choose(provider)
   }
 
@@ -76,7 +73,7 @@ export function OrderSummaryColumn({
           onValueChange={handleProviderChange}
           className="mt-4 gap-4"
         >
-          {PROVIDER_ORDER.map((option) => (
+          {CHECKOUT_PROVIDER_ORDER.map((option) => (
             <WalletProviderOption key={option} value={option} variant="desktop" />
           ))}
         </RadioGroup>
