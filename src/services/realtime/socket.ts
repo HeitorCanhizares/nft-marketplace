@@ -4,6 +4,7 @@ import { emitSessionExpired } from '@/services/http/sessionEvents'
 import type { ClientToServerEvents, ServerToClientEvents } from './events'
 
 type ReconnectHandler = () => void
+type ConnectionHandler = (connected: boolean) => void
 
 const SOCKET_URL: string | undefined = import.meta.env.VITE_SOCKET_URL || undefined
 
@@ -29,6 +30,7 @@ const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL
 const subscribedNftIds = new Set<string>()
 const subscribedOrderIds = new Set<string>()
 const reconnectHandlers = new Set<ReconnectHandler>()
+const connectionHandlers = new Set<ConnectionHandler>()
 
 // true desde uma queda até a próxima conexão bem-sucedida.
 let droppedSinceLastConnect = false
@@ -51,11 +53,19 @@ socket.on('connect', () => {
       handler()
     }
   }
+
+  for (const handler of [...connectionHandlers]) {
+    handler(true)
+  }
 })
 
 socket.on('disconnect', (reason) => {
   if (reason !== CLIENT_DISCONNECT_REASON) {
     droppedSinceLastConnect = true
+  }
+
+  for (const handler of [...connectionHandlers]) {
+    handler(false)
   }
 })
 
@@ -142,5 +152,17 @@ export function onReconnect(handler: ReconnectHandler): () => void {
   reconnectHandlers.add(handler)
   return () => {
     reconnectHandlers.delete(handler)
+  }
+}
+
+export function isSocketConnected(): boolean {
+  return socket.connected
+}
+
+// Dispara a cada mudança de conexão (true ao conectar, false ao desconectar, qualquer motivo).
+export function onSocketConnection(handler: ConnectionHandler): () => void {
+  connectionHandlers.add(handler)
+  return () => {
+    connectionHandlers.delete(handler)
   }
 }
