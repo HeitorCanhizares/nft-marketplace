@@ -81,7 +81,10 @@ test.describe('Visitante em rota protegida', () => {
       await signInForm(page, testInfo)
 
       await expect.poll(async () => (await authState(page)).status).toBe('authenticated')
-      await expect.poll(() => pathAndSearch(page)).toBe(path)
+      // No desktop, "/perfil" segue direto para os dados do perfil.
+      const landing =
+        path === '/perfil' && testInfo.project.name === 'desktop' ? '/perfil/dados' : path
+      await expect.poll(() => pathAndSearch(page)).toBe(landing)
     })
   }
 

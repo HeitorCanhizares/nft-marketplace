@@ -15,7 +15,8 @@ async function settle(page: Page) {
     await document.fonts.ready
     await Promise.all(
       Array.from(document.images).map((img) =>
-        img.complete
+        // Imagens preguiçosas fora da tela podem nunca carregar (relógio pausado).
+        img.complete || img.loading === 'lazy'
           ? Promise.resolve()
           : new Promise((resolve) => {
               img.onload = resolve
