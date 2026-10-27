@@ -15,6 +15,8 @@ import {
   walletProviderSchema,
 } from '@/schemas/common'
 import { walletSchema } from '@/schemas/user'
+import { quoteSchema } from '@/schemas/cart'
+import type { Quote } from '@/types/cart'
 
 // Collector: campos de Wallet sem id/slot, derivado de walletSchema.
 export const collectorSchema = walletSchema.omit({ id: true, slot: true })
@@ -87,3 +89,11 @@ export const createOrderInputSchema: z.ZodType<CreateOrderInput> = z.object({
   walletAddress: walletAddressSchema,
   note: z.string().optional(),
 })
+
+export const ordersSchema: z.ZodType<Order[]> = z.array(orderSchema)
+
+export const quoteChangedDetailsSchema: z.ZodType<{ quote: Quote; changes: QuoteChange[] }> =
+  z.object({
+    quote: quoteSchema,
+    changes: z.array(quoteChangeSchema),
+  })
