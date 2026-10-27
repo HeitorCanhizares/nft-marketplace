@@ -70,7 +70,7 @@ O Sonnet detalha **uma fase por vez** em blocos. Ao fim de cada fase há um **ch
 | 08 | **Carrinho** — 15 blocos — (+ handlers de carrinho, cupom, cotação, mescla do visitante) |
 | 09 | **Perfil** — 16 blocos — (+ handlers de perfil, avatar, senha, disponibilidade) |
 | 10 | **Carteiras** — 12 blocos — (+ handlers de carteiras) |
-| 11 | **Pagamento** (+ handlers de pedidos, revalidação, idempotência, conexão da carteira) |
+| 11 | **Pagamento** — 20 blocos, ondas paralelas — (+ handlers de pedidos, revalidação, idempotência, conexão da carteira) |
 | 12 | **Confirmação** (+ ciclo de vida do pedido, tempo real e polling) |
 | 13 | **Final:** testes de **casos de borda** de todos os fluxos (todos os cenários de `api-mock/cenarios.md`, adiados das fases 06–12 pelo modo enxuto),  Lighthouse com metas, varredura de acessibilidade, suíte E2E completa em Chromium, Firefox e WebKit |
 

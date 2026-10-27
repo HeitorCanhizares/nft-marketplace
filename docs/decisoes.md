@@ -280,6 +280,13 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - Mantidos: aviso "Cadastre a carteira principal primeiro." na secundária sem principal; "Salvar carteira" desabilitado sem alterações.
 - **Push:** a partir daqui o repositório tem remoto privado `HeitorCanhizares/nft-marketplace` (GitHub), criado a pedido do usuário.
 
+### Fase 11 — blocos aprovados (2026-10-26)
+20 blocos em `docs/blocos/11-*`, em 5 ondas de Haiku paralelos (lotes A–M no cabeçalho de cada bloco: `Toca`, `Paralelo`, `Lote`). Decisões do usuário:
+- **Pedido pendente:** o ciclo de vida (confirmar/recusar, tempo real) fica para a fase 12; na fase 11 aceita-se que, após pagar, o usuário fique na tela provisória do pedido.
+- **Provedor antes da rede:** não conecta e mostra "Selecione uma rede antes de escolher a carteira."
+- **Sem carteira principal:** o formulário do colecionador é pré-preenchido com os dados do perfil (nome de exibição, e-mail, ENS), como em Carteiras.
+- Demais propostas aprovadas: medidas lidas nas capturas 1:1; nenhum provedor pré-selecionado ("Tipo de carteira" e provedor escolhido são independentes); apelido "Carteira secundária" ao salvar como secundária; sem `UnsavedChangesGuard` no Pagamento (o rascunho cobre); sem `WalletBadges` no Pagamento; **`PriceSummary` com variante `checkout`** seguindo o Figma do Pagamento (taxa estimada centralizada, "Total" recuado), sem mudar o carrinho; mobile só com o total, como o Figma; `WalletConnectionStatus` abaixo das opções de provedor; "Confirmar compra" mostra a mensagem em vez de desabilitar; revisão em `Dialog` (máx. 560 px) no desktop e `Sheet` (máx. 90 dvh) no mobile; lista de mudanças calculada no front (`diffQuotes`) comparando a cotação exibida com a nova; cenários forçados do checkout valem uma vez por carga da página; `order-timeout` segura a resposta além do timeout do Axios; reenvio após falha não pede a assinatura de novo.
+
 ### Modo enxuto de testes (2026-10-26)
 O usuário pediu menos testes para ganhar velocidade e gastar menos tokens. A partir do fim da fase 06:
 - **Testes E2E por fase:** só o **caminho principal** de cada subitem. **Casos de borda** (cenários de `cenarios.md`: falhas, 4xx/5xx, fora de ordem, sessão expirada, conflitos, preço/estoque mudando, timeout, recusa etc.) ficam **todos para a fase 13**, já que o comportamento está documentado.
