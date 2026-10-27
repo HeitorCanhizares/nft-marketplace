@@ -4,12 +4,41 @@ import { formatEth } from '@/lib/formatEth'
 import { cn } from '@/lib/utils'
 import type { Quote } from '@/types/cart'
 
+// Valores prontos: uma cotação (Quote) ou um pedido (Order) servem.
+type PriceSummaryValues = Pick<Quote, 'subtotal' | 'discount' | 'networkFee' | 'total'> & {
+  networkFeeEstimated?: boolean
+}
+
 type PriceSummaryProps = {
-  quote?: Quote
+  quote?: PriceSummaryValues
   isUpdating: boolean
   isError: boolean
   onRetry: () => void
-  variant?: 'default' | 'checkout'
+  variant?: 'default' | 'checkout' | 'receipt'
+  showDiscount?: boolean
+}
+
+type ReceiptRowProps = {
+  label: string
+  value: string
+  total?: boolean
+}
+
+// Linha do recibo: passo fixo de 29 px; rótulo a 169 px da borda a partir de lg.
+function ReceiptRow({ label, value, total = false }: ReceiptRowProps) {
+  return (
+    <div className="flex h-[29px] items-center justify-between gap-4">
+      <dt className={cn('text-body text-foreground', total && 'font-bold')}>{label}</dt>
+      <dd
+        className={cn(
+          'text-subtitle tabular-nums',
+          total ? 'font-bold text-price' : 'text-foreground',
+        )}
+      >
+        {value}
+      </dd>
+    </div>
+  )
 }
 
 // Valores vêm prontos da cotação: o front só exibe, sem contas.
@@ -19,6 +48,7 @@ export function PriceSummary({
   isError,
   onRetry,
   variant = 'default',
+  showDiscount = false,
 }: PriceSummaryProps) {
   if (quote === undefined && isError) {
     return (
@@ -40,6 +70,28 @@ export function PriceSummary({
         <Skeleton className="h-4 w-full" />
         <Skeleton className="h-4 w-full" />
         <Skeleton className="h-5 w-2/3" />
+      </div>
+    )
+  }
+
+  // Recibo do pedido confirmado: sempre com valores, sem "Taxa estimada" e sem estados de atualização.
+  if (variant === 'receipt') {
+    return (
+      <div className="mb-[18px] flex flex-col">
+        <dl className="flex flex-col lg:pl-[169px]">
+          {showDiscount ? (
+            <>
+              <ReceiptRow label="Subtotal" value={formatEth(quote.subtotal)} />
+              <ReceiptRow
+                label="Desconto do lançamento"
+                value={`(-) ${formatEth(quote.discount)}`}
+              />
+            </>
+          ) : null}
+          <ReceiptRow label="Taxa de rede" value={formatEth(quote.networkFee)} />
+          <ReceiptRow label="Total" value={formatEth(quote.total)} total />
+        </dl>
+        <div aria-hidden="true" className="mt-1 h-px bg-border-soft" />
       </div>
     )
   }
