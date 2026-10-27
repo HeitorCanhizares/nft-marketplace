@@ -1,7 +1,17 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-// Placeholder: a fase 10 troca pelo Wallets.
+import { Wallets } from '@/pages/Wallets/Wallets'
+
 export const Route = createFileRoute('/perfil/carteiras')({
   staticData: { title: 'Carteiras' },
-  component: () => <h1 className="container-page py-8 text-heading font-bold">Carteiras</h1>,
+  // Só aceita voltar ao Pagamento; qualquer outro valor é ignorado.
+  // O parâmetro é opcional: o link de UserMenu para /perfil/carteiras não o informa.
+  validateSearch: (search: Record<string, unknown>): { redirect?: '/pagamento' } =>
+    search.redirect === '/pagamento' ? { redirect: '/pagamento' } : {},
+  component: WalletsRoute,
 })
+
+function WalletsRoute() {
+  const { redirect } = Route.useSearch()
+  return <Wallets redirect={redirect} />
+}
