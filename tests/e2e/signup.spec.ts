@@ -238,7 +238,14 @@ test.describe('Validação', () => {
     const afterDown = await button.boundingBox()
     await page.mouse.up()
 
-    expect(afterDown).toEqual(before)
+    // Causa da instabilidade: `Button` tem `active:translate-y-px` com `transition-all`; no
+    // mousedown o botão desce até 1 px em 150 ms, e a leitura caía no meio da transição (y
+    // fracionário). Isso é o feedback de clique, não deslocamento de layout: tolera 1 px em y.
+    expect(afterDown).not.toBeNull()
+    expect(afterDown?.x).toBe(before?.x)
+    expect(afterDown?.width).toBe(before?.width)
+    expect(afterDown?.height).toBe(before?.height)
+    expect(Math.abs((afterDown?.y ?? Infinity) - (before?.y ?? 0))).toBeLessThanOrEqual(1)
     await expect(form.getByText('Informe um e-mail.')).toBeVisible()
     for (const field of Object.values(f)) {
       await expect(field).toHaveAttribute('aria-invalid', 'true')
