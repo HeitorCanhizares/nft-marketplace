@@ -131,6 +131,7 @@ Instalados pelo CLI do shadcn e estilizados com os [tokens](tokens.md). Não con
 | `AuthForm` | LO, CD | Formulário de login ou de cadastro; usado dentro do Dialog (desktop) e da página (mobile) |
 | `AuthTabs` | LO, CD d | "Entrar \| Criar conta" como `nav` de links com `aria-current`; ativa com cor + sublinhado de 2 px |
 | `AuthDialog` | LO, CD d | Moldura do modal (500 px, faixa inferior `primary`), sem escurecer o fundo |
+| `OrderDialog` | CO d | Moldura do modal da Confirmação (578 px, fundo opaco `background`, faixa inferior `primary` de 10 px, sem raio), no padrão do `AuthDialog` |
 | `LoginForm` / `SignupForm` | LO / CD | Formulários concretos sobre o `AuthForm` |
 | `TextDivider` | LO, CD | Linha com texto ("Ou continue com") |
 | `SocialAuthButtons` | LO, CD | "Continuar com Google/Facebook", **desabilitados** |

@@ -293,6 +293,16 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - Diferenças aceitas: formulário preenchido e linha de estado da conexão; "WalletConnect" no lugar da faixa de logos; cartão mobile com apelido e endereço curto; valores vindos do seed.
 - **Para a fase 13:** rádio desmarcado com contorno escuro (Figma: laranja) e título do `MobileTopBar` ~12 px à esquerda do Figma, ambos em componentes compartilhados.
 
+### Fase 12 — blocos aprovados (2026-10-26)
+20 blocos em `docs/blocos/12-*` (12-005 cancelado), em ondas de Haiku paralelos (lotes A–K). Decisões do usuário:
+- **Fundo do modal (desktop):** opaco em `background`, como no Figma; a `AppShell` fica por trás, inerte. O Pagamento não é montado atrás.
+- **Ícone "Thank you":** `MailOpenIcon` do `lucide-react`, em `text-primary`, caixa de 66 × 80 px. Sem SVG exportado (12-005 cancelado).
+- **Data do recibo:** pt-BR via `Intl`, "29 de jul. de 2026".
+- **Cupom após a confirmação:** sai quando o carrinho fica vazio; fica quando sobram itens.
+- **Edição no recibo:** "Edição 1/50" abaixo do ID do token, como no Carrinho.
+- **`OrderDialog`** novo em `components/shared`, no padrão do `AuthDialog`; registrado em `design/componentes.md`.
+- Propostas técnicas aprovadas: liquidação no mock com timer na criação mais liquidação preguiçosa no `GET` (coalescida, sem baixar estoque duas vezes); `payment-declined`/`payment-confirmed`/`payment-slow` (30 s) e sorteio por `VITE_MOCK_PAYMENT_DECLINE_RATE`; confirmação baixa o estoque com `nft:stock_changed`; polling de 2 s só com pedido pendente e socket fora; `order:updated` só dispara releitura; limpeza do checkout só para o `orderId` guardado (no recusado o rascunho fica); `h1` estável sem mover o foco; link do explorador validado (`https` em domínio conhecido) com legenda "Transação simulada"; recibo com "Subtotal" e "Desconto" só quando há cupom; mobile adaptado (aprovado na baseline); modal ancorado no topo como o Login; teste do Pagamento usa `payment-slow`.
+
 ### Modo enxuto de testes (2026-10-26)
 O usuário pediu menos testes para ganhar velocidade e gastar menos tokens. A partir do fim da fase 06:
 - **Testes E2E por fase:** só o **caminho principal** de cada subitem. **Casos de borda** (cenários de `cenarios.md`: falhas, 4xx/5xx, fora de ordem, sessão expirada, conflitos, preço/estoque mudando, timeout, recusa etc.) ficam **todos para a fase 13**, já que o comportamento está documentado.
