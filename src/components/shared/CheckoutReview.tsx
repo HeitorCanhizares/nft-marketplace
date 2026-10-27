@@ -86,7 +86,12 @@ export function CheckoutReview({
   }
 
   const body = (
-    <div className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto px-5 py-6">
+    <div
+      role="region"
+      aria-label="Resumo do pedido"
+      tabIndex={0}
+      className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto px-5 py-6"
+    >
       {changes.length > 0 ? (
         <section
           aria-labelledby={changesHeadingId}
