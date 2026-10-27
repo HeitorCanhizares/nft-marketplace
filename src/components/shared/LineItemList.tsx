@@ -1,6 +1,7 @@
 import { LineItem, type CartLineItemVariant, type PriceChange } from '@/components/shared/LineItem'
 import { LineItemSkeleton } from '@/components/shared/LineItemSkeleton'
 import type { CartItem } from '@/types/cart'
+import type { OrderItemSnapshot } from '@/types/order'
 
 const SKELETON_ROWS = 3
 
@@ -22,12 +23,23 @@ type SummaryLineItemListProps = {
   isLoading?: boolean
 }
 
-type LineItemListProps = CartLineItemListProps | SummaryLineItemListProps
+// Recibo do pedido: só leitura, a partir dos snapshots.
+type ReceiptLineItemListProps = {
+  variant: 'receipt'
+  items: readonly OrderItemSnapshot[]
+  isLoading?: boolean
+}
+
+type LineItemListProps = CartLineItemListProps | SummaryLineItemListProps | ReceiptLineItemListProps
 
 // Desktop: tabela com cabeçalho. Mobile: lista de cards. Summary: lista "NFTs | Subtotal".
 export function LineItemList(props: LineItemListProps) {
   if (props.variant === 'summary') {
     return <SummaryLineItemList items={props.items} isLoading={props.isLoading ?? false} />
+  }
+
+  if (props.variant === 'receipt') {
+    return <ReceiptLineItemList items={props.items} isLoading={props.isLoading ?? false} />
   }
 
   const {
@@ -86,6 +98,38 @@ export function LineItemList(props: LineItemListProps) {
       </thead>
       <tbody>{rows}</tbody>
     </table>
+  )
+}
+
+type ReceiptLineItemListBodyProps = {
+  items: readonly OrderItemSnapshot[]
+  isLoading: boolean
+}
+
+// Cabeçalho visual "NFTs | Edições | Subtotal" (aria-hidden). No mobile "Edições" some.
+function ReceiptLineItemList({ items, isLoading }: ReceiptLineItemListBodyProps) {
+  const rows = isLoading
+    ? Array.from({ length: SKELETON_ROWS }, (_, index) => (
+        <LineItemSkeleton key={`skeleton-${index}`} variant="receipt" />
+      ))
+    : items.map((item) => (
+        <LineItem key={`${item.nftId}-${item.editionId}`} variant="receipt" item={item} />
+      ))
+
+  return (
+    <div>
+      <div
+        aria-hidden="true"
+        className="grid grid-cols-[minmax(0,1fr)_auto] border-b border-border-soft pb-2 text-body text-foreground max-lg:pr-3 lg:grid-cols-[minmax(0,1fr)_90px_7rem]"
+      >
+        <span>NFTs</span>
+        <span className="text-center max-lg:hidden">Edições</span>
+        <span className="text-right">Subtotal</span>
+      </div>
+      <ul aria-label="Itens do pedido" className="mt-3 flex flex-col gap-3">
+        {rows}
+      </ul>
+    </div>
   )
 }
 

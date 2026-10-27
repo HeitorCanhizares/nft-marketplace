@@ -8,12 +8,13 @@ import { formatEth } from '@/lib/formatEth'
 import { MAX_PER_PURCHASE } from '@/lib/maxQuantity'
 import { cn } from '@/lib/utils'
 import type { CartItem } from '@/types/cart'
+import type { OrderItemSnapshot } from '@/types/order'
 
 export type PriceChange = { from: string; to: string }
 
 export type CartLineItemVariant = 'cart-row' | 'cart-card'
 
-export type LineItemVariant = CartLineItemVariant | 'summary'
+export type LineItemVariant = CartLineItemVariant | 'summary' | 'receipt'
 
 type CartLineItemProps = {
   variant: CartLineItemVariant
@@ -31,7 +32,13 @@ type SummaryLineItemProps = {
   item: CartItem
 }
 
-type LineItemProps = CartLineItemProps | SummaryLineItemProps
+// Recibo do pedido: só leitura, a partir do snapshot (nunca de um CartItem).
+type ReceiptLineItemProps = {
+  variant: 'receipt'
+  item: OrderItemSnapshot
+}
+
+type LineItemProps = CartLineItemProps | SummaryLineItemProps | ReceiptLineItemProps
 
 type PartProps = {
   item: CartItem
@@ -201,11 +208,40 @@ function SummaryLine({ item }: PartProps) {
   )
 }
 
+// Recibo: miniatura sem link, nome, ID do token, edição, "(x N)" e subtotal. Só leitura.
+// Desktop: grade de 3 colunas (mesma do cabeçalho do LineItemList). Mobile: cartão.
+function ReceiptLine({ item }: { item: OrderItemSnapshot }) {
+  return (
+    <li className="grid min-h-[70px] grid-cols-[minmax(0,1fr)_auto] items-center gap-x-3 bg-card max-lg:overflow-hidden max-lg:rounded-card max-lg:pr-3 lg:grid-cols-[minmax(0,1fr)_90px_7rem] lg:gap-x-0">
+      <div className="flex min-w-0 items-center gap-3 max-lg:col-start-1 max-lg:row-span-2 max-lg:row-start-1">
+        <div className="size-[70px] shrink-0 overflow-hidden rounded-media max-lg:rounded-none">
+          <img src={item.image.src} alt="" loading="lazy" className="size-full object-cover" />
+        </div>
+        <div className="flex min-w-0 flex-col gap-1">
+          <p className="text-base font-bold break-words text-foreground">{item.name}</p>
+          <p className="text-sm text-tan">ID do token: {item.tokenId}</p>
+          <p className="text-sm text-tan">Edição {item.editionLabel}</p>
+        </div>
+      </div>
+      <p className="text-sm text-muted-foreground max-lg:col-start-2 max-lg:row-start-1 lg:text-center">
+        (x {item.quantity})
+      </p>
+      <p className="text-subtitle font-bold text-price tabular-nums max-lg:col-start-2 max-lg:row-start-2 lg:text-right">
+        {formatEth(item.lineTotal)}
+      </p>
+    </li>
+  )
+}
+
 // Linha do carrinho: `cart-row` é a linha da tabela (desktop); `cart-card` é o card da lista (mobile).
-// `summary` é a linha só de leitura da revisão.
+// `summary` é a linha só de leitura da revisão. `receipt` é a linha só de leitura do recibo.
 export function LineItem(props: LineItemProps) {
   if (props.variant === 'summary') {
     return <SummaryLine item={props.item} />
+  }
+
+  if (props.variant === 'receipt') {
+    return <ReceiptLine item={props.item} />
   }
 
   const { variant, item, priceChange, busy = false, onQuantityChange, onRemove, onAdjust } = props

@@ -35,6 +35,18 @@ export function LineItemSkeleton({ variant }: LineItemSkeletonProps) {
     )
   }
 
+  if (variant === 'receipt') {
+    return (
+      <li aria-hidden="true" className="flex min-h-[70px] items-center gap-3 bg-card">
+        <Skeleton className="size-[70px] shrink-0 rounded-media" />
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
+          <Skeleton className="h-4 w-40" />
+          <Skeleton className="h-3 w-28" />
+        </div>
+      </li>
+    )
+  }
+
   if (variant === 'summary') {
     return (
       <li aria-hidden="true" className="flex min-h-[70px] gap-2 bg-card">
