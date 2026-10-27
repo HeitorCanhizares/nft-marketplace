@@ -1,6 +1,6 @@
 # 10-004 — `WalletForm` (compartilhado com o Pagamento)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carteiras › 2, 3, 6
 **Depende de:** 10-001, 10-005
 

@@ -1,6 +1,6 @@
 # 10-011 — Fechamento da fase 10
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 **Depende de:** 10-010
 

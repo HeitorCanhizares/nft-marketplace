@@ -1,6 +1,6 @@
 # 10-009 — Página `Wallets`, esqueleto e rota `/perfil/carteiras`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carteiras › 1 (layout), 7 (voltar ao pagamento, alterações não salvas), 8 (estados)
 **Depende de:** 10-003, 10-006, 10-008
 

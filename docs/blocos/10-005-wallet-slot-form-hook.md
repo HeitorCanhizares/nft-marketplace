@@ -1,6 +1,6 @@
 # 10-005 — Hook do formulário de uma carteira (`useWalletSlotForm`)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carteiras › 2, 3, 6, 7
 **Depende de:** 10-001, 10-003
 

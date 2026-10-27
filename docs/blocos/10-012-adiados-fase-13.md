@@ -1,6 +1,6 @@
 # 10-012 — Casos de borda de carteiras adiados para a fase 13
 
-**Status:** pendente
+**Status:** concluído
 **Depende de:** 10-011
 
 Testes que **não** são escritos na fase 10 (modo enxuto). O comportamento já está implementado e documentado.

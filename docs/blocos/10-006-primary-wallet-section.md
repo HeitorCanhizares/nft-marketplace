@@ -1,6 +1,6 @@
 # 10-006 — Seção "Carteira principal" e botão "Salvar carteira"
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carteiras › 2, 6
 **Depende de:** 10-004, 10-005
 

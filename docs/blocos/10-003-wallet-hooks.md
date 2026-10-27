@@ -1,6 +1,6 @@
 # 10-003 — Hooks de carteiras (consulta e envios)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carteiras › 2, 3, 4, 5, 7
 **Depende de:** 10-001
 

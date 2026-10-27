@@ -1,6 +1,6 @@
 # 10-008 — Seção "Carteira secundária"
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carteiras › 3, 4, 5
 **Depende de:** 10-004, 10-005, 10-006, 10-007
 

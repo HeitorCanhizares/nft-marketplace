@@ -1,6 +1,6 @@
 # 10-007 — Diálogos "Remover carteira secundária" e "Tornar principal"
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carteiras › 4, 5
 **Depende de:** 10-003
 

@@ -1,6 +1,6 @@
 # 10-010 — Testes de carteiras (caminho principal)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carteiras › todos (modo enxuto)
 **Depende de:** 10-009
 

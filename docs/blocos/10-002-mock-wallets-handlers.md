@@ -1,6 +1,6 @@
 # 10-002 — Handlers do mock: carteiras
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carteiras › 2, 3, 4, 5, 6, 7
 **Depende de:** 10-001
 

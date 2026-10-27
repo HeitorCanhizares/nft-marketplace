@@ -1,6 +1,6 @@
 # 10-001 — Schemas do formulário de carteira, opções e serviço
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Carteiras › 6 (validação), 7 (persistência)
 **Depende de:** —
 
