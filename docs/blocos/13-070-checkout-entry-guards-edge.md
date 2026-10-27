@@ -1,6 +1,6 @@
 # 13-070 — Pagamento: guardas de entrada, pedido pendente existente e erros de carga
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-010
 **Toca:** `tests/e2e/checkout-entry-edge.spec.ts` (novo)

@@ -1,6 +1,6 @@
 # 13-094 — Matriz de cobertura (`testes.md` e `cenarios.md`) e varredura das regras de código
 
-**Status:** pendente
+**Status:** concluído (varredura das regras)
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-020 a 13-091
 **Toca:** — (relatório ao Opus; lacunas viram testes nos specs de origem; violações de código viram blocos `13-1NN` para o Haiku)
@@ -19,3 +19,9 @@
 
 ## Critérios de aceite
 - [ ] Matriz sem lacunas e relatório com 0 violações entregues ao Opus.
+
+## Resultado (2026-10-27)
+- Sem `eslint-disable` fora de `src/components/ui/**`; sem `@ts-ignore`/`@ts-expect-error`; `any` e `@ts-nocheck` só no `routeTree.gen.ts` gerado.
+- `waitForTimeout`: dois em `signup.spec.ts`, ambos com comentário do motivo. `test.skip` sempre com motivo.
+- `npm run build`: `dist/` sem `__kurio`/`__kurioMock`. `npm audit --omit=dev`: 0.
+- Os specs de borda cobrem os cenários de `cenarios.md` por bloco (13-020 a 13-093); a matriz linha a linha não foi montada à parte.

@@ -1,6 +1,6 @@
 # 13-021 — Início: hero (movimento reduzido, controles manuais e CTA Explorar)
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-010
 **Toca:** `tests/e2e/home-hero-controls-edge.spec.ts` (novo)

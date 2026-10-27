@@ -1,6 +1,6 @@
 # 13-095 — Fechamento: suíte completa nos 3 navegadores
 
-**Status:** pendente
+**Status:** concluído no Chromium; Firefox e WebKit sem execução possível neste ambiente (ver 13-003)
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** todos os blocos de teste e de correção da fase (13-001 a 13-094)
 **Toca:** — (só execução)
@@ -15,3 +15,9 @@
 
 ## Critérios de aceite
 - [ ] 0 falhas nos 4 projetos; nenhuma baseline atualizada sem aprovação do usuário.
+
+## Resultado (2026-10-27)
+- `format:check`, `lint`, `typecheck`, `build`, `build:test`: verdes.
+- Chromium `desktop` + `mobile` (inclui `tests/visual/`): **1128 passaram, 0 falharam**, 226 pulados por projeto (`only`), 10,5 min.
+- Firefox (630) e WebKit (548): falhas de ambiente descritas no 13-003.
+- Baselines novas de `states-*` geradas e aprovadas pelo usuário em 2026-10-27.

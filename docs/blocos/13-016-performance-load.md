@@ -1,6 +1,6 @@
 # 13-016 — Desempenho da carga inicial (esboço)
 
-**Status:** pendente. **Esboço:** o Sonnet reescreve depois do 13-005 e das respostas Q4, com arquivo, mudança e ganho medido por item. Podem sair vários blocos (`13-016`, `13-017`, ...), cada um com no máximo 3 arquivos.
+**Status:** aguardando a Q4 (medição no 13-005). **Esboço:** o Sonnet reescreve depois do 13-005 e das respostas Q4, com arquivo, mudança e ganho medido por item. Podem sair vários blocos (`13-016`, `13-017`, ...), cada um com no máximo 3 arquivos.
 **Responsável:** Haiku
 **Depende de:** 13-005, Q4
 **Toca:** candidatos (a confirmar): `index.html`, `src/main.tsx`, `src/mocks/db/` (carga do seed), componentes com `<img>`

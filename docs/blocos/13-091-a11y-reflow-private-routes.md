@@ -1,6 +1,6 @@
 # 13-091 — Reflow, zoom 200 %, textos longos e movimento reduzido nas rotas autenticadas
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-010, 13-011, 13-014, 13-015
 **Toca:** `tests/e2e/a11y-reflow-private.spec.ts` (novo)

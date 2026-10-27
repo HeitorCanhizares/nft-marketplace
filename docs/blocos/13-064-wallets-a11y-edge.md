@@ -1,6 +1,6 @@
 # 13-064 — Carteiras: acessibilidade de diálogos, erros e anúncios
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-060 a 13-063
 **Toca:** `tests/e2e/wallets-a11y.spec.ts` (acrescentar; arquivo só deste bloco)

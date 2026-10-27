@@ -1,6 +1,6 @@
 # 13-028 — Início: card (foco, esgotado, favoritar e adicionar ao carrinho)
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/home-card-edge.spec.ts` (novo)

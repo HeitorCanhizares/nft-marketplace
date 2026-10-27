@@ -1,6 +1,6 @@
 # 13-092 — Baselines visuais de estados não desenhados: Início, Detalhes e Carrinho
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high) (baselines aprovadas pelo usuário)
 **Depende de:** 13-010, 13-011, 13-014, 13-015, 13-016 e dos specs de borda T1–T3
 **Toca:** `tests/visual/states-catalog-cart.spec.ts` (novo) e a pasta de snapshots dele

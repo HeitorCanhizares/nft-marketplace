@@ -1,6 +1,6 @@
 # 13-011 — Título do `MobileTopBar` alinhado ao Figma
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Haiku (medição e validação por Claude Sonnet 5.5, effort: low)
 **Depende de:** —
 **Toca:** `src/components/layout/MobileTopBar.tsx`
@@ -10,9 +10,11 @@
 ## Objetivo
 O título fica ~12 px à esquerda do Figma nas telas mobile que usam a barra (Carrinho, Pagamento, Perfil, Carteiras, Confirmação e outras).
 
-## Medição (Sonnet, antes do Haiku)
-- Em `docs/design/telas/mobile-carrinho.png` e `mobile-pagamento.png` (1:1, 414 px), medir o `x` de início e fim do título e do botão "Voltar". Em seguida medir o mesmo no app (414 px, `page.evaluate` de `getBoundingClientRect()` do `h1`). Escrever aqui o deslocamento exato e a causa (hoje: `grid-cols-[36px_1fr_36px]` com o título centralizado em `1fr`; o botão de ação à direita pode estar vazio e mudar a centralização; ler também `docs/blocos/04-019-mobile-top-bar.md`).
-- Se o Figma centraliza o título na **tela** e não na coluna central, a correção é de grid; se ele tem margem própria, é `padding`/`margin` com token de espaçamento.
+## Medição
+- Figma (`mobile-carrinho.png`): `minX = 125`, `maxX = 314`, `centro = 219,5 px`.
+- Figma (`mobile-pagamento.png`): `minX = 89`, `maxX = 349`, `centro = 219,0 px`.
+- App antes da correção: `minX = 112`/`77`, `maxX = 301`/`337`, `centro = 206,5`/`207,0 px` (exatamente 12 px à esquerda).
+- Solução: `translate-x-3` (desloca o título `+12 px`, centro em `219 px`, sem estreitar a coluna `1fr`; com `pl-6` o título "Pagamento com carteira" quebrava em duas linhas).
 
 ## Instruções
 1. Aplicar a correção medida em `MobileTopBar.tsx` usando só utilitários com tokens de espaçamento (nada de `px` solto fora da escala já usada no arquivo).

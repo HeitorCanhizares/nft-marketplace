@@ -1,6 +1,6 @@
 # 13-063 — Carteiras: persistência, integração com Pagamento, guarda de saída e estados
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/wallets-persist-states-edge.spec.ts` (novo)

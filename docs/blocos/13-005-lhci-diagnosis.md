@@ -1,6 +1,6 @@
 # 13-005 — Diagnóstico de desempenho (LHCI) antes de mexer no código
 
-**Status:** pendente
+**Status:** concluído (medição; correções de boot aguardam a Q4)
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-006
 **Toca:** — (só medição; relatório entregue ao Opus)
@@ -24,3 +24,19 @@ Medir onde vão os ~3,3 s de LCP e a nota mobile ~83 (metas: LCP < 2,5 s, perfor
 ## Critérios de aceite
 - [ ] Notas e métricas atuais das 4 páginas públicas (e das logadas, se o 13-006 permitir).
 - [ ] Lista de blocos de correção propostos, cada um com arquivo, mudança e ganho esperado.
+
+## Resultado (2026-10-27)
+
+| Página | Perf | A11y | Boas práticas | SEO | LCP | CLS | TBT |
+|---|---|---|---|---|---|---|---|
+| `/` | 94 | 97 | 100 | 92 | 2,74 s | 0 | 71 ms |
+| `/nft/emerald-ape-042` | 86 | 96 | 100 | 92 | 3,06 s | 0 | 297 ms |
+| `/carrinho` | 89 | 100 | 100 | 91 | 2,79 s | 0 | 255 ms |
+| `/entrar` | 90 | 100 | 100 | 92 | 2,87 s | 0 | 202 ms |
+| `/pagamento` (logado) | 87 | 100 | 100 | 91 | 3,41 s | 0 | 170 ms |
+| `/perfil/dados` (logado) | 93 | 100 | 100 | 91 | 2,94 s | 0 | 88 ms |
+
+- Mediana de 3 execuções por página, perfil mobile, MSW ligado, build de teste (`npm run lhci`).
+- O healthcheck do LHCI não acha o Chrome sozinho nesta máquina: rodar com `CHROME_PATH="C:\Program Files\Google\Chrome\Application\chrome.exe"`. O Chromium do Playwright não serve (o Lighthouse não consegue abrir a porta de depuração).
+- **Acessibilidade 96–97 em `/` e `/nft`:** só a auditoria `target-size`. Os indicadores dos carrosséis (`CarouselDots`) têm 6–8 px com 8 px de espaço, como no Figma; atingir 24 px exige mudar o layout. Decisão do usuário (pendente).
+- **Performance e LCP abaixo da meta (≥ 90 e < 2,5 s):** CLS 0 em tudo; o LCP vem da cascata de boot (`main.tsx` espera `startMocking()`, que semeia o IndexedDB, antes de importar o app). Mexer nisso é a Q4 (arquitetura), ainda sem resposta.

@@ -1,6 +1,6 @@
 # 13-022 — Início: hero e destaque (skeleton sem CLS, erro `/home` e `alt` das imagens)
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-010
 **Toca:** `tests/e2e/home-hero-states-edge.spec.ts` (novo)

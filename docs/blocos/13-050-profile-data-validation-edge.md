@@ -1,6 +1,6 @@
 # 13-050 — Perfil: validação de dados, disponibilidade e conflitos 409
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/profile-data-edge.spec.ts` (novo)

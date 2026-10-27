@@ -1,6 +1,6 @@
 # 13-042 — Carrinho: cupons (inválido, expirado, cálculo exato e persistência)
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/cart-coupon-edge.spec.ts` (novo)

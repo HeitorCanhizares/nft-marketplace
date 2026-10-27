@@ -1,6 +1,6 @@
 # 13-055 — Perfil: acessibilidade de diálogos, erros e teclado
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-050 a 13-054
 **Toca:** `tests/e2e/profile-a11y.spec.ts` (acrescentar; arquivo só deste bloco)

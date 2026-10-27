@@ -1,6 +1,6 @@
 # 13-052 — Perfil: upload, prévia, remoção e erros de avatar
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/profile-avatar-edge.spec.ts` (novo)

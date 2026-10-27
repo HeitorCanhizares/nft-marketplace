@@ -1,6 +1,6 @@
 # 13-044 — Carrinho: tempo real (`price_changed`, `stock_changed` e reconexão)
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/cart-live-edge.spec.ts` (novo)

@@ -1,6 +1,6 @@
 # 13-081 — Confirmação: queda do socket (`realtime-drop`), polling de 2 s e aviso de 60 s
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/order-realtime-polling-edge.spec.ts` (novo)

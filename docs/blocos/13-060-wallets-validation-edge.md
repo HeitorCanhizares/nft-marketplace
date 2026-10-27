@@ -1,6 +1,6 @@
 # 13-060 — Carteiras: validação de endereço, ENS, limites e obrigatórios
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-010
 **Toca:** `tests/e2e/wallets-validation-edge.spec.ts` (novo)

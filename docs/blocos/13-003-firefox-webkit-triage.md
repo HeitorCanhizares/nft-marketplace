@@ -1,6 +1,6 @@
 # 13-003 — Triagem da suíte no Firefox e no WebKit
 
-**Status:** pendente
+**Status:** concluído (triagem feita; Firefox e WebKit sem execução possível neste ambiente, ver Resultado)
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-002 (e das correções 13-010 a 13-012, para a triagem não pegar diferenças já conhecidas)
 **Toca:** — (só execução; cria blocos de correção `13-1NN` quando necessário)
@@ -22,3 +22,10 @@ Rodar **uma vez** a suíte atual (sem os specs de borda novos) em Firefox e WebK
 ## Critérios de aceite
 - [ ] Lista de falhas por causa entregue ao Opus, cada uma com bloco de correção ou ajuste de teste.
 - [ ] Depois das correções: `npm run test:e2e -- --project=firefox --project=webkit` com 0 falhas nos specs atuais.
+
+## Resultado (2026-10-27)
+Suíte completa nos 4 projetos (`npm run test:e2e`, 2614 testes): Chromium desktop e mobile verdes; Firefox e WebKit falham por ambiente, não por bug do app.
+- **Firefox:** `browserContext.newPage: Target crashed` em todos os testes, também com 1 worker e numa página `data:` em branco fora do app. O binário do Firefox do Playwright cai nesta máquina (Windows 10). Nada a corrigir no código.
+- **WebKit:** o navegador abre, mas o boot do app leva ~58 s: o IndexedDB do WebKit no Windows grava o seed muito devagar (a transação de `nfts` sozinha leva ~4,3 s) e o modo de teste recria o banco a cada teste (`VITE_MOCK_SEED_RESET=true`), então todo teste estoura o `waitForFunction` do `ready`. Acelerar exigiria mudar como o mock guarda o seed (arquitetura): fica como pergunta ao usuário.
+- **SvgIcon no Firefox:** corrigido no 13-012 (`maskMode: 'alpha'`), sem verificação no Firefox por causa do item acima.
+- Recomendação: rodar `--project=firefox --project=webkit` em CI Linux, onde os dois navegadores do Playwright funcionam.

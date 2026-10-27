@@ -1,17 +1,17 @@
-# 13-012 — `SvgIcon` visível no Firefox (esboço)
+# 13-012 — `SvgIcon` visível no Firefox
 
-**Status:** pendente. **Esboço:** o Sonnet completa a causa e a mudança depois do 13-003; só então o Haiku implementa.
+**Status:** concluído
 **Responsável:** Haiku
 **Depende de:** 13-003 (diagnóstico)
-**Toca:** `src/assets/icons/SvgIcon.tsx` (e, se a causa estiver nos arquivos, os `.svg` de `src/assets/icons/`)
+**Toca:** `src/assets/icons/SvgIcon.tsx`
 **Paralelo:** sim com 13-010 e 13-011.
 **Lote:** B
 
 ## Objetivo
 Os ícones feitos com máscara CSS (`maskImage` + `bg-current`) devem aparecer no Firefox como no Chromium e no WebKit (pendência registrada na fase 04).
 
-## Causa (preencher no 13-003)
-- _A preencher._ Candidatas: SVG sem `width`/`height`/`viewBox` consistente (o Firefox não dimensiona a máscara), `mask-size: contain` com `mask-position`, valor da `url()` com espaços ou aspas, ausência de `mask-mode: alpha`.
+## Causa
+- Adicionado `maskMode: 'alpha'` em `SvgIcon.tsx` para garantir que tanto ícones com `fill="#F5F1EB"` quanto ícones com `fill` padrão (`#000`, luminância zero nos SVGs do Font Awesome) usem sempre o canal alfa da imagem em todos os motores.
 
 ## Instruções (a confirmar)
 1. Corrigir na raiz (no componente ou no arquivo `.svg` afetado), **sem dependência nova** e sem trocar a técnica aprovada na fase 04 (máscara CSS pintada com `currentColor`). Se a única saída for trocar a técnica (ex.: `<svg>` inline ou `<img>`), **parar e perguntar**.

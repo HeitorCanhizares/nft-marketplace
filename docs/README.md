@@ -1,31 +1,13 @@
 # Kurio — Marketplace de NFTs
 
-Documentação de planejamento do frontend. Leia este arquivo antes de qualquer outro.
+Documentação do frontend: design, arquitetura, API simulada, fluxos e qualidade.
 
-## Papéis
+## Regras do projeto
 
-| Modelo | Papel | O que pode fazer |
-|---|---|---|
-| **Opus 5.5** | Planeja e documenta | Escreve e atualiza `docs/`. Não implementa código. |
-| **Sonnet 5.5** | Quebra e testa | Divide os fluxos em blocos em `docs/blocos/`, escreve e roda os testes, valida a entrega do Haiku. |
-| **Haiku 5.5** | Implementa | Implementa **um bloco por vez**, exatamente como o bloco descreve. Não decide arquitetura. |
-
-**Orquestração (desde 2026-10-26):** o usuário conversa **só com o Opus**, na conversa principal. O Opus cria o Sonnet e o Haiku como **subagentes** (ferramenta Agent, `model: sonnet` / `model: haiku`), sem abrir sessões separadas. Perguntas e aprovações que o Sonnet precisar sobem ao usuário pelo Opus. Os papéis não mudam.
-
-**Haiku em paralelo (desde 2026-10-26, pedido do usuário):** blocos que mexem em **arquivos distintos** e não dependem um do outro podem ser implementados por **vários Haiku ao mesmo tempo**, no mesmo checkout. Regras para não colidirem:
-- O Opus separa os grupos pelo "Depende de" e pelos arquivos de cada bloco; dois agentes nunca recebem o mesmo arquivo (inclusive `routeTree.gen.ts`, `browser.ts`, `queryKeys.ts` e outros arquivos de registro: blocos que tocam nesses vão para o mesmo agente ou rodam em sequência).
-- Cada agente faz commit **só dos próprios arquivos** (`git commit -- <arquivos>`); se o git estiver ocupado (`index.lock`), espera e tenta de novo.
-- Se o typecheck ou o build falhar por causa de arquivo de **outro** agente ainda em andamento, o agente espera e roda de novo, sem mexer no arquivo alheio.
-- Sem worktrees nem junctions de `node_modules`.
-
-## Regras que valem para todos
-
-1. **Arquitetura, pastas, arquivos novos fora do previsto e dependências novas: sempre perguntar ao usuário.** Nada de assumir.
-2. Siga o que o usuário mandar. Se algo aqui contradiz um pedido dele, o pedido dele vence, e o documento é atualizado.
-3. **Layout restrito ao Figma.** Cada layout (desktop e mobile) é seguido como está, mesmo quando o conteúdo é diferente entre os dois. Veja [design/telas/](design/telas/README.md).
-4. **Componentes reutilizáveis.** Nenhum componente visual nasce dentro de uma página. Antes de criar, procure em [design/componentes.md](design/componentes.md).
-5. **API simulada de verdade.** Não existe backend. O MSW simula uma API REST completa: latência, erros, conflitos, estado persistido e tempo real. Nada é "só visual".
-6. Interface em **PT-BR**, código em **inglês**, URLs em **PT-BR**.
+1. **Layout restrito ao Figma.** Cada layout (desktop e mobile) é seguido como está, mesmo quando o conteúdo é diferente entre os dois. Veja [design/telas/](design/telas/README.md).
+2. **Componentes reutilizáveis.** Nenhum componente visual nasce dentro de uma página. Antes de criar, procure em [design/componentes.md](design/componentes.md).
+3. **API simulada de verdade.** Não existe backend. O MSW simula uma API REST completa: latência, erros, conflitos, estado persistido e tempo real. Nada é "só visual".
+4. Interface em **PT-BR**, código em **inglês**, URLs em **PT-BR**.
 
 ## Índice
 
@@ -46,7 +28,7 @@ Documentação de planejamento do frontend. Leia este arquivo antes de qualquer 
 | [qualidade/acessibilidade.md](qualidade/acessibilidade.md) | Requisitos de acessibilidade |
 | [qualidade/testes.md](qualidade/testes.md) | Estratégia de testes com Playwright |
 | [qualidade/lighthouse.md](qualidade/lighthouse.md) | Metas e auditoria Lighthouse |
-| [blocos/](blocos/README.md) | Blocos de implementação (escritos pelo Sonnet) |
+| [blocos/](blocos/README.md) | Histórico dos blocos de implementação |
 
 ## Stack
 
@@ -55,4 +37,4 @@ React · TypeScript · Vite · npm · TanStack Router (rotas baseadas em arquivo
 ## Figma
 
 - Arquivo: <https://www.figma.com/design/XY718dGs8zdSxmSPFfqEtJ/Frontend-Challenge--Copy-> (página `0:1`).
-- O plano Starter tem limite baixo de chamadas no MCP do Figma. **Use as capturas em `design/telas/` como referência principal** e só chame o Figma para algo que a captura não responda (um valor exato, um asset).
+- As capturas de cada tela estão em [design/telas/](design/telas/README.md).

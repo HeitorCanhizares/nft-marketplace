@@ -1,6 +1,6 @@
 # 13-075 — Pagamento: múltiplas mudanças, `QUOTE_EXPIRED`, foco na revisão e espelhamento
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/checkout-review-dialog-edge.spec.ts` (novo)
