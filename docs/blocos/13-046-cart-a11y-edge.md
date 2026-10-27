@@ -1,7 +1,7 @@
 # 13-046 — Carrinho: acessibilidade dos estados, teclado e painel mobile 320 px
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-040 a 13-045
 **Toca:** `tests/e2e/cart-a11y.spec.ts` (acrescentar; arquivo só deste bloco)
 **Paralelo:** sim (arquivo próprio).

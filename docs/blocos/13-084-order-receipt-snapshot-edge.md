@@ -1,7 +1,7 @@
 # 13-084 — Confirmação: recibo imutável (snapshot), explorador, copiar txHash e NFT removido
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/order-receipt-edge.spec.ts` (novo)
 **Paralelo:** sim (arquivo próprio).

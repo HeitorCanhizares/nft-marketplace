@@ -1,7 +1,7 @@
 # 13-094 — Matriz de cobertura (`testes.md` e `cenarios.md`) e varredura das regras de código
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-020 a 13-091
 **Toca:** — (relatório ao Opus; lacunas viram testes nos specs de origem; violações de código viram blocos `13-1NN` para o Haiku)
 **Paralelo:** não.

@@ -1,7 +1,7 @@
 # 13-097 — Fechamento: clone limpo
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** todos os blocos commitados pelo Opus (o clone só enxerga o que está no git)
 **Toca:** — (só execução, fora do repositório)
 **Paralelo:** não.

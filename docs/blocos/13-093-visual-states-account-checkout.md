@@ -1,7 +1,7 @@
 # 13-093 — Baselines visuais de estados não desenhados: Conta, Pagamento, Confirmação e Auth
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low) (baselines aprovadas pelo usuário)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high) (baselines aprovadas pelo usuário)
 **Depende de:** 13-010, 13-011, 13-014, 13-015, 13-016 e dos specs de borda T4–T7
 **Toca:** `tests/visual/states-account-checkout.spec.ts` (novo) e a pasta de snapshots dele
 **Paralelo:** sim com 13-092 (arquivos distintos).

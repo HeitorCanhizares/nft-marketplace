@@ -1,7 +1,7 @@
 # 13-096 — Fechamento: Lighthouse final
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-005, 13-006, 13-016 (e demais correções de desempenho), 13-095
 **Toca:** — (só execução; sobe `lighthouserc.json` de `warn` para `error` se o 13-006 ainda não o fez)
 **Paralelo:** não.

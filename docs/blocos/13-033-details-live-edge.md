@@ -1,7 +1,7 @@
 # 13-033 — Detalhes: tempo real (`price_changed`, `stock_changed` e reconexão)
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/nft-details-live-edge.spec.ts` (novo)
 **Paralelo:** sim (arquivo próprio).

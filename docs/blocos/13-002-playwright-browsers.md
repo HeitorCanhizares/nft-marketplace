@@ -1,7 +1,7 @@
 # 13-002 — Projetos Firefox e WebKit no Playwright
 
 **Status:** concluído
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `playwright.config.ts` (alterar; **arquivo de registro**, lote A)
 **Paralelo:** não.

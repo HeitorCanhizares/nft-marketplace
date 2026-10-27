@@ -1,7 +1,7 @@
 # 13-003 — Triagem da suíte no Firefox e no WebKit
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-002 (e das correções 13-010 a 13-012, para a triagem não pegar diferenças já conhecidas)
 **Toca:** — (só execução; cria blocos de correção `13-1NN` quando necessário)
 **Paralelo:** não.

@@ -1,7 +1,7 @@
 # 13-035 — Detalhes: acessibilidade dos estados e modais
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-030 a 13-034
 **Toca:** `tests/e2e/nft-details-a11y.spec.ts` (acrescentar; arquivo só deste bloco)
 **Paralelo:** sim (arquivo próprio).

@@ -1,7 +1,7 @@
 # 13-007 — Vulnerabilidades do `npm audit`
 
 **Status:** concluído (decisão Q3: manter `@lhci/cli` e documentar vulnerabilidades restritas a dev; `--omit=dev` = 0)
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-006 (decidir antes se o LHCI fica)
 **Toca:** `package.json`, `package-lock.json`
 **Paralelo:** não: mexe em dependências, roda sozinho (nenhum Haiku ao mesmo tempo).

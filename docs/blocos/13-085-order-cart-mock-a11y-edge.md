@@ -1,7 +1,7 @@
 # 13-085 — Confirmação: baixa parcial do carrinho, mock concorrente e acessibilidade
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-080 a 13-084
 **Toca:** `tests/e2e/order-cart-mock-edge.spec.ts` (novo); `tests/e2e/order-confirmation-a11y.spec.ts` (acrescentar; arquivo só deste bloco)
 **Paralelo:** sim (arquivos próprios).

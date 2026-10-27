@@ -1,7 +1,7 @@
 # 13-083 — Confirmação: controle de acesso (`403`, `404`, erros, sem login e troca de usuário)
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001
 **Toca:** `tests/e2e/order-access-edge.spec.ts` (novo)
 **Paralelo:** sim (arquivo próprio).

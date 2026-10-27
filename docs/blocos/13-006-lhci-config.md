@@ -1,7 +1,7 @@
 # 13-006 — Configuração do LHCI para todas as páginas e metas
 
 **Status:** concluído
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** —
 **Toca:** `lighthouserc.json` (alterar); se a Q5 for "script de login", um arquivo de script do LHCI (**arquivo novo fora de `docs/arquitetura/pastas.md`**, só com a resposta do usuário)
 **Paralelo:** sim (arquivos distintos dos blocos de teste).

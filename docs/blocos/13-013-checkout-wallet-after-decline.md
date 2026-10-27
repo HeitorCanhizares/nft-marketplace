@@ -1,7 +1,7 @@
 # 13-013 — Carteira desconectada ao voltar ao Pagamento depois de uma recusa
 
 **Status:** concluído (decisão Q2: caminho A — mantém "Não conectada" ao voltar ao Pagamento; coberto pelo bloco de teste 13-082)
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-081 (reprodução), Q2
 **Toca:** depende da resposta. Candidatos (máx. 3): `src/hooks/useCheckoutEntry.ts`, `src/hooks/useCheckoutWallet.ts`, `src/hooks/useWalletConnection.ts`
 **Paralelo:** não com blocos que toquem esses hooks.

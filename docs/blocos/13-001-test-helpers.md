@@ -1,7 +1,7 @@
 # 13-001 — Helpers compartilhados dos testes de borda
 
 **Status:** concluído
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** — (primeiro bloco da fase 13)
 **Toca:** `tests/e2e/helpers.ts` (alterar; **arquivo de registro**, só o lote A mexe)
 **Paralelo:** não. Todos os blocos de teste (13-020 em diante) dependem dele.

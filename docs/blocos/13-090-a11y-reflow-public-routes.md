@@ -1,7 +1,7 @@
 # 13-090 — Reflow, zoom 200 % e diálogos nas rotas públicas e de compra
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-010, 13-011, 13-014, 13-015
 **Toca:** `tests/e2e/a11y-reflow-public.spec.ts` (novo)
 **Paralelo:** sim (arquivo próprio).

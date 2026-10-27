@@ -1,7 +1,7 @@
 # 13-023 — Início: catálogo (filtros combinados, parâmetros da API, limpar e contagens)
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-001, 13-010
 **Toca:** `tests/e2e/home-catalog-filters-edge.spec.ts` (novo)
 **Paralelo:** sim (arquivo próprio).

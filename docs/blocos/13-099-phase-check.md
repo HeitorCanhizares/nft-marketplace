@@ -1,7 +1,7 @@
 # 13-099 — Fechamento da fase 13
 
 **Status:** pendente
-**Responsável:** Claude Sonnet 5.5 (effort: low)
+**Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-095, 13-096, 13-097, 13-098
 **Toca:** — (só verificação e status dos blocos)
 **Paralelo:** não.
