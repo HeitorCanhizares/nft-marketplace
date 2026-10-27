@@ -98,7 +98,7 @@ export function OrderReceipt({ order, variant }: OrderReceiptProps) {
             isDesktop ? 'mt-[22px]' : 'mt-0',
           )}
         >
-          <MailOpenIcon />
+          <MailOpenIcon className="size-[66px]" strokeWidth={1} />
         </div>
         <h2 id={titleId} className="mt-3 text-base font-bold text-muted-foreground">
           Seus NFTs agora estão na sua carteira
