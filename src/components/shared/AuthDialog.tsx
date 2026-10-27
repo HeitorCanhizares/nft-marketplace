@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { SvgIcon } from '@/assets/icons/SvgIcon'
 import { Button } from '@/components/ui/button'
 import { Dialog, DialogClose, DialogContent, DialogTitle } from '@/components/ui/dialog'
+import { rememberOpener, restoreOpenerFocus } from '@/lib/dialogOpener'
 import { cn } from '@/lib/utils'
 
 type AuthDialogProps = {
@@ -10,34 +11,6 @@ type AuthDialogProps = {
   onClose: () => void
   children: ReactNode
   className?: string
-}
-
-// Quem abriu o modal. O Radix só devolve o foco a um Dialog.Trigger, que aqui não existe (o modal é
-// uma rota). Fica fora do componente para sobreviver à troca entre Entrar e Criar conta, em que a
-// rota troca o componente.
-let opener: HTMLElement | null = null
-
-function rememberOpener() {
-  const active = document.activeElement
-  if (
-    active instanceof HTMLElement &&
-    active !== document.body &&
-    !active.closest('[role="dialog"]')
-  ) {
-    opener = active
-  }
-}
-
-function handleCloseAutoFocus(event: Event) {
-  // Troca de aba: outro modal já tomou o lugar e o foco dele não pode ser roubado.
-  if (document.querySelector('[role="dialog"]')) return
-
-  const target = opener
-  opener = null
-  if (!target?.isConnected) return
-
-  event.preventDefault()
-  target.focus()
 }
 
 // Moldura do modal de Login e Cadastro no desktop. Ancorado pelo topo (160 px, como no Figma; menos em
@@ -66,7 +39,7 @@ export function AuthDialog({ title, onClose, children, className }: AuthDialogPr
         overlayClassName="bg-transparent"
         aria-describedby={undefined}
         onOpenAutoFocus={handleOpenAutoFocus}
-        onCloseAutoFocus={handleCloseAutoFocus}
+        onCloseAutoFocus={restoreOpenerFocus}
         className={cn(
           'top-[clamp(1rem,calc(100dvh-46rem),10rem)] max-h-[calc(100dvh-2rem)] min-h-[min(37.5rem,calc(100dvh-2rem))] w-125 max-w-125 translate-y-0 gap-0 overflow-y-auto rounded-none border-b-10 p-0 sm:max-w-125 lg:rounded-none',
           className,
