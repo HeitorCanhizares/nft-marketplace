@@ -4,6 +4,7 @@ import { diffQuotes, toChangeCodes } from '@/lib/quoteDiff'
 import { providerLabel } from '@/lib/walletOptions'
 import { createOrderInputSchema } from '@/schemas/order'
 import type { CreateOrderInput, OrderStatus } from '@/types/order'
+import type { Quote } from '@/types/cart'
 import { buildQuote } from '../db/quote'
 import { userCartId } from '../db/cartMerge'
 import type { OrderRecord } from '../db/db'
@@ -12,6 +13,13 @@ import { cartsStore, idempotencyStore, ordersStore, quotesStore } from '../db/st
 import { apiPath } from '../scenarios/config'
 import { apiError, validationError } from '../scenarios/errors'
 import { withMock } from '../scenarios/middleware'
+import {
+  forceQuoteChange,
+  holdAfterCreate,
+  isForcedQuote,
+  maybeSessionExpired,
+  perturbBeforeRevalidation,
+} from '../db/orderScenarios'
 import { authenticate } from './sessionGuard'
 
 const PENDING: OrderStatus = 'pending'
@@ -52,6 +60,8 @@ export const ordersHandlers = [
         const auth = await authenticate(request)
         if (auth instanceof Response) return auth
 
+        if (maybeSessionExpired()) return apiError('SESSION_EXPIRED')
+
         const key = request.headers.get('Idempotency-Key')?.trim() ?? ''
         if (key === '') return apiError('BAD_REQUEST')
 
@@ -83,24 +93,40 @@ export const ordersHandlers = [
           return apiError('CART_CHANGED')
         }
 
-        // Revalidação: recalcula a cotação com o estado atual.
-        const fresh = await buildQuote(cart, { network: body.network })
-        const entries = diffQuotes(stored, fresh)
-        for (const item of fresh.items) {
-          if (
-            item.availability === 'sold_out' &&
-            !entries.some((entry) => entry.kind === 'SOLD_OUT' && entry.itemId === item.id)
-          ) {
-            entries.push({ kind: 'SOLD_OUT', itemId: item.id, name: item.nft.name })
+        // Cenários forçados: a cotação forçada é a verdade do cenário e pula a revalidação.
+        await perturbBeforeRevalidation(stored)
+        let source: Quote = stored
+        if (!isForcedQuote(body.quoteId)) {
+          const fresh = await buildQuote(cart, { network: body.network })
+          const forcedChange = await forceQuoteChange(fresh)
+          if (forcedChange !== null) {
+            return apiError('QUOTE_CHANGED', {
+              details: {
+                quote: forcedChange,
+                changes: toChangeCodes(diffQuotes(stored, forcedChange)),
+              },
+            })
           }
-        }
-        if (entries.length > 0) {
-          return apiError('QUOTE_CHANGED', {
-            details: { quote: fresh, changes: toChangeCodes(entries) },
-          })
-        }
-        if (fresh.items.some((item) => item.availability === 'insufficient')) {
-          return apiError('QUANTITY_EXCEEDS_STOCK')
+
+          // Revalidação: recalcula a cotação com o estado atual.
+          const entries = diffQuotes(stored, fresh)
+          for (const item of fresh.items) {
+            if (
+              item.availability === 'sold_out' &&
+              !entries.some((entry) => entry.kind === 'SOLD_OUT' && entry.itemId === item.id)
+            ) {
+              entries.push({ kind: 'SOLD_OUT', itemId: item.id, name: item.nft.name })
+            }
+          }
+          if (entries.length > 0) {
+            return apiError('QUOTE_CHANGED', {
+              details: { quote: fresh, changes: toChangeCodes(entries) },
+            })
+          }
+          if (fresh.items.some((item) => item.availability === 'insufficient')) {
+            return apiError('QUANTITY_EXCEEDS_STOCK')
+          }
+          source = fresh
         }
 
         const record: OrderRecord = {
@@ -118,12 +144,12 @@ export const ordersHandlers = [
             ...body.collector,
             ...(body.note ? { note: body.note } : {}),
           },
-          items: snapshotItems(fresh),
-          subtotal: fresh.subtotal,
-          discount: fresh.discount,
-          ...(fresh.coupon?.status === 'applied' ? { coupon: { code: fresh.coupon.code } } : {}),
-          networkFee: fresh.networkFee,
-          total: fresh.total,
+          items: snapshotItems(source),
+          subtotal: source.subtotal,
+          discount: source.discount,
+          ...(source.coupon?.status === 'applied' ? { coupon: { code: source.coupon.code } } : {}),
+          networkFee: source.networkFee,
+          total: source.total,
           userId: auth.user.id,
         }
 
@@ -134,6 +160,9 @@ export const ordersHandlers = [
           orderId: record.id,
           createdAt: record.createdAt,
         })
+
+        // order-timeout: o pedido já foi gravado; a resposta demora além do timeout do cliente.
+        await holdAfterCreate(key)
 
         return HttpResponse.json(toOrder(record), { status: 201 })
       },
