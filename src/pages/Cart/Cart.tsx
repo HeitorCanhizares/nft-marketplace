@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef } from 'react'
 import { Link, useNavigate } from '@tanstack/react-router'
 
-import { Breadcrumb, type BreadcrumbEntry } from '@/components/layout/Breadcrumb'
-import { MobileTopBar } from '@/components/layout/MobileTopBar'
+import type { BreadcrumbEntry } from '@/components/layout/Breadcrumb'
+import { PageHeader } from '@/components/layout/PageHeader'
 import { EmptyState } from '@/components/shared/EmptyState'
 import { ErrorState } from '@/components/shared/ErrorState'
 import { Button } from '@/components/ui/button'
@@ -28,18 +28,6 @@ const BREADCRUMB: BreadcrumbEntry[] = [
   { label: 'Mercado', link: { to: '/', hash: 'catalogo' } },
   { label: 'Carrinho' },
 ]
-
-// Cabeçalho dos estados sem tela própria: breadcrumb e h1 oculto no desktop; barra superior no mobile.
-function PageHeader({ isDesktop }: { isDesktop: boolean }) {
-  if (!isDesktop) return <MobileTopBar title={TITLE} />
-
-  return (
-    <>
-      <Breadcrumb items={BREADCRUMB} className="mb-2.5" />
-      <h1 className="sr-only max-lg:hidden">{TITLE}</h1>
-    </>
-  )
-}
 
 // Página do carrinho: liga os hooks às telas e trata carregando, erro, vazio e o foco ao remover.
 export function Cart() {
@@ -86,7 +74,7 @@ export function Cart() {
   if (cartData === undefined) {
     return (
       <div ref={pageRef} className={frameClass}>
-        <PageHeader isDesktop={isDesktop} />
+        <PageHeader title={TITLE} isDesktop={isDesktop} breadcrumb={BREADCRUMB} />
         {cartQuery.isError ? (
           <ErrorState
             onRetry={() => {
@@ -104,7 +92,7 @@ export function Cart() {
   if (items.length === 0) {
     return (
       <div ref={pageRef} className={frameClass}>
-        <PageHeader isDesktop={isDesktop} />
+        <PageHeader title={TITLE} isDesktop={isDesktop} breadcrumb={BREADCRUMB} />
         <div ref={emptyRef}>
           <EmptyState
             as="h2"
