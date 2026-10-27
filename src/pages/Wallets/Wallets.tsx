@@ -1,6 +1,6 @@
 import { Link, useNavigate } from '@tanstack/react-router'
 
-import { MobileTopBar } from '@/components/layout/MobileTopBar'
+import { PageHeader } from '@/components/layout/PageHeader'
 import { ErrorState } from '@/components/shared/ErrorState'
 import { UnsavedChangesGuard } from '@/components/shared/UnsavedChangesGuard'
 import { useIsDesktop } from '@/hooks/useMediaQuery'
@@ -13,20 +13,6 @@ import type { WalletsResponse } from '@/types/user'
 
 type WalletsProps = {
   redirect: string | undefined
-}
-
-// Cabeçalho por viewport: no desktop o título visível é o do bloco; no mobile, a barra superior.
-function PageHeader({ isDesktop, redirect }: { isDesktop: boolean; redirect: string | undefined }) {
-  if (!isDesktop) {
-    return (
-      <MobileTopBar
-        title="Carteiras"
-        backTo={redirect ? { to: '/pagamento' } : { to: '/perfil' }}
-      />
-    )
-  }
-
-  return <h1 className="sr-only">Carteiras</h1>
 }
 
 type WalletsContentProps = {
@@ -98,7 +84,11 @@ export function Wallets({ redirect }: WalletsProps) {
 
   return (
     <>
-      <PageHeader isDesktop={isDesktop} redirect={redirect} />
+      <PageHeader
+        title="Carteiras"
+        isDesktop={isDesktop}
+        backTo={redirect ? { to: '/pagamento' } : { to: '/perfil' }}
+      />
       <div className="flex flex-col px-7 pb-8 lg:px-0">{content}</div>
     </>
   )

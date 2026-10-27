@@ -1,8 +1,8 @@
 import { Link, useNavigate } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
 
-import { Breadcrumb, type BreadcrumbEntry } from '@/components/layout/Breadcrumb'
-import { MobileTopBar } from '@/components/layout/MobileTopBar'
+import type { BreadcrumbEntry } from '@/components/layout/Breadcrumb'
+import { PageHeader } from '@/components/layout/PageHeader'
 import { EmptyState } from '@/components/shared/EmptyState'
 import { ErrorState } from '@/components/shared/ErrorState'
 import { Button } from '@/components/ui/button'
@@ -37,18 +37,6 @@ const ACCESS_COPY: Record<Exclude<OrderAccess, 'ok'>, { title: string; descripti
   },
 }
 
-// Cabeçalho dos estados sem tela própria: breadcrumb e h1 oculto no desktop; barra superior no mobile.
-function PageHeader({ isDesktop }: { isDesktop: boolean }) {
-  if (!isDesktop) return <MobileTopBar title="Pedido" backTo={{ to: '/' }} />
-
-  return (
-    <>
-      <Breadcrumb items={BREADCRUMB} className="mb-2.5" />
-      <h1 className="sr-only">Pedido</h1>
-    </>
-  )
-}
-
 function OrderFrame({ isDesktop, children }: { isDesktop: boolean; children: ReactNode }) {
   return (
     <div className={isDesktop ? 'container-page flex flex-col pb-16' : 'flex flex-col pb-8'}>
@@ -65,7 +53,12 @@ export function OrderConfirmation({ orderId, access }: OrderConfirmationProps) {
     const copy = ACCESS_COPY[access]
     return (
       <OrderFrame isDesktop={isDesktop}>
-        <PageHeader isDesktop={isDesktop} />
+        <PageHeader
+          title="Pedido"
+          isDesktop={isDesktop}
+          breadcrumb={BREADCRUMB}
+          backTo={{ to: '/' }}
+        />
         <EmptyState
           as="h2"
           title={copy.title}
@@ -98,7 +91,12 @@ function OrderConfirmationContent({ orderId }: { orderId: string }) {
     if (query.isError) {
       return (
         <OrderFrame isDesktop={isDesktop}>
-          <PageHeader isDesktop={isDesktop} />
+          <PageHeader
+            title="Pedido"
+            isDesktop={isDesktop}
+            breadcrumb={BREADCRUMB}
+            backTo={{ to: '/' }}
+          />
           <ErrorState
             onRetry={() => {
               void query.refetch()

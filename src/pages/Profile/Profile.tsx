@@ -1,16 +1,9 @@
-import { MobileTopBar } from '@/components/layout/MobileTopBar'
+import { PageHeader } from '@/components/layout/PageHeader'
 import { ErrorState } from '@/components/shared/ErrorState'
 import { useIsDesktop } from '@/hooks/useMediaQuery'
 import { useProfile } from '@/hooks/useProfile'
 import { ProfileForm } from '@/pages/Profile/ProfileForm'
 import { ProfileSkeleton } from '@/pages/Profile/ProfileSkeleton'
-
-// Cabeçalho por viewport: no desktop o título visível é o "Perfil do colecionador" do formulário.
-function PageHeader({ isDesktop }: { isDesktop: boolean }) {
-  if (!isDesktop) return <MobileTopBar title="Dados do perfil" backTo={{ to: '/perfil' }} />
-
-  return <h1 className="sr-only">Dados do perfil</h1>
-}
 
 // Página de dados do perfil: liga a consulta às telas (carregando, erro e formulário).
 export function Profile() {
@@ -37,7 +30,8 @@ export function Profile() {
 
   return (
     <>
-      <PageHeader isDesktop={isDesktop} />
+      {/* No desktop o título visível é o "Perfil do colecionador" do formulário. */}
+      <PageHeader title="Dados do perfil" isDesktop={isDesktop} backTo={{ to: '/perfil' }} />
       <div className="flex flex-col px-7 pb-8 lg:px-0">{content}</div>
     </>
   )
