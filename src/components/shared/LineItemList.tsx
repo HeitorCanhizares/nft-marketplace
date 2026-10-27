@@ -1,11 +1,11 @@
-import { LineItem, type LineItemVariant, type PriceChange } from '@/components/shared/LineItem'
+import { LineItem, type CartLineItemVariant, type PriceChange } from '@/components/shared/LineItem'
 import { LineItemSkeleton } from '@/components/shared/LineItemSkeleton'
 import type { CartItem } from '@/types/cart'
 
 const SKELETON_ROWS = 3
 
-type LineItemListProps = {
-  variant: LineItemVariant
+type CartLineItemListProps = {
+  variant: CartLineItemVariant
   items: readonly CartItem[]
   priceChanges: ReadonlyMap<string, PriceChange>
   busyIds: ReadonlySet<string>
@@ -15,17 +15,32 @@ type LineItemListProps = {
   isLoading?: boolean
 }
 
-// Desktop: tabela com cabeçalho. Mobile: lista de cards.
-export function LineItemList({
-  variant,
-  items,
-  priceChanges,
-  busyIds,
-  onQuantityChange,
-  onRemove,
-  onAdjust,
-  isLoading = false,
-}: LineItemListProps) {
+// Revisão e Pagamento: só leitura, sem handlers.
+type SummaryLineItemListProps = {
+  variant: 'summary'
+  items: readonly CartItem[]
+  isLoading?: boolean
+}
+
+type LineItemListProps = CartLineItemListProps | SummaryLineItemListProps
+
+// Desktop: tabela com cabeçalho. Mobile: lista de cards. Summary: lista "NFTs | Subtotal".
+export function LineItemList(props: LineItemListProps) {
+  if (props.variant === 'summary') {
+    return <SummaryLineItemList items={props.items} isLoading={props.isLoading ?? false} />
+  }
+
+  const {
+    variant,
+    items,
+    priceChanges,
+    busyIds,
+    onQuantityChange,
+    onRemove,
+    onAdjust,
+    isLoading = false,
+  } = props
+
   const rows = isLoading
     ? Array.from({ length: SKELETON_ROWS }, (_, index) => (
         <LineItemSkeleton key={`skeleton-${index}`} variant={variant} />
@@ -71,5 +86,30 @@ export function LineItemList({
       </thead>
       <tbody>{rows}</tbody>
     </table>
+  )
+}
+
+type SummaryLineItemListBodyProps = {
+  items: readonly CartItem[]
+  isLoading: boolean
+}
+
+function SummaryLineItemList({ items, isLoading }: SummaryLineItemListBodyProps) {
+  const rows = isLoading
+    ? Array.from({ length: SKELETON_ROWS }, (_, index) => (
+        <LineItemSkeleton key={`skeleton-${index}`} variant="summary" />
+      ))
+    : items.map((item) => <LineItem key={item.id} variant="summary" item={item} />)
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div aria-hidden="true" className="flex justify-between text-body text-foreground">
+        <span>NFTs</span>
+        <span>Subtotal</span>
+      </div>
+      <ul aria-label="Seus NFTs" className="flex flex-col gap-3">
+        {rows}
+      </ul>
+    </div>
   )
 }

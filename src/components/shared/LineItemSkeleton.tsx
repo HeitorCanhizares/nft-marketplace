@@ -35,6 +35,18 @@ export function LineItemSkeleton({ variant }: LineItemSkeletonProps) {
     )
   }
 
+  if (variant === 'summary') {
+    return (
+      <li aria-hidden="true" className="flex min-h-[70px] gap-2 bg-card">
+        <Skeleton className="size-[70px] shrink-0 rounded-sm" />
+        <div className="flex min-w-0 flex-1 flex-col justify-center gap-2 py-2">
+          <Skeleton className="h-4 w-3/4" />
+          <Skeleton className="h-3 w-1/2" />
+        </div>
+      </li>
+    )
+  }
+
   return (
     <li aria-hidden="true" className="flex gap-3 rounded-card bg-card p-3">
       <Skeleton className="size-[70px] shrink-0 rounded-media" />

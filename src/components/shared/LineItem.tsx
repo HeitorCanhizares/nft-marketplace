@@ -11,10 +11,12 @@ import type { CartItem } from '@/types/cart'
 
 export type PriceChange = { from: string; to: string }
 
-export type LineItemVariant = 'cart-row' | 'cart-card'
+export type CartLineItemVariant = 'cart-row' | 'cart-card'
 
-type LineItemProps = {
-  variant: LineItemVariant
+export type LineItemVariant = CartLineItemVariant | 'summary'
+
+type CartLineItemProps = {
+  variant: CartLineItemVariant
   item: CartItem
   priceChange?: PriceChange
   busy?: boolean
@@ -23,12 +25,32 @@ type LineItemProps = {
   onAdjust: (item: CartItem) => void
 }
 
+// Revisão e Pagamento: só leitura, sem handlers.
+type SummaryLineItemProps = {
+  variant: 'summary'
+  item: CartItem
+}
+
+type LineItemProps = CartLineItemProps | SummaryLineItemProps
+
 type PartProps = {
   item: CartItem
   className?: string
 }
 
-function LineThumb({ item, className }: PartProps) {
+type LineThumbProps = PartProps & {
+  linked?: boolean
+}
+
+function LineThumb({ item, className, linked = true }: LineThumbProps) {
+  if (!linked) {
+    return (
+      <div className={cn('shrink-0', className)}>
+        <img src={item.nft.image.src} alt="" loading="lazy" className="size-full object-cover" />
+      </div>
+    )
+  }
+
   return (
     <Link
       to="/nft/$nftId"
@@ -147,16 +169,42 @@ function LineRemove({ item, className, onRemove }: LineRemoveProps) {
   )
 }
 
+// Linha da revisão: miniatura sem link, nome, ID do token, "(x N)" e subtotal. Só leitura.
+function SummaryLine({ item }: PartProps) {
+  const isSoldOut = item.availability === 'sold_out'
+
+  return (
+    <li className="flex min-h-[70px] gap-2 bg-card">
+      <LineThumb item={item} linked={false} className="size-[70px] overflow-hidden rounded-sm" />
+      <div className="flex min-w-0 flex-1 flex-col justify-center gap-1 py-2">
+        <p className="font-bold text-foreground">{item.nft.name}</p>
+        <p className="text-caption-md text-muted-foreground">ID do token: {item.nft.tokenId}</p>
+        {isSoldOut ? <p className="text-caption-md text-muted-foreground">esgotado</p> : null}
+      </div>
+      <div className="flex shrink-0 items-center gap-3 pr-3">
+        <p className="text-caption-md text-muted-foreground">(x {item.quantity})</p>
+        <p
+          className={cn(
+            'font-bold text-primary',
+            isSoldOut && 'text-muted-foreground line-through',
+          )}
+        >
+          {formatEth(item.lineTotal)}
+          {isSoldOut ? <span className="sr-only"> fora do total</span> : null}
+        </p>
+      </div>
+    </li>
+  )
+}
+
 // Linha do carrinho: `cart-row` é a linha da tabela (desktop); `cart-card` é o card da lista (mobile).
-export function LineItem({
-  variant,
-  item,
-  priceChange,
-  busy = false,
-  onQuantityChange,
-  onRemove,
-  onAdjust,
-}: LineItemProps) {
+// `summary` é a linha só de leitura da revisão.
+export function LineItem(props: LineItemProps) {
+  if (props.variant === 'summary') {
+    return <SummaryLine item={props.item} />
+  }
+
+  const { variant, item, priceChange, busy = false, onQuantityChange, onRemove, onAdjust } = props
   const isSoldOut = item.availability === 'sold_out'
   const total = (
     <p
