@@ -19,6 +19,8 @@ type FormFieldProps = {
   description?: ReactNode
   adornment?: ReactNode
   className?: string
+  /** Rótulo regular e asterisco grande e colado, como no Figma do perfil (desktop). */
+  plain?: boolean
   children: (field: FieldProps) => ReactNode
 }
 
@@ -30,6 +32,7 @@ export function FormField({
   description,
   adornment,
   className,
+  plain = false,
   children,
 }: FormFieldProps) {
   const baseId = useId()
@@ -54,12 +57,18 @@ export function FormField({
 
   return (
     <div className={cn('flex flex-col', className)}>
-      <Label htmlFor={id} className={cn(hideLabel && 'sr-only')}>
+      <Label
+        htmlFor={id}
+        className={cn(hideLabel && 'sr-only', plain && 'lg:text-body lg:font-normal')}
+      >
         {label}
         {required && !hideLabel && (
           <>
-            <span aria-hidden="true" className="text-required">
-              {' *'}
+            <span
+              aria-hidden="true"
+              className={cn('text-required', plain && 'lg:text-xl lg:leading-[0]')}
+            >
+              {plain ? <span className="max-lg:ml-1">*</span> : ' *'}
             </span>
             <span className="sr-only"> (obrigatório)</span>
           </>

@@ -42,7 +42,9 @@ export function EnsInput({
       <Select value={suffix} disabled={disabled}>
         <SelectTrigger
           aria-label="Sufixo ENS"
-          className={cn('w-[78px] shrink-0 text-sm max-lg:w-21 max-lg:rounded-3xl')}
+          className={cn(
+            'w-[78px] shrink-0 gap-1 px-2 text-sm max-lg:w-21 max-lg:rounded-3xl lg:text-body',
+          )}
         >
           <SelectValue />
         </SelectTrigger>

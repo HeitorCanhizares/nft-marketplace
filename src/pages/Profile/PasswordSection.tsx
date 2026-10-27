@@ -25,17 +25,15 @@ export function PasswordSection({ form, serverErrors, formMessage }: PasswordSec
   const showRequirements = newPasswordFocused || newPassword !== ''
 
   return (
-    <section
-      aria-labelledby={headingId}
-      className="flex flex-col gap-[21px] max-lg:gap-4 lg:w-[417px]"
-    >
-      <h2 id={headingId} className="text-base font-bold text-foreground">
+    <section aria-labelledby={headingId} className="flex flex-col gap-6 max-lg:gap-4 lg:w-[417px]">
+      <h2 id={headingId} className="text-base leading-none font-bold text-foreground">
         Alterar senha
       </h2>
 
       <FormField
         label="Senha atual"
-        className="gap-2.5 max-lg:gap-2"
+        plain
+        className="gap-[13px] max-lg:gap-2"
         error={errors.currentPassword?.message ?? serverErrors.currentPassword}
       >
         {(field) => (
@@ -49,7 +47,8 @@ export function PasswordSection({ form, serverErrors, formMessage }: PasswordSec
 
       <FormField
         label="Nova senha"
-        className="gap-2.5 max-lg:gap-2"
+        plain
+        className="gap-[13px] max-lg:gap-2"
         error={errors.newPassword?.message ?? serverErrors.newPassword}
         description={
           showRequirements ? <PasswordRequirements value={newPassword} className="mt-2" /> : null
@@ -71,7 +70,8 @@ export function PasswordSection({ form, serverErrors, formMessage }: PasswordSec
 
       <FormField
         label="Confirmar nova senha"
-        className="gap-2.5 max-lg:gap-2"
+        plain
+        className="gap-[13px] max-lg:gap-2"
         error={errors.confirmNewPassword?.message}
       >
         {(field) => (

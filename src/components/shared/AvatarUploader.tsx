@@ -119,7 +119,11 @@ export function AvatarUploader({ avatarUrl, className }: AvatarUploaderProps) {
   }
 
   return (
-    <div className={cn('flex flex-col gap-2', className)} role="group" aria-labelledby={labelId}>
+    <div
+      className={cn('flex flex-col gap-2 lg:gap-1.5', className)}
+      role="group"
+      aria-labelledby={labelId}
+    >
       <span id={labelId} className="text-body">
         Avatar
       </span>

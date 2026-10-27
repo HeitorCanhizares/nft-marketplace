@@ -94,15 +94,16 @@ export function ProfileDataSection({
   })
 
   return (
-    <section aria-labelledby={headingId} className="flex flex-col gap-7 max-lg:gap-8">
-      <h2 id={headingId} className="text-base font-bold text-foreground">
+    <section aria-labelledby={headingId} className="flex flex-col gap-[42px] max-lg:gap-8">
+      <h2 id={headingId} className="text-base leading-none font-bold text-foreground">
         Perfil do colecionador
       </h2>
 
-      <div className="grid gap-7 max-lg:gap-4 lg:grid-cols-2">
+      <div className="grid gap-x-7 gap-y-[34px] max-lg:gap-4 lg:grid-cols-2">
         <FormField
           label="Nome de exibição"
           required
+          plain
           className="gap-[15px] max-lg:gap-2"
           error={errors.displayName?.message ?? serverErrors.displayName}
         >
@@ -119,6 +120,7 @@ export function ProfileDataSection({
         <FormField
           label="Nome de usuário"
           required
+          plain
           className="gap-[15px] max-lg:gap-2"
           error={errors.username?.message ?? serverErrors.username}
           adornment={
@@ -141,6 +143,7 @@ export function ProfileDataSection({
         <FormField
           label="E-mail"
           required
+          plain
           className="gap-[15px] max-lg:gap-2"
           error={errors.email?.message ?? serverErrors.email}
           adornment={
@@ -164,6 +167,7 @@ export function ProfileDataSection({
 
         <FormField
           label="Nome ENS"
+          plain
           className="gap-[15px] max-lg:gap-2"
           error={errors.ensLabel?.message ?? serverErrors.ensLabel}
         >
@@ -186,6 +190,7 @@ export function ProfileDataSection({
 
         <FormField
           label="Apelido da carteira"
+          plain
           className="gap-[15px] max-lg:gap-2"
           error={errors.walletNickname?.message ?? serverErrors.walletNickname}
         >
@@ -199,7 +204,7 @@ export function ProfileDataSection({
           )}
         </FormField>
 
-        <div className="flex flex-col">{avatarSlot}</div>
+        <div className="flex flex-col lg:-mt-3.5">{avatarSlot}</div>
       </div>
 
       {formMessage && (

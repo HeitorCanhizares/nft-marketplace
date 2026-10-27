@@ -281,7 +281,7 @@ export function ProfileForm({ user }: ProfileFormProps) {
 
         <PasswordSection form={form} serverErrors={serverErrors} formMessage={passwordMessage} />
 
-        <div>
+        <div className="lg:-mt-px">
           <Button
             type="submit"
             disabled={!isDirty || isSaving}
