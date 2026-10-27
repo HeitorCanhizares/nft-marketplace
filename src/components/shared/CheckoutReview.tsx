@@ -86,12 +86,7 @@ export function CheckoutReview({
   }
 
   const body = (
-    <div
-      role="region"
-      aria-label="Resumo do pedido"
-      tabIndex={0}
-      className="flex min-h-0 flex-1 flex-col gap-6 overflow-y-auto px-5 py-6"
-    >
+    <div className="flex flex-col gap-6 px-5 py-6">
       {changes.length > 0 ? (
         <section
           aria-labelledby={changesHeadingId}
@@ -163,7 +158,7 @@ export function CheckoutReview({
   )
 
   const footer = (
-    <div className="flex flex-col-reverse gap-3 border-t border-border p-5 sm:flex-row sm:justify-end">
+    <div className="sticky bottom-0 flex flex-col-reverse gap-3 border-t border-border bg-card p-5 sm:flex-row sm:justify-end">
       <Button
         ref={backButtonRef}
         type="button"
@@ -191,7 +186,7 @@ export function CheckoutReview({
       <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogContent
           onOpenAutoFocus={handleOpenAutoFocus}
-          className="flex max-h-[90dvh] flex-col gap-0 overflow-hidden p-0 sm:max-w-140"
+          className="flex max-h-[90dvh] flex-col gap-0 overflow-y-auto p-0 sm:max-w-140"
         >
           <DialogHeader className="px-5 pt-5 pr-14">
             <DialogTitle>{TITLE}</DialogTitle>
@@ -209,7 +204,7 @@ export function CheckoutReview({
       <SheetContent
         side="bottom"
         onOpenAutoFocus={handleOpenAutoFocus}
-        className="max-h-[90dvh] gap-0 overflow-hidden p-0"
+        className="max-h-[90dvh] gap-0 overflow-y-auto p-0"
       >
         <SheetHeader className="px-5 pt-5">
           <SheetTitle>{TITLE}</SheetTitle>

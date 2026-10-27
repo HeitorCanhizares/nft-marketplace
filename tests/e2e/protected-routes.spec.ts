@@ -82,8 +82,10 @@ test.describe('Visitante em rota protegida', () => {
 
       await expect.poll(async () => (await authState(page)).status).toBe('authenticated')
       // No desktop, "/perfil" segue direto para os dados do perfil.
-      const landing =
-        path === '/perfil' && testInfo.project.name === 'desktop' ? '/perfil/dados' : path
+      // "/pagamento" com o carrinho vazio segue para o carrinho (entrada do Pagamento).
+      let landing: string = path
+      if (path === '/perfil' && testInfo.project.name === 'desktop') landing = '/perfil/dados'
+      if (path === '/pagamento') landing = '/carrinho'
       await expect.poll(() => pathAndSearch(page)).toBe(landing)
     })
   }
