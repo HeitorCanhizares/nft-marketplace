@@ -20,9 +20,9 @@ Um único dono do estado do formulário do Pagamento, usado pelo desktop (com `W
 ## Instruções
 1. `useCheckoutForm(wallets: WalletsResponse, user: User)` (a página só monta o hook depois de `useWallets` ter dados):
    - `form = useForm<WalletFormValues>({ resolver: deferred(zodResolver(checkoutWalletFormSchema)), mode: 'onTouched', defaultValues })`. Padrão idêntico ao `useWalletSlotForm`: `markSubmitAttempt()` antes de `handleSubmit`.
-   - **Valores iniciais:** rascunho de `readDraft(user.id)` se existir **e** o modo ainda for possível (`secondary` exige secundária cadastrada, senão volta a `primary`); sem rascunho: `toWalletFormValues(wallets.primary, null)` (**sem carteira principal o formulário vem vazio**).
+   - **Valores iniciais:** rascunho de `readDraft(user.id)` se existir **e** o modo ainda for possível (`secondary` exige secundária cadastrada, senão volta a `primary`); sem rascunho: `toWalletFormValues(wallets.primary, user)` (**sem carteira principal, pré-preenche com os dados do perfil**: nome de exibição, e-mail e ENS, como em Carteiras; `user` vem do argumento, que a página lê de `useAuth().user`). O modo `primary` sem principal reaplica `toWalletFormValues(null, user)`.
    - `mode: CheckoutMode`, `useOther = mode !== 'primary'`.
-   - `setUseOther(on: boolean)`: ligar → `secondary` se existir, senão `manual`; desligar → `primary`. Reaplica os valores com `form.reset(values)` (`primary`: `toWalletFormValues(primary, null)`; `secondary`: `toWalletFormValues(secondary, null)`; `manual`: `toWalletFormValues(null, null)`), limpa `serverErrors` e `saveAsSecondary`.
+   - `setUseOther(on: boolean)`: ligar → `secondary` se existir, senão `manual`; desligar → `primary`. Reaplica os valores com `form.reset(values)` (`primary`: `toWalletFormValues(primary, user)`; `secondary`: `toWalletFormValues(secondary, null)`; `manual`: `toWalletFormValues(null, null)`), limpa `serverErrors` e `saveAsSecondary`.
    - `setMode(next: CheckoutMode)` (rádio "Carteira secundária" / "Preencher outra carteira" no desktop e cartão escolhido no mobile): mesma reaplicação. Mobile usa só `primary` e `secondary`.
    - `saveAsSecondary` / `setSaveAsSecondary` (só vale em `manual`; fora dele sempre `false`); `replacesSecondary = wallets.secondary !== null` (para o texto "Substituir a carteira secundária").
    - `note` / `setNote` (`useState`, máx. 500; `noteError` vem de `checkoutNoteSchema`).
@@ -35,7 +35,7 @@ Um único dono do estado do formulário do Pagamento, usado pelo desktop (com `W
 5. Fechamento: prettier; `npm run format:check && npm run lint && npm run typecheck && npm run build` → exit 0 (se falhar por arquivo de **outro** agente, esperar e repetir). Commit: `git commit -m "11-007: hook do formulário do checkout" -- <arquivo>`.
 
 ## Critérios de aceite
-- [ ] Usuário com principal: formulário vem preenchido com ela; sem principal: vazio.
+- [ ] Usuário com principal: formulário vem preenchido com ela; sem principal: pré-preenchido com nome de exibição, e-mail e ENS do perfil.
 - [ ] Alternar "Usar outra carteira?" troca os valores; desligar volta aos da principal.
 - [ ] `collect()` inválido foca o primeiro campo com erro e devolve `null`; campo obrigatório vazio só acusa no envio (regra `useDeferredEmptyValidation`).
 - [ ] Recarregar a página restaura valores, modo, observação e provedor (mesmo usuário); outro usuário não vê o rascunho.
