@@ -1,4 +1,4 @@
-import { useEffect, type FormEvent } from 'react'
+import { useEffect, useId, useState, type FormEvent } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 
@@ -24,9 +24,11 @@ export type CouponFieldProps = {
   error: { message: string } | null
   labelHidden?: boolean
   variant: 'desktop' | 'mobile'
+  collapsible?: boolean
 }
 
 // Campo de cupom. Com cupom guardado, mostra o código (ou o aviso de expirado) e "Remover cupom".
+// Com collapsible e sem cupom, começa recolhido atrás de um botão de texto.
 export function CouponField({
   coupon,
   onApply,
@@ -36,7 +38,10 @@ export function CouponField({
   error,
   labelHidden = false,
   variant,
+  collapsible = false,
 }: CouponFieldProps) {
+  const [expanded, setExpanded] = useState(false)
+  const formId = useId()
   const [resolver, markSubmitAttempt] = useDeferredEmptyValidation<CouponFormValues>(
     zodResolver(couponFormSchema),
   )
@@ -52,6 +57,11 @@ export function CouponField({
   useEffect(() => {
     if (error !== null) setFocus('code')
   }, [error, setFocus])
+
+  // Ao abrir o recolhido, o foco vai ao campo. Efeito, nunca ref lido no render.
+  useEffect(() => {
+    if (expanded) setFocus('code')
+  }, [expanded, setFocus])
 
   function handleValid(values: CouponFormValues) {
     if (isApplying) return
@@ -88,10 +98,25 @@ export function CouponField({
     )
   }
 
+  if (collapsible && !expanded) {
+    return (
+      <Button
+        type="button"
+        variant="link"
+        aria-expanded={false}
+        aria-controls={formId}
+        onClick={() => setExpanded(true)}
+        className="min-h-11 w-full justify-center"
+      >
+        Tem um código promocional? Aplique aqui
+      </Button>
+    )
+  }
+
   const isMobile = variant === 'mobile'
 
   return (
-    <form onSubmit={handleFormSubmit} noValidate className="flex flex-col">
+    <form id={formId} onSubmit={handleFormSubmit} noValidate className="flex flex-col">
       <FormField
         label="Código promocional"
         hideLabel={labelHidden}
