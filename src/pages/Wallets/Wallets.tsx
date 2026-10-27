@@ -50,7 +50,7 @@ function WalletsContent({ data, redirect }: WalletsContentProps) {
   const anyDirty = primaryForm.isDirty || secondaryForm.isDirty
 
   return (
-    <div className="flex w-full flex-col gap-8 lg:w-[862px] lg:gap-[35px]">
+    <div className="flex w-full flex-col gap-8 lg:w-[862px] lg:gap-[33px]">
       {redirect && (
         <Link
           to="/pagamento"

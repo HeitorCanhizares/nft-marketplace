@@ -25,7 +25,7 @@ type WalletFormProps = {
   className?: string
 }
 
-const FIELD_CLASS = 'gap-[15px] max-lg:gap-2'
+const FIELD_CLASS = 'gap-[3px] max-lg:gap-2'
 
 // Formulário de carteira sem botão e sem envio: o dono cuida do useForm, do botão e das mensagens.
 export function WalletForm({ variant, form, serverErrors, disabled, className }: WalletFormProps) {
@@ -33,7 +33,7 @@ export function WalletForm({ variant, form, serverErrors, disabled, className }:
   const { errors } = form.formState
 
   return (
-    <div className={cn('grid gap-x-7 gap-y-[34px] max-lg:gap-4 lg:grid-cols-2', className)}>
+    <div className={cn('grid gap-x-7 gap-y-[31px] max-lg:gap-4 lg:grid-cols-2', className)}>
       <FormField
         label="Nome de exibição"
         required

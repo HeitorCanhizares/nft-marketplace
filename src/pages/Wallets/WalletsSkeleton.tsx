@@ -31,7 +31,7 @@ export function WalletsSkeleton() {
     <div
       role="status"
       aria-busy="true"
-      className="flex w-full flex-col gap-8 lg:w-[862px] lg:gap-[35px]"
+      className="flex w-full flex-col gap-8 lg:w-[862px] lg:gap-[33px]"
     >
       <span className="sr-only">Carregando carteiras…</span>
       <BlockSkeleton />

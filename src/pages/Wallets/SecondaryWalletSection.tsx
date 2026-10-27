@@ -147,7 +147,7 @@ export function SecondaryWalletSection({
             </p>
           )}
 
-          <form noValidate onSubmit={handleSubmit} className="mt-10">
+          <form noValidate onSubmit={handleSubmit} className="mt-9">
             <WalletForm
               variant="wallets"
               form={slotForm.form}

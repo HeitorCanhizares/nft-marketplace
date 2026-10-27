@@ -35,7 +35,7 @@ export function PrimaryWalletSection({ wallet, slotForm }: PrimaryWalletSectionP
         </button>
       </div>
 
-      <p className="mt-2 text-sm text-tan">
+      <p className="mt-1.5 text-sm text-tan">
         Estas carteiras ficam disponíveis no pagamento e para receber NFTs comprados.
       </p>
 
@@ -46,7 +46,7 @@ export function PrimaryWalletSection({ wallet, slotForm }: PrimaryWalletSectionP
         </p>
       )}
 
-      <form noValidate onSubmit={handleSubmit} className="mt-10">
+      <form noValidate onSubmit={handleSubmit} className="mt-9">
         <WalletForm variant="wallets" form={slotForm.form} serverErrors={slotForm.serverErrors} />
 
         <div className="mt-8">
