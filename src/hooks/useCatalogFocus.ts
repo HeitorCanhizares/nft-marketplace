@@ -31,48 +31,81 @@ export function useCatalogFocus(state: CatalogFocusState) {
   const gridRef = useRef<HTMLUListElement | null>(null)
   const signalRef = useRef<FocusSignal | null>(null)
 
+  const scrollToCatalog = useCallback(() => {
+    const title = titleRef.current
+    if (!title) return
+
+    const section = title.closest<HTMLElement>('#catalogo') ?? title
+    section.scrollIntoView({
+      block: 'start',
+      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+    })
+  }, [])
+
   const focusCatalog = useCallback(() => {
     const title = titleRef.current
     if (!title) return
 
-    title.scrollIntoView({
-      block: 'start',
-      behavior: prefersReducedMotion() ? 'auto' : 'smooth',
-    })
+    scrollToCatalog()
     title.focus({ preventScroll: true })
-  }, [])
+  }, [scrollToCatalog])
 
-  // Âncora #catalogo: o foco vai ao título depois do foco no h1 do useRouteFocus (dois quadros).
+  const ensureCatalogVisible = useCallback(() => {
+    const title = titleRef.current
+    if (!title) return
+
+    const section = title.closest<HTMLElement>('#catalogo') ?? title
+    const rect = section.getBoundingClientRect()
+    if (rect.top < 0 || rect.top > window.innerHeight * 0.5) {
+      scrollToCatalog()
+    }
+  }, [scrollToCatalog])
+
+  // Âncora #catalogo ou filtro vindo de fora da seção (ex.: rodapé): alinha o catálogo depois do foco de rota.
   useEffect(() => {
     let outer = 0
     let inner = 0
 
-    function scheduleFocus() {
+    function schedule(action: () => void) {
       cancelAnimationFrame(outer)
       cancelAnimationFrame(inner)
       outer = requestAnimationFrame(() => {
         inner = requestAnimationFrame(() => {
-          focusCatalog()
+          action()
         })
       })
     }
 
-    const unsubscribe = router.subscribe('onResolved', ({ toLocation }) => {
-      if (toLocation.hash === 'catalogo') scheduleFocus()
+    const unsubscribe = router.subscribe('onResolved', ({ fromLocation, toLocation }) => {
+      if (toLocation.hash === 'catalogo') {
+        schedule(focusCatalog)
+        return
+      }
+      if (
+        toLocation.pathname === '/' &&
+        fromLocation &&
+        toLocation.searchStr !== fromLocation.searchStr &&
+        toLocation.searchStr.includes('colecao=')
+      ) {
+        schedule(ensureCatalogVisible)
+      }
     })
 
-    if (window.location.hash === '#catalogo') scheduleFocus()
+    if (window.location.hash === '#catalogo') schedule(focusCatalog)
 
     return () => {
       unsubscribe()
       cancelAnimationFrame(outer)
       cancelAnimationFrame(inner)
     }
-  }, [router, focusCatalog])
+  }, [router, focusCatalog, ensureCatalogVisible])
 
   const markPageChange = useCallback(() => {
     signalRef.current = { kind: 'page' }
     focusCatalog()
+    requestAnimationFrame(() => {
+      focusCatalog()
+    })
   }, [focusCatalog])
 
   const markLoadMore = useCallback((previousCount: number) => {
@@ -104,5 +137,12 @@ export function useCatalogFocus(state: CatalogFocusState) {
     announce(`Mostrando ${items.length} de ${total ?? items.length} NFTs`, 'polite')
   }, [ready, items, total, page, totalPages, announce])
 
-  return { titleRef, gridRef, focusCatalog, markPageChange, markLoadMore }
+  return {
+    titleRef,
+    gridRef,
+    focusCatalog,
+    ensureCatalogVisible,
+    markPageChange,
+    markLoadMore,
+  }
 }

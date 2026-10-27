@@ -114,7 +114,9 @@ export function CatalogSection({
           title="Você ainda não favoritou nenhum NFT"
           action={
             <Button asChild>
-              <Link to="/">Explorar NFTs</Link>
+              <Link to="/" resetScroll={false}>
+                Explorar NFTs
+              </Link>
             </Button>
           }
         />
@@ -169,7 +171,11 @@ export function CatalogSection({
   }
 
   return (
-    <section id="catalogo" aria-labelledby={titleId} className={cn('scroll-mt-8', className)}>
+    <section
+      id="catalogo"
+      aria-labelledby={titleId}
+      className={cn('relative scroll-mt-8', className)}
+    >
       <h2
         id={titleId}
         ref={titleRef}

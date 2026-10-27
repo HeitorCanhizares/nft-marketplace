@@ -31,6 +31,7 @@ export function useHomeNavigate(search: HomeSearch) {
         to: '/',
         search: complete({ ...search, ...changes, pagina: undefined }),
         replace: options?.replace === true,
+        resetScroll: false,
       })
     },
     [navigate, search],
@@ -42,6 +43,7 @@ export function useHomeNavigate(search: HomeSearch) {
         to: '/',
         search: complete({ ...search, pagina: page <= 1 ? undefined : page }),
         replace: options?.replace === true,
+        resetScroll: false,
       })
     },
     [navigate, search],
@@ -56,12 +58,19 @@ export function useHomeNavigate(search: HomeSearch) {
         favoritos: search.favoritos,
       }),
       replace: false,
+      resetScroll: false,
     })
   }, [navigate, search.aba, search.ordem, search.favoritos])
 
   const explore = useCallback(
     (hash = 'catalogo') => {
-      void navigate({ to: '/', search: complete(search), hash, replace: true })
+      void navigate({
+        to: '/',
+        search: complete(search),
+        hash,
+        replace: true,
+        resetScroll: false,
+      })
     },
     [navigate, search],
   )

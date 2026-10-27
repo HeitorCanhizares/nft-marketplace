@@ -21,6 +21,7 @@ export function FooterLinkColumn({ column }: FooterLinkColumnProps) {
               <Link
                 to={link.to}
                 search={link.search}
+                resetScroll={link.search ? false : undefined}
                 className="text-sm text-foreground outline-none hover:text-primary focus-visible:ring-2 focus-visible:ring-ring"
               >
                 {link.label}

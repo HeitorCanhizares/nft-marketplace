@@ -34,6 +34,7 @@ export function PromoCard({ promo, className }: PromoCardProps) {
             to="/"
             search={promoToSearch(promo.query)}
             hash="catalogo"
+            resetScroll={false}
             aria-label={`${promo.ctaLabel}: ${promo.title}`}
           >
             {promo.ctaLabel}

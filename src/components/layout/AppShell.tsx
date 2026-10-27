@@ -37,7 +37,7 @@ export function AppShell() {
   const toastBottom = !isDesktop && mobileTabBar ? MOBILE_TAB_BAR_HEIGHT + TOAST_GAP : TOAST_BOTTOM
 
   function handleSearch(query: string) {
-    void navigate({ to: '/', search: { q: query }, hash: 'catalogo' })
+    void navigate({ to: '/', search: { q: query }, hash: 'catalogo', resetScroll: false })
   }
 
   return (

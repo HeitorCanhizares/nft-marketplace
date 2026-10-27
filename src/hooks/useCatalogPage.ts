@@ -49,13 +49,14 @@ export function useCatalogPage(search: HomeSearch) {
   const { toggle, pendingIds: pendingFavoriteIds } = useToggleFavorite()
   const { add, pendingIds: pendingCartIds } = useAddToCart()
 
-  const { titleRef, gridRef, focusCatalog, markPageChange, markLoadMore } = useCatalogFocus({
-    ready: status === 'ready' && !isPlaceholderData,
-    items,
-    total,
-    page,
-    totalPages,
-  })
+  const { titleRef, gridRef, focusCatalog, ensureCatalogVisible, markPageChange, markLoadMore } =
+    useCatalogFocus({
+      ready: status === 'ready' && !isPlaceholderData,
+      items,
+      total,
+      page,
+      totalPages,
+    })
 
   // Página acima do total (desktop): volta à última página, sem criar entrada no histórico.
   const outOfRange =
@@ -82,26 +83,36 @@ export function useCatalogPage(search: HomeSearch) {
 
   function onTabChange(next: CatalogTab) {
     setFilters({ aba: next === DEFAULT_TAB ? undefined : next })
+    ensureCatalogVisible()
   }
 
   function onSortChange(next: CatalogSort) {
     setFilters({ ordem: next === DEFAULT_SORT ? undefined : next })
+    ensureCatalogVisible()
   }
 
   function onCollectionChange(id?: string) {
     setFilters({ colecao: id })
+    ensureCatalogVisible()
   }
 
   function onNetworkChange(id?: Network) {
     setFilters({ rede: id })
+    ensureCatalogVisible()
   }
 
   function onPriceApply({ min, max }: { min?: number; max?: number }) {
     setFilters({ precoMin: min, precoMax: max })
+    ensureCatalogVisible()
   }
 
   function onSearch(query: string) {
     setFilters({ q: query === '' ? undefined : query }, { replace: true })
+  }
+
+  function onClearFilters() {
+    clearFilters()
+    ensureCatalogVisible()
   }
 
   function onPageChange(next: number) {
@@ -162,7 +173,7 @@ export function useCatalogPage(search: HomeSearch) {
     onNetworkChange,
     onPriceApply,
     onSearch,
-    onClearFilters: clearFilters,
+    onClearFilters,
     onPageChange,
     getHref,
     onLoadMore,

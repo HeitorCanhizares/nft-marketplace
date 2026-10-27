@@ -58,24 +58,32 @@ test.describe('filtros, ordenação e paginação (desktop)', () => {
     only(testInfo, 'desktop')
     await go(page)
 
+    const scrollY = () => page.evaluate<number>('window.scrollY')
+
     const collection = page.getByRole('button', { name: /NFTs$/ }).first()
     await collection.click()
     await expect(page).toHaveURL(/colecao=/)
     await expect(cards(page).first()).toBeVisible()
+    await expect.poll(scrollY).toBeGreaterThan(200)
 
     await page.getByRole('button', { name: /^Ethereum, \d+ NFTs$/ }).click()
     await expect(page).toHaveURL(/rede=ethereum/)
+    await expect.poll(scrollY).toBeGreaterThan(200)
 
     await page.getByRole('combobox', { name: 'Ordenar por' }).click()
     await page.getByRole('option', { name: 'Menor preço' }).click()
     await expect(page).toHaveURL(/ordem=menor-preco/)
+    await expect.poll(scrollY).toBeGreaterThan(200)
 
     await page.getByRole('button', { name: 'Limpar filtros' }).click()
     await expect(page).not.toHaveURL(/colecao=|rede=/)
+    await expect.poll(scrollY).toBeGreaterThan(200)
 
     await page.getByRole('link', { name: 'Página 2' }).click()
     await expect(page).toHaveURL(/pagina=2/)
     await expect(cards(page).first()).toBeVisible()
+    await expect.poll(scrollY).toBeGreaterThan(200)
+    await expect.poll(scrollY).toBeLessThan(900)
   })
 
   test('abre uma aba', async ({ page }, testInfo) => {
