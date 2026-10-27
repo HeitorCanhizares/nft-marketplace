@@ -28,9 +28,11 @@ export function useCheckoutEntry() {
   const userId = user?.id
   const cart = cartQuery.data
   const pendingOrders = pendingQuery.data
+  // Com a lista em cache (ex.: pedido recusado há pouco), espera a lista nova antes de decidir.
+  const isRefreshing = pendingQuery.isFetching
 
   useEffect(() => {
-    if (status === 'ready' || !userId || !cart || !pendingOrders) return
+    if (status === 'ready' || !userId || !cart || !pendingOrders || isRefreshing) return
 
     // Cancelado quando o efeito é refeito ou desmontado: só a execução atual navega.
     let cancelled = false
@@ -82,7 +84,7 @@ export function useCheckoutEntry() {
     return () => {
       cancelled = true
     }
-  }, [status, userId, cart, pendingOrders, navigate])
+  }, [status, userId, cart, pendingOrders, isRefreshing, navigate])
 
   function retryCart() {
     void cartQuery.refetch()
