@@ -84,6 +84,8 @@ test('desktop: fluxo completo até o pedido', async ({ page }, testInfo) => {
   await expect(review.getByText('Emerald Ape #042')).toBeVisible()
   await expect(review.getByText('Total').first()).toBeVisible()
 
+  // payment-slow mantém o pedido pendente por 30 s: o retorno ao pagamento não corre com o timer de 3 s.
+  await page.evaluate(`localStorage.setItem('kurio:mock:scenarios', 'payment-slow')`)
   await review.getByRole('button', { name: 'Confirmar e pagar' }).click()
   await expect(page).toHaveURL(/\/pedido\/[^/]+$/)
 
