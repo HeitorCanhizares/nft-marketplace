@@ -27,6 +27,16 @@ export default defineConfig({
         viewport: { width: 414, height: 896 },
       },
     },
+    {
+      name: 'firefox',
+      testIgnore: '**/visual/**',
+      use: { ...devices['Desktop Firefox'], viewport: { width: 1440, height: 900 } },
+    },
+    {
+      name: 'webkit',
+      testIgnore: '**/visual/**',
+      use: { ...devices['Desktop Safari'], viewport: { width: 1440, height: 900 } },
+    },
   ],
   webServer: {
     command: 'npm run build:test && npm run preview -- --port 4173 --strictPort',
