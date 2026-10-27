@@ -122,7 +122,7 @@ type Wallet = {
   provider: WalletProvider   // "Tipo de carteira"
   referralCode: string
   email: string
-  ensName: string            // "nova.kurio.eth"
+  ensName: string            // "nova-kurio.eth"
 }
 
 type OrderStatus = 'pending' | 'confirmed' | 'declined'

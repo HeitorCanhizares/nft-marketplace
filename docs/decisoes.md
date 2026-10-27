@@ -274,6 +274,12 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - **"Remover carteira secundária" e "Tornar principal"** como botões com contorno **abaixo de "Salvar carteira"** na seção da secundária, com confirmação em diálogo.
 - Demais propostas aprovadas: `WalletForm` único com `variant` (`wallets` mostra "Apelido da carteira" na 2ª posição; `checkout` mostra "Nome de usuário", como os dois Figmas); `walletCoreSchema` compartilhado com o Pagamento; `nickname` pode ser `''` no `collector` do Pagamento; medidas lidas em `desktop-carteiras.png` (mesmas classes do Perfil, `FormField plain`); mobile adaptado do Perfil; limites: nome do perfil 1–40, apelido 1–30, código de indicação 3–20 (letras, números, `_`, `-`), ENS 3–63, "ENS ou carteira secundária" opcional (`0x`+40 hex ou `nome.eth`); pré-preenchimento sem carteira vem de `useAuth().user`; "Adicionar" da secundária sem botão de cancelar; "Igual à principal" sobrescreve sem confirmar e o rádio só aparece enquanto não há secundária; `redirect` só aceita `/pagamento`; no mock o `PUT` mantém o `id` e o `swap` troca só o `slot`; o Pagamento mobile usa `Wallet.id` (estável no `swap`).
 
+### Fase 10 concluída (2026-10-26)
+- **Aprovada pelo usuário**; tag **`fase-10-carteiras`**. Suíte completa: 638 passaram, 0 falhas. Baselines de Carteiras (desktop e mobile) aprovadas.
+- Correções: `validateSearch` de `/perfil/carteiras` sempre devolve a chave `redirect`; ENS do seed passou a `nova-kurio.eth` (o rótulo com ponto era inválido); espaçamento entre linhas do formulário ajustado ao Figma (89 px).
+- Mantidos: aviso "Cadastre a carteira principal primeiro." na secundária sem principal; "Salvar carteira" desabilitado sem alterações.
+- **Push:** a partir daqui o repositório tem remoto privado `HeitorCanhizares/nft-marketplace` (GitHub), criado a pedido do usuário.
+
 ### Modo enxuto de testes (2026-10-26)
 O usuário pediu menos testes para ganhar velocidade e gastar menos tokens. A partir do fim da fase 06:
 - **Testes E2E por fase:** só o **caminho principal** de cada subitem. **Casos de borda** (cenários de `cenarios.md`: falhas, 4xx/5xx, fora de ordem, sessão expirada, conflitos, preço/estoque mudando, timeout, recusa etc.) ficam **todos para a fase 13**, já que o comportamento está documentado.

@@ -12,6 +12,12 @@ Documentação de planejamento do frontend. Leia este arquivo antes de qualquer 
 
 **Orquestração (desde 2026-10-26):** o usuário conversa **só com o Opus**, na conversa principal. O Opus cria o Sonnet e o Haiku como **subagentes** (ferramenta Agent, `model: sonnet` / `model: haiku`), sem abrir sessões separadas. Perguntas e aprovações que o Sonnet precisar sobem ao usuário pelo Opus. Os papéis não mudam.
 
+**Haiku em paralelo (desde 2026-10-26, pedido do usuário):** blocos que mexem em **arquivos distintos** e não dependem um do outro podem ser implementados por **vários Haiku ao mesmo tempo**, no mesmo checkout. Regras para não colidirem:
+- O Opus separa os grupos pelo "Depende de" e pelos arquivos de cada bloco; dois agentes nunca recebem o mesmo arquivo (inclusive `routeTree.gen.ts`, `browser.ts`, `queryKeys.ts` e outros arquivos de registro: blocos que tocam nesses vão para o mesmo agente ou rodam em sequência).
+- Cada agente faz commit **só dos próprios arquivos** (`git commit -- <arquivos>`); se o git estiver ocupado (`index.lock`), espera e tenta de novo.
+- Se o typecheck ou o build falhar por causa de arquivo de **outro** agente ainda em andamento, o agente espera e roda de novo, sem mexer no arquivo alheio.
+- Sem worktrees nem junctions de `node_modules`.
+
 ## Regras que valem para todos
 
 1. **Arquitetura, pastas, arquivos novos fora do previsto e dependências novas: sempre perguntar ao usuário.** Nada de assumir.
