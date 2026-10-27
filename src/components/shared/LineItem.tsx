@@ -217,10 +217,10 @@ function ReceiptLine({ item }: { item: OrderItemSnapshot }) {
         <div className="size-[70px] shrink-0 overflow-hidden rounded-media max-lg:rounded-none">
           <img src={item.image.src} alt="" loading="lazy" className="size-full object-cover" />
         </div>
-        <div className="flex min-w-0 flex-col gap-1">
-          <p className="text-base font-bold break-words text-foreground">{item.name}</p>
-          <p className="text-sm text-tan">ID do token: {item.tokenId}</p>
-          <p className="text-sm text-tan">Edição {item.editionLabel}</p>
+        <div className="flex min-w-0 flex-col gap-0.5">
+          <p className="text-base leading-5 font-bold break-words text-foreground">{item.name}</p>
+          <p className="text-sm leading-5 text-tan">ID do token: {item.tokenId}</p>
+          <p className="text-sm leading-5 text-tan">Edição {item.editionLabel}</p>
         </div>
       </div>
       <p className="text-sm text-muted-foreground max-lg:col-start-2 max-lg:row-start-1 lg:text-center">

@@ -24,10 +24,10 @@ type ReceiptRowProps = {
   total?: boolean
 }
 
-// Linha do recibo: passo fixo de 29 px; rótulo a 169 px da borda a partir de lg.
+// Linha do recibo: passo fixo de 30 px (medido em desktop-confirmacao.png); rótulo a 169 px da borda a partir de lg.
 function ReceiptRow({ label, value, total = false }: ReceiptRowProps) {
   return (
-    <div className="flex h-[29px] items-center justify-between gap-4">
+    <div className="flex h-[30px] items-center justify-between gap-4">
       <dt className={cn('text-body text-foreground', total && 'font-bold')}>{label}</dt>
       <dd
         className={cn(
@@ -77,7 +77,7 @@ export function PriceSummary({
   // Recibo do pedido confirmado: sempre com valores, sem "Taxa estimada" e sem estados de atualização.
   if (variant === 'receipt') {
     return (
-      <div className="mb-[18px] flex flex-col">
+      <div className="mb-[18px] flex flex-col lg:mb-[13px]">
         <dl className="flex flex-col lg:pl-[169px]">
           {showDiscount ? (
             <>
@@ -91,7 +91,7 @@ export function PriceSummary({
           <ReceiptRow label="Taxa de rede" value={formatEth(quote.networkFee)} />
           <ReceiptRow label="Total" value={formatEth(quote.total)} total />
         </dl>
-        <div aria-hidden="true" className="mt-1 h-px bg-border-soft" />
+        <div aria-hidden="true" className="mt-1 h-px bg-border-soft lg:mt-[3px]" />
       </div>
     )
   }

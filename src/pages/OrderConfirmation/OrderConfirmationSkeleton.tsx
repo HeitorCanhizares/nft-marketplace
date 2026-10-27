@@ -13,7 +13,7 @@ type SkeletonBlocksProps = {
   isDesktop: boolean
 }
 
-// Mesmos blocos do recibo, nas mesmas medidas: sem salto de layout ao trocar pelo conteúdo.
+// Mesmos blocos do recibo, com as mesmas alturas e margens: sem salto de layout ao trocar pelo conteúdo.
 function SkeletonBlocks({ isDesktop }: SkeletonBlocksProps) {
   return (
     <div role="status" aria-busy="true" className="flex w-full flex-col">
@@ -21,37 +21,61 @@ function SkeletonBlocks({ isDesktop }: SkeletonBlocksProps) {
 
       <div className={cn('flex flex-col items-center', isDesktop ? 'mt-[22px]' : 'mt-0')}>
         <Skeleton className="h-20 w-[66px]" />
-        <Skeleton className="mt-[18px] h-4 w-56" />
+        <div className="mt-3 flex h-6 items-center">
+          <Skeleton className="h-4 w-56" />
+        </div>
       </div>
 
       <Skeleton
-        className={cn('h-[65px]', isDesktop ? '-mx-11 mt-[22px]' : 'mt-4 w-full rounded-card')}
+        className={cn(
+          isDesktop ? '-mx-11 mt-[18px] h-[67px]' : 'mt-4 h-[136px] w-full rounded-card',
+        )}
       />
 
-      <Skeleton className={cn('h-4 w-44', isDesktop ? 'mt-[22px]' : 'mt-6')} />
+      <div
+        className={cn('flex items-center', isDesktop ? 'mt-[18px] h-[21.4px]' : 'mt-6 h-[22.5px]')}
+      >
+        <Skeleton className="h-4 w-44" />
+      </div>
 
-      <ul className="mt-3 flex flex-col gap-3">
-        {Array.from({ length: RECEIPT_ITEM_COUNT }, (_, index) => (
-          <LineItemSkeleton key={index} variant="receipt" />
-        ))}
-      </ul>
+      <div className={isDesktop ? 'mt-1.5' : 'mt-3'}>
+        <div className={cn('flex items-start', isDesktop ? 'h-[30.4px]' : 'h-[31.5px]')}>
+          <Skeleton className="h-4 w-24" />
+        </div>
+        <ul className="mt-3 flex flex-col gap-3">
+          {Array.from({ length: RECEIPT_ITEM_COUNT }, (_, index) => (
+            <LineItemSkeleton key={index} variant="receipt" />
+          ))}
+        </ul>
+      </div>
 
-      <div className="mt-6 flex flex-col gap-3">
+      <div
+        className={cn(
+          'flex flex-col justify-start gap-3',
+          isDesktop ? 'mt-2 h-[77px] pt-1.5' : 'mt-6 h-[83px] pt-1.5',
+        )}
+      >
         <Skeleton className="h-4 w-full" />
         <Skeleton className="h-4 w-full" />
       </div>
 
-      <div className="mt-6 flex flex-col items-center gap-2">
+      <div
+        className={cn(
+          'flex flex-col items-center gap-2 pt-1',
+          isDesktop ? 'h-[64.3px]' : 'h-[60px]',
+        )}
+      >
         <Skeleton className="h-4 w-full" />
         <Skeleton className="h-4 w-3/4" />
       </div>
 
-      <div className={cn('flex justify-center', isDesktop ? 'mt-[26px]' : 'mt-6')}>
+      <div className={cn('flex flex-col items-center', isDesktop ? 'mt-5' : 'mt-[26px]')}>
         {isDesktop ? (
           <Skeleton className="h-12 w-[186px]" />
         ) : (
           <Skeleton className="h-15 w-full rounded-full" />
         )}
+        <div className="mt-2 h-[17px]" />
       </div>
     </div>
   )

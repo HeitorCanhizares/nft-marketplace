@@ -89,7 +89,7 @@ export function OrderReceipt({ order, variant }: OrderReceiptProps) {
   ]
 
   return (
-    <section aria-labelledby={titleId} className="flex flex-col">
+    <section aria-labelledby={titleId} className={cn('flex flex-col', isDesktop && 'px-11 pb-12')}>
       <header className="flex flex-col items-center text-center">
         <div
           aria-hidden="true"
@@ -100,13 +100,13 @@ export function OrderReceipt({ order, variant }: OrderReceiptProps) {
         >
           <MailOpenIcon />
         </div>
-        <h2 id={titleId} className="mt-[18px] text-base font-bold text-muted-foreground">
+        <h2 id={titleId} className="mt-3 text-base font-bold text-muted-foreground">
           Seus NFTs agora estão na sua carteira
         </h2>
       </header>
 
       {isDesktop ? (
-        <dl className="-mx-11 mt-[22px] flex h-[65px] items-center justify-center border-y border-primary text-sm text-muted-foreground">
+        <dl className="-mx-11 mt-[18px] flex h-[67px] items-center justify-center border-y border-primary text-sm text-muted-foreground">
           {dataCells.map((cell) => (
             <div
               key={cell.label}
@@ -128,15 +128,15 @@ export function OrderReceipt({ order, variant }: OrderReceiptProps) {
         </dl>
       )}
 
-      <h3 className={cn('text-body font-bold text-foreground', isDesktop ? 'mt-[22px]' : 'mt-6')}>
+      <h3 className={cn('text-body font-bold text-foreground', isDesktop ? 'mt-[18px]' : 'mt-6')}>
         Detalhes da transação
       </h3>
 
-      <div className="mt-3">
+      <div className={isDesktop ? 'mt-1.5' : 'mt-3'}>
         <LineItemList variant="receipt" items={order.items} />
       </div>
 
-      <div className="mt-6">
+      <div className={isDesktop ? 'mt-2' : 'mt-6'}>
         <PriceSummary
           variant="receipt"
           quote={order}
@@ -158,7 +158,7 @@ export function OrderReceipt({ order, variant }: OrderReceiptProps) {
       </p>
 
       {explorerUrl !== undefined && isExplorerUrl(explorerUrl) ? (
-        <div className="mt-[26px] flex flex-col items-center">
+        <div className={cn('flex flex-col items-center', isDesktop ? 'mt-5' : 'mt-[26px]')}>
           <Button
             asChild
             variant={isDesktop ? 'default' : 'gradient'}

@@ -59,7 +59,7 @@ export function OrderDialog({ title, onClose, children, className }: OrderDialog
             aria-label="Fechar"
             className="absolute top-[3px] right-[2px] size-11 text-primary hover:bg-transparent hover:text-primary"
           >
-            <SvgIcon name="x" size={13} />
+            <SvgIcon name="x" />
           </Button>
         </DialogClose>
       </DialogContent>
