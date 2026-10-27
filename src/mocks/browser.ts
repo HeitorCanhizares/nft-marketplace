@@ -18,6 +18,7 @@ import {
   walletsStore,
 } from './db/stores'
 import { authHandlers } from './handlers/auth'
+import { avatarHandlers } from './handlers/avatar'
 import { cartHandlers } from './handlers/cart'
 import { favoritesHandlers } from './handlers/favorites'
 import { healthHandlers } from './handlers/health'
@@ -41,6 +42,7 @@ const resourceHandlers: Parameters<typeof setupWorker>[0][] = [
   ...cartHandlers,
   ...quoteHandlers,
   ...profileHandlers,
+  ...avatarHandlers,
 ]
 
 const worker = setupWorker(...realtimeHandlers, ...resourceHandlers)
