@@ -36,6 +36,6 @@ export const seedWallets: readonly WalletRecord[] = [
     provider: 'metamask',
     referralCode: 'KURIOTESTE',
     email: 'teste@kurio.test',
-    ensName: 'nova.kurio.eth',
+    ensName: 'nova-kurio.eth',
   },
 ]
