@@ -29,6 +29,8 @@ export interface AuthContextValue extends AuthState {
   signUp: (data: RegisterInput) => Promise<AuthResponse>
   signOut: () => Promise<void>
   refreshSession: () => Promise<void>
+  // Troca só o usuário da sessão (ex.: perfil salvo). Sessão e expiração ficam intactas.
+  updateUser: (user: User) => void
 }
 
 export const AuthContext = createContext<AuthContextValue | null>(null)

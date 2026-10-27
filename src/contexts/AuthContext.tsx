@@ -7,6 +7,7 @@ import {
   type AuthState,
 } from '@/contexts/auth'
 import { useLiveAnnouncer } from '@/contexts/liveAnnouncer'
+import type { User } from '@/types/user'
 import type { LoginInput, RegisterInput } from '@/services/api/auth'
 import {
   getSession,
@@ -229,6 +230,11 @@ export function AuthProvider({ children, onClearPrivateSession, onExpired }: Aut
     )
   }, [])
 
+  // Troca só o usuário: status, expiresAt e expiryWarning ficam como estão.
+  const updateUser = useCallback((user: User): void => {
+    setState((prev) => (prev.status === 'authenticated' ? { ...prev, user } : prev))
+  }, [])
+
   const value = useMemo<AuthContextValue>(
     () => ({
       ...state,
@@ -237,8 +243,9 @@ export function AuthProvider({ children, onClearPrivateSession, onExpired }: Aut
       signUp,
       signOut,
       refreshSession,
+      updateUser,
     }),
-    [state, readyGate, signIn, signUp, signOut, refreshSession],
+    [state, readyGate, signIn, signUp, signOut, refreshSession, updateUser],
   )
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
