@@ -1,6 +1,6 @@
 # 12-016 — Ajuste do teste do Pagamento (o pedido agora sai de `pending`)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 2 (efeito colateral do ciclo de vida sobre a fase 11)
 **Depende de:** 12-003
 **Toca:** `tests/e2e/checkout.spec.ts` (alterar)

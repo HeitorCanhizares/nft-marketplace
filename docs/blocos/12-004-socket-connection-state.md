@@ -1,6 +1,6 @@
 # 12-004 — Estado da conexão do socket (`useSocketConnected`)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 2 (polling quando o socket cai)
 **Depende de:** —
 **Toca:** `src/services/realtime/socket.ts` (alterar), `src/hooks/useSocketConnected.ts` (novo)

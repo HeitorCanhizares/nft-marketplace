@@ -1,6 +1,6 @@
 # 12-006 — `LineItem` variante `receipt` (recibo do pedido)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 3 (recibo montado só com o snapshot)
 **Depende de:** —
 **Toca:** `src/components/shared/LineItem.tsx` (alterar), `src/components/shared/LineItemList.tsx` (alterar), `src/components/shared/LineItemSkeleton.tsx` (alterar)

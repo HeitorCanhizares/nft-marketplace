@@ -1,6 +1,6 @@
 # 12-001 — Serviço `getOrder` e utilitário do explorador
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 3, 5, 7
 **Depende de:** —
 **Toca:** `src/lib/explorerUrl.ts` (novo), `src/services/api/orders.ts` (alterar)

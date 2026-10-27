@@ -1,6 +1,6 @@
 # 12-013 — Tela desktop da Confirmação (modal)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 1, 6
 **Depende de:** 12-008, 12-010 (decisão Q1)
 **Toca:** `src/pages/OrderConfirmation/OrderConfirmationDesktop.tsx` (novo)

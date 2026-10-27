@@ -1,6 +1,6 @@
 # 12-003 — Mock: `GET /orders/:id`, agendamento e cenários do pedido
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 2, 3, 4, 7
 **Depende de:** 12-002
 **Toca:** `src/mocks/handlers/orders.ts` (alterar)

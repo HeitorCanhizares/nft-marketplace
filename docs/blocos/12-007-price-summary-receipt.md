@@ -1,6 +1,6 @@
 # 12-007 — `PriceSummary` variante `receipt` (valores do snapshot)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 3 (taxa de rede e total do recibo)
 **Depende de:** —
 **Toca:** `src/components/shared/PriceSummary.tsx` (alterar)

@@ -1,6 +1,6 @@
 # 12-014 — Tela mobile da Confirmação e esqueleto
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 1, 6 (mobile adaptado: página cheia com `MobileTopBar`)
 **Depende de:** 12-006, 12-008, 12-010
 **Toca:** `src/pages/OrderConfirmation/OrderConfirmationMobile.tsx` (novo), `src/pages/OrderConfirmation/OrderConfirmationSkeleton.tsx` (novo)

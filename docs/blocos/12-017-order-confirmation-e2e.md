@@ -1,6 +1,6 @@
 # 12-017 — Teste E2E da Confirmação (caminho principal)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 1, 2, 3, 5, 6 (modo enxuto)
 **Depende de:** 12-015, 12-016
 **Toca:** `tests/e2e/helpers.ts` (alterar; **arquivo compartilhado**, só o lote K mexe), `tests/e2e/order-confirmation.spec.ts` (novo)

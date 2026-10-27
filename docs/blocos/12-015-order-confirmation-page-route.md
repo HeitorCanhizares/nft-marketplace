@@ -1,6 +1,6 @@
 # 12-015 — Página da Confirmação e rota `/pedido/$orderId`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › todos (1, 2, 3, 4, 6, 7)
 **Depende de:** 12-001, 12-011, 12-012, 12-013, 12-014
 **Toca:** `src/pages/OrderConfirmation/OrderConfirmation.tsx` (novo), `src/routes/pedido.$orderId.tsx` (alterar)

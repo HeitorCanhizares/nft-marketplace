@@ -1,6 +1,6 @@
 # 12-018 — Acessibilidade e baseline visual da Confirmação
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › todos (modo enxuto)
 **Depende de:** 12-017
 **Toca:** `tests/e2e/order-confirmation-a11y.spec.ts` (novo), `tests/visual/order-confirmation.spec.ts` (novo)

@@ -1,6 +1,6 @@
 # 12-009 — `OrderReceipt` (recibo do pedido confirmado)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 3, 5
 **Depende de:** 12-001, 12-006, 12-007 (decisões Q2, Q3, Q5)
 **Toca:** `src/components/shared/OrderReceipt.tsx` (novo)

@@ -1,6 +1,6 @@
 # 12-012 — Hook `useOrderOutcome` (desfecho, anúncios, limpeza e aviso de demora)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 2, 3, 4 (anúncio, limpeza do checkout, carrinho, 60 s)
 **Depende de:** 12-011
 **Toca:** `src/hooks/useOrderOutcome.ts` (novo)

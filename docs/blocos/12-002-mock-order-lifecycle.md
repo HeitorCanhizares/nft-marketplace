@@ -1,6 +1,6 @@
 # 12-002 — Mock: ciclo de vida do pedido (confirmar ou recusar)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 2, 3, 4 (pendente → confirmado ou recusado)
 **Depende de:** 12-001
 **Toca:** `src/mocks/db/orderLifecycle.ts` (novo), `src/mocks/db/orderScenarios.ts` (alterar)

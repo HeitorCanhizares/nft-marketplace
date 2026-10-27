@@ -1,6 +1,6 @@
 # 12-008 — `OrderDialog` (moldura do modal) e tipos da página
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 1, 6
 **Depende de:** — (decisões Q1 e Q6)
 **Toca:** `src/components/shared/OrderDialog.tsx` (novo), `src/pages/OrderConfirmation/viewProps.ts` (novo)

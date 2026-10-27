@@ -1,6 +1,6 @@
 # 12-010 — `OrderStatus` (pendente, confirmado e recusado)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 2, 3, 4
 **Depende de:** 12-009
 **Toca:** `src/components/shared/OrderStatus.tsx` (novo)

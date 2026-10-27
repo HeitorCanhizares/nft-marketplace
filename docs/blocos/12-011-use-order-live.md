@@ -1,6 +1,6 @@
 # 12-011 — Hooks `useOrder` e `useOrderLive` (consulta, polling e tempo real)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Confirmação › 1, 2 (acompanhar por `order:updated`, polling a cada 2 s, refazer o `GET` ao reconectar)
 **Depende de:** 12-001, 12-004
 **Toca:** `src/hooks/useOrder.ts` (novo), `src/hooks/useOrderLive.ts` (novo)
