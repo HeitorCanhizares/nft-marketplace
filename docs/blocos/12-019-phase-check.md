@@ -1,6 +1,6 @@
 # 12-019 — Fechamento da fase 12
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Sonnet
 **Depende de:** 12-018
 **Toca:** — (só verificação e status dos blocos)
