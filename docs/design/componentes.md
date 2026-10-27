@@ -114,7 +114,7 @@ Instalados pelo CLI do shadcn e estilizados com os [tokens](tokens.md). Não con
 | `WalletProviderOption` | PG | Card de rádio: WalletConnect, MetaMask, Coinbase Wallet (ícone + nome) |
 | `SavedWalletOption` | PG m | Card de rádio com carteira salva: nome (Reserva/Principal), endereço ou ENS, rede, menu "⋮" |
 | `WalletForm` | PG d ("Perfil do colecionador"), CT (principal e secundária) | **Mesmo formulário nas duas telas**: Nome de exibição, Nome de usuário, Rede, Nome do perfil, Endereço da carteira, ENS ou carteira secundária, Tipo de carteira, Código de indicação, E-mail, Nome ENS. Campos extras por contexto (Apelido da carteira em CT; Observação do colecionador em PG). |
-| `OrderReceipt` | CO | Ícone "Thank you", título, faixa com ID da transação / Data / Total / Carteira, `LineItemList` variante `receipt`, taxa e total, mensagem de status e botão para o explorador da rede |
+| `OrderReceipt` | CO | Ícone `MailOpenIcon` (lucide, 66 × 80 px), título, faixa com ID da transação / Data / Total / Carteira, `LineItemList` variante `receipt`, taxa e total, mensagem de status e botão para o explorador da rede |
 | `OrderStatus` | CO (estado não desenhado) | Pendente, confirmado, recusado. O `OrderReceipt` só é renderizado com status confirmado. |
 | `CheckoutReview` | PG (não desenhado) | Resumo final antes do envio, com mudanças destacadas e "Confirmar e pagar". `Dialog` no desktop, `Sheet` no mobile. |
 | `WalletConnectionStatus` | PG (não desenhado) | Não conectada / Conectando / Conectada (endereço) / Recusada / Rede diferente, com ação correspondente |
