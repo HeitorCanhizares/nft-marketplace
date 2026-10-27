@@ -27,6 +27,7 @@ import { nftsHandlers } from './handlers/nfts'
 import { profileHandlers } from './handlers/profile'
 import { quoteHandlers } from './handlers/quote'
 import { reviewsHandlers } from './handlers/reviews'
+import { walletsHandlers } from './handlers/wallets'
 import { dropConnections, realtimeHandlers } from './realtime/server'
 import { startScheduler, triggerPriceChange, triggerStockChange } from './realtime/scheduler'
 import { isTestMode, mockConfig } from './scenarios/config'
@@ -43,6 +44,7 @@ const resourceHandlers: Parameters<typeof setupWorker>[0][] = [
   ...quoteHandlers,
   ...profileHandlers,
   ...avatarHandlers,
+  ...walletsHandlers,
 ]
 
 const worker = setupWorker(...realtimeHandlers, ...resourceHandlers)
