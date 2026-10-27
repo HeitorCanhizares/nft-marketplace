@@ -104,7 +104,7 @@ export function CouponField({
         variant="link"
         aria-expanded={false}
         onClick={() => setExpanded(true)}
-        className="min-h-11 w-full justify-center"
+        className="h-8 min-h-0 w-full justify-center text-foreground"
       >
         Tem um código promocional? Aplique aqui
       </Button>

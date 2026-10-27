@@ -48,7 +48,7 @@ export function PriceSummary({
     return (
       <div aria-busy={isUpdating} className={cn('flex flex-col', isUpdating && 'opacity-60')}>
         {isUpdating ? <span className="sr-only">Atualizando valores</span> : null}
-        <dl className="flex flex-col gap-[13px]">
+        <dl className="flex flex-col gap-[7px]">
           <div className="flex items-baseline justify-between gap-4">
             <dt className="text-body text-foreground">Subtotal</dt>
             <dd className="text-subtitle text-foreground tabular-nums">
@@ -69,9 +69,9 @@ export function PriceSummary({
           </div>
         </dl>
         {quote.networkFeeEstimated ? (
-          <p className="mt-3 text-center text-caption text-muted-foreground">Taxa estimada</p>
+          <p className="mt-[6px] text-center text-caption text-muted-foreground">Taxa estimada</p>
         ) : null}
-        <dl className="mt-[18px] border-t border-border pt-3">
+        <dl className="mt-2.5 border-t border-border pt-2">
           <div className="flex items-baseline justify-between gap-4 px-[42px]">
             <dt className="font-bold text-foreground">Total</dt>
             <dd className="text-subtitle font-bold text-primary tabular-nums">

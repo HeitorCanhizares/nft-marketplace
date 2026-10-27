@@ -175,7 +175,11 @@ function SummaryLine({ item }: PartProps) {
 
   return (
     <li className="flex min-h-[70px] gap-2 bg-card">
-      <LineThumb item={item} linked={false} className="size-[70px] overflow-hidden rounded-sm" />
+      <LineThumb
+        item={item}
+        linked={false}
+        className="ml-1 size-[70px] overflow-hidden rounded-md"
+      />
       <div className="flex min-w-0 flex-1 flex-col justify-center gap-1 py-2">
         <p className="font-bold text-foreground">{item.nft.name}</p>
         <p className="text-caption-md text-muted-foreground">ID do token: {item.nft.tokenId}</p>

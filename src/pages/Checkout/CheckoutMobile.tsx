@@ -57,12 +57,12 @@ export function CheckoutMobile({
 
       <div className="flex flex-1 flex-col px-7">
         <div className="flex items-center justify-between gap-4">
-          <h2 className="text-subtitle font-bold text-foreground">Carteira conectada</h2>
+          <h2 className="text-base font-bold text-foreground">Carteira conectada</h2>
           {wallet.provider !== null ? (
             <Button
               type="button"
               variant="link"
-              className="min-h-11 text-sm font-bold"
+              className="min-h-11 px-0 text-sm font-bold"
               onClick={wallet.changeWallet}
             >
               Trocar carteira
@@ -80,7 +80,7 @@ export function CheckoutMobile({
           />
         </div>
 
-        <h2 id={providerHeadingId} className="mt-6 text-subtitle font-bold text-foreground">
+        <h2 id={providerHeadingId} className="mt-3 text-base font-bold text-foreground">
           Carteira e rede
         </h2>
 

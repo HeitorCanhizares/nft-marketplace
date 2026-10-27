@@ -14,7 +14,7 @@ const BREADCRUMB: BreadcrumbEntry[] = [
 export function CheckoutDesktop(props: CheckoutViewProps) {
   return (
     <div className="container-page flex flex-col pb-16">
-      <Breadcrumb items={BREADCRUMB} className="mb-2.5" />
+      <Breadcrumb items={BREADCRUMB} className="mb-6" />
       <h1 className="sr-only">Pagamento</h1>
 
       <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_405px]">

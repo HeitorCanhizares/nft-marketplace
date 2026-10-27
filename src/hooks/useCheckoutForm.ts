@@ -7,7 +7,7 @@ import { useDeferredEmptyValidation } from '@/hooks/useDeferredEmptyValidation'
 import { toCollector, toSecondaryBody } from '@/lib/checkoutCollector'
 import { clearDraft, readDraft, writeDraft } from '@/lib/checkoutStorage'
 import { checkoutNoteSchema, type CheckoutDraft, type CheckoutMode } from '@/schemas/checkout'
-import { networkSchema, walletProviderSchema } from '@/schemas/common'
+import { networkSchema } from '@/schemas/common'
 import {
   checkoutWalletFormSchema,
   toWalletFormValues,
@@ -41,11 +41,6 @@ export type CheckoutCollected = {
   walletId?: string
   saveAsSecondary: boolean
   secondaryBody?: WalletBody
-}
-
-function parseProvider(value: string): WalletProvider | null {
-  const result = walletProviderSchema.safeParse(value)
-  return result.success ? result.data : null
 }
 
 function parseNetwork(value: string): Network | null {
@@ -87,7 +82,7 @@ function resolveInitial(wallets: WalletsResponse, user: User): InitialState {
     values,
     note: draft?.note ?? '',
     saveAsSecondary: false,
-    provider: parseProvider(values.provider),
+    provider: draft?.provider ?? null,
   }
 }
 
@@ -148,13 +143,13 @@ export function useCheckoutForm(wallets: WalletsResponse, user: User) {
   )
 
   // Troca de modo: reaplica os valores do modo e limpa erros do servidor e a opção de salvar.
+  // O provedor escolhido é independente do campo "Tipo de carteira" e não muda aqui.
   function applyMode(next: CheckoutMode) {
     const values = valuesFor(next, wallets, user)
     form.reset(values)
     setModeState(next)
     setSaveAsSecondaryOn(false)
     setServerErrors({})
-    setProviderState(parseProvider(values.provider))
   }
 
   function setUseOther(on: boolean) {
@@ -176,7 +171,6 @@ export function useCheckoutForm(wallets: WalletsResponse, user: User) {
 
   function setProvider(next: WalletProvider | null) {
     setProviderState(next)
-    form.setValue('provider', next ?? '', { shouldValidate: true, shouldDirty: true })
   }
 
   function savedWalletId(): string | undefined {

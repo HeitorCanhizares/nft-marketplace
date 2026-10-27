@@ -36,11 +36,11 @@ export function OrderSummaryColumn({
   return (
     <div className="flex flex-col">
       <h2 className="text-subtitle font-bold text-foreground">Seus NFTs</h2>
-      <div className="mt-2">
+      <div className="mt-1">
         <LineItemList variant="summary" items={items} />
       </div>
 
-      <div className="mt-5">
+      <div className="mt-1">
         <CouponField
           variant="desktop"
           collapsible
@@ -53,7 +53,7 @@ export function OrderSummaryColumn({
         />
       </div>
 
-      <div className="mt-5">
+      <div className="mt-0.5">
         <PriceSummary
           variant="checkout"
           quote={quote.quote}
@@ -63,7 +63,7 @@ export function OrderSummaryColumn({
         />
       </div>
 
-      <section aria-labelledby={walletHeadingId} className="mt-6 flex flex-col">
+      <section aria-labelledby={walletHeadingId} className="mt-[3px] flex flex-col">
         <h2 id={walletHeadingId} className="text-center text-subtitle font-bold text-foreground">
           Carteira e rede
         </h2>
@@ -71,7 +71,7 @@ export function OrderSummaryColumn({
           aria-labelledby={walletHeadingId}
           value={wallet.provider ?? ''}
           onValueChange={handleProviderChange}
-          className="mt-4 gap-4"
+          className="mt-3.5 gap-4"
         >
           {CHECKOUT_PROVIDER_ORDER.map((option) => (
             <WalletProviderOption key={option} value={option} variant="desktop" />

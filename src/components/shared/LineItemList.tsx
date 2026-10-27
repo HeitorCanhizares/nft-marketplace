@@ -103,7 +103,7 @@ function SummaryLineItemList({ items, isLoading }: SummaryLineItemListBodyProps)
 
   return (
     <div className="flex flex-col gap-3">
-      <div aria-hidden="true" className="flex justify-between text-body text-foreground">
+      <div aria-hidden="true" className="mb-2 flex justify-between text-body text-foreground">
         <span>NFTs</span>
         <span>Subtotal</span>
       </div>

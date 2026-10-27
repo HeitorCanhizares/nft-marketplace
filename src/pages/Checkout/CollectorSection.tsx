@@ -35,15 +35,15 @@ export function CollectorSection({ form }: { form: CheckoutFormApi }) {
         variant="checkout"
         form={form.form}
         serverErrors={form.serverErrors}
-        className="mt-6 lg:gap-x-6 lg:gap-y-[23px]"
+        className="mt-[17px] lg:gap-x-6 lg:gap-y-[23px]"
       />
 
-      <div className="mt-6 flex items-center gap-[7px]">
+      <div className="mt-[21px] flex items-center gap-[7px]">
         <Checkbox
           id={useOtherId}
           checked={form.useOther}
           onCheckedChange={(on) => form.setUseOther(on === true)}
-          className="rounded-full lg:rounded-full"
+          className="rounded-full border-primary lg:rounded-full"
         />
         <Label htmlFor={useOtherId} className="text-body font-normal text-foreground">
           Usar outra carteira?
@@ -104,7 +104,7 @@ export function CollectorSection({ form }: { form: CheckoutFormApi }) {
       <FormField
         label="Observação do colecionador (opcional)"
         plain
-        className="mt-7"
+        className="mt-[25px]"
         error={form.noteError ?? undefined}
       >
         {(field) => (
@@ -113,7 +113,7 @@ export function CollectorSection({ form }: { form: CheckoutFormApi }) {
             value={form.note}
             onChange={(event) => form.setNote(event.target.value)}
             maxLength={500}
-            className="h-[152px] w-[350px] max-w-full resize-none"
+            className="mt-3 h-[152px] w-[350px] max-w-full resize-none"
           />
         )}
       </FormField>
