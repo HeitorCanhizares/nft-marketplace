@@ -2,6 +2,7 @@ import { HTTP_TIMEOUT_MS } from '@/services/http/client'
 import type { Quote } from '@/types/cart'
 import { triggerPriceChange, triggerStockChange } from '../realtime/scheduler'
 import { hasScenario } from '../scenarios/active'
+import { mockConfig } from '../scenarios/config'
 import { wait } from '../scenarios/latency'
 import { ethToUnits, unitsToEth } from './money'
 import { quotesStore } from './stores'
@@ -13,6 +14,10 @@ type CheckoutScenario =
   | 'sold-out-on-checkout'
   | 'coupon-expires-on-checkout'
   | 'fee-change-on-checkout'
+  | 'realtime-drop'
+
+const PAYMENT_SLOW_DELAY_MS = 30_000
+export const REALTIME_DROP_MS = 6000
 
 const consumed = new Set<string>()
 const forcedQuoteIds = new Set<string>()
@@ -94,4 +99,27 @@ export async function holdAfterCreate(key: string): Promise<void> {
   if (!hasScenario('order-timeout') || consumed.has(marker)) return
   consumed.add(marker)
   await wait(HTTP_TIMEOUT_MS + ORDER_HOLD_EXTRA_MS)
+}
+
+// Atraso até o pedido sair de pending: 30 s com payment-slow; senão, VITE_MOCK_PAYMENT_DELAY_MS.
+export function paymentDelayMs(): number {
+  if (hasScenario('payment-slow')) return PAYMENT_SLOW_DELAY_MS
+  return mockConfig.paymentDelayMs
+}
+
+// Desfecho do pagamento: os cenários forçam; senão sorteia com VITE_MOCK_PAYMENT_DECLINE_RATE.
+export function paymentOutcome(): 'confirmed' | 'declined' {
+  if (hasScenario('payment-declined')) return 'declined'
+  if (hasScenario('payment-confirmed')) return 'confirmed'
+  return Math.random() < mockConfig.paymentDeclineRate ? 'declined' : 'confirmed'
+}
+
+// Vale em toda chamada, não só na primeira.
+export function isForbiddenOrderScenario(): boolean {
+  return hasScenario('forbidden-order')
+}
+
+// Uma vez por carga da página.
+export function shouldDropRealtime(): boolean {
+  return fire('realtime-drop')
 }
