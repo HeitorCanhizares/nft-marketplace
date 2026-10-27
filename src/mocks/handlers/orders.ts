@@ -9,20 +9,26 @@ import { buildQuote } from '../db/quote'
 import { userCartId } from '../db/cartMerge'
 import type { OrderRecord } from '../db/db'
 import { hashBody, snapshotItems, toOrder } from '../db/orderOps'
+import { armSettlement, settleIfDue } from '../db/orderLifecycle'
 import { cartsStore, idempotencyStore, ordersStore, quotesStore } from '../db/stores'
 import { apiPath } from '../scenarios/config'
 import { apiError, validationError } from '../scenarios/errors'
 import { withMock } from '../scenarios/middleware'
+import { dropConnections } from '../realtime/server'
 import {
   forceQuoteChange,
   holdAfterCreate,
+  isForbiddenOrderScenario,
   isForcedQuote,
   maybeSessionExpired,
   perturbBeforeRevalidation,
+  REALTIME_DROP_MS,
+  shouldDropRealtime,
 } from '../db/orderScenarios'
 import { authenticate } from './sessionGuard'
 
 const PENDING: OrderStatus = 'pending'
+const FORBIDDEN_ORDER_MESSAGE = 'Você não tem acesso a este pedido.'
 
 // Só status=pending é suportado.
 function isPendingFilter(value: string | null): boolean {
@@ -42,12 +48,56 @@ export const ordersHandlers = [
           return apiError('BAD_REQUEST')
         }
 
+        // Liquida o que já passou do prazo antes de filtrar, para não listar pendente vencido.
         const records = await ordersStore.listByUserId(auth.user.id)
-        const pending = records
+        const current = await Promise.all(
+          records.map(async (record) => {
+            const settled = await settleIfDue(record)
+            if (settled.status === PENDING) armSettlement(settled)
+            return settled
+          }),
+        )
+        const pending = current
           .filter((record) => record.status === PENDING)
           .sort((a, b) => b.createdAt.localeCompare(a.createdAt))
 
         return HttpResponse.json(pending.map(toOrder))
+      },
+      { protected: true },
+    ),
+  ),
+  http.get(
+    apiPath('/orders/:id'),
+    withMock(
+      'GET /orders/:id',
+      async ({ request, params }) => {
+        const auth = await authenticate(request)
+        if (auth instanceof Response) return auth
+
+        if (isForbiddenOrderScenario()) {
+          return apiError('FORBIDDEN', { message: FORBIDDEN_ORDER_MESSAGE })
+        }
+
+        const id = params.id
+        if (typeof id !== 'string') return apiError('BAD_REQUEST')
+
+        const record = await ordersStore.get(id)
+        if (record === undefined) {
+          return apiError('NOT_FOUND', { message: 'Pedido não encontrado.' })
+        }
+        if (record.userId !== auth.user.id) {
+          return apiError('FORBIDDEN', { message: FORBIDDEN_ORDER_MESSAGE })
+        }
+
+        // realtime-drop: a primeira consulta de pedido pendente derruba o socket; o polling assume.
+        if (record.status === PENDING && shouldDropRealtime()) {
+          dropConnections(REALTIME_DROP_MS)
+        }
+
+        const settled = await settleIfDue(record)
+        if (settled.status === PENDING) armSettlement(settled)
+
+        return HttpResponse.json(toOrder(settled))
       },
       { protected: true },
     ),
@@ -160,6 +210,8 @@ export const ordersHandlers = [
           orderId: record.id,
           createdAt: record.createdAt,
         })
+
+        armSettlement(record)
 
         // order-timeout: o pedido já foi gravado; a resposta demora além do timeout do cliente.
         await holdAfterCreate(key)
