@@ -309,6 +309,16 @@ Subitens validados. Detalhes em [fluxos/carteiras.md](fluxos/carteiras.md).
 - Diferenças aceitas: data em pt-BR, rótulos da faixa em negrito, botão de copiar o ID, "Edição" abaixo do ID do token, legenda "Transação simulada", fundo opaco.
 - **Para a fase 13:** carteira aparece desconectada ao voltar ao Pagamento após recusa (conferir também o rascunho preenchido); `PageHeader` duplicado em Carrinho, Perfil, Carteiras e Confirmação (avaliar componente compartilhado, perguntar ao usuário); NFT ou edição removidos durante a liquidação são ignorados (comportamento não documentado).
 
+### Fase 13 — blocos aprovados (2026-10-27)
+47 blocos em `docs/blocos/13-*` (lotes A–F de código/config, T1–T8 de testes; correções descobertas pelos testes entram como `13-1NN-fix-*`). Decisões do usuário:
+- **Navegadores:** baixar Firefox e WebKit do Playwright (`npx playwright install firefox webkit`) e rodar a suíte E2E nos 3 navegadores. Baselines visuais continuam só Chromium/Windows.
+- **Carteira após recusa:** mantém "Não conectada" ao voltar ao Pagamento (o usuário reconecta, como na sessão expirada); testar e documentar em `fluxos/pagamento.md`. Sem mudança de código no 13-013.
+- **`npm audit`:** manter o `@lhci/cli` e documentar as 16 vulnerabilidades como risco só de desenvolvimento (produção: 0).
+- **Desempenho:** diagnosticar primeiro (13-005); ajustes seguros (preload, atributos de `<img>`) sem pergunta; mudanças no boot (`main.tsx`) ou no seed voltam como pergunta com o ganho medido. Meta: perf ≥ 90 e LCP < 2,5 s.
+- **Lighthouse logado:** script de login do LHCI com o `puppeteer-core` do `@lhci/cli` (sem dependência nova), em `lighthouse-login.cjs` na raiz, ao lado de `lighthouserc.json`; credencial lida de `tests/e2e/fixtures.ts`.
+- **`PageHeader` compartilhado** em `components/layout/PageHeader.tsx`, aplicado em Carrinho, Perfil, Carteiras e Confirmação; registrado em `pastas.md` e `componentes.md`.
+- Propostas aprovadas: imagens já são WebP (nada a converter); zoom testado por largura de viewport; um spec de reflow e movimento reduzido para todas as rotas; specs de borda sem mexer em `src/` (ponte nova vira pergunta); teste que revela bug fica vermelho e gera bloco de correção (sem `fixme`/`skip`); se o laranja do rádio não tiver contraste 3:1, parar e perguntar; Login/Cadastro já cobertos pela fase 05; o fechamento do Sonnet não cria tag.
+
 ### Modo enxuto de testes (2026-10-26)
 O usuário pediu menos testes para ganhar velocidade e gastar menos tokens. A partir do fim da fase 06:
 - **Testes E2E por fase:** só o **caminho principal** de cada subitem. **Casos de borda** (cenários de `cenarios.md`: falhas, 4xx/5xx, fora de ordem, sessão expirada, conflitos, preço/estoque mudando, timeout, recusa etc.) ficam **todos para a fase 13**, já que o comportamento está documentado.

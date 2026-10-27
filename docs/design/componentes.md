@@ -50,6 +50,7 @@ Instalados pelo CLI do shadcn e estilizados com os [tokens](tokens.md). Não con
 | `Footer` | IN, DE, CA, PG d | Destaques (W/C/D), newsletter (desabilitada), faixa de contato, colunas de links, redes sociais, carteiras compatíveis, copyright |
 | `MobileTabBar` | IN m | Início, Favoritos, botão central (desabilitado), Carrinho, Perfil |
 | `MobileTopBar` | CA, PG m (e telas adaptadas) | Botão voltar + título centralizado |
+| `PageHeader` | CA, PE, CT, CO | Cabeçalho de página compartilhado (título; breadcrumb no desktop, `MobileTopBar` no mobile; ação opcional). Substitui as 4 cópias locais (fase 13). |
 | `Breadcrumb` | DE, CA, PG d | Usa o primitivo do shadcn |
 | `ProfileLayout` | PE, CT | ProfileSidebar + área de conteúdo |
 | `ProfileSidebar` | PE, CT d | "Meu perfil": Dados do perfil, Carteiras, Atividade, Lista de interesse, Ofertas, Arquivos baixados, Suporte, Sair. Item ativo com barra lateral `primary`. Só os dois primeiros e Sair ficam habilitados. |

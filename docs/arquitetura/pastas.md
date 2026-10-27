@@ -15,7 +15,7 @@ nft-marketplace/
                            SignIn, SignUp, ProfileMenu, Profile, Wallets
     components/
       ui/                  primitivos do shadcn
-      layout/              Header, Footer, MobileTabBar, MobileTopBar, Breadcrumb, ProfileLayout...
+      layout/              Header, Footer, MobileTabBar, MobileTopBar, Breadcrumb, ProfileLayout, PageHeader...
       shared/              componentes de domínio (NftCard, LineItem, PriceSummary, WalletForm...)
     contexts/              AuthContext, LiveAnnouncerContext
     hooks/                 queries e mutations do TanStack Query, useMediaQuery, useDebounce
