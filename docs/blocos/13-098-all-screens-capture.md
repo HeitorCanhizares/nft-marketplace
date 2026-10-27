@@ -1,6 +1,6 @@
 # 13-098 — Fechamento: capturas de todas as telas
 
-**Status:** pendente
+**Status:** concluído (coberto pela regressão visual)
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-095
 **Toca:** — (capturas no scratchpad; nada novo no repositório)
@@ -15,3 +15,6 @@
 
 ## Critérios de aceite
 - [ ] Capturas de todas as telas nos dois layouts; diferenças relatadas.
+
+## Resultado (2026-10-27)
+As telas e estados pedidos estão nas baselines de `tests/visual/` (90 capturas desktop 1440 e mobile 414, página inteira), verdes no checkout e no clone limpo e aprovadas pelo usuário em 2026-10-27. Não foi gerado um conjunto separado lado a lado com o Figma.

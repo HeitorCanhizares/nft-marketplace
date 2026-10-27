@@ -1,6 +1,6 @@
 # 13-099 — Fechamento da fase 13
 
-**Status:** pendente
+**Status:** concluído, com pendências do usuário
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** 13-095, 13-096, 13-097, 13-098
 **Toca:** — (só verificação e status dos blocos)
@@ -15,3 +15,8 @@
 
 ## Critérios de aceite
 - [ ] Todos os blocos da fase com status; relatório final entregue.
+
+## Resultado (2026-10-27)
+- Blocos 13-001 a 13-098 com status. Chromium 1128/0; Firefox e WebKit sem execução possível neste ambiente (13-003).
+- Bugs do app corrigidos na fase: rascunho apagado antes da recusa, decisão do Pagamento com carrinho em cache após novo login, revisão travada ao remover o último item esgotado, favorito pendente sobrescrito pela primeira carga do catálogo, título do `MobileTopBar` quebrando linha.
+- **Pendências (decisão do usuário):** Q4 (boot/seed para LCP < 2,5 s e performance ≥ 90); tamanho dos indicadores do carrossel (`target-size`, acessibilidade 96–97 em `/` e `/nft`); seed lento no WebKit do Windows; Firefox/WebKit em CI Linux.

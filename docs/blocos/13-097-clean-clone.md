@@ -1,6 +1,6 @@
 # 13-097 — Fechamento: clone limpo
 
-**Status:** pendente
+**Status:** concluído
 **Responsável:** Claude Sonnet 5.5 (effort: low) · fallback: Gemini 3.8 Flash (effort: high)
 **Depende de:** todos os blocos commitados pelo Opus (o clone só enxerga o que está no git)
 **Toca:** — (só execução, fora do repositório)
@@ -17,3 +17,8 @@
 
 ## Critérios de aceite
 - [ ] Todos os passos verdes em um clone novo.
+
+## Resultado (2026-10-27)
+- Clone novo no scratchpad: `npm ci`, `npm audit --omit=dev` (0), `format:check`, `lint`, `typecheck`, `build` e `build:test` verdes; `tests/visual` + `smoke` em desktop e mobile: 96 passaram, 0 falharam.
+- **Windows:** clonar numa pasta funda estoura o limite de 260 caracteres por causa dos nomes das baselines (`states-account-checkout.spec.ts-snapshots/...`). Clonar com `git -c core.longpaths=true clone ...` ou numa pasta curta.
+- A suíte E2E completa e o LHCI não foram repetidos no clone; rodaram no checkout (13-095, 13-096) com o mesmo commit.
