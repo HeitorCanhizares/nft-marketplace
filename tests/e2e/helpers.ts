@@ -1,4 +1,6 @@
-import type { Page } from '@playwright/test'
+import { expect, test, type Page, type TestInfo } from '@playwright/test'
+
+import { users } from './fixtures.ts'
 
 export const USER = {
   id: 'user-teste',
@@ -203,4 +205,98 @@ export function seedOrder(page: Page, input: SeedOrderInput) {
     await ordersStore.put(record)
     return id
   })()`)
+}
+
+export type ApiCall = { method: string; path: string; query: Record<string, string>; body: unknown }
+
+/** Grava as chamadas a `/api/...` sem alterar a resposta: `calls('GET', '/nfts')`, `last(...)`, `clear()`. */
+export function recordApi(page: Page) {
+  const all: ApiCall[] = []
+  page.on('request', (request) => {
+    const url = new URL(request.url())
+    if (!url.pathname.startsWith('/api/')) return
+    const raw = request.postData()
+    let body: unknown = null
+    if (raw !== null) {
+      try {
+        body = JSON.parse(raw)
+      } catch {
+        body = raw
+      }
+    }
+    all.push({
+      method: request.method(),
+      path: url.pathname.slice('/api'.length),
+      query: Object.fromEntries(url.searchParams),
+      body,
+    })
+  })
+  const calls = (method: string, pathPattern: string | RegExp) =>
+    all.filter(
+      (call) =>
+        call.method === method.toUpperCase() &&
+        (typeof pathPattern === 'string' ? call.path === pathPattern : pathPattern.test(call.path)),
+    )
+  return {
+    calls,
+    last: (method: string, pathPattern: string | RegExp) => calls(method, pathPattern).at(-1),
+    clear: () => {
+      all.length = 0
+    },
+  }
+}
+
+/** Atrasa a resposta de uma rota da API (`delayApi(page, '**\/api/nfts*', 800, { once: true })`); exceção ao cenário do mock. */
+export async function delayApi(
+  page: Page,
+  pattern: string | RegExp,
+  ms: number,
+  options: { once?: boolean } = {},
+) {
+  await page.route(
+    pattern,
+    async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, ms))
+      await route.continue()
+    },
+    { times: options.once ? 1 : undefined },
+  )
+}
+
+/** Responde 5xx (ou aborta) numa rota da API: `failApi(page, '**\/api/cart*', 503, { times: 1 })`; exceção ao cenário do mock. */
+export async function failApi(
+  page: Page,
+  pattern: string | RegExp,
+  status: number | 'abort',
+  options: { times?: number } = {},
+) {
+  await page.route(
+    pattern,
+    (route) =>
+      status === 'abort'
+        ? route.abort('failed')
+        : route.fulfill({
+            status,
+            contentType: 'application/json',
+            body: JSON.stringify({ code: 'FORCED_FAILURE', message: 'Falha forçada pelo teste.' }),
+          }),
+    { times: options.times },
+  )
+}
+
+/** Entra pela ponte de teste com `users.primary` ou `users.other` e espera a sessão `authenticated`. */
+export async function signInAs(page: Page, user: keyof typeof users = 'primary') {
+  await ready(page)
+  await page.evaluate(`window.__kurio.auth.signIn(${JSON.stringify(users[user])})`)
+  await expect.poll(async () => (await authState(page)).status).toBe('authenticated')
+}
+
+/** Pula o teste fora do projeto indicado: `only(testInfo, 'mobile')`. */
+export function only(testInfo: TestInfo, project: 'desktop' | 'mobile') {
+  test.skip(testInfo.project.name !== project, `só no projeto ${project}`)
+}
+
+/** Grava os cenários forçados do mock antes de qualquer `goto`: `await scenarios(page, 'server-error:GET /nfts')`. */
+export async function scenarios(page: Page, value: string) {
+  await page.addInitScript(`localStorage.setItem('kurio:mock:scenarios', ${JSON.stringify(value)})`)
 }
