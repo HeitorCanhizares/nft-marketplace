@@ -9,13 +9,13 @@ import {
   toWalletBody,
   toWalletFormValues,
   walletsFormSchema,
-  type WalletsFormValues,
+  type WalletFormValues,
 } from '@/schemas/wallet'
 import { isApiError } from '@/services/http/ApiError'
 import type { Wallet } from '@/types/user'
 
 type Slot = 'primary' | 'secondary'
-type ServerKey = keyof WalletsFormValues
+type ServerKey = keyof WalletFormValues
 type ServerErrors = Partial<Record<ServerKey, string>>
 
 const GENERIC_SAVE_ERROR = 'Não foi possível salvar. Verifique sua conexão e tente novamente.'
@@ -34,7 +34,7 @@ const API_FIELD_TO_FORM: Partial<Record<string, ServerKey>> = {
   ensName: 'ensLabel',
 }
 
-// Campos editáveis que limpam o erro do servidor (todos menos o username, que não está no formulário).
+// Campos editáveis que limpam o erro do servidor (todos menos o username, que não aparece em Carteiras).
 const EDITABLE_KEYS = [
   'displayName',
   'nickname',
@@ -59,10 +59,10 @@ export function useWalletSlotForm(
   const { user } = useAuth()
   const { savePrimary, saveSecondary, isPending } = useWalletMutations()
 
-  const [resolver, markSubmitAttempt] = useDeferredEmptyValidation<WalletsFormValues>(
+  const [resolver, markSubmitAttempt] = useDeferredEmptyValidation<WalletFormValues>(
     zodResolver(walletsFormSchema),
   )
-  const form = useForm<WalletsFormValues>({
+  const form = useForm<WalletFormValues>({
     resolver,
     mode: 'onTouched',
     defaultValues: toWalletFormValues(wallet, user),
@@ -136,8 +136,7 @@ export function useWalletSlotForm(
     await form.handleSubmit(async (values) => {
       savingRef.current = true
       try {
-        const username = wallet?.username ?? user?.username ?? ''
-        const body = toWalletBody(values, username)
+        const body = toWalletBody(values)
         if (slot === 'primary') {
           await savePrimary(body)
         } else {
@@ -157,7 +156,7 @@ export function useWalletSlotForm(
   }
 
   // Valores vindos de outra carteira (ex.: "Igual à carteira principal"); mantém o padrão atual.
-  function applyValues(values: WalletsFormValues) {
+  function applyValues(values: WalletFormValues) {
     form.reset(values, { keepDefaultValues: true })
   }
 

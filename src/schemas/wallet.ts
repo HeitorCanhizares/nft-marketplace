@@ -62,8 +62,8 @@ const requiredNetworkSchema = requiredOption(networkSchema, 'Selecione uma rede.
 
 const requiredProviderSchema = requiredOption(walletProviderSchema, 'Selecione uma carteira.')
 
-// Campos comuns ao Carteiras e ao Pagamento (fase 11).
-export const walletCoreSchema = z.object({
+// Campos comuns ao Carteiras e ao Pagamento (fase 11), sem nickname e username.
+const walletCoreShape = {
   displayName: displayNameSchema,
   profileName: profileNameSchema,
   network: requiredNetworkSchema,
@@ -76,23 +76,24 @@ export const walletCoreSchema = z.object({
     error: 'Informe o nome ENS.',
     abort: true,
   }),
-})
+}
 
-export type WalletCoreValues = z.input<typeof walletCoreSchema>
-
-// Formulário da tela Carteiras: apelido obrigatório na 2ª posição.
-export const walletsFormSchema = walletCoreSchema.extend({
+// Os dois formulários têm o MESMO tipo de valores (nickname e username, ambos string); só as regras mudam.
+// Carteiras: apelido obrigatório; username vem da carteira/perfil e não aparece.
+export const walletsFormSchema = z.object({
+  ...walletCoreShape,
   nickname: walletNicknameSchema.min(1, { error: 'Informe o apelido da carteira.', abort: true }),
+  username: z.string(),
 })
 
-export type WalletsFormValues = z.input<typeof walletsFormSchema>
+export type WalletFormValues = z.input<typeof walletsFormSchema>
 
-// Formulário do Pagamento (fase 11): nome de usuário na 2ª posição.
-export const checkoutWalletFormSchema = walletCoreSchema.extend({
+// Pagamento (fase 11): nome de usuário obrigatório; apelido aceita ''.
+export const checkoutWalletFormSchema = z.object({
+  ...walletCoreShape,
+  nickname: z.string(),
   username: usernameSchema,
 })
-
-export type CheckoutWalletFormValues = z.input<typeof checkoutWalletFormSchema>
 
 // Corpo do PUT de /wallets/*: campos de Wallet sem id e slot.
 export const walletBodySchema = z.object({
@@ -118,7 +119,7 @@ function stripEnsSuffix(ensName: string): string {
 }
 
 // Com carteira: copia os campos. Sem carteira: pré-preenche com o perfil (ou tudo vazio).
-export function toWalletFormValues(wallet: Wallet | null, user: User | null): WalletsFormValues {
+export function toWalletFormValues(wallet: Wallet | null, user: User | null): WalletFormValues {
   if (wallet) {
     return {
       displayName: wallet.displayName,
@@ -131,6 +132,7 @@ export function toWalletFormValues(wallet: Wallet | null, user: User | null): Wa
       email: wallet.email,
       ensLabel: stripEnsSuffix(wallet.ensName),
       nickname: wallet.nickname,
+      username: wallet.username,
     }
   }
 
@@ -145,16 +147,17 @@ export function toWalletFormValues(wallet: Wallet | null, user: User | null): Wa
     email: user?.email ?? '',
     ensLabel: stripEnsSuffix(user?.ensName ?? ''),
     nickname: user?.walletNickname ?? '',
+    username: user?.username ?? '',
   }
 }
 
 // Recebe valores já validados pelo walletsFormSchema; o parse final garante o formato do corpo.
-export function toWalletBody(values: WalletsFormValues, username: string): WalletBody {
+export function toWalletBody(values: WalletFormValues): WalletBody {
   const secondary = values.secondaryAddressOrEns?.trim() ?? ''
 
   return walletBodySchema.parse({
     displayName: values.displayName,
-    username,
+    username: values.username,
     nickname: values.nickname,
     profileName: values.profileName,
     network: values.network,
@@ -168,6 +171,6 @@ export function toWalletBody(values: WalletsFormValues, username: string): Walle
 }
 
 // "Igual à carteira principal": mesmos valores da principal.
-export function copyWalletValues(wallet: Wallet): WalletsFormValues {
+export function copyWalletValues(wallet: Wallet): WalletFormValues {
   return toWalletFormValues(wallet, null)
 }
