@@ -123,3 +123,84 @@ export async function seedFigmaCart(page: Page) {
     { nftId: 'ivory-baron-088', editionId: ivory, quantity: 1 },
   ])
 }
+
+export type SeedOrderInput = {
+  status: 'pending' | 'confirmed' | 'declined'
+  userId?: string
+  createdAt?: string
+  network?: 'ethereum' | 'polygon' | 'solana'
+  declineReason?: string
+}
+
+/**
+ * Grava direto no mock um pedido com o snapshot do recibo do Figma e devolve o id. Chamar logado
+ * como `users.primary` (o colecionador sai da carteira principal) e depois de `ready`.
+ * Pendente: defina `kurio:mock:scenarios` = `payment-slow` antes, senão ele confirma em 3 s.
+ */
+export function seedOrder(page: Page, input: SeedOrderInput) {
+  const config = {
+    userId: USER.id,
+    network: 'ethereum',
+    createdAt: input.status === 'confirmed' ? '2026-07-29T12:00:00.000Z' : new Date().toISOString(),
+    declineReason: 'Pagamento recusado pela carteira simulada.',
+    ...input,
+  }
+  return page.evaluate<string>(`(async () => {
+    const config = ${JSON.stringify(config)}
+    const { nftsStore, ordersStore } = window.__kurioMock.stores
+    const lines = [
+      { nftId: 'emerald-ape-042', quantity: 2, unitPrice: '1.19', lineTotal: '2.38' },
+      { nftId: 'violet-nomad-314', quantity: 6, unitPrice: '1.39', lineTotal: '8.34' },
+      { nftId: 'ivory-baron-088', quantity: 9, unitPrice: '1.79', lineTotal: '16.11' },
+    ]
+    const items = []
+    for (const line of lines) {
+      const nft = await nftsStore.get(line.nftId)
+      const edition = nft.editions[0]
+      items.push({
+        nftId: nft.id,
+        name: nft.name,
+        tokenId: nft.tokenId,
+        image: { src: nft.image.src, alt: nft.image.alt },
+        editionId: edition.id,
+        editionLabel: edition.label,
+        quantity: line.quantity,
+        unitPrice: line.unitPrice,
+        lineTotal: line.lineTotal,
+      })
+    }
+
+    const wallet = (await window.__kurio.http.get('/wallets')).data.primary
+    const { id: walletId, slot, ...collector } = wallet
+
+    const explorers = {
+      ethereum: 'https://etherscan.io/tx/',
+      polygon: 'https://polygonscan.com/tx/',
+      solana: 'https://solscan.io/tx/',
+    }
+    const txHash = '0xA91F' + '0'.repeat(56) + 'E82C'
+    const id = crypto.randomUUID()
+    const record = {
+      id,
+      userId: config.userId,
+      status: config.status,
+      createdAt: config.createdAt,
+      quoteId: 'seed-quote-' + id,
+      network: config.network,
+      wallet: { label: 'MetaMask', provider: 'metamask', address: wallet.address },
+      collector,
+      items,
+      subtotal: '26.83',
+      discount: '0.00',
+      networkFee: '0.016',
+      total: '26.846',
+    }
+    if (config.status === 'confirmed') {
+      record.txHash = txHash
+      record.explorerUrl = explorers[config.network] + txHash
+    }
+    if (config.status === 'declined') record.declineReason = config.declineReason
+    await ordersStore.put(record)
+    return id
+  })()`)
+}
