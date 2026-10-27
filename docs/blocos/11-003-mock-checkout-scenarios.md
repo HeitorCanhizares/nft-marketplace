@@ -1,6 +1,6 @@
 # 11-003 — Cenários do checkout no mock
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 7, 8, 10 (cenários de `cenarios.md`)
 **Depende de:** 11-002
 **Toca:** `src/mocks/db/orderScenarios.ts` (novo), `src/mocks/handlers/orders.ts` (alterar)

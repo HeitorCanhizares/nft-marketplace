@@ -1,6 +1,6 @@
 # 11-004 — Estado guardado do checkout e montagem do colecionador
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 1, 2, 3, 8, 10
 **Depende de:** —
 **Toca:** `src/schemas/checkout.ts` (novo), `src/lib/checkoutStorage.ts` (novo), `src/lib/checkoutCollector.ts` (novo)

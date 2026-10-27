@@ -1,6 +1,6 @@
 # 11-005 — Hooks de cotação do checkout e de conexão da carteira
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 5, 6
 **Depende de:** 11-001
 **Toca:** `src/hooks/useCheckoutQuote.ts` (novo), `src/hooks/useCheckoutWallet.ts` (novo)

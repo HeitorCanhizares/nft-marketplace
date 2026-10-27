@@ -1,6 +1,6 @@
 # 11-015 — Coluna "Seus NFTs", `PriceSummary` variante `checkout` e tela desktop
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 5, 6, 7
 **Depende de:** 11-005, 11-009, 11-010, 11-011, 11-014
 **Toca:** `src/pages/Checkout/OrderSummaryColumn.tsx` (novo), `src/pages/Checkout/CheckoutDesktop.tsx` (novo), `src/components/shared/PriceSummary.tsx` (alterar; usado pelo carrinho e pela revisão)

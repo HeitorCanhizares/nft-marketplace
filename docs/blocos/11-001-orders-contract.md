@@ -1,6 +1,6 @@
 # 11-001 — Contrato de pedidos no front (diff de cotação, serviço, schemas)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 6, 7, 8
 **Depende de:** —
 **Toca:** `src/lib/quoteDiff.ts` (novo), `src/services/api/orders.ts` (novo), `src/schemas/order.ts` (alterar)

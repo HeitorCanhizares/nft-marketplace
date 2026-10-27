@@ -1,6 +1,6 @@
 # 11-017 — Página do Pagamento e rota `/pagamento`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › todos
 **Depende de:** 11-008, 11-012, 11-013, 11-015, 11-016
 **Toca:** `src/pages/Checkout/Checkout.tsx` (novo), `src/routes/pagamento.tsx` (alterar)

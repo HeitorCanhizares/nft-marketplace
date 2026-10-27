@@ -1,6 +1,6 @@
 # 11-012 — `CheckoutReview` (modal no desktop, drawer no mobile)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 7, 8, 9
 **Depende de:** 11-010, 11-011
 **Toca:** `src/components/shared/CheckoutReview.tsx` (novo)

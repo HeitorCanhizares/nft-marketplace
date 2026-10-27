@@ -1,6 +1,6 @@
 # 11-018 — Testes do pagamento (caminho principal)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › todos (modo enxuto)
 **Depende de:** 11-017
 **Toca:** `tests/e2e/checkout.spec.ts`, `tests/e2e/checkout-a11y.spec.ts`, `tests/visual/checkout.spec.ts` (todos novos)

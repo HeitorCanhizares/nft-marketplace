@@ -1,6 +1,6 @@
 # 11-002 — Handlers do mock: criar pedido e listar pendentes
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 1, 7, 8
 **Depende de:** 11-001
 **Toca:** `src/mocks/db/orderOps.ts` (novo), `src/mocks/handlers/orders.ts` (novo), `src/mocks/browser.ts` (alterar; **arquivo de registro**)

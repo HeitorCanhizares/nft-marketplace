@@ -1,6 +1,6 @@
 # 11-016 — Tela mobile do Pagamento e esqueleto
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 4, 5, 6
 **Depende de:** 11-005, 11-007, 11-009, 11-010, 11-014
 **Toca:** `src/pages/Checkout/SavedWalletsSection.tsx` (novo), `src/pages/Checkout/CheckoutMobile.tsx` (novo), `src/pages/Checkout/CheckoutSkeleton.tsx` (novo)

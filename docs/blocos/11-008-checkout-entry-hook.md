@@ -1,6 +1,6 @@
 # 11-008 — Hook de entrada do Pagamento (pedido pendente, carrinho bloqueado)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 1
 **Depende de:** 11-001, 11-004
 **Toca:** `src/hooks/useCheckoutEntry.ts` (novo)

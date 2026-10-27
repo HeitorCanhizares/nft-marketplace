@@ -1,6 +1,6 @@
 # 11-006 — Hook de envio do pedido (assinatura, idempotência, reenvio)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 8, 9
 **Depende de:** 11-001, 11-004
 **Toca:** `src/hooks/useCheckoutSubmit.ts` (novo)

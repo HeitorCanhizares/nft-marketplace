@@ -1,6 +1,6 @@
 # 11-011 — `LineItem` variante `summary` (Pagamento e revisão)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 6, 7
 **Depende de:** —
 **Toca:** `src/components/shared/LineItem.tsx` (alterar), `src/components/shared/LineItemList.tsx` (alterar), `src/components/shared/LineItemSkeleton.tsx` (alterar)

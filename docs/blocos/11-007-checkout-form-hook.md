@@ -1,6 +1,6 @@
 # 11-007 — Hook do formulário do checkout (colecionador, outra carteira, rascunho)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 2, 3, 4, 10
 **Depende de:** 11-004
 **Toca:** `src/hooks/useCheckoutForm.ts` (novo)

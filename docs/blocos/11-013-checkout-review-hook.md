@@ -1,6 +1,6 @@
 # 11-013 — Hook da revisão e do pagamento (`useCheckoutReview`)
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 3, 7, 8, 9
 **Depende de:** 11-001, 11-005, 11-006, 11-007
 **Toca:** `src/hooks/useCheckoutReview.ts` (novo)

@@ -1,6 +1,6 @@
 # 11-009 — `WalletProviderOption`, `SavedWalletOption` e cupom recolhido
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 4, 5, 6
 **Depende de:** —
 **Toca:** `src/components/shared/WalletProviderOption.tsx` (novo), `src/components/shared/SavedWalletOption.tsx` (novo), `src/components/shared/CouponField.tsx` (alterar)

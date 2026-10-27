@@ -1,6 +1,6 @@
 # 11-014 — Coluna do colecionador (desktop) e tipos das telas
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 2, 3
 **Depende de:** 11-007, 11-009
 **Toca:** `src/pages/Checkout/viewProps.ts` (novo), `src/pages/Checkout/CollectorSection.tsx` (novo)

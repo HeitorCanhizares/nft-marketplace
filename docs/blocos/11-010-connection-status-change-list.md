@@ -1,6 +1,6 @@
 # 11-010 — `WalletConnectionStatus` e `QuoteChangeList`
 
-**Status:** pendente
+**Status:** concluído
 **Fluxo / subitem:** Pagamento › 5, 7
 **Depende de:** 11-001
 **Toca:** `src/components/shared/WalletConnectionStatus.tsx` (novo), `src/components/shared/QuoteChangeList.tsx` (novo)
